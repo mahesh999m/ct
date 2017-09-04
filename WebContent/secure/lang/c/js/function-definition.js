@@ -113,7 +113,7 @@ var functionDefinitionReady = function() {
 		  			$('.introjs-nextbutton').show();
 				});
 			});
-		break;
+		break;    
 		case "declaration1" :
 			$(".introjs-helperLayer").one("transitionend", function() {
 		  		typing('.introjs-tooltiptext', "Let us consider the example of a <y>function definition</y>.", function() {  
