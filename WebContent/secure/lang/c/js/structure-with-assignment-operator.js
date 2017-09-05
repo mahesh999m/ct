@@ -100,7 +100,7 @@ var structureWithAssiagnmentOperator = function() {
 				$('#arrayOfaValues').removeClass('opacity00');
 	  			typing('.introjs-tooltiptext',"An <span class='ct-code-b-yellow'>int array</span>"
 	  					+ " <span class='ct-code-b-yellow'>a</span> of size <span class='ct-code-b-yellow'>5</span> is declared." ,function() { 
-					$('.introjs-nextbutton').show();	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();	
 			  		});
 				});
 			break;
@@ -138,7 +138,7 @@ var structureWithAssiagnmentOperator = function() {
 	  										"<span class='ct-code-b-yellow'>0</span>.</li><li>Each elelment of the array can be accessed by using"
 	  										+ " <span class='ct-code-b-yellow'>subscript</span> (or) <span class='ct-code-b-yellow'>index</span>.</li>",
 	  										 function() {
-										$('.introjs-nextbutton').show();	
+										$('.introjs-nextbutton, .introjs-prevbutton').show();	
 	  									});
 	  								}});  
 								}});  
@@ -152,7 +152,7 @@ var structureWithAssiagnmentOperator = function() {
 				$('#arrayOfbValues').removeClass('opacity00');
 	  			typing('.introjs-tooltiptext',"An <span class='ct-code-b-yellow'>int array</span>"
 	  					+ " <span class='ct-code-b-yellow'>b</span> of size <span class='ct-code-b-yellow'>5</span> is declared." ,function() { 
-					$('.introjs-nextbutton').show();	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();	
 			  		});
 				});
 			break;
@@ -163,7 +163,7 @@ var structureWithAssiagnmentOperator = function() {
 					$('#arrayTable2').removeClass('opacity00');
 		  			typing('.introjs-tooltiptext',"Memory is allocated for array <span class='ct-code-b-yellow'>b</span> "+
 		  					"of size <span class='ct-code-b-yellow'>5</span>." ,function() { 
-						$('.introjs-nextbutton').show();	
+						$('.introjs-nextbutton, .introjs-prevbutton').show();	
 				 		 });
 					});
 			} else if(intro._currentStep == 8) {
@@ -214,7 +214,7 @@ var structureWithAssiagnmentOperator = function() {
 						typing('.introjs-tooltiptext',"<span id='error'><span id='user'>This statement throws a "
 								+ " <b class='color-red'>compile time error</b>, as one array"
 								+ " cannot be directly assigned to another array.", function() { 
-  				      		$('.introjs-nextbutton').show();
+  				      		$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 			  		});
 				});
@@ -226,7 +226,7 @@ var structureWithAssiagnmentOperator = function() {
 	  			typing('.introjs-tooltiptext',"Assignment in arrays are done by assigning each and every element of one array to"+
 	  					" another array by using their <span class='ct-code-b-yellow'>indices</span> (or) "+
 	  					"<span class='ct-code-b-yellow'>subscript</span>." ,function() { 
-					$('.introjs-nextbutton').show();	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();	
 			 		});
 				});
 			break;
@@ -234,7 +234,7 @@ var structureWithAssiagnmentOperator = function() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$('#structureConcept').removeClass('opacity00');
 	  			typing('.introjs-tooltiptext',"Now let us understand <b class='ct-code-b-yellow'>assignment</b> in structures." ,function() { 
-					$('.introjs-nextbutton').show();	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();	
 			 		});
 				});
 			break; 
@@ -242,7 +242,7 @@ var structureWithAssiagnmentOperator = function() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 				typing('.introjs-tooltiptext',"This is a structure declaration of user defined datatype "+
 						"<span class='ct-code-b-yellow'>book</span>." ,function() {
-					$('.introjs-nextbutton').show();	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();	
 			 		});
 				});
 			break; 
@@ -258,14 +258,14 @@ var structureWithAssiagnmentOperator = function() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 				typing('.introjs-tooltiptext',"We define a structure variable <span class='ct-code-b-yellow'>b1</span> of type"
 						+ " <span class='ct-code-b-yellow'>book</span>." ,function() {
-					$('.introjs-nextbutton').show();	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();	
 			 		});
 				});
 			break;
 		case "cLanguage" : 
 			$(".introjs-helperLayer").one("transitionend", function() {
 				typing('.introjs-tooltiptext',"We initialize  <span class='ct-code-b-yellow'>b1</span> with the above values." ,function() {
-					$('.introjs-nextbutton').show();	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();	
 			 		});
 				});
 			break;
@@ -301,7 +301,7 @@ var structureWithAssiagnmentOperator = function() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 				typing('.introjs-tooltiptext', "We define a structure variable <span class='ct-code-b-yellow'>b2</span> of type"
 						+ " <span class='ct-code-b-yellow'>book</span>." ,function() {
-					$('.introjs-nextbutton').show();	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();	
 			 	});
 			});
 			break;
@@ -312,7 +312,7 @@ var structureWithAssiagnmentOperator = function() {
 				typing('.introjs-tooltiptext',"In <span class='ct-code-b-yellow'>structures</span> unlike "
 						+"<span class='ct-code-b-yellow'>arrays</span>, it is possible to copy an entire structure to an other structure"
 						+ " using the assignment operator <span class='ct-code-b-yellow'>=</span>." ,function() {
-					$('.introjs-nextbutton').show();	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();	
 			 		});
 				});
 			break;

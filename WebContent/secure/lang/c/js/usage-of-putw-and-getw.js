@@ -108,8 +108,8 @@ function initIntroJS() {
 			
 			case "filePointer" :
 				$('.introjs-helperLayer').one('transitionend', function() {
-					text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions '
-							+ 'and generally points to the internal structure that describes the file.';
+					text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions.'
+							+ '<br/></br>It points to the internal structure that describes the file.';
 					typing('.introjs-tooltiptext', text, function(){
 						$('.introjs-nextbutton').show();
 					});
@@ -192,9 +192,9 @@ function initIntroJS() {
 			
 			case "writeMode":
 				$(".introjs-helperLayer").one('transitionend', function() {
-					text = "<span class='ct-code-b-yellow'>w</span> stands for <span class='ct-code-b-yellow'>write</span> mode.<br>In <span class="
-							+ "'ct-code-b-yellow'>write</span> mode, if the file <b>does not exist</b>, a file with the specified name is created."
-							+ "<br><br> If the file <b>exists</b> with the same name, the contents of the file are deleted.";
+					text = "<span class='ct-code-b-yellow'>w</span> stands for <span class='ct-code-b-yellow'>write</span> mode.<br> In <span class="
+							+ "'ct-code-b-yellow'>write</span> mode, if the file <b>does not exist</b>, a file with the specified name is <span class='ct-code-b-yellow'>created</span>."
+							+ "<br><br> If the file <b>exists</b> with the same name, the contents of the file are <span class='ct-code-b-yellow'>deleted</span>.";
 					typing('.introjs-tooltiptext', text, function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -215,8 +215,8 @@ function initIntroJS() {
 			case "readMode":
 				$(".introjs-helperLayer").one('transitionend', function() {
 					var text = "<span class='ct-code-b-yellow'>r</span> stands for <span class='ct-code-b-yellow'>read</span> mode."
-								+ " <br><br>In read mode, the file is opened with the current contents safe if the file"
-								+ "already exists; otherwise an error occurs."
+								+ " <br><br>In <span class='ct-code-b-yellow'>read</span> mode, the file is opened and file exits, the current contents are <span class='ct-code-b-yellow'>safe "
+								+ "otherwise an error occurs."
 					typing('.introjs-tooltiptext', text, function() {
 						$('.introjs-nextbutton').show();		
 					});
@@ -251,7 +251,7 @@ function initIntroJS() {
 								$("#address3").text(fpAddress);
 								$('.introjs-tooltip').removeClass('hide');
 								text  = 'The file structure\'s base address (i.e., <span class="ct-code-b-yellow">' + parseInt($("#address3").text()) 
-										+ '</span>) is stored in file pointer(fp).';
+										+ '</span>) is stored in <span class="ct-code-b-yellow">file pointer(fp).</span>';
 								typing('.introjs-tooltiptext', text, function() {
 									$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton' " 
 																	+ "onclick=svgArrowRevil()>Next &#8594;</a>");
@@ -469,7 +469,7 @@ function initIntroJS() {
 								$('.introjs-tooltip').removeClass('hide');
 								text = ' <span class="ct-code-b-yellow">'+ ctrlText + '</span> !=  <span class="ct-code-b-yellow">'
 										+ '0</span><br>Here the above condition evaluates to <span class="ct-code-b-red">false</span>, '
-										+ 'Hence the control comes out of the loop.';
+										+ 'so the control comes out of the loop.';
 								fileCloseAndOpenSteps();
 							} else {
 								$('.introjs-tooltip').removeClass('hide');
@@ -537,7 +537,7 @@ function initIntroJS() {
 					$('.introjs-tooltip').removeClass('hide');
 					text = 'Here <b>putw()</b> is used to <b>write</b> the value of the variable <span class="ct-code-b-yellow">a</span> in to'
 								+ ' <span class="ct-code-b-yellow">numbers.txt</span> file. This value of'
-								+ ' <span class="ct-code-b-yellow">a</span> is written in the file at fp address.'
+								+ ' <span class="ct-code-b-yellow">a</span> is written in the file at <span class="ct-code-b-yellow">fp address</fp>.'
 								+ '<br><br> After the value is written the <span class="ct-code-b-yellow">fp</span> will'
 								+ ' be automatically incremented by <span class="ct-code-b-yellow">2</span>.';
 					typing('.introjs-tooltiptext', text, function() {

@@ -11,7 +11,7 @@ var arr = [];
 function randomNumber() {
 	$("#outputDiv").click(function() {
 		$("#secondInput").focus();	
-	})
+	});
 	fpAddress = Math.floor((Math.random() * 1086) + 1850);
 }
 
@@ -165,7 +165,7 @@ function introGuide() {
 				animateStep: "fileClose"
 			},{
 				element : "#restartBtn",
-				intro : "Click to Restart",
+				intro : "Click to Restart.",
 				tooltipClass: "introjs-tooltip-min-width-custom",
 				position : "right"
 			}]
@@ -269,10 +269,10 @@ function introGuide() {
 						}
 						$.each(text.split(' '), function (index, val) {
 							$("#inputVal").append("<span id='val"+i+"'>" + val + "</span><span id='space"+i+"'>&nbsp;</span>");
-							console.log($("#val" + i).text());
-							if(i == 1) {
-								  $("#space1").remove();
-							  }
+							//console.log($("#val" + i).text());
+							/*if(i == 1) {
+								$("#space1").remove();
+							}*/
 								i++ 
 							});
 						var dotPos = $('#val2').text().indexOf(".");

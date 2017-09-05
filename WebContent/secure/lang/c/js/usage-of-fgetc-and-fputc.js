@@ -112,8 +112,8 @@ function introGuide() {
 					$('.introjs-helperLayer').one('transitionend', function() {
 						$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 						$('.introjs-tooltip').removeClass('hide');
-						var text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions '
-							+ 'and points to the internal structure that describes the file.';
+						var text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions.<br/><br/> '
+							+ 'It points to the internal structure that describes the file.';
 						typing('.introjs-tooltiptext', text, typingInterval, 'white', function(){
 							$('.introjs-nextbutton').show();
 						});
@@ -193,8 +193,8 @@ function introGuide() {
 								+ " mode. <br/><br/><span class='ct-code-b-yellow'>w</span> stands "
 								+ "for <span class='ct-code-b-yellow'>write</span> mode.<br>"
 								+ " In <span class='ct-code-b-yellow'>write</span> mode, if the file <b>does not exist</b>"
-								+ ", a file with the specified name is created.<br><br> If the file <b>exists</b>"
-								+ " with the same name, the contents of the file are deleted.";
+								+ ", a file with the specified name is <span class='ct-code-b-yellow'>created</span>.<br><br> If the file <b>exists</b>"
+								+ " with the same name, the contents of the file are <span class='ct-code-b-yellow'>deleted</span>.";
 						typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 							$('.introjs-nextbutton').show();
 						});
@@ -205,7 +205,7 @@ function introGuide() {
 					$('.introjs-helperLayer').one('transitionend', function() {
 						$('.introjs-tooltip').removeClass('hide');
 						text = 'The file <span class="ct-code-b-yellow">codetantra.txt</span> is opened in read mode. '
-								+ "In <span class='ct-code-b-yellow'>read</span> mode, "
+								+ "<br/><br/>In <span class='ct-code-b-yellow'>read</span> mode, "
 								+ "the file data can only be read.";
 						typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 							$('.introjs-nextbutton').show();
@@ -820,7 +820,7 @@ function introGuide() {
 	            introcode.goToStep(11);
 	        }
 			if ($(this).val().length > max-1) {
-					$('.introjs-tooltiptext').append("<span class='ct-code-b-red error-text'><br/>String length to 1.</span>");
+					$('.introjs-tooltiptext').append("<span class='ct-code-b-red error-text'><br/>Enter only one character.</span>");
 					e.preventDefault();
 			}
 		});

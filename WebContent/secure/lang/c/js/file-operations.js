@@ -126,8 +126,8 @@ function introGuide() {
 		switch (elementId) {
 		
 			case "heading":
-				var text = "Let us learn how to <span class='ct-code-b-yellow'>open</span> and <span class='ct-code-b-yellow'>close</span>"
-							+ " a <b>file</b> in different <span class='ct-code-b-yellow'>modes</span>.";
+				var text = "Let us learn how  <span class='ct-code-b-yellow'>open</span> and <span class='ct-code-b-yellow'>close</span>"
+							+ " work on <b>files</b> in different <span class='ct-code-b-yellow'>modes</span>.";
 				typing('.introjs-tooltiptext', text, function() {
 					$('.introjs-nextbutton').show();
 				});
@@ -158,8 +158,8 @@ function introGuide() {
 					TweenMax.to($("#fileOperation"), 0.5, {opacity: 1, onComplete: function() {
 						$("#fileRd").addClass("blink");
 						$(".introjs-tooltip, #fileOperation").removeClass("hide opacity00");
-						text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions '
-								+ 'and generally points to the internal structure that describes the file.';
+						text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions. '
+								+ '<br/><br/> This points to the internal structure that describes the file.';
 						typing('.introjs-tooltiptext', text, function() {
 							$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-nextbutton'"
 												+ " id='fPointer' onClick='filePointer();'>Next &#8594;</a>");
@@ -185,7 +185,7 @@ function introGuide() {
 					case "fileWriteMode2":
 						$('.introjs-tooltip').removeClass("hide");
 						text = 'Here <span class="ct-code-b-yellow">fopen()</span> opens the file <span class="ct-code-b-yellow">codetantra.txt'
-								+ '</span> in <span class="ct-code-b-yellow">write</span> mode and the base address of this file structure'
+								+ '</span> in <span class="ct-code-b-yellow">write</span> mode.<br/><br/> The base address of this file structure'
 								+ ' is assigned to the file pointer <span class="ct-code-b-yellow">fp</span>.'; 
 						typing('.introjs-tooltiptext', text, function() {
 							$('.introjs-nextbutton').show();
@@ -208,8 +208,9 @@ function introGuide() {
 			case "writeMode":
 				$(".introjs-helperLayer").one('transitionend', function() {
 					text = "<span class='ct-code-b-yellow'>w</span> stands for <span class='ct-code-b-yellow'>write</span> mode.<br>In "
-							+ "<span class='ct-code-b-yellow'>write</span> mode, if the file <b>does not exist</b>, a file with the specified"
-							+ "  name is created.<br><br> If the file <b>exists</b> with the same name, the contents of the file are deleted.";
+							+ "<span class='ct-code-b-yellow'>write</span> mode, if the file <b class='ct-code-b-yellow'>does not exist</b>, a file with the specified"
+							+ " name is <span class='ct-code-b-yellow'>created</span>.<br><br> If the file <b>exists</b> with the same name,"
+							+"the contents of the file are <span class='ct-code-b-yellow'>deleted</span>.";
 					typing('.introjs-tooltiptext', text, function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -326,7 +327,8 @@ function introGuide() {
 						case "readModeFile":
 							$('.introjs-tooltip').removeClass("hide");
 							var text = "Here we open <span class='ct-code-b-yellow'>codetantra.txt</span> file in read mode.<br>If the file "
-										+ "exists, it is opened with existing data, else an error occurs that the file does not exist.";
+										+ "exists, it is opened with existing data, else an <span class='ct-code-b-red error-text'>error</span>"
+										+ " occurs that the file does not exist.";
 							typing('.introjs-tooltiptext', text, function() {
 								$('.introjs-nextbutton').show();
 							});
@@ -508,7 +510,7 @@ function inputEvent(value, id) {
 function event(id) {
 	if ($(id).val().length < 1) {
 		$(".introjs-nextbutton").hide();
-		$('.introjs-tooltiptext').append("<span class='ct-code-b-red error-text'><br/>Please enter string.</span>");
+		$('.introjs-tooltiptext').append("<span class='ct-code-b-red error-text'><br/>Please enter a character.</span>");
 		$(".fp-address").text($(".address").text());
 	} else {
 		$(".introjs-nextbutton").show();

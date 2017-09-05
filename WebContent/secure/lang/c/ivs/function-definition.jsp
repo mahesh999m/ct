@@ -17,7 +17,8 @@
 	<script src='/js/intro.js'></script>
 	<script src="/js/typewriting.min.js"></script>
 	<script src="/js/jquery-ui-latest.js"></script>
-	<script src="/secure/lang/c/js-min/fdf.min.js"></script>
+	<!-- <script src="/secure/lang/c/js-min/fdf.min.js"></script> -->
+	<script src="/secure/lang/c/js/function-definition.js"></script>
 	
 	<title>function definition</title>
 <style>
@@ -61,6 +62,11 @@ pre {
 	background: white;
 	z-index: 9999999;
 	position: relative;
+}
+
+y {
+	font-weight: bold;
+	color: yellow;
 }
 </style>
 </head>

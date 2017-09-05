@@ -121,7 +121,7 @@ function introFunction() {
 			case "program" :
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-tooltip').removeClass('hide');
-				text = 'Here we will learn how the <span class="ct-code-b-yellow">command line arguments</span> work.';
+				text = 'Let us learn how <span class="ct-code-b-yellow">command line arguments</span> work.';
 				typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 					$('.introjs-nextbutton').show();
 				});	
@@ -159,13 +159,13 @@ function introFunction() {
 					$("#commandLineValues").removeClass("opacity00");
 					text = $("#commandLineValues").html();
 					typing('#commandLineValues', text, typingInterval, 'white', function() {
-						text = "<ul><li>When we successfully compile the <span class='ct-code-b-yellow'>example.c</span> file, we get a "
-								+"<span class='ct-code-b-yellow'>./example</span> file which is an executable file. "+
-								"</li><li>The arguments that are passed to the program from the command line those are "+
+						text = "<ul><li>When we successfully compile the <span class='ct-code-b-yellow'>example.c</span> file, an "
+								+"executable <span class='ct-code-b-yellow'>./example</span> file is created. "+
+								"</li><li>The arguments that are passed to the program from the command line are "+
 								"called <span class='ct-code-b-yellow'>command line arguments"+
 								"</span>.</li><li>Each argument "+
-								"must be separated by a space.</li><li>In c <span class='ct-code-b-yellow'>./example</span>"+
-								" is also take it as one argument.</li></ul>";
+								"must be separated by a space.</li><li>In c, <span class='ct-code-b-yellow'>./example</span>"+
+								" is also taken as one argument.</li></ul>";
 						typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 							$('.introjs-nextbutton').show();
 						});
@@ -192,9 +192,9 @@ function introFunction() {
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-helperLayer').one('transitionend', function() {
 					$('.introjs-tooltip').removeClass('hide');
-					text = "<ul><li><span class='ct-code-b-yellow'>argc</span> is the argument count which store the"+
+					text = "<ul><li><span class='ct-code-b-yellow'>argc</span> is the argument count which stores the"+
 							" total number of arguments passed to the main method.</li><li>"+
-							"That can be accessed using the reference <span class='ct-code-b-yellow'>argc</span>.</li></ul>";
+							"It can be accessed using the reference <span class='ct-code-b-yellow'>argc</span>.</li></ul>";
 					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -247,10 +247,10 @@ function introFunction() {
 					switch(animateStep) {
 						case "sopArgsZero" :
 							$('.introjs-nextbutton').hide();
-							text = "<ul><li>In C, array elements are stored depending on <span class='ct-code-b-yellow'>subscript</span> or "+
+							text = "<ul><li>In C, array elements are accessed using a <span class='ct-code-b-yellow'>subscript</span> or "+
 									"<span class='ct-code-b-yellow'>index</span>."+
 									"<li>The above statement accesses the element present at index <span class='ct-code-b-yellow'>0</span>"+
-									" in the Character array <span class='ct-code-b-yellow'>argv</span> i.e(argv[0]).</li></ul>";
+									" in the character array <span class='ct-code-b-yellow'>argv</span> i.e (argv[0]).</li></ul>";
 							typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 								$('.introjs-nextbutton').show();
 							});
@@ -259,7 +259,7 @@ function introFunction() {
 							$('.introjs-nextbutton').hide();
 							$('.introjs-tooltip').removeClass('hide');
 							text = "The above statement accesses the element present at index <span class='ct-code-b-yellow'>"+ indexCount +"</span>"+
-									" in the Character array <span class='ct-code-b-yellow'>argv</span> i.e(argv["+ indexCount +"]).";
+									" in the character array <span class='ct-code-b-yellow'>argv</span> i.e (argv["+ indexCount +"]).";
 							typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 								$('.introjs-nextbutton').show();
 							});

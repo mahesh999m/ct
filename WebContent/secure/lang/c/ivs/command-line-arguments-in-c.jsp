@@ -250,7 +250,7 @@ $(document).ready(function() {
 							<td><span id='tdIndex3' class='opacity00 position-relative'>3</span></td>
 						</tr>
 						<tr>
-							<td id='td0'><span id='tdValue0' class='opacity00 position-relative'>./Example</span></td>
+							<td id='td0'><span id='tdValue0' class='opacity00 position-relative'>./example</span></td>
 							<td id='td1'><span id='tdValue1' class='opacity00 position-relative'>Ganga</span></td>
 							<td id='td2'><span id='tdValue2' class='opacity00 position-relative'>501</span></td>
 							<td id='td3'><span id='tdValue3' class='opacity00 position-relative'>Gold</span></td>

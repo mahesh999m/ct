@@ -213,7 +213,7 @@ var copyDataFromOneFileToAnotherReady = function() {
 			case "program" :
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-tooltip').removeClass('hide');
-				text = 'Here we will learn how to copy <span class="ct-code-b-yellow">data from one file to another file</span>.';
+				text = 'Let us learn how to  <span class="ct-code-b-yellow">copy</span> data from one file to another file.';
 				typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 					$('.introjs-nextbutton').show();
 				});	
@@ -239,7 +239,7 @@ var copyDataFromOneFileToAnotherReady = function() {
 							typing('#geditGanga', text, typingInterval, 'white', function() {
 								$('.introjs-tooltip').removeClass('hide');
 								text = "The <span class='ct-code-b-yellow'>gedit</span> is "+
-										"a simple text editor used to create and edit text files.";
+										"a simple text editor used to  <span class='ct-code-b-yellow'>create</span> and  <span class='ct-code-b-yellow'>edit</span> text files.";
 								typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 									$('.introjs-nextbutton').show();
 								});
@@ -320,11 +320,11 @@ var copyDataFromOneFileToAnotherReady = function() {
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-helperLayer').one('transitionend', function() {
 					$('.introjs-tooltip').removeClass('hide');
-					text = "This is the main method, its reads the command line arguments.<ul><li>"+
-							"The <span class='ct-code-b-yellow'>argc</span> is the count of the total number of arguments that"+
-							" are passed to the arguments.</li>"+
+					text = "This is the  <span class='ct-code-b-yellow'>main</span> method, its  <span class='ct-code-b-yellow'>reads</span> the command line arguments.<ul><li>"+
+							"The <span class='ct-code-b-yellow'>argc</span> is the  <span class='ct-code-b-yellow'>count</span> of the total number of arguments that"+
+							" will be passed to the method.</li>"+
 							"<li><span class='ct-code-b-yellow'>argv</span> is a vector which contains the "+
-							"commad line arguments.</li></ul>";
+							" <span class='ct-code-b-yellow'>commad line arguments</span>.</li></ul>";
 					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -401,22 +401,22 @@ var copyDataFromOneFileToAnotherReady = function() {
 					var animateStep = intro._introItems[intro._currentStep].animateStep;
 					switch(animateStep) {
 						case "readMode" :	
-							text = 'The file <span class="ct-code-b-yellow">ganga.txt</span> is opened in read mode. '
+							text = 'The file <span class="ct-code-b-yellow">ganga.txt</span> is opened in read mode.<br/><br/> '
 								+ "In <span class='ct-code-b-yellow'>read</span> mode, "
-								+ "the file data can only be read.";
+								+ "the file data can only be  <span class='ct-code-b-yellow'>read</span>.";
 							typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 								$('.introjs-nextbutton').show();
 							});
 						break;
 						case "writeMode" :	
 							text = 'The function <span class="ct-code-b-yellow">fopen()</span> opens a file '
-								+ '<span class="ct-code-b-yellow">yamuna.txt</span>  with '
-								+ '<span class="ct-code-b-yellow">w</span>(writing)'
+								+ '<span class="ct-code-b-yellow">yamuna.txt</span>  in '
+								+ '<span class="ct-code-b-yellow">w </span>(write)'
 								+ " mode. <br/><span class='ct-code-b-yellow'>w</span> stands "
 								+ "for <span class='ct-code-b-yellow'>write</span> mode.<br><br/>"
 								+ " In <span class='ct-code-b-yellow'>write</span> mode, if the file <b>does not exist</b>"
-								+ ", a file with the specified name is created.<br><br/> If the file <b>exists</b>"
-								+ " with the same name, the contents of the file are deleted.";
+								+ ", a file with the specified name is  <span class='ct-code-b-yellow'>created</span>.<br><br/> If the file <b>exists</b>"
+								+ " with the same name, the contents of the file are  <span class='ct-code-b-yellow'>deleted</span>.";
 							typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 								$('.introjs-nextbutton').show();
 							});
@@ -556,10 +556,10 @@ var copyDataFromOneFileToAnotherReady = function() {
 				$('.introjs-helperLayer').one('transitionend', function() {
 					$('.introjs-tooltip').removeClass('hide');
 					text = 'The function <span class="ct-code-b-yellow">fgetc(fpRead)</span> '
-						+ 'gets the character from the file, that is in the position <span class="ct-code-b-yellow">fpRead</span>,'
-						+ ' and  <span class="ct-code-b-yellow">fpRead</span> will be '+
+						+ 'gets the character from the file, that is in the position <span class="ct-code-b-yellow">fpRead</span>.'
+						+ '<br/><br/>The variable <span class="ct-code-b-yellow">fpRead</span> will be '+
 						'automatically <span class="ct-code-b-yellow">incremented</span> by one.<br><br>'+
-						'The character <span class="ct-code-b-yellow">'+ $("#fileFirstCharacter1").text()+'</span> stored in a variable '+
+						'The character <span class="ct-code-b-yellow">'+ $("#fileFirstCharacter1").text()+'</span> is stored in a variable '+
 						'<span class="ct-code-b-yellow">ch</span>.';
 					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 						$('.introjs-nextbutton').show();
@@ -720,10 +720,10 @@ function commandLineValues() {
 				"which contains the <span class='ct-code-b-yellow'>c</span> program."+
 				"</li>"+
 				"<li>In c <span class='ct-code-b-yellow'>./example</span>"+
-				" is also taken as a one argument.</li>"+
-				"<li>Here the <span class='ct-code-b-yellow'>ganga.txt</span> is a source file and"+
+				" is also taken as one argument.</li>"+
+				"<li>Here,<span class='ct-code-b-yellow'>ganga.txt</span> is the source file and"+
 				" <span class='ct-code-b-yellow'>yamuna.txt</span> is the destination file.</li>"+
-				"<li>Each argument must be separated by a space.</li>"+
+				"<li>Each argument must be separated by a  <span class='ct-code-b-yellow'>space</span>.</li>"+
 				"</ul>";
 		typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 			$('.introjs-nextbutton').show();

@@ -23,9 +23,9 @@
 
 <title>fprintf and fscanf.jsp</title>
 <style type="text/css">
-.introjs-tooltiptext br {
+/* .introjs-tooltiptext br {
 	margin: 15px;
-}
+} */
 
 .introjs-tooltip {
 	min-width: 300px;
@@ -72,16 +72,16 @@ div,span {
 }
 
 #fileText {
-	height: 108px;	
+	padding: 10px;
 }
 
 .creamPreTab4 {
-	tab-size: 1;
+	tab-size: 2;
     margin: 8px;
     padding: 10px;
     font-size: 13px;
     white-space: pre;
-	-moz-tab-size: 3;
+	-moz-tab-size: 2;
     border-radius: 8px;
     background-color: #fffae6;
 }

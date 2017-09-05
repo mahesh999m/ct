@@ -1,5 +1,5 @@
 var introjs;
-var typingSpeed = 5;
+var typingSpeed = 1;
 var tl;
 var xResult;
 var i = 1;
@@ -326,7 +326,7 @@ function introGuide() {
 					$('#sinCall').removeClass('sine');	
 					var text = "A call to the function <span class='ct-code-b-yellow'>sine(n, x)</span> is made by sending" 
 						+ " <span class='ct-code-b-yellow'>n</span> and <span class='ct-code-b-yellow'>x</span> (actual arguments) as parameters."
-						+ " <br>This <span class='ct-code-b-yellow'>n</span>"
+						+ " <br><br>This <span class='ct-code-b-yellow'>n</span>"
 						+ " and <span class='ct-code-b-yellow'>x</span> are called <span class='ct-code-b-yellow'>actual arguments</span>.";
 				} else {
 					var text = "The value returned by the function is printed on the console.";
@@ -407,7 +407,7 @@ function introGuide() {
 					$("#xtransfer2").effect( "transfer", { to: $("#cosFormArg2"), className: "ui-effects-transfer" }, 1000 , function() {
 						$(".introjs-tooltip").removeClass("hide");
 						var text = "The two integer arguments <span class='ct-code-b-yellow'>n</span> and <span class='ct-code-b-yellow'>x</span>"
-									+ " are called <span class='ct-code-b-yellow'>formal arguments</span>. The formal arguments" 
+									+ " are called <span class='ct-code-b-yellow'>formal arguments</span>.<br><br> The formal arguments" 
 									+ " <span class='ct-code-b-yellow'>n</span> and <span class='ct-code-b-yellow'>x</span> will store the"
 									+ " values of the actual arguments <b>n</b> and <b>x</b>.";
 						typing(".introjs-tooltiptext", text, function() {
@@ -459,7 +459,7 @@ function introGuide() {
 			$("#cosVar1").removeClass("blinking-white");
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text =  "Two variables <span class='ct-code-b-yellow'>sum</span> and <span class='ct-code-b-yellow'>term</span> of type"
-						+ " <span class='ct-code-b-yellow'>float</span> are declared. <br><b>Note : </b><span class='ct-code-b-yellow'>i</span>,"
+						+ " <span class='ct-code-b-yellow'>float</span> are declared. <br><br><b>Note : </b><span class='ct-code-b-yellow'>i</span>,"
 						+ " <span class='ct-code-b-yellow'>sum</span> and <span class='ct-code-b-yellow'>term</span> are declared inside "
 						+ "the function <span class='ct-code-b-yellow'>cosine()</span> so these are " 
 						+ " <span class='ct-code-b-yellow'>local</span> variables to <span class='ct-code-b-yellow'>cosine()</span>.";
@@ -579,9 +579,9 @@ function introGuide() {
 		case "sumInFor" + i:
 			$(".introjs-helperLayer").one("transitionend", function() {
 				sum = (parseFloat(sum) + parseFloat(term)).toFixed(6);
-				var text = "<span class='ct-code-b-yellow'>Add</span> sum and term and store it in sum. <ul><li>sum = "
+				var text = "<span class='ct-code-b-yellow'>Add</span> sum and term then store it in sum. <br><br>sum = "
 							+ " <span id='flipSum' class='ct-code-b-yellow position-css'> " 
-							+ " sum + term</span>.</li></ul>";
+							+ " sum + term</span>.";
 				typing(".introjs-tooltiptext", text, function() {
 					$('.introjs-tooltipbuttons').append('<a class="introjs-button introjs-duplicate-nextbutton">Next &#8594;</a>');
 					$(".introjs-duplicate-nextbutton").click(function() {

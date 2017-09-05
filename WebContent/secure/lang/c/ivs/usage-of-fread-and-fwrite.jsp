@@ -71,10 +71,10 @@ div,span {
 	padding: 0px;
 }
 
-#fileText {
-	height: 106px;	
+ #fileText {
+	padding: 10px;
 }
-
+ 
 .creamPreTab4 {
     margin: 8px;
     padding: 10px;
@@ -230,7 +230,7 @@ div,span {
   width: 100%;
   border-width: 0px 0 0 0;
   background-color: #000;
-  color: #0f0;
+  color: yellow;
 }
 
 
@@ -281,6 +281,10 @@ div,span {
 	color: #b30000;
 }
 
+.display-inline {
+	display: inline;
+}
+
 </style>
 </head>
 <body>
@@ -302,7 +306,7 @@ div,span {
 						used to <span class = "ct-code-b-green">read</span> an entire structure block from a given file.<br/>
 						Syntax: <span class = "ct-code-b-green">
 							fread (&Structure_variable, sizeof(structure), integer, file_pointer);</span>
-					 	<a class="introjs-button introjs-duplicate-nextbutton opacity00">Next &#8594;</a></li></ul>
+					 	<a class="introjs-button introjs-duplicate-nextbutton opacity00 display-inline">Next &#8594;</a></li></ul>
 				</div>
 			</div>
 			<div class = "col-xs-12 margin-top opacity00" id = "mainDiv">
@@ -310,8 +314,7 @@ div,span {
 					<div id = "codeDiv"  class = "box-border margin-top">
 						<pre class = 'creamPreTab4' id = "code">
 #include &lt;<span class="blue-color">stdio.h</span>&gt;
-<span id = "structor"><span class="purpl-color">struct</span> record
-{
+<span id = "structor"><span class="purpl-color">struct</span> record {
 	int id;
 	char name[10];
 	float salary;

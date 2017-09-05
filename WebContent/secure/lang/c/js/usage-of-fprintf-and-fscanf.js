@@ -1,5 +1,5 @@
 var introcode;
-var typingInterval = 10;
+var typingInterval = 1;
 var fpAddress;
 var enterText;
 var addressCount = 1;
@@ -213,8 +213,8 @@ function introGuide() {
 					$('.introjs-helperLayer').one('transitionend', function() {
 					$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 					$('.introjs-tooltip').removeClass('hide');
-					text = 'Here we will learn how the <span class="ct-code-b-yellow">fprintf()</span> '+
-							' and <span class="ct-code-b-yellow">fscanf()</span> methods work on a file.';
+					text = 'Let us learn how the functions <span class="ct-code-b-yellow">fprintf()</span> '+
+							' and <span class="ct-code-b-yellow">fscanf()</span> work.';
 					typing('.introjs-tooltiptext', text, typingInterval, 'white', function(){
 						$('.introjs-nextbutton').show();
 					});
@@ -226,7 +226,7 @@ function introGuide() {
 					$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 					$('.introjs-tooltip').removeClass('hide');
 					var text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions '
-						+ 'and points to the internal structure that describes the file.';
+						+ '.<br/><br/>It points to the internal structure that describes the file.';
 					typing('.introjs-tooltiptext', text, typingInterval, 'white', function(){
 						$('.introjs-nextbutton').show();
 					});
@@ -251,7 +251,7 @@ function introGuide() {
 				$('.introjs-helperLayer').one('transitionend', function() {
 					$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 					$('.introjs-tooltip').removeClass('hide');
-					text = 'The <span class="ct-code-b-yellow">int</span> data type is used to store the employee id.';
+					text = 'The <span class="ct-code-b-yellow">int</span> data type is used to store the employee <span class="ct-code-b-yellow">id</span>.';
 					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -338,7 +338,7 @@ function introGuide() {
 				$('.introjs-helperLayer').one('transitionend', function() {
 					$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 					$('.introjs-tooltip').removeClass('hide');
-					text = 'The <span class="ct-code-b-yellow">char</span> array is used to store the employee name.';
+					text = 'The <span class="ct-code-b-yellow">char</span> array is used to store the employee <span class="ct-code-b-yellow">name</span>.';
 					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -386,7 +386,7 @@ function introGuide() {
 				$('.introjs-helperLayer').one('transitionend', function() {
 					$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 					$('.introjs-tooltip').removeClass('hide');
-					text = 'The <span class="ct-code-b-yellow">float</span> data type is used to store the employee salary.';
+					text = 'The <span class="ct-code-b-yellow">float</span> data type is used to store the employee <span class="ct-code-b-yellow">salary</span>.';
 					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -426,11 +426,11 @@ function introGuide() {
 					$('.introjs-tooltip').removeClass('hide');
 					text = 'The function <span class="ct-code-b-yellow">fopen()</span> opens a file with '
 						+ '<span class="ct-code-b-yellow">w</span>(writing)'
-						+ " mode. <br/><span class='ct-code-b-yellow'>w</span> stands "
-						+ "for <span class='ct-code-b-yellow'>write</span> mode.<br>"
+						+ " mode. <br/><br/><span class='ct-code-b-yellow'>w</span> stands "
+						+ "for <span class='ct-code-b-yellow'>write</span> mode.<br><br/>"
 						+ " In <span class='ct-code-b-yellow'>write</span> mode, if the file <b>does not exist</b>"
-						+ ", a file with the specified name is created.<br> If the file <b>exists</b>"
-						+ " with the same name, the contents of the file are deleted.";
+						+ ", a file with the specified name is <span class='ct-code-b-yellow'>created</span>.<br><br> If the file <b>exists</b>"
+						+ " with the <span class='ct-code-b-yellow'>same name</span>, the contents of the file are <span class='ct-code-b-yellow'>deleted</span>.";
 					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -450,7 +450,7 @@ function introGuide() {
 								$('#textFile').append('<br><i class="fa fa-arrow-up arrow-up"><div id="address5" class="address-text text-center"></div></i>');
 								$("#address5").text(fpAddress);
 								$('.introjs-tooltip').removeClass('hide');
-								var text = "Here, the file structure base address is stored in the "
+								var text = "Here, the file structure's base address is stored in the "
 									+ "<span class='ct-code-b-yellow'>file pointer(fp)</span>.";
 								typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 									$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton' " +
@@ -554,10 +554,10 @@ function introGuide() {
 						case "readvaluesfromkeyboard1" :
 							$('.introjs-tooltip').removeClass('hide');
 							text ="Please enter an integer, string and a float value each separated by a"
-								+" <b class='ct-code-b-yellow'>space</b>.<br/>For example,"
-								+" if your integer is <b class='ct-code-b-yellow'>24</b>, string value is "
+								+" <b class='ct-code-b-yellow'>space</b>.<br/><br/>For example:<br/>"
+								+" If your integer is <b class='ct-code-b-yellow'>24</b>, string value is "
 								+" <b class='ct-code-b-yellow'>ramana</b> and the float value is" 
-								+" <b class='ct-code-b-yellow'>25000.0</b> respectively enter"
+								+" <b class='ct-code-b-yellow'>25000.0</b> respectively, enter"
 								+" them as <b class='ct-code-b-yellow'>24 ramana 25000.0</b>";
 							typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 								arr = [];
@@ -642,11 +642,11 @@ function introGuide() {
 					$('.introjs-tooltip').removeClass('hide');
 					text = 'The <span class="ct-code-b-yellow">fprintf()</span> function is used to'+
 							' <span class="ct-code-b-yellow">write</span> the <span class="ct-code-b-yellow">data</span> '+
-							'into a <span class="ct-code-b-yellow">file</span>.<br>'+
+							'into a <span class="ct-code-b-yellow">file</span>.<br><br>'+
 							'The <span class="ct-code-b-yellow">fp</span> will automatically be incremented'
-							+' by <span class="ct-code-b-yellow">one</span>.<br>'+
-							'Note: <span class="ct-code-b-yellow">\/n</span> is used for the '+
-							'cursor to points to the next line.';
+							+' by <span class="ct-code-b-yellow">one</span>.<br><br>'+
+							'<b>Note:</b> <span class="ct-code-b-yellow">\/n</span> is used by the '+
+							'cursor to point to the next line.';
 					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -668,9 +668,9 @@ function introGuide() {
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-helperLayer').one('transitionend', function() {
 					$('.introjs-tooltip').removeClass('hide');
-					text = 'The file <span class="ct-code-b-yellow">codetantra.txt</span> is opened in read mode. '
+					text = 'The file <span class="ct-code-b-yellow">codetantra.txt</span> is opened in <span class="ct-code-b-yellow">read mode</span>. '
 						+ "In <span class='ct-code-b-yellow'>read</span> mode, "
-						+ "the file data can only be read.";
+						+ "the data in the file can only be read.";
 					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 						$('.introjs-nextbutton').show();
 					});

@@ -356,7 +356,7 @@ ol, ul {
 						<span id='commandLineValues' class = "opacity00">&gt;&gt; ./example <span class = "ct-code-b-yellow" id='file1'>ganga.txt</span> <span class = "ct-code-b-green" id='file2'>yamuna.txt</span></span>
 					</div>
 					<div>
-						<span id='copieText' class = "opacity00"><b>Content copies to yamuna.txt</b></span>
+						<span id='copieText' class = "opacity00"><b>Content copied to yamuna.txt</b></span>
 					</div>
 					<div>
 						<span id='geditYamuna' class = "opacity00">&gt;&gt; <b>gedit yamuna.txt</b></span>

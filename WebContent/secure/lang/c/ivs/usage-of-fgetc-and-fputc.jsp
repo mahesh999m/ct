@@ -211,6 +211,7 @@ div,span, .fa {
 
 #fileText {
 	font-family: monospace;
+	padding: 10px;
 }
 
 

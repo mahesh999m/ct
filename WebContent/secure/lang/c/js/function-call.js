@@ -205,8 +205,8 @@ function introGuide() {
 		break;
 		case "callingFun":
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This is a <b class ='ct-code-b-yellow'>Function Call</b>. Here, when a call to function is made the control is"
-							+ " transferred to the called function.<br>  i.e., <b class ='ct-code-b-yellow'> Function Definition</b> (body)";
+				var text = "This is a <b class ='ct-code-b-yellow'>Function Call</b>.<br><br> Here, when a call to function is made the control is"
+							+ " transferred to the called function,  i.e., <b class ='ct-code-b-yellow'> Function Definition</b> (body)";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$(".introjs-nextbutton").show();
 				});
@@ -256,7 +256,8 @@ function introGuide() {
 		break;
 		case "endFunc":
 			$('.introjs-helperLayer').one('transitionend', function() {
-				var text = "When the end of the function is reached, the control is transferred back to the calling method.";
+				var text = "When the end of the function is reached, the control is transferred back to the "
+							+"<b class='ct-code-b-yellow'>calling method</b>.";
 				typing('.introjs-tooltiptext', text, function() {
 					$('.introjs-nextbutton').show()
 				});

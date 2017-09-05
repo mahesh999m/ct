@@ -16,7 +16,7 @@
 <script src="/js/typewriting.min.js" type="text/javascript"></script>
 <script src="/js/gs/TweenMax.min.js" type="text/javascript"></script>
 <!-- <script src="/secure/lang/c/js-min/fwa.min.js" type="text/javascript"></script> -->
-<script src="/secure/lang/c/js/functions-with-arrays.js" type="text/javascript"></script>
+<script src="/secure/lang/c/js-min/fwa.min.js" type="text/javascript"></script>
 <title>Functions with Arrays</title>
 <style type="text/css">
 
@@ -107,7 +107,6 @@ table {
 .errMsg {
 	color: red;
 	font-family: monospace;
-	font-weight: bold;
 }
 
 .ui-effects-transfer {

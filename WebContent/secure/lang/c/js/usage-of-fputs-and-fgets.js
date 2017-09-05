@@ -189,8 +189,8 @@ function introGuide() {
 				
 			case "fileOperation":
 				$('.introjs-helperLayer').one('transitionend', function() {
-					var text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions '
-							+ 'and generally points to the internal structure that describes the file.';
+					var text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions'
+							+ '.<br/><br/>It points to the internal structure that describes the file.';
 					typing('.introjs-tooltiptext', text, function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -200,7 +200,7 @@ function introGuide() {
 			case "charDec":
 				$("#fpAddressStorage, #memory").removeClass("z-index");
 				$('.introjs-helperLayer').one('transitionend', function() {
-					var text = "Here we declared two character arrays with the size 20.";
+					var text = "Two  <span class='ct-code-b-yellow'>character arrays</span> of size <span class='ct-code-b-yellow'>20</span> are declared.";
 					typing('.introjs-tooltiptext', text, function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -251,8 +251,8 @@ function introGuide() {
 				$('.introjs-helperLayer').one('transitionend', function() {
 					var text = "<span class='ct-code-b-yellow'>w</span> stands for <span class='ct-code-b-yellow'>write</span> mode.<br>"
 								+ " In <span class='ct-code-b-yellow'>write</span> mode, if the file <b>does not exist</b>"
-								+ ", a file with the specified name is created.<br><br> If the file <b>exists</b>"
-								+ " with the same name, the contents of the file are deleted.";
+								+ ", a file with the specified name is  <span class='ct-code-b-yellow'>created</span>.<br><br> If the file <b>exists</b>"
+								+ " with the same name, the contents of the file are  <span class='ct-code-b-yellow'>deleted</span>.";
 					typing('.introjs-tooltiptext', text, function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -262,7 +262,7 @@ function introGuide() {
 			case "wFileOpen":
 			case "rFileOpen":
 				$('.introjs-helperLayer ').one('transitionend', function() {
-					var text1 = "Here we open <span class='ct-code-b-yellow'>codetantra.txt</span> file in <span class='ct-code-b-yellow'>";
+					var text1 = "<span class='ct-code-b-yellow'>codetantra.txt</span> file is opened in <span class='ct-code-b-yellow'>";
 					if (introjs._currentStep == 8) {
 						var text = text1 + "write</span> mode.";
 					} else {
@@ -286,7 +286,7 @@ function introGuide() {
 							$(".fa").removeClass("opacity00");
 							$(".fp-address").text(fpAddress).removeClass("opacity00");
 							$('.introjs-tooltip').removeClass("hide");
-							var text = "Here the file structure base address is stored in the <span class='ct-code-b-yellow'>file pointer(fp)</span>.";
+							var text = "Here the file structure's base address is stored in the <span class='ct-code-b-yellow'>file pointer(fp)</span>.";
 							typing('.introjs-tooltiptext', text, function() {
 								$('.introjs-tooltipbuttons').append('<a class="introjs-button introjs-nextbutton" id="svgBtn"'
 																+ ' onClick="arrowBtn()">Next &#8594;</a>');
@@ -415,8 +415,8 @@ function introGuide() {
 			case "gets":
 				$('.introjs-helperLayer').one('transitionend', function() {
 					var text = "The <span class='ct-code-b-yellow'>gets()</span> function reads a line from stdin (standard input, here the console)"
-								+ "  and <span class='ct-code-b-yellow'> stores</span> in a string str.<br>It <span class='ct-code-b-yellow'>stops"
-								+ " </span> when either the newline character is read or when the <span class='ct-code-b-yellow'>End-Of-File(EOF)"
+								+ "  and <span class='ct-code-b-yellow'> stores</span> in a string <span class='ct-code-b-yellow'>str</span>.<br><br>It <span class='ct-code-b-yellow'>stops"
+								+ " </span> when either the <span class='ct-code-b-yellow'>newline</span> character is read or when the <span class='ct-code-b-yellow'>End-Of-File(EOF)"
 								+ " </span> is reached.";
 					typing('.introjs-tooltiptext', text, function() {
 						$('.introjs-nextbutton').show();
@@ -447,8 +447,8 @@ function introGuide() {
 			case "readMode":
 				introjs.refresh();
 				$('.introjs-helperLayer').one('transitionend', function() {
-					var text = "In <span class='ct-code-b-yellow'>read</span> mode, the file is opened in a way where "
-								+ "the file data can be only read and cannot be modified. ";
+					var text = "In <span class='ct-code-b-yellow'>read</span> mode, the file is opened where "
+								+ "the data can be only <span class='ct-code-b-yellow'>read</span>. ";
 					typing('.introjs-tooltiptext', text, function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -458,7 +458,7 @@ function introGuide() {
 			case "fgets":
 				$('.introjs-helperLayer').one('transitionend', function() {
 					var text = "<span class='ct-code-b-yellow'>fgets()</span> function reads the specified number of bytes from the"
-								+ " <span class='ct-code-b-yellow'>file</span> and these characters are returned to a character array"
+								+ "  file pointed by <span class='ct-code-b-yellow'>fp</span> and these characters are returned to the character array"
 								+ " <span class='ct-code-b-yellow'>str1</span>.";
 					typing('.introjs-tooltiptext', text, function() {
 						$('.introjs-nextbutton').show();
@@ -468,7 +468,7 @@ function introGuide() {
 				
 			case "puts":
 				$('.introjs-helperLayer').one('transitionend', function() {
-					var text = "<span class='ct-code-b-yellow'>puts()</span> function is used to display a string on a standard output device.";
+					var text = "<span class='ct-code-b-yellow'>puts()</span> function is used to display the string <span class='ct-code-b-yellow'>str1</span> on a standard output device.";
 					typing('.introjs-tooltiptext', text, function() {
 						$('.introjs-nextbutton').show();
 					});
