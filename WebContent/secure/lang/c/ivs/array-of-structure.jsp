@@ -157,21 +157,21 @@ td, tr {
 	</h2>
 	<div id="informationDiv"
 		class="col-xs-offset-2 col-xs-9 information-div margin-top20">
-		<div class="col-xs-6" id="text">
+		<div class="col-xs-7" id="text">
 			<ul>
 				<li id="li1" class="opacity00">structure variables can also be declared as an array of structures.</li>
 				&emsp; &emsp; <span  id="li2" class="opacity00 col-xs-offset-1 ct-code-b-green">Syntax : struct
 							tagname variable[size];</span>
 				<li id="li3" class="opacity00">For example,
 					<div class="col-xs-offset-1">
-						struct example {<br> &emsp;int a;<br>
-						&emsp;float b;<br> };<br> struct example e[3];
+						struct example {<br> &emsp;&emsp;int a;<br>
+						&emsp;&emsp;float b;<br> };<br> struct example e[3];
 					</div>
 				</li>
 			</ul>
 		</div>
 
-		<div style="margin-top: 50px;" class="col-xs-6 opacity00" id="example-table">
+		<div style="margin-top: 50px;" class="col-xs-5 opacity00" id="example-table">
 			<table id="table" class="" style="margin: 20px 0px; width: 100%;">
 				<tbody>
 					<tr style="border-top: none;">

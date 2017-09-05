@@ -200,8 +200,7 @@ pre {
 <div class='col-xs-12'>
 	<div class='col-xs-8 col-xs-offset-2' style='margin-top: 30px; padding: 0'>
 		<div class='col-xs-6 col-xs-offset-1'>
-<pre id='structureConcept' class='opacity00' style='margin-top: 24px;'><span id='structBook' class=''><span class='color-rose'>struct</span> book
-<span id='membersOfStructBook'>{
+<pre id='structureConcept' class='opacity00' style='margin-top: 24px;'><span id='structBook' class=''><span class='color-rose'>struct</span> book <span id='membersOfStructBook'>{
 	<span class='color-rose'>char</span> name[20];
 	<span class='color-rose'>float</span> price;
 	<span class='color-rose'>int</span> page;

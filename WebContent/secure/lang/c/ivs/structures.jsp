@@ -99,6 +99,11 @@ pre {
 	z-index: 99999999 !important;
 	background: white;
 }
+
+.tab-size, pre {
+	tab-size: 4;
+	-moz-tab-size: 4;
+}
 </style>
 
 <body>
@@ -119,25 +124,24 @@ pre {
 		<div class='col-xs-12 margin-top-10'>
 			<div class="col-xs-6 col-xs-offset-3">
 				<div class="col-xs-12">
-<pre id='exampleOfStudent' style='height: 210px; margin-top: 10px;' class='opacity00 col-xs-6'>   
-    <span id='studentStruct'><span class="color-green">struct</span> <span class='color-rose'>student</span></span>
-   <span id='members'>{
-          <span id='int'><span class='color-rose'>int</span> a;</span>
-          <span id='float'><span class='color-rose'>float</span> b;</span>
-          <span id='char'><span class='color-rose'>char</span> c;</span>
-   }</span>;
-     <span id='studentVariables'><span class="color-green">struct</span> student s1, s2, s3;</span></pre>
+<pre id='exampleOfStudent' margin-top: 10px;' class='opacity00 col-xs-6'>
+	<span id='studentStruct'><span class="color-green">struct</span> <span class='color-rose'>student</span> {</span>
+		<span id='members'><span id='int'><span class='color-rose'>int</span> number;</span>
+		<span id='float'><span class='color-rose'>float</span> marks;</span>
+		<span id='char'><span class='color-rose'>char</span> section;</span>
+	}</span>;
+	<span id='studentVariables'><span class="color-green">struct</span> student s1, s2, s3;</span></pre>
 			<div id='tables' class='col-xs-4 col-xs-offset-1' style='margin-top: 2px;'>
 				<div id='storeS1' class="col-xs-12 opacity00" style="padding: 0">
 			   		<div class="text-center"><b class="color-green">s1</b></div>
 					<table id="table">
 						<tbody>
-							<tr><td>a</td><td>b</td><td>c</td></tr>
+							<tr><td>number</td><td>marks</td><td>section</td></tr>
 							<tr>
 					  			<td class="memory opacity00">memory</td>
 					  			<td class="memory opacity00">memory</td>
 					  			<td class="memory opacity00">memory</td>
-			 				</tr><tr><td>1024</td><td>1026</td><td>1030</td></tr>
+			 				</tr><tr><td>1044</td><td>1046</td><td>1050</td></tr>
 			    		</tbody>
 			   		</table>
 			   	</div>
@@ -145,13 +149,13 @@ pre {
 			   		<div class="text-center"><b class="color-green">s2</b></div>
 						<table id="table">
 							<tbody>
-								<tr><td>a</td><td>b</td><td>c</td></tr>
+								<tr><td>number</td><td>marks</td><td>section</td></tr>
 								<tr>
 						  			<td class="memory opacity00">memory</td>
 						  			<td class="memory opacity00">memory</td>
 						  			<td class="memory opacity00">memory</td>
 			  					</tr>
-					  			</tr><tr><td>1040</td><td>1042</td><td>1046</td></tr>
+					  			</tr><tr><td>1060</td><td>1062</td><td>1066</td></tr>
 			 				</tbody>
 			 			</table>
 					</div>
@@ -159,13 +163,13 @@ pre {
 				  		<div class="text-center"><b class="color-green">s3</b></div>
 							<table id="table">
 								<tbody>
-									<tr><td>a</td><td>b</td><td>c</td></tr>
+									<tr><td>number</td><td>marks</td><td>section</td></tr>
 									<tr>
 							  			<td class="memory opacity00">memory</td>
 							  			<td class="memory opacity00">memory</td>
 							  			<td class="memory opacity00">memory</td>
 						  			</tr>
-						  			<tr><td>1050</td><td>1052</td><td>1056</td></tr>
+						  			<tr><td>1070</td><td>1072</td><td>1076</td></tr>
 				 				</tbody>
 				 			</table>
 			 			</div>
@@ -177,19 +181,17 @@ pre {
 			<div class="col-xs-6 col-xs-offset-3">
 				<div class="col-xs-12">
 					<div id='structureDeclaration'class='col-xs-6 opacity00 margin-top-10'>
-	<pre id='declarationSyntax'><span id='keyWord' class="color-green">struct</span> <span id='structureName' class='color-rose'>structure_name</span> 
-	<span id='enclosedBraces'>{
-		Data_type1 var1;
-		Data_type2 var2;
-		....
-		....
-		Data_typen varn;
-	}</span><span id='semicolon'>;</span></pre>
+<pre id='declarationSyntax'><span id='keyWord' class="color-green">struct</span> <span id='structureName' class='color-rose'>structure_name</span> <span id='enclosedBraces'>{
+	data_type1 var1;
+	data_type2 var2;
+	....
+	....
+	data_typeN varN;
+}</span><span id='semicolon'>;</span></pre>
 		</div>
 	<div class="col-xs-6 margin-top-10">
 	<pre id='exampleStructureDeclaration' class='opacity00'>
-<span id='structutreIdentifier'><span class="color-green">struct</span> <span class='color-rose'>employee</span></span>
-	{
+	<span id='structutreIdentifier'><span class="color-green">struct</span> <span class='color-rose'>employee</span></span> {
 		<span id='name'><span class='color-rose'>char</span> name[20];</span>
 		<span id='id'><span class='color-rose'>int</span> id;</span>
 		<span id='long'><span class='color-rose'>float</span> salary;</span>
@@ -201,7 +203,7 @@ pre {
 		<div class='col-xs-12 margin-top-10'>
 			<div id='structureDefination' class='col-xs-6 col-xs-offset-3 text-center' style="padding: 0">
 				<pre id='definitionSyntax' class='opacity00'>
-	<span id='keyWord1' class="color-green">struct</span><span id='structureName1' class='color-rose'> structure_name</span> <span id='structureVariables'>svar1, svar2, ...., svarn;</span></pre>
+	<span id='keyWord1' class="color-green">struct</span><span id='structureName1' class='color-rose'> structure_name</span> <span id='structureVariables'>svar1, svar2, ...., svarN;</span></pre>
 			</div>
 		</div>
 		<div class="button col-xs-12 text-center margin-top-10" id="button">

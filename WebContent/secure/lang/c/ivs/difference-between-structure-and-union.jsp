@@ -118,7 +118,7 @@ $(document).ready(function() {
 				</span>
 			</div>
 			<div class="col-xs-offset-2 col-xs-8 margin-top20 opacity00" id="structureDefinition">
-				<span>2. struct book e;</span>
+				<span>2. struct book b;</span>
 				<span class="margin-left20"> 
 						<i class="fa fa-arrow-right red-color"></i>
 					</span> 
@@ -126,7 +126,7 @@ $(document).ready(function() {
 			</div>
 			<div id ="totalInitialization" class ="col-xs-offset-2 col-xs-10">
 				<div class="margin-top20 opacity00" id="structureInitialization">
-					<span>3. struct book e = {'A', 300, 150.0};</span>
+					<span>3. struct book b = {'A', 300, 150.0};</span>
 					<span style="margin-left:10px;"> 
 							<i class="fa fa-arrow-right red-color"></i>
 						</span> 
@@ -138,23 +138,23 @@ $(document).ready(function() {
 							style="margin-top: 10px; margin-bottom: 10px;" id="or2">OR</span>
 					</div>
 					<div class="margin-left20">
-						e.series = '<span id="aName">A</span>';
+						b.series = '<span id="aName">A</span>';
 					</div>
 					<div class="margin-left20">
-						e.pages= <span id="aPages">300</span>;
+						b.pages= <span id="aPages">300</span>;
 					</div>
 					<div class="margin-left20">
-						e.price= <span id="aPrice">150.0</span>;
+						b.price= <span id="aPrice">150.0</span>;
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-offset-2 col-xs-8 margin-top20 opacity00" id="structureMemory">
-				<span>4. struct book e;</span>
+				<span>4. struct book b;</span>
 				<span class="margin-left20"> 
 						<i class="fa fa-arrow-right red-color"></i>
 				</span> 
 				<span class="margin-left20 ct-code-b-green">memory</span><br>
-				<div class="col-xs-11 text-center" id="a">e</div>
+				<div class="col-xs-11 text-center" id="a">b</div>
 				<div class="col-xs-offset-2 col-xs-7 border-div margin-bottom20" id="memory">
 					<table align="center">
 						<tbody>
@@ -179,7 +179,7 @@ $(document).ready(function() {
 			</div>
 			<div class="col-xs-offset-2 col-xs-9 margin-top20 margin-bottom20 opacity00" id="structureAccessing">
 				<span>5. </span>
-				<span>printf(“series: %s”, e.series);</span><span class="margin-left20"> 
+				<span>printf(“series: %s”, b.series);</span><span class="margin-left20"> 
 						<i class="fa fa-arrow-right red-color"></i>
 					</span> 
 				<span class="margin-left20 ct-code-b-green">Accessing</span>
@@ -204,24 +204,24 @@ $(document).ready(function() {
 				</span>
 			</div>
 			<div class="col-xs-offset-2 col-xs-8 margin-top20 opacity00" id="unionDefinition">
-				<span>2. union book e;</span>
+				<span>2. union book b;</span>
 				<span class="margin-left20"> 
 						<i class="fa fa-arrow-right red-color"></i>
 					</span> 
 				<span class="margin-left20 ct-code-b-green">Definition</span><br>
 			</div>
 			<div class="col-xs-offset-2 col-xs-8 margin-top20 opacity00" id="unionInitialization">
-				<span>3. union book e;</span>
+				<span>3. union book b;</span>
 				<span class="margin-left20"> 
 						<i class="fa fa-arrow-right red-color"></i>
 					</span> 
 				<span class="margin-left20 ct-code-b-green">Initialization</span><br>
-				<span id="">&emsp;e.series = '<span id="series">A</span>';</span><br>
-				<span id="">&emsp;e.pages = <span id ="pages">300</span>;</span><br>
-				<span id="">&emsp;e.price = <span id="price">150.0</span>;</span>
+				<span id="">&emsp;b.series = '<span id="series">A</span>';</span><br>
+				<span id="">&emsp;b.pages = <span id ="pages">300</span>;</span><br>
+				<span id="">&emsp;b.price = <span id="price">150.0</span>;</span>
 			</div>
 			<div class="col-xs-offset-2 col-xs-8 margin-top20 opacity00" id="unionMemory">
-				<span>4. union book e;</span>
+				<span>4. union book b;</span>
 				<span class="margin-left20"> 
 					<i class="fa fa-arrow-right red-color"></i>
 				</span> 
@@ -237,7 +237,7 @@ $(document).ready(function() {
 									<td class="table-border"><span id="tabletd1"></span></td>
 								</tr>
 								<tr>
-								<td colspan="4" class="ct-code-b-green opacity00" style="text-align: center;" id="changingBytes">e.series(1 bytes)</td>
+								<td colspan="4" class="ct-code-b-green opacity00" style="text-align: center;" id="changingBytes">b.series(1 bytes)</td>
 								</tr>
 							</tbody>
 						</table>
@@ -246,7 +246,7 @@ $(document).ready(function() {
 			</div>
 			<div class="col-xs-offset-2 col-xs-9 margin-top20 margin-bottom20 opacity00" id="unionAccessing">
 			<span>5. </span>
-				<span>printf(“series: %s”, e.series);</span>
+				<span>printf(“series: %s”, b.series);</span>
 				<span class="margin-left20"> 
 						<i class="fa fa-arrow-right red-color"></i>
 					</span> 

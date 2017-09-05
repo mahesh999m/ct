@@ -156,8 +156,8 @@ $(document).ready(function() {
 	</h2>
 	<div class="col-xs-offset-5 col-xs-3 margin-top20" id="animation1">
 		<pre class="code-div creampretab4" id="codeDiv1"><span>struct student {</span>
-	<span id="intType">int a;</span>
-	<span id="floatType">float b;</span>
+	<span id="intType">int number;</span>
+	<span id="floatType">float marks;</span>
 	<span id="innerStruct">struct student <span class="s-value"
 				id="sValue">s</span>;</span>
 };

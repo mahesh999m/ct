@@ -43,9 +43,9 @@
 }
 
 .creampretab4 {
-	tab-size: 1;
+	tab-size: 4;
 	font-size: 11px;
-	-moz-tab-size: 1;
+	-moz-tab-size: 4;
 	line-height: 1.5;
 	overflow-y: auto;
 	white-space: pre;
@@ -162,9 +162,9 @@ $(document).ready(function() {
 		<div class="col-xs-5 padding0">
 			<pre class="code-div creampretab4 opacity00" id="codeDiv">
 <span id="declaration">struct book {
-  char name[20];
-  int pages;
-  int price;
+	char name[20];
+	int pages;
+	int price;
 };</span>
 main() {
 	<span id="pointerVariable">struct book *p;</span>

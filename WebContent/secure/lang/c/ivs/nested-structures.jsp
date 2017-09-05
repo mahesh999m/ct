@@ -164,14 +164,12 @@ th, td {
 	<div id='tableDiv' style='border: 1px solid black; border-radius: 10px;' class='col-xs-offset-2 col-xs-8 visibility-hidden'>
 	<div class='col-xs-12'>
 		<div class='col-xs-5' style='margin-top: 10px;'>
-<pre><span id='structDate' class='opacity00'><span class='color-rose'>struct</span> date
-<span id='structureDateMembers' class=''><span id='openBracket'>{</span>
+<pre><span id='structDate' class='opacity00'><span class='color-rose'>struct</span> date <span id='structureDateMembers' class=''><span id='openBracket'>{</span>
 	<span id='intDay'><span class='color-rose'>int</span> day;</span>	
 	<span id='intMonth'><span class='color-rose'>int</span> month;</span>	
 	<span id='intYear'><span class='color-rose'>int</span> year;</span>	
 <span id='closedBracket'>};</span></span></span>
-<span id='structAccount' class='opacity00'><span class='color-rose'>struct</span> account
-<span id='strucutreAccountMembers' class=''><span id='openBracket1'>{</span>
+<span id='structAccount' class='opacity00'><span class='color-rose'>struct</span> account <span id='strucutreAccountMembers' class=''><span id='openBracket1'>{</span>
 	<span id='intAccount'><span class='color-rose'>int</span> accno;</span>
 	<span id='charAccountType'><span class='color-rose'>char</span> acctype;</span>
 	<span id='structLastPayment'><span class='color-rose'>struct</span> date lastpayment;</span>  
@@ -201,16 +199,14 @@ th, td {
 </div>
 <div class='col-xs-12 col-xs-offset-1 col-xs-10 visibility-hidden' id='tableDiv1' style='border: 1px solid black; margin-top: 15px; border-radius: 10px;'>
 	<div class='col-xs-6' style="margin-top: 10px">
-<pre id='structEmployee'><span id='structEmployeeE'><span class='color-rose'>struct</span> employee
-<span>{</span>
+<pre id='structEmployee'><span id='structEmployeeE'><span class='color-rose'>struct</span> employee <span>{</span>
 	<span id='subStructOfEmployee'><span class='color-rose'>char</span> name[20];
-	<span class='color-rose'>struct</span> address
-	{
+	<span class='color-rose'>struct</span> address {
 		<span class='color-rose'>char</span> city[25];
 		<span class='color-rose'>char</span> phone[10];
 		<span class='color-rose'>int</span> pin;
-	}<span class='color-rose'>a</span>;</span>
-}<span class='color-rose'>e</span>;</span>
+	}<span class='color-rose'> a</span>;</span>
+}<span class='color-rose'> e</span>;</span>
 	<span id='printf1'><span class='color-maroon'>printf</span>(<span class='color-lightblue'>"enter employee name"</span>);</span>
 	<span id='scanf1'><span class='color-maroon'>scanf</span>(<span class='color-lightblue'><span id='percentiles1'>"%s"</span></span>, <span id='name1'>e.name</span>);</span>
 	<span id='printf2'><span class='color-maroon'>printf</span>(<span class='color-lightblue'>"enter employee city"</span>);</span>

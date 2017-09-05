@@ -558,8 +558,8 @@ function showingMemoryOfb() {
 		TweenMax.to("#arrowMark2", 1, {attr:{x2: "91.9%", y2: "47%" }, onComplete:function() {
 			var text = "Any member of the <span class='ct-code-b-yellow'>union</span> can be accessed "
 						+ "using the <span class='ct-code-b-yellow'>dot(.)</span> operator.<br><br> "
-						+ "For example, <span class='ct-code-b-yellow'>b</span> in union can be accessed"
-						+ " as <span class='ct-code-b-yellow'>st.b</span>.";
+						+ "For example, <span class='ct-code-b-yellow'>tot</span> in union can be accessed"
+						+ " as <span class='ct-code-b-yellow'>st.no</span>.";
 			typing(".introjs-tooltiptext", text, function() {
 				$('.nextButton').remove();
 				$(".introjs-tooltipbuttons").append("<a class='introjs-button nextButton' onclick = 'showingMemoryOfa();'>Next &#8594;</a>");
@@ -578,8 +578,8 @@ function showingMemoryOfa() {
 		TweenMax.to("#arrowMark3", 1, {attr:{x2: "91.9%", y2: "55%" }});
 		$("#arrowMark4").show();
 		TweenMax.to("#arrowMark4", 1, {attr:{x2: "58.9%", y2: "55%" }, onComplete:function() {
-			var text = " The same memory can be split and used by the member <span class='ct-code-b-yellow'>a</span> of the "
-						+ " <span class='ct-code-b-yellow'>union</span>.<br><br> Here, <span class='ct-code-b-yellow'>a</span> is of type " 
+			var text = " The same memory can be split and used by the member <span class='ct-code-b-yellow'>tot</span> of the "
+						+ " <span class='ct-code-b-yellow'>union</span>.<br><br> Here, <span class='ct-code-b-yellow'>tot</span> is of type " 
 						+ "<span class='ct-code-b-yellow'>int</span> and it requires <span class='ct-code-b-yellow'>2 bytes</span> of memory." 
 			typing(".introjs-tooltiptext", text, function() {
 				$('.nextButton').remove();
@@ -600,8 +600,8 @@ function showingMemoryOfc() {
 		TweenMax.to("#arrowMark5", 1, {attr:{x2: "91.9%", y2: "65%" }});
 		$("#arrowMark6").show();
 		TweenMax.to("#arrowMark6", 1, {attr:{x2: "75.9%", y2: "65%" }, onComplete:function() {
-			var text = " The same memory can be split and used by the member <span class='ct-code-b-yellow'>c</span> of the"
-						+ " <span class='ct-code-b-yellow'>union</span>.<br><br> Here, <span class='ct-code-b-yellow'>c</span> is of type " 
+			var text = " The same memory can be split and used by the member <span class='ct-code-b-yellow'>s</span> of the"
+						+ " <span class='ct-code-b-yellow'>union</span>.<br><br> Here, <span class='ct-code-b-yellow'>s</span> is of type " 
 						+ "<span class='ct-code-b-yellow'>char</span> and it requires <span class='ct-code-b-yellow'>1 byte</span> of memory.";
 			typing(".introjs-tooltiptext", text, function() {
 				$("#tabletd4").removeClass('add-color');

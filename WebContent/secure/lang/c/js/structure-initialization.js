@@ -68,7 +68,7 @@ var structureIntializationReady = function() {
 					$("#arrVal").append("<span id='charVal'>115</span>, <span id='intVal'>1.25</span>"
 							+ ", '<span id='floatVal'>a</span>'").addClass("display-none");
 					var text = "Now let us initialize the values of <span class='ct-code-b-yellow'>Book</span>"
-								+ " <span class='ct-code-b-yellow'>b</span> with different datatypes,.25 than that have been declared."; 
+								+ " <span class='ct-code-b-yellow'>b</span> with different datatypes that have been declared."; 
 					typing(".introjs-tooltiptext", text, function() {
 						$("#arrVal").fadeIn("500");
 					})

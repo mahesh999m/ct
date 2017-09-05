@@ -133,10 +133,10 @@
 }
 
 .creamPreTab {
-	tab-size: 2;
+	tab-size: 4;
 	margin: 2px;
 	padding: 12px;
-	-moz-tab-size: 2;
+	-moz-tab-size: 4;
 	border-radius: 8px;
 	font-family: monospace;
 	background-color: #fffae6;
@@ -162,11 +162,11 @@ $(document).ready(function() {
 		<div class="col-xs-5" style="margin-top: 10px;">
 			<pre class="code-div creamPreTab" id="codeDiv">
 <span><b class="flipClass" id="struct1" style="width: 42px;">struct</b> student {</span>
-	<span id="intType">int a;</span> <span id="arrow1"></span> <span
+	<span id="intType">int no;</span> <span id="arrow1"></span> <span
 					class="ct-code-b-green opacity00" id="byte1">2 bytes</span>
-	<span id="floatType">float b;</span> <span id="arrow2"></span> <span
+	<span id="floatType">float tot;</span> <span id="arrow2"></span> <span
 					class="ct-code-b-green opacity00" id="byte2"><span id="four">4</span> bytes</span>
-	<span id="charType">char c;</span> <span id="arrow3"></span> <span
+	<span id="charType">char s;</span> <span id="arrow3"></span> <span
 					class="ct-code-b-green opacity00" id="byte3">1 byte</span>
 };
 <span id="definition"><b class="flipClass" id="struct2"
@@ -182,25 +182,25 @@ $(document).ready(function() {
 							orient="auto" style="fill: gray;" id="arrow"> 
 								<path d="M0,0 L5,2.5 L0,5 Z" class="arrow" /> 
 							</marker> 
-							<line id="arrowMark1" class="line" x1="54.9%" y1="47%" x2="54.9%"
+							<line id="arrowMark1" class="line" x1="45.9%" y1="47%" x2="54.9%"
 							y2="47%"
 							style="marker-end: url(#arrow); stroke: gray; stroke-width: 2; display: inline;" />
-							<text x="220" y="84" fill="green" id="btext" class="text-class">b</text>
-							<line id="arrowMark2" class="line" x1="61.9%" y1="47%" x2="61.9%"
+							<text x="220" y="84" fill="green" id="btext" class="text-class">no</text>
+							<line id="arrowMark2" class="line" x1="69.9%" y1="47%" x2="61.9%"
 							y2="47%"
 							style="marker-end: url(#arrow); stroke: gray; stroke-width: 2; display: inline;" />
-							<line id="arrowMark3" class="line" x1="77.9%" y1="55%" x2="77.9%"
+							<line id="arrowMark3" class="line" x1="81.9%" y1="55%" x2="77.9%"
 							y2="55%"
 							style="marker-end: url(#arrow); stroke: gray; stroke-width: 2; display: inline;" />
-							<text x="285" y="99" fill="green" id="atext" class="text-class">a</text>
-							<line id="arrowMark4" class="line" x1="72.9%" y1="55%" x2="72.9%"
+							<text x="285" y="99" fill="green" id="atext" class="text-class">tot</text>
+							<line id="arrowMark4" class="line" x1="67.9%" y1="55%" x2="72.9%"
 							y2="55%"
 							style="marker-end: url(#arrow); stroke: gray; stroke-width: 2; display: inline;" />
-							<text x="320" y="115" fill="green" id="ctext" class="text-class">c</text>
-							<line id="arrowMark5" class="line" x1="85.8%" y1="65%" x2="85.8%"
+							<text x="320" y="115" fill="green" id="ctext" class="text-class">s</text>
+							<line id="arrowMark5" class="line" x1="87.8%" y1="65%" x2="85.8%"
 							y2="65%"
 							style="marker-end: url(#arrow); stroke: gray; stroke-width: 2; display: inline;" />
-							<line id="arrowMark6" class="line" x1="81.9%" y1="65%" x2="81.9%"
+							<line id="arrowMark6" class="line" x1="79.9%" y1="65%" x2="81.9%"
 							y2="65%"
 							style="marker-end: url(#arrow); stroke: gray; stroke-width: 2; display: inline;" />
 					</svg>
@@ -219,9 +219,9 @@ $(document).ready(function() {
 											class="ct-code-b-green">1 byte</td>
 									</tr>
 									<tr>
-										<td style="text-align: center;" id="a">a</td>
-										<td style="text-align: center;" id="b">b</td>
-										<td style="text-align: center;" id="c">c</td>
+										<td style="text-align: center;" id="a">no</td>
+										<td style="text-align: center;" id="b">tot</td>
+										<td style="text-align: center;" id="c">s</td>
 									</tr>
 									<tr>
 										<td class="table-border"></td>
@@ -276,11 +276,10 @@ $(document).ready(function() {
 	<div>
 		<div class="col-xs-offset-1 col-xs-4 margin-top20">
 			<pre class="code-div opacity00 creamPreTab" id="codeDiv1">
-<span id="union">union emp
-{
- int no;
- float price;
- char s;
+<span id="union">union emp {
+	int no;
+	float price;
+	char s;
 };</span>
 <span id="mainMethod">void main() {</span>
 	<span id="variable">union emp e;</span>

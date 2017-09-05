@@ -164,8 +164,7 @@ pre {
 <div id='tableDiv' style='border: 1px solid black; margin-top: 20px' class='col-xs-12 col-xs-offset-1 col-xs-10 visibility-hidden'>
 <div class='col-xs-12 col-xs-7' style="margin-top: 10px; margin-bottom: 10px">
 <pre><span id='voidFunction'><span class='color-rose'>void</span> <span class='color-brown'>main</span>();</span> {
-	<span id='membersOfStructBook'><span class='color-rose'>struct</span> book
-	{
+	<span id='membersOfStructBook'><span class='color-rose'>struct</span> book {
 		<span class='color-rose'>char</span> name[20];
 		<span class='color-rose'>float</span> price;
 		<span class='color-rose'>int</span> page;

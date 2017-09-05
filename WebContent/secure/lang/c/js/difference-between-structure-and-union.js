@@ -276,7 +276,7 @@ var diffBetweenStructureAndUnionReady = function() {
 						$("#unionMemory").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 							var text = "<ul><li>In union memory will be allocated based on the member with the <b class='ct-code-b-yellow'>largest</b> datatype.</li></br></br>"
 										+ "<li>Here, a memory of <span class='ct-code-b-yellow'>4</span> bytes will be allocated to the union <span class='ct-code-b-yellow'>book</span>"
-										+ " <span class='ct-code-b-yellow'>e</span> as the <b class='ct-code-b-yellow'>largest</b> datatype is "
+										+ " <span class='ct-code-b-yellow'>b</span> as the <b class='ct-code-b-yellow'>largest</b> datatype is "
 										+ "<span class='ct-code-b-yellow'>float</span> which occupies <span class='ct-code-b-yellow'>4 bytes</span> of memory.</li></ul>";
 							typing(".introjs-tooltiptext", text, function() {
 								$("#unionMemory").removeClass("animated zoomIn");
@@ -406,7 +406,7 @@ function moveValuesinUnion() {
 					$("#changingBytes").removeClass("animated zoomIn");
 					$("#pages").addClass("z-index-class").effect("highlight",{color: 'yellow'}, 1000, function() {
 						$("#changingBytes").effect("highlight",{color: 'yellow'}, 1000, function() {
-							flipEffect("#changingBytes", "e.pages(2 bytes)", function() {
+							flipEffect("#changingBytes", "b.pages(2 bytes)", function() {
 								var l1= $("#pages").offset();
 								$("#tabletd1").text($("#pages").text()).removeClass("opacity00").offset({
 									"top":l1.top,
@@ -415,7 +415,7 @@ function moveValuesinUnion() {
 								TweenMax.to("#tabletd1",1,{top:0,left:0, onComplete:function() {
 									$("#pages").removeClass("z-index-class");
 									$("#changingBytes").effect("highlight",{color: 'yellow'}, 1000, function() {
-										flipEffect("#changingBytes", "e.price(4 bytes)", function() {
+										flipEffect("#changingBytes", "b.price(4 bytes)", function() {
 											$("#price").addClass("z-index-class").effect("highlight",{color: 'yellow'}, 1000, function() {
 												var l1= $("#price").offset();
 												$("#tabletd1").text($("#price").text()).removeClass("opacity00").offset({

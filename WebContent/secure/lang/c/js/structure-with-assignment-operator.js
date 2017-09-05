@@ -309,7 +309,8 @@ var structureWithAssiagnmentOperator = function() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#b2Arayy").removeClass("opacity00");
 				$("#table2").removeClass("opacity00");
-				typing('.introjs-tooltiptext',"In structures unlike arrays, it is possible to copy an entire structure to an other structure"
+				typing('.introjs-tooltiptext',"In <span class='ct-code-b-yellow'>structures</span> unlike "
+						+"<span class='ct-code-b-yellow'>arrays</span>, it is possible to copy an entire structure to an other structure"
 						+ " using the assignment operator <span class='ct-code-b-yellow'>=</span>." ,function() {
 					$('.introjs-nextbutton').show();	
 			 		});

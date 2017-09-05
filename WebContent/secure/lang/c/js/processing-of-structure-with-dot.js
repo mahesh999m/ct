@@ -262,7 +262,7 @@ var processingOfStructureWithDotReady = function() {
 			break;	
 			case "declaration":
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					var text = "We declare a user defined datatype <span class='ct-code-b-yellow'>employeerecord</span>" 
+					var text = "We declare a user defined datatype <span class='ct-code-b-yellow'>employee_record</span>" 
 						+ ", which contains one <span class='ct-code-b-yellow'>character</span> member <span class='ct-code-b-yellow'>name</span>"
 						+ ", two <span class='ct-code-b-yellow'>integer</span> members <span class='ct-code-b-yellow'>age</span>"
 						+ " and <span class='ct-code-b-yellow'>sal</span>.";
@@ -273,9 +273,9 @@ var processingOfStructureWithDotReady = function() {
 			break;	
 			case "variableDefinition":
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					var text = "We have defined three struct variables <span class='ct-code-b-yellow'>S1</span>, "
-								+ " <span class='ct-code-b-yellow'>S2</span>, <span class='ct-code-b-yellow'>S3</span> of type"
-								+ " <span class='ct-code-b-yellow'>employeerecord</span>.";
+					var text = "We have defined three struct variables <span class='ct-code-b-yellow'>emp1</span>, "
+								+ " <span class='ct-code-b-yellow'>emp2</span>, <span class='ct-code-b-yellow'>emp3</span> of type"
+								+ " <span class='ct-code-b-yellow'>employee_record</span>.";
 					typing(".introjs-tooltiptext", text, function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -286,8 +286,8 @@ var processingOfStructureWithDotReady = function() {
 			case "s2":
 			case "s1":
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					var text = "All the member variables of <span class='ct-code-b-yellow'>" + elementId.toUpperCase()
-								+ "</span> will be allocated memory as per their datatype.";
+					var text = "All the member variables of <span class='ct-code-b-yellow'>emp1</span>"
+								+" will be allocated memory as per their datatype.";
 					typing(".introjs-tooltiptext", text, function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -307,10 +307,10 @@ var processingOfStructureWithDotReady = function() {
 						$("#output").append('<span id="stmt1"></span><br>');
 					}
 					$('.introjs-tooltip').removeClass("hide");
-					var text = "The members of  <span class='ct-code-b-yellow'>S" + t + " </span> can be accessed by using"
-								+ "  <span class='ct-code-b-yellow'>dot(.)</span> operator<br>i.e., <span class='ct-code-b-yellow'>S" + t 
-								+ ".name</span>, <span class='ct-code-b-yellow'>S" + t + ".age</span> and"
-								+ " <span class='ct-code-b-yellow'>S" + t + ".sal</span>.";
+					var text = "The members of  <span class='ct-code-b-yellow'>emp" + t + " </span> can be accessed by using"
+								+ "  <span class='ct-code-b-yellow'>dot(.)</span> operator<br>i.e., <span class='ct-code-b-yellow'>emp" + t 
+								+ ".name</span>, <span class='ct-code-b-yellow'>emp" + t + ".age</span> and"
+								+ " <span class='ct-code-b-yellow'>emp" + t + ".sal</span>.";
 					typing(".introjs-tooltiptext", text, function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -441,7 +441,7 @@ var processingOfStructureWithDotReady = function() {
 			break;
 
 			case "readName1":
-				getAnimation("#editname1", "#s1name", "true", "name", "s1");
+				getAnimation("#editname1", "#s1name", "true", "name", "emp1");
 				break;
 			case "readName2":
 				getAnimation("#editname2", "#s2name", "false");
@@ -458,7 +458,7 @@ var processingOfStructureWithDotReady = function() {
 				});
 			break;
 			case "readAge1":
-				getAnimation("#editage1", "#s1age", "true", "age", "s1");
+				getAnimation("#editage1", "#s1age", "true", "age", "emp1");
 			break;
 			case "readAge2":
 				getAnimation("#editage2", "#s2age", "false");
@@ -475,7 +475,7 @@ var processingOfStructureWithDotReady = function() {
 				});
 			break;
 			case "readSalary1":
-				getAnimation("#editsal1", "#s1sal", "true", "salary", "S1");
+				getAnimation("#editsal1", "#s1sal", "true", "salary", "emp1");
 			break;
 			case "readSalary2":
 				getAnimation("#editsal2", "#s2sal", "false");
@@ -538,7 +538,7 @@ var processingOfStructureWithDotReady = function() {
 			case "printRecord2":
 			case "printRecord1":
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					var text = "Let us access the members of <span class='ct-code-b-yellow'>S" + iVal + "</span> using the dot operator and print them"
+					var text = "Let us access the members of <span class='ct-code-b-yellow'>emp" + iVal + "</span> using the dot operator and print them"
 								+ " to the console.";
 					typing('.introjs-tooltiptext', text, function() {
 						iVal++;
@@ -672,9 +672,6 @@ function numbers(val) {
 		}
 		if ($(this).text().length != 0) {
 			$('.introjs-nextbutton').show();
-			if ($('.introjs-nextbutton[style="display: inline-block;"]').length == 1 && e.keyCode == 13) {
-				intro.nextStep();
-			}
 		} else {
 			if ($('ct-code-b-red').length == 0) {
 				$('.introjs-tooltiptext').append('<div class="ct-code-b-red">Please enter any integer.</div>');

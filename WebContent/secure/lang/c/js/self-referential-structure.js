@@ -135,7 +135,7 @@ function selfReferentialStructure() {
 		case "intType":
 			$('.introjs-nextbutton').hide();
 			$(".introjs-helperLayer ").one('transitionend', function() {
-				var text = "Variable <b class='ct-code-b-yellow'>a</b> of type <b class='ct-code-b-yellow'>int</b> is a member of struct <b class='ct-code-b-yellow'>student</b> ";
+				var text = "Variable <b class='ct-code-b-yellow'>number</b> of type <b class='ct-code-b-yellow'>int</b> is a member of struct <b class='ct-code-b-yellow'>student</b> ";
 				typing(".introjs-tooltiptext", text, function() {
 					$('.introjs-nextbutton').show();
 				});
@@ -144,7 +144,7 @@ function selfReferentialStructure() {
 		case "floatType":
 			$('.introjs-nextbutton').hide();
 			$(".introjs-helperLayer ").one('transitionend', function() {
-				var text = "This is a member of struct <span class='ct-code-b-yellow'>student</span> "
+				var text = "<span class='ct-code-b-yellow'>marks</span> is the member of struct <span class='ct-code-b-yellow'>student</span> "
 							+ "of type <span class='ct-code-b-yellow'>float</span>.";
 				typing(".introjs-tooltiptext", text, function() {
 					$('.introjs-nextbutton').show();

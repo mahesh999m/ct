@@ -141,8 +141,8 @@ td {
 }
 
 pre {
-	-moz-tab-size: 3;
-	tab-size: 3;
+	-moz-tab-size: 4;
+	tab-size: 4;
 	font-family: monospace; 
 }
 
@@ -173,8 +173,7 @@ pre {
 <div id='tableDiv' style='border: 1px solid black; margin-top: 20px; padding: 0' class='col-xs-offset-1 col-xs-10 visibility-hidden'>
 	<div class='col-xs-8' style="margin-top: 13px;">
  <pre id="preId"><span id='errorVoidDisplay'> <span class='color-rose'>void</span> <span class='color-brown'>display</span>(<span class='color-rose'>struct</span> book);</span>
- <span id='structBook' class=''><span class='color-rose'>struct</span> book
- {
+ <span id='structBook' class=''><span class='color-rose'>struct</span> book {
  	<span class='color-rose'>char</span> name[20];
  	<span class='color-rose'>float</span> price;
  	<span class='color-rose'>int</span> page;
