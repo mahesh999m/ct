@@ -219,7 +219,7 @@ y {
 					<pre class='creamPreTab4'>
 	<span id='functionDeclaration'>void ganga();</span>						
 	<span id="mainDeclaration">void <b class='ct-blue-color'>main()</b></span>	{
-	    <span id="automainDeclaration"><span id="autoDeclaration" class='ct-green-color'>auto</span> <span id='autoDeclaration1'>int <span id="value1">a, b;</span></span></span>						
+	    <span id="automainDeclaration"><span id="autoDeclaration" class='ct-green-color'>auto</span> <span id='autoDeclaration1'>int <span id="value1">a;</span></span></span>						
 	    <span id='variableDeclaration1'>a = <span id="number1">10</span>;</span>
 	    <span id='functionDeclaration1'>ganga();</span>
 	    <span id="sopLine1">printf("The local variable value within main() = <span id="percentage1">%d</span>\n"<span id="comma1">, </span><span id="aValue1">a</span>);</span>
@@ -234,7 +234,7 @@ y {
 					<div class="col-xs-12 padding0">
 						<div id="mainmemoryheading" class='text-center opacity00'>In main()</div>
 						<div class="col-xs-12 padding0 visibility-hidden" id="mainMemory">
-							<div id="numberDiv1" class="col-xs-4 margin10" style='margin-left:10px;'>
+							<div id="numberDiv1" class="col-xs-offset-4 col-xs-4 margin10">
 				    			<div class="panel-primary number-div visibility-hidden"  id="addressDiv1">
     								<div class="panel-heading text-center number-div"><span id="aheading1">a</span></div>
     								<div class="panel panel-body number-body text-center">
@@ -242,7 +242,7 @@ y {
     								</div>
 				    			</div>
 				    		</div>
-				    		<div id="numberDiv2" class="col-xs-offset-2 col-xs-4 margin10"> 
+				    		<!-- <div id="numberDiv2" class="col-xs-offset-2 col-xs-4 margin10"> 
 				    		<span id="bValueAnimation" class=""></span>
 				    			<div class="panel-primary number-div visibility-hidden" id="addressDiv2">
     								<div class="panel-heading text-center number-div">b</div>
@@ -250,7 +250,7 @@ y {
     									<span class="text-center" id="addressValue2"></span>
     								</div>
 				    			</div>
-				    		</div>
+				    		</div> -->
 				    	</div>
 			
 				    	<div class="col-xs-12 padding0 visibility-hidden" id="functionMemory">

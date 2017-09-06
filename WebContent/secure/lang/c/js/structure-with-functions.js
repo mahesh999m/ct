@@ -88,7 +88,7 @@ var structureWithFunctionsReady = function() {
 		var elementId = targetElement.id;
 		switch (elementId) {
 		case "informationdiv" :
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$("#informationdiv").removeClass("visibility-hidden");
 	  		TweenMax.to($("#li1"), 0.5, {opacity: 1, onComplete: function() {
 	  			$('#li1').append(' <a class="introjs-button user-btn" onclick="intro.nextStep()">Next &#8594;</a>');
@@ -97,13 +97,13 @@ var structureWithFunctionsReady = function() {
 	  				$(this).remove();
 		  			$('.introjs-tooltip').removeClass('hide');
 		  			typing('.introjs-tooltiptext',"Let us consider an example.", function() {
-		  				$('.introjs-nextbutton').show(); 
+		  				$('.introjs-nextbutton, .introjs-prevbutton').show(); 
 		  			});
 	  			});*/
 	  		}});
 		break;
 		/*case "tableDiv" :
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$("#informationdiv").addClass("zindex");
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$('#tableDiv').removeClass('visibility-hidden');
@@ -115,61 +115,61 @@ var structureWithFunctionsReady = function() {
 		
 		case "preId" :
 			$('.user-btn').remove();
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$('.visibility-hidden').removeClass('visibility-hidden');
 			$(".introjs-helperLayer").one("transitionend", function() {
 				intro.refresh();
 				typing('.introjs-tooltiptext',"Let us consider an example.", function() {
-	  				$('.introjs-nextbutton').show(); 
+	  				$('.introjs-nextbutton, .introjs-prevbutton').show(); 
 	  			});
 			});
 		break;
 		
 		case "errorVoidDisplay" :
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 			  	typing('.introjs-tooltiptext', "<ul><li>This is the declaration of function <span class='ct-code-b-yellow'>display()</span>.</li>"
 			  			+ " <li>This takes an argument of type struct <span class='ct-code-b-yellow'>book</span>.</li>"
 			  			+ " <li>This line throws a <span class='ct-code-b-red'>compile time error</span>"
 			  			+ ", as the <b class='ct-code-b-yellow'>structure book</b> has not been declared yet.</li>"
 			  			+ "<li>This line <b class='ct-code-b-yellow'>should</b> be written after the struct <b class='ct-code-b-yellow'>book</b> declaration.</li></ul>", function() {  
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 		break;
 		case "structBook" :
 			$('#errorVoidDisplay').addClass('opacity00');
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#structBook").removeClass("opacity00");
 			  	typing('.introjs-tooltiptext', "This is a structure <span class='ct-code-b-yellow'>book</span> with three members"
 			  			+ " <span class='ct-code-b-yellow'>name</span>,"
 			  			+ " <span class='ct-code-b-yellow'>price</span> and <span class='ct-code-b-yellow'>page</span>.", function() {  
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 		break;
 		case "voidMain" :
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {  
 				$("#voidDisplay").removeClass("opacity00");
 			  	typing('.introjs-tooltiptext', "This line does not throw an error as <b class='ct-code-b-yellow'>book</b> is already declared.", function() {  
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 		break; 
 		case "memoryBookB" :
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			intro.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
 			  	typing('.introjs-tooltiptext', "Here we define a structure variable <span class='ct-code-b-yellow'>b</span> of type"
 			  			+ " <span class='ct-code-b-yellow'>book</span> and it is initialized to the above values.", function() {  
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 		break; 
 		case "memoryStoreB" :
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#bArrow").removeClass("opacity00");
 				$("#memoryStoreB").removeClass("opacity00");
@@ -199,27 +199,27 @@ var structureWithFunctionsReady = function() {
 				});
 		break;
 		case "displayOfB" : 
-		$('.introjs-nextbutton').hide();
+		$('.introjs-nextbutton, .introjs-prevbutton').hide();
 		$(".introjs-helperLayer").one("transitionend", function() {
 			$("#voidDispalyX").removeClass("opacity00");
 		  	typing('.introjs-tooltiptext', "This is a <b class='ct-code-b-yellow'>function call</b> that sends the entire structure as a function argument.", function() {  
-				$('.introjs-nextbutton').show();
+				$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
 		case "voidPrintFunction" : 
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#voidDispalyX").removeClass("opacity00");
 			  	typing('.introjs-tooltiptext', "This function <b class='ct-code-b-yellow'>display</b>, uses the structure <span class='ct-code-b-yellow'>book</span>"
 			  			+ " to print the entire"
 			  			+ " <span class='ct-code-b-yellow'>book</span> values to the console.", function() {  
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 		break;
 		case "voidDispalyX" :
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				setTimeout(function() {
 					intro.nextStep();
@@ -227,7 +227,7 @@ var structureWithFunctionsReady = function() {
 			});
 		break;
 		case "memoryStoreX" :
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#xArrow").removeClass("opacity00");
 				$("#memoryStoreX").removeClass("opacity00");
@@ -258,7 +258,7 @@ var structureWithFunctionsReady = function() {
 			});
 		break; 
 		case "printF" :
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			intro.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#printF").removeClass("opacity00");
@@ -270,7 +270,7 @@ var structureWithFunctionsReady = function() {
 				});
 		break;
 		case "consoleId" :
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#consoleId").removeClass("opacity00");
 			  	typing('#outPut', "NAME: " + "<span class='color-palegreen'>C LANGUAGE</span> <span style='margin-left: 20px;'></span>" + "price: " + "<span class='color-palegreen'>125.500000</span> <span style='margin-left: 20px;'></span>" + "page: " + "<span class='color-palegreen'>315</span>",  function() { 
@@ -281,7 +281,7 @@ var structureWithFunctionsReady = function() {
 				});
 		break;
 		case "restartBtn":
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$('.introjs-tooltip').css({'min-width' : '110px'});
 			$(".introjs-helperLayer").one("transitionend", function() {
 				typing('.introjs-tooltiptext', "Click to restart.", function() {
@@ -295,7 +295,7 @@ var structureWithFunctionsReady = function() {
 	intro.start();
 	$('.introjs-skipbutton').hide();
 	$('.introjs-prevbutton').hide();
-	$('.introjs-nextbutton').hide();
+	$('.introjs-nextbutton, .introjs-prevbutton').hide();
 }
 
 function typing(selector, text, callBackFunction) {

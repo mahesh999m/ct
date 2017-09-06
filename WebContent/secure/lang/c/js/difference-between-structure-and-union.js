@@ -102,15 +102,15 @@ var diffBetweenStructureAndUnionReady = function() {
 			var elementId = targetElement.id;
 			switch (elementId) {
 			/*case "heading":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				var text = "Let us see the difference between the <span class='ct-code-b-yellow'>structures</span>"
 							+ " and <span class='ct-code-b-yellow'>unions</span>.";
 				typing(".introjs-tooltiptext", text, function() {
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 				break;*/
 			case "structureKeyword":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				//$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#structuresDiv").removeClass("opacity00");
 					$("#structureKeyword").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
@@ -124,19 +124,19 @@ var diffBetweenStructureAndUnionReady = function() {
 			//	});
 				break;
 			case "structureDeclaration":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#structureRemainingDecleration").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						var text = "This is a <span class='ct-code-b-yellow'>structure</span>  declaration.";
 						typing(".introjs-tooltiptext", text, function() {
 							$("#structureRemainingDecleration").removeClass("animated zoomIn");
-							$('.introjs-nextbutton').show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					});
 				});
 				break;
 			case "unionKeyword":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#unionsDiv").removeClass("opacity00");
 					$("#unionKeyword").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
@@ -144,49 +144,49 @@ var diffBetweenStructureAndUnionReady = function() {
 									+ "the keyword <span class='ct-code-b-yellow'>union</span> is used for declaration.";
 						typing(".introjs-tooltiptext", text, function() {
 							$("#unionKeyword").removeClass("animated zoomIn");
-							$('.introjs-nextbutton').show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					});
 				});
 				break;
 			case "unionDeclaration":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#unionRemainingDecleration").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						var text = "This is an <span class='ct-code-b-yellow'>union</span> declaration.";
 						typing(".introjs-tooltiptext", text, function() {
 							$("#unionRemainingDecleration").removeClass("animated zoomIn");
-							$('.introjs-nextbutton').show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					});
 				});
 				break;
 			case "structureDefinition":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#structureDefinition").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						var text = "This is a <span class='ct-code-b-yellow'>structure</span> definition.";
 						typing(".introjs-tooltiptext", text, function() {
 							$("#unionRemainingDecleration").removeClass("animated zoomIn");
-							$('.introjs-nextbutton').show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					});
 				});
 				break;
 			case "unionDefinition":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#unionDefinition").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						var text = "This is an <span class='ct-code-b-yellow'>union</span> definition.";
 						typing(".introjs-tooltiptext", text, function() {
 							$("#unionRemainingDecleration").removeClass("animated zoomIn");
-							$('.introjs-nextbutton').show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					});
 				});
 				break;
 			case "structureInitialization":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#structureInitialization").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						var text = "A structure can be  initialized by initializing " 
@@ -194,40 +194,40 @@ var diffBetweenStructureAndUnionReady = function() {
 							+ " once.";
 						typing(".introjs-tooltiptext", text, function() {
 							$("#structureInitialization").removeClass("animated zoomIn");
-							$('.introjs-nextbutton').show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					});
 				});
 				break;
 			case "totalInitialization":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					if (intro._currentStep == 11) {
 						var text = "The sequence in which the <span class='ct-code-b-yellow'>members</span> are declared in the structure, will be followed "
 									+" when memory is allocated to the structure.";
 						typing(".introjs-tooltiptext", text, function() {
 							$("#anotherInitializationOfStructure").removeClass("animated zoomIn");
-							$('.introjs-nextbutton').show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					} else {
 						$("#anotherInitializationOfStructure").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 							var text = "We can also initialize each member of <span class='ct-code-b-yellow'>structure</span> individually.";
 							typing(".introjs-tooltiptext", text, function() {
 								$("#anotherInitializationOfStructure").removeClass("animated zoomIn");
-								$('.introjs-nextbutton').show();
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							});
 						});
 					}
 				});
 				break;
 			case "unionInitialization":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					if (intro._currentStep == 13) {
 						$("#anotherInitializationOfStructure").removeClass("animated zoomIn");
 						var text = "Based on the <span class='ct-code-b-yellow'>largest</span> datatype of the member of union, the memory will be allocated.";
 						typing(".introjs-tooltiptext", text, function() {
-							$('.introjs-nextbutton').show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					} else {
 						$("#unionInitialization").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
@@ -235,14 +235,14 @@ var diffBetweenStructureAndUnionReady = function() {
 								+"member at a time.";
 							typing(".introjs-tooltiptext", text, function() {
 								$("#unionInitialization").removeClass("animated zoomIn");
-								$('.introjs-nextbutton').show();
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							});
 						});
 					}
 				});
 				break;
 			case "structureMemory":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					if (intro._currentStep == 12) {
 						var text = "Every member's value will be stored in its allocated <span class='ct-code-b-yellow'>memory</span> address.";
@@ -255,14 +255,14 @@ var diffBetweenStructureAndUnionReady = function() {
 							var text = "In a <b class='ct-code-b-yellow'>structure</b> every member has its own memory allocated.";
 							typing(".introjs-tooltiptext", text, function() {
 								$("#structureMemory").removeClass("animated zoomIn");
-								$('.introjs-nextbutton').show();
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							});
 						});
 					}
 				});
 				break;
 			case "unionMemory":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					if (intro._currentStep == 14) {
 						var text = "<ul><li>At any point of time, only <span class='ct-code-b-yellow'>one member</span> can be accessed in the union, "
@@ -280,40 +280,40 @@ var diffBetweenStructureAndUnionReady = function() {
 										+ "<span class='ct-code-b-yellow'>float</span> which occupies <span class='ct-code-b-yellow'>4 bytes</span> of memory.</li></ul>";
 							typing(".introjs-tooltiptext", text, function() {
 								$("#unionMemory").removeClass("animated zoomIn");
-								$('.introjs-nextbutton').show();
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							});
 						});
 					}
 				});
 				break;
 			case "structureAccessing":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#structureAccessing").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						var text = "<ul><li>Accessing the members of structure is done using the <span class='ct-code-b-yellow'>dot(.)</span> operator.</li>" 
 							+ "<li>In structure all the members can be accessed at <span class='ct-code-b-yellow'>once</span>.</li></ul>";
 						typing(".introjs-tooltiptext", text, function() {
 							$("#structureAccessing").removeClass("animated zoomIn");
-							$('.introjs-nextbutton').show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					});
 				});
 				break;
 			case "unionAccessing":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#unionAccessing").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						var text = "<ul><li>Accessing the members of union is done using the <span class='ct-code-b-yellow'>dot(.)</span> operator.</li>" 
 							+ "<li>In union all the members <span class='ct-code-b-yellow'>should not be accessed</span> at once, it will result in incorrect data.</li></ul>";
 						typing(".introjs-tooltiptext", text, function() {
 							$("#unionAccessing").removeClass("animated zoomIn");
-							$('.introjs-nextbutton').show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					});
 				});
 				break;
 			case "restart":
-				$('.introjs-nextbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					TweenMax.to("#restart", 1, {"opacity" : "1", onComplete:function() {
 						var text = "Click to restart.";
@@ -326,7 +326,7 @@ var diffBetweenStructureAndUnionReady = function() {
 			}
 		});
 		intro.start();
-		$('.introjs-nextbutton').hide();
+		$('.introjs-nextbutton, .introjs-prevbutton').hide();
 		$('.introjs-prevbutton').hide();
 		$('.introjs-skipbutton').hide();
 		$('.introjs-bullets').hide();
@@ -382,7 +382,7 @@ function moveValuesinStructure() {
 					$("#aPrice").addClass("z-index-class").effect("highlight",{color: 'yellow'}, 1000, function() {
 						TweenMax.to("#pprice",1,{top:0,left:0, onComplete:function() {
 							$("#aPrice").removeClass("z-index-class");
-							$('.introjs-nextbutton').show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						}});
 					});
 				}});
@@ -424,7 +424,7 @@ function moveValuesinUnion() {
 												});
 												TweenMax.to("#tabletd1",1,{top:0,left:0, onComplete:function() {
 													$("#price").removeClass("z-index-class");
-													$('.introjs-nextbutton').show();
+													$('.introjs-nextbutton, .introjs-prevbutton').show();
 												}});
 											});
 										});

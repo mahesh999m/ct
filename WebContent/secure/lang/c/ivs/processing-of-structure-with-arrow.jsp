@@ -43,9 +43,9 @@
 }
 
 .creampretab4 {
-	tab-size: 4;
+	tab-size: 2;
 	font-size: 11px;
-	-moz-tab-size: 4;
+	-moz-tab-size: 2;
 	line-height: 1.5;
 	overflow-y: auto;
 	white-space: pre;

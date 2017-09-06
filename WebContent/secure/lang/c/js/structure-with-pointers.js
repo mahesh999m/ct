@@ -121,7 +121,7 @@
 				$("#structBook").removeClass("opacity00");
 				typing('.introjs-tooltiptext', "Here a variable <span class='ct-code-b-yellow'>b</span> is defined for"
 	  					 + " <span class='ct-code-b-yellow'>book</span> and initialized to the above values.", function() {
-			  		$('.introjs-nextbutton').show();
+			  		$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 		break; 
@@ -163,7 +163,7 @@
 			  	typing('.introjs-tooltiptext', "Here <span class='ct-code-b-yellow'>p</span> is a pointer variable to the structure book."
 			  			+ "<br><br> A pointer is allocated <span class='ct-code-b-yellow'>2 bytes</span> of memory to store the address of"
 			  			+ " the variable of <span class='ct-code-b-yellow'>book</span>.", function() {  
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 		break; 
@@ -186,7 +186,7 @@
 				$("#pointerP").removeClass("opacity00");
 			  	typing('.introjs-tooltiptext', "The address of structure variable <span class='ct-code-b-yellow'>b</span> is stored into"
 			  			+ " the pointer variable.", function() {  
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 		break; 
@@ -201,7 +201,7 @@
 								$("#address").effect("highlight", {color: '#FFDC00'}, 1000, function() {	
 									$("#name1").effect("highlight", {color: '#FFDC00'}, 1000, function() {	
 										$("#memory0").effect("highlight", {color: '#FFDC00'}, 1000, function() {
-											$('.introjs-nextbutton').show();
+											$('.introjs-nextbutton, .introjs-prevbutton').show();
 										});
 									});
 								});
@@ -219,7 +219,7 @@
 								$("#address").effect("highlight", {color: '#FFDC00'}, 1000, function() {	
 									$("#price1").effect("highlight", {color: '#FFDC00'}, 1000, function() {	
 										$("#memory1").effect("highlight", {color: '#FFDC00'}, 1000, function() {
-											$('.introjs-nextbutton').show();
+											$('.introjs-nextbutton, .introjs-prevbutton').show();
 										});
 									});
 								});
@@ -237,7 +237,7 @@
 								$("#address").effect("highlight", {color: '#FFDC00'}, 1000, function() {	
 									$("#pages1").effect("highlight", {color: '#FFDC00'}, 1000, function() {	
 										$("#memory2").effect("highlight", {color: '#FFDC00'}, 1000, function() {
-											$('.introjs-nextbutton').show();
+											$('.introjs-nextbutton, .introjs-prevbutton').show();
 										});
 									});
 								});

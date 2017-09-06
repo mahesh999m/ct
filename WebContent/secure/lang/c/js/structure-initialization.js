@@ -187,7 +187,7 @@ var structureIntializationReady = function() {
 												$("#bPrice").addClass("flash");
 												setTimeout(function() {
 													$("#bPrice").fadeIn("slow", function() {
-														$(".introjs-nextbutton").show();
+														$(".introjs-nextbutton, .introjs-prevbutton").show();
 													});
 												}, 1400);
 											});
@@ -208,7 +208,7 @@ var structureIntializationReady = function() {
 						$("#bLetter").fadeIn("slow", function() {
 							$("#bPages").fadeIn("slow", function() {
 								$("#bPrice").fadeIn("slow", function() {
-									$(".introjs-nextbutton").show();
+									$(".introjs-nextbutton, .introjs-prevbutton").show();
 								});
 							})
 						})
@@ -295,10 +295,11 @@ var structureIntializationReady = function() {
 		break;
 		
 		}
-	})
+	});
 	intro.start();
 	var text = "Let us learn the initialization of <span class='ct-code-b-yellow'>structure</span>.";
 	typing(".introjs-tooltiptext", text, function() {
+		$(".introjs-prevbutton").hide();
 		$(".introjs-nextbutton").show();
 	})
 	$("#restart").click(function() {
@@ -329,7 +330,7 @@ function memoryArea(text) {
 				$("#bPrice").addClass("flash");
 				setTimeout(function() {
 					$("#bPrice").fadeIn("slow", function() {
-						$(".introjs-nextbutton").show();
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
 						$(".discard").addClass("discard-red");
 					});
 				},1400);
@@ -361,7 +362,7 @@ $("#output span:eq(0)").fadeIn("slow", function() {
 				$("#output span:eq(2)").fadeIn("slow", function() {
 					$("#output span:eq(2)").addClass("flash");
 					$("#printMethod").removeClass("zIndex");
-					$(".introjs-nextbutton").show();
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
 					if (typeof callBackFunction === "function") {
 						callBackFunction();
 					}
@@ -437,7 +438,7 @@ function typing(selector, text, callBackFunction) {
 		"cursor_color": 'white',
 	}, function() {
 		$(selector).removeClass("typingCursor");
-		$(".introjs-nextbutton").show();
+		$(".introjs-nextbutton, .introjs-prevbutton").show();
 		if (typeof callBackFunction === "function") {
 			callBackFunction();
 		}

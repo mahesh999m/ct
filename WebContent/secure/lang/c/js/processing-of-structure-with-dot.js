@@ -267,7 +267,7 @@ var processingOfStructureWithDotReady = function() {
 						+ ", two <span class='ct-code-b-yellow'>integer</span> members <span class='ct-code-b-yellow'>age</span>"
 						+ " and <span class='ct-code-b-yellow'>sal</span>.";
 					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton').show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 			break;	
@@ -278,6 +278,7 @@ var processingOfStructureWithDotReady = function() {
 								+ " <span class='ct-code-b-yellow'>employee_record</span>.";
 					typing(".introjs-tooltiptext", text, function() {
 						$('.introjs-nextbutton').show();
+						$('.introjs-prevbutton').show();
 					});
 				});
 				
@@ -289,7 +290,7 @@ var processingOfStructureWithDotReady = function() {
 					var text = "All the member variables of <span class='ct-code-b-yellow'>emp1</span>"
 								+" will be allocated memory as per their datatype.";
 					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton').show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();   
 					});
 				});
 			break;	
@@ -312,7 +313,7 @@ var processingOfStructureWithDotReady = function() {
 								+ ".name</span>, <span class='ct-code-b-yellow'>emp" + t + ".age</span> and"
 								+ " <span class='ct-code-b-yellow'>emp" + t + ".sal</span>.";
 					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton').show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 			break;
@@ -413,6 +414,7 @@ var processingOfStructureWithDotReady = function() {
 					var text = "This statement prints the string in the console.";
 					typing(".introjs-tooltiptext", text, function() {
 						$('.introjs-nextbutton').show();
+						$('.introjs-prevbutton').show();
 					});
 				});
 			break;
