@@ -132,10 +132,10 @@ th, td {
 	height: 20px !important;
 }
 
-#outPut {
+/* #outPut {
 	color: #0f0;
 }
-
+ */
 .user-btn {
 	background: green;
 	margin: 0!important;
@@ -261,7 +261,7 @@ th, td {
 					<div class='opacity00 inputDiv' id='pinNumberSpan'>Enter employee pinNo. : <span id='pinNoEnterspan'>
 						<input class="index-textbox-size input"  type="text" id='pinNumberInput' Maxlength='4'></span>
 					</div>
-					<div class='opacity00' id='outPut'></div>
+					<div class='opacity00 ct-code-b-yellow' id='outPut'></div>
 				</div>
 		</div>
 	</div>

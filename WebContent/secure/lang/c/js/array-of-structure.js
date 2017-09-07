@@ -121,7 +121,7 @@ function introSteps() {
 								+"</br></br> Memory is allocated to all the elements of structure array i.e., " 
 						+ "<span class='ct-code-b-yellow'>S[0], S[1], S[2], S[3]</span>.";
 					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton').show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 			break;
@@ -133,7 +133,7 @@ function introSteps() {
 							$('.introjs-tooltip').removeClass("hide");
 							var text = "This is how the <span class='ct-code-b-yellow'>memory</span> is allocated to an array of structures.";
 							typing(".introjs-tooltiptext", text, function() {
-								$('.introjs-nextbutton').show();
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							});
 						});
 					} else if (intro._currentStep == 6) {
@@ -143,7 +143,7 @@ function introSteps() {
 							var text = "Variable <span class='ct-code-b-yellow'>i</span> is allocated " 
 								+ "<span class='ct-code-b-yellow'>2</span> bytes of memory.";
 							typing(".introjs-tooltiptext", text, function() {
-								$('.introjs-nextbutton').show();
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							});
 						});
 					}
@@ -153,7 +153,7 @@ function introSteps() {
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					var text = "An <span class='ct-code-b-yellow'>int</span> variable <span class='ct-code-b-yellow'>i</span> is declared."; 
 					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton').show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 			break;
@@ -162,7 +162,7 @@ function introSteps() {
 					var text = "This statement is used to print the string in the console.";
 					typing(".introjs-tooltiptext", text, function() {
 						$("#output").append('<span id="detailsOfBook"></span>');
-						$('.introjs-nextbutton').show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 			break;
@@ -389,7 +389,7 @@ function introSteps() {
 				});
 			break;
 			case "restart" :
-				$('.introjs-tooltip').css({"miin-width": "110px"});
+				$('.introjs-tooltip').css({"min-width": "110px"});
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#restart").removeClass("opacity00");
 				});

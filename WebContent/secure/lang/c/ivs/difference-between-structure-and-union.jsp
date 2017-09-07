@@ -106,15 +106,15 @@ $(document).ready(function() {
 			<div class="col-xs-offset-2 col-xs-8 margin-top20" id="structureDeclaration">
 				1. <span class="opacity00" id="structureKeyword">struct</span>
 				<span class="opacity00" id="structureRemainingDecleration">
-					<span>book {</span> 
+						<span>book {</span> 
 					<span class="margin-left20"> 
 						<i class="fa fa-arrow-right red-color"></i>
 					</span> 
 					<span class="margin-left20 ct-code-b-green">Declaration</span><br>
-					<span>&emsp;&emsp;char series;</span><br>
-					<span>&emsp;&emsp;int pages;</span><br>
-					<span>&emsp;&emsp;float price;</span><br>
-					<span>};</span>
+							<span>&emsp;&emsp;char series;</span><br>
+							<span>&emsp;&emsp;int pages;</span><br>
+							<span>&emsp;&emsp;float price;</span><br>
+						<span>};</span>
 				</span>
 			</div>
 			<div class="col-xs-offset-2 col-xs-8 margin-top20 opacity00" id="structureDefinition">
@@ -199,7 +199,7 @@ $(document).ready(function() {
 					<span class="margin-left20 ct-code-b-green">Declaration</span><br>
 					<span>&emsp;&emsp;char series;</span><br> 
 					<span>&emsp;&emsp;int pages;</span><br>
-					<span>&emsp;&emsp;float price;</span><br> 
+					<span>&emsp;&emsp;float price;</span><br>
 					<span>};</span>
 				</span>
 			</div>

@@ -33,7 +33,10 @@ var nestedStructuresReady = function() {
 		}
 	});
 	$('#phoneNumberInput').keyup(function() {
-		$('.color-red').remove();  
+		var max = $(this).attr("maxlength");
+		if ($(this).val().length != max) {
+			$('.color-red').remove();
+		}
 		if($('#phoneNumberInput').val().length > 0) {
 			  var phone = $('#phoneNumberInput').val();
 			  $('#phoneNoBox').text(phone);
@@ -44,7 +47,10 @@ var nestedStructuresReady = function() {
 		}
 	});
 	$('#pinNumberInput').keyup(function() {
-		$('.color-red').remove(); 
+		var max = $(this).attr("maxlength");
+		if ($(this).val().length != max) {
+			$('.color-red').remove();
+		}
 		if($('#pinNumberInput').val().length > 0) {
 			  var pin = $('#pinNumberInput').val();
 			  $('#pinNoBox').text(pin);
@@ -61,25 +67,27 @@ var nestedStructuresReady = function() {
 			$('.introjs-tooltiptext').append("<div class='color-red'>Please restrict the string maximun length 15 digits only.</div>");
 			e.preventDefault();
 		}
-		if ((e.keyCode >= 65 && e.keyCode <= 90) || ($.inArray(e.keyCode, [8, 46, 37, 39, 27]) !== -1)) {
+		if ((e.keyCode >= 65 && e.keyCode <= 90) || ($.inArray(e.keyCode, [8,46, 37, 39, 27]) !== -1)) {
 			return;
 		} else {
 			e.preventDefault();
 		}
 	});
+	
 	$("#phoneNumberInput, #pinNumberInput").keydown(function(e) {
 		$('.color-red').remove();
 		var max = $(this).attr("maxlength");
 		if ($(this).val().length >= max) {
 			$('.introjs-tooltiptext').append("<div class='color-red'>Please restrict the string maximun length " + max + " digits only.</div>");
-			e.preventDefault();
+			//e.preventDefault();
 		}
-		if (((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) || ($.inArray(e.keyCode, [8, 46, 37, 39, 27]) !== -1)) {
+		if (((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) || ($.inArray(e.keyCode, [8,46, 37, 39, 27]) !== -1)) {
 			return;
 		} else {
 			e.preventDefault();
 		}
 	});
+	
 	intro.setOptions({
 		showStepNumbers : false,
 		exitOnOverlayClick : false,
@@ -246,7 +254,7 @@ var nestedStructuresReady = function() {
 				typing('.introjs-tooltiptext',"<ul><li>This is the declaration for a new user defined datatype"
 						+ " <span class='ct-code-b-yellow'>date</span>.</li><li>Three <span class='ct-code-b-yellow'>integer</span> members"
 		  				+ " are declared inside the structure <span class='ct-code-b-yellow'>date</span>.</li></ul>" ,function() { 
-					$('.introjs-nextbutton').show(); 
+					$('.introjs-nextbutton, .introjs-prevbutton').show(); 
 				  });
 				});
 		break;
@@ -258,7 +266,7 @@ var nestedStructuresReady = function() {
 	  					+ " <span class='ct-code-b-yellow'>character</span>, and <span class='ct-code-b-yellow'>struct</span>.</li>"
 	  					+ " <li>Here <span class='ct-code-b-yellow'>lastpayment</span> is a variable of type <span class='ct-code-b-yellow'>"
 	  					+ " struct date</span>, which is declared inside the structure <span class='ct-code-b-yellow'>account</span>.</li></ul>" ,function() { 
-						$('.introjs-nextbutton').show();	
+	  				$('.introjs-nextbutton, .introjs-prevbutton').show(); 	
 				});
 			});
 		break;
@@ -267,7 +275,7 @@ var nestedStructuresReady = function() {
 				$('#accountVar').removeClass('opacity00');
 		  		typing('.introjs-tooltiptext',"<span class='ct-code-b-yellow'>obj</span> is structure variable of account datatype and"+
 		  				" memory is allocated for the structure." ,function() { 
-					$('.introjs-nextbutton').show();	
+		  			$('.introjs-nextbutton, .introjs-prevbutton').show(); 
 				  });
 				});
 		break; 
@@ -293,7 +301,7 @@ var nestedStructuresReady = function() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 				typing('.introjs-tooltiptext',"This member can be accessed as <span class='ct-code-b-yellow'>obj.acctype</span>" ,function() { 
 					intro.refresh();
-					$('.introjs-nextbutton').show();	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();	
 				});
 			 });
 		break;
@@ -310,7 +318,7 @@ var nestedStructuresReady = function() {
 							$("#yearId").effect("highlight", {color: 'yellow'}, 500, function() {
 								$("#lastpayment").removeClass('z-index');
 								intro.refresh();
-								$('.introjs-nextbutton').show();
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							});
 						});
 					});
@@ -340,7 +348,7 @@ var nestedStructuresReady = function() {
 					typing('.introjs-tooltiptext',"<span class='ct-code-b-yellow'>e</span> is the structure variable of user defined"
 							+ " data type <span class='ct-code-b-yellow'>employee</span>.<br><br>Memory is allocated for"
 							+ " <span class='ct-code-b-yellow'>e</span>." ,function() { 
-						$('.introjs-nextbutton').show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 				  });
 			}
@@ -355,7 +363,7 @@ var nestedStructuresReady = function() {
 						+ "<li>The members <span class='ct-code-b-yellow'>city</span>, <span class='ct-code-b-yellow'>phone</span> and"
 						+ " <span class='ct-code-b-yellow'>pin</span> are declared with in the structure <span class='ct-code-b-yellow'>"
 						+ " address</span>.</li></ul>" ,function() { 
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 			  });
 		break; 

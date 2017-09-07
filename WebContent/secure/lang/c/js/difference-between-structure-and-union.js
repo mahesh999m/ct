@@ -165,6 +165,7 @@ var diffBetweenStructureAndUnionReady = function() {
 				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#structureDefinition").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+						$("#structureDefinition").removeClass('animated zoomIn');
 						var text = "This is a <span class='ct-code-b-yellow'>structure</span> definition.";
 						typing(".introjs-tooltiptext", text, function() {
 							$("#unionRemainingDecleration").removeClass("animated zoomIn");
@@ -177,6 +178,7 @@ var diffBetweenStructureAndUnionReady = function() {
 				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#unionDefinition").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+						$("#unionDefinition").removeClass('animated zoomIn');
 						var text = "This is an <span class='ct-code-b-yellow'>union</span> definition.";
 						typing(".introjs-tooltiptext", text, function() {
 							$("#unionRemainingDecleration").removeClass("animated zoomIn");
@@ -189,11 +191,11 @@ var diffBetweenStructureAndUnionReady = function() {
 				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#structureInitialization").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+						$("#structureInitialization").removeClass("animated zoomIn");
 						var text = "A structure can be  initialized by initializing " 
 							+ "<span class='ct-code-b-yellow'>all</span> the <span class='ct-code-b-yellow'>members</span> at" 
 							+ " once.";
 						typing(".introjs-tooltiptext", text, function() {
-							$("#structureInitialization").removeClass("animated zoomIn");
 							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					});
