@@ -9,40 +9,47 @@ var structureIntializationReady = function() {
 		exitOnEsc: false,
 		keyboardNavigation: false,
 		steps : [ {
-						element : ".ct-demo-heading",
+						element : "#heading",
 						intro : "",
 						position : "left",
+						isCompleted : "false"
 					}, {
 						element : "#firstPre",
 						intro : "",
 						position : "right",
-						action : "firstSyntax"
+						action : "firstSyntax",
+						isCompleted : "false"
 					}, {
 						element : "#structDeclaration",
 						intro : "",
 						position : "top",
-						action : "firstSyntax"
+						action : "firstSyntax",
+						isCompleted : "false"
 					}, {
 						element : "#structInitialization",
 						intro : "",
 						position : "right",
-						action : "firstSyntax"
+						action : "firstSyntax",
+						isCompleted : "false"
 					}, {
 						element : "#memoryArea",
 						intro : "",
 						position : "top",
-						action : "firstSyntax"
+						action : "firstSyntax",
+						isCompleted : "false"
 					}, {
 						element : "#printMethod",
 						intro : "",
 						tooltipClass: "hide",
-						action : "firstSyntax"
+						action : "firstSyntax",
+						isCompleted : "false"
 					}, {
 						element : "#outputDiv",
 						intro : "",
 						tooltipClass: "hide",
 						position : "right",
-						action : "firstSyntax"
+						action : "firstSyntax",
+						isCompleted : "false"
 					} ]
 })
 
@@ -50,43 +57,64 @@ var structureIntializationReady = function() {
 		$('.introjs-nextbutton, .introjs-skipbutton, .introjs-prevbutton').hide();
 		var ElementId = targetElement.id;
 		var action = intro._introItems[intro._currentStep].action;
+		//var action = intro._introItems[intro._currentStep]["done"] ="notyping";
 		switch (ElementId) {
 		
 		case "firstPre":
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#firstPre").removeClass("opacity00");
 				if (action == "firstSyntax") {
+					if (intro._introItems[intro	._currentStep].isCompleted == "false") {
 					$("#firstPre").addClass("zoomIn animated");
 					setTimeout(function() {
 						var text = "Let us consider an example."
 						typing(".introjs-tooltiptext",text, function() {
 							$("#firstPre").removeClass("zoomIn animated");
+							$(".introjs-prevbutton").hide();
 						})
 					}, 950);
+					} else {
+						$(".introjs-nextbutton").show();
+					}
 				} else if (action == "secondSyntax") {
-					reAnimating();
-					$("#arrVal").append("<span id='charVal'>115</span>, <span id='intVal'>1.25</span>"
-							+ ", '<span id='floatVal'>a</span>'").addClass("display-none");
-					var text = "Now let us initialize the values of <span class='ct-code-b-yellow'>Book</span>"
-								+ " <span class='ct-code-b-yellow'>b</span> with different datatypes that have been declared."; 
-					typing(".introjs-tooltiptext", text, function() {
-						$("#arrVal").fadeIn("500");
-					})
+					if (intro._introItems[intro	._currentStep].isCompleted == "false") {
+						reAnimating();
+						$("#arrVal").append("<span id='charVal'>115</span>, <span id='intVal'>1.25</span>"
+								+ ", '<span id='floatVal'>a</span>'").addClass("display-none");
+						var text = "Now let us initialize the values of <span class='ct-code-b-yellow'>Book</span>"
+									+ " <span class='ct-code-b-yellow'>b</span> with different datatypes that have been declared."; 
+						typing(".introjs-tooltiptext", text, function() {
+							$("#arrVal").fadeIn("500");
+							$(".introjs-prevbutton").hide();
+						})
+					} else {
+						$(".introjs-nextbutton").show();
+					}
 				} else if (action == "thirdSyntax") {
-					reAnimating();
-					$("#arrVal").append("'<span id='charVal'>s</span>', <span id='intVal'>25</span>").addClass("display-none");
-					var text = "Let us initialize the <span class='ct-code-b-yellow'>Book</span> with only two values."
-					typing(".introjs-tooltiptext", text, function() {
-						$("#arrVal").fadeIn("500");
-					})
+					if (intro._introItems[intro	._currentStep].isCompleted == "false") {
+						reAnimating();
+						$("#arrVal").append("'<span id='charVal'>s</span>', <span id='intVal'>25</span>").addClass("display-none");
+						var text = "Let us initialize the <span class='ct-code-b-yellow'>Book</span> with only two values."
+						typing(".introjs-tooltiptext", text, function() {
+							$("#arrVal").fadeIn("500");
+							$(".introjs-prevbutton").hide();
+						})
+					} else {
+						$(".introjs-nextbutton").show();
+					}
 				} else if (action == "fourthSyntax") {
-					reAnimating();
-					$("#arrVal").append("'<span id='charVal'>k</span>', <span id='intVal'>555</span>, <span id='floatVal'>14.45</span>,"
-							+ " <span class='discard'>22</span>, <span class='discard'>'M'</span> ").addClass("display-none");
-					var text = "Now, let us initialize <span class='ct-code-b-yellow'>Book</span> with more than 3 values";
-					typing(".introjs-tooltiptext", text, function() {
-						$("#arrVal").fadeIn("500");
-					})
+					if (intro._introItems[intro	._currentStep].isCompleted == "false") {
+						reAnimating();
+						$("#arrVal").append("'<span id='charVal'>k</span>', <span id='intVal'>555</span>, <span id='floatVal'>14.45</span>,"
+								+ " <span class='discard'>22</span>, <span class='discard'>'M'</span> ").addClass("display-none");
+						var text = "Now, let us initialize <span class='ct-code-b-yellow'>Book</span> with more than 3 values";
+						typing(".introjs-tooltiptext", text, function() {
+							$("#arrVal").fadeIn("500");
+							$(".introjs-prevbutton").hide();
+						});
+					} else {
+						$(".introjs-nextbutton").show();
+					}
 				}
 			});
 		break;
@@ -105,8 +133,21 @@ var structureIntializationReady = function() {
 			});
 		break;
 		
+		case "heading" :
+			if (intro._introItems[intro	._currentStep].isCompleted == "false") {
+				var text = "Let us learn the initialization of <span class='ct-code-b-yellow'>structure</span>.";
+				typing(".introjs-tooltiptext", text, function() {
+					$(".introjs-prevbutton").hide();
+					$(".introjs-nextbutton").show();
+				});
+			} else {
+				$(".introjs-prevbutton").hide();
+				$(".introjs-nextbutton").show();
+			}
+			break;
+		
 		case "structInitialization":
-			$(".introjs-nextbutton").hide();
+			$(".introjs-nextbutton, .introjs-prevbutton").hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#structInitialization").removeClass("visibility-hidden");
 				if (action == "firstSyntax") {
@@ -135,73 +176,81 @@ var structureIntializationReady = function() {
 		break;	
 		
 		case "memoryArea":
-			$(".introjs-nextbutton").hide();//memoryArea
+			$(".introjs-nextbutton, .introjs-prevbutton").hide();//memoryArea
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#memoryArea").removeClass("opacity00");
 				if (action == "firstSyntax"){
+					if (intro._introItems[intro	._currentStep].isCompleted == "false") {
 					var text = "The members of the <span class='ct-code-b-yellow'>Book</span> <span class='ct-code-b-yellow'>b</span>"
 								+ " can be accessed by using the dot(.)"
 								+" operator i.e.,</br></br> <span class='ct-code-b-yellow'>b.letter</span>, <span class='ct-code-b-yellow'>b.pages</span>,"
 								+" and <span class='ct-code-b-yellow'>b.price</span>.";
 					memoryArea(text);
+					} else {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					}
 				} else if (action == "secondSyntax") {
-					var text = "<ul><li> <span class='ct-code-b-yellow'>115</span> is an <span class='ct-code-b-yellow'>integer</span>,"
-								+" but is stored in a <span class='ct-code-b-yellow'>char</span>"
-								+" variable <span class='ct-code-b-yellow'>letter</span>.<br> Here <span class='ct-code-b-yellow'>115</span> is"
-								+" treated as an <span class='ct-code-b-yellow'>ASCII</span> value <span class='ct-code-b-yellow'>5</span>"
-								+ " and is stored.</li><span id='first'></span></ul>";
-					typing(".introjs-tooltiptext", text, function() {
-						$(".introjs-nextbutton").hide();
-						
-						var charVal = String.fromCharCode($("#charVal").text());
-						var intVal = Math.floor($("#intVal").text());
-						var floatVal = ($("#floatVal").text().charCodeAt(0)).toFixed(2);
-						$("#bLetter").text(charVal);
-						$("#bPages").text(intVal);
-						$("#bPrice").text(floatVal);
-						$("#span1, #charVal").addClass("flash");
-						$("#bLetter").addClass("flash");
-						setTimeout(function() {
-							$("#bLetter").fadeIn("slow", function() {
-								var text = "<li><span class='ct-code-b-yellow'>1.25</span> is a <span class='ct-code-b-yellow'>float</span>,"
-											+" but is stored in <span class='ct-code-b-yellow'>int</span>"
-											+" variable <span class='ct-code-b-yellow'>pages</span>.<br> Here <span class='ct-code-b-yellow'>.25</span>"
-											+" is truncated and only <span class='ct-code-b-yellow'>1</span> is stored."
-											+"</li><span id='second'></span>";
-								typing("#first", text, function() {
-									$(".introjs-nextbutton").hide();
-									$("#span2, #intVal").addClass("flash");
-									$("#bPages").addClass("flash");
-									setTimeout(function() {
-										$("#bPages").fadeIn("slow", function() {
-											var text = "<li><span class='ct-code-b-yellow'>'a'</span> is a <span class='ct-code-b-yellow'>"
-														+"character</span> constant, that is stored in "
-														+ " <span class='ct-code-b-yellow'>float</span> variable"
-														+ " <span class='ct-code-b-yellow'>price</span>.<br>"
-														+ " The <span class='ct-code-b-yellow'>ASCII</span> value for the character"
-														+ " <span class='ct-code-b-yellow'>'a'</span> is <span class='ct-code-b-yellow'>97</span>"
-														+ " and is stored as <span class='ct-code-b-yellow'>97.00</span>.</li>";
-											typing("#second", text, function() {
-												$(".introjs-nextbutton").hide();
-												$("#span3, #floatVal").addClass("flash");
-												$("#bPrice").addClass("flash");
-												setTimeout(function() {
-													$("#bPrice").fadeIn("slow", function() {
-														$(".introjs-nextbutton, .introjs-prevbutton").show();
-													});
-												}, 1400);
+					if (intro._introItems[intro	._currentStep].isCompleted == "false") {
+						var text = "<ul><li> <span class='ct-code-b-yellow'>115</span> is an <span class='ct-code-b-yellow'>integer</span>,"
+									+" but is stored in a <span class='ct-code-b-yellow'>char</span>"
+									+" variable <span class='ct-code-b-yellow'>letter</span>.<br> Here <span class='ct-code-b-yellow'>115</span> is"
+									+" treated as an <span class='ct-code-b-yellow'>ASCII</span> value <span class='ct-code-b-yellow'>5</span>"
+									+ " and is stored.</li><span id='first'></span></ul>";
+						typing(".introjs-tooltiptext", text, function() {
+							$(".introjs-nextbutton, .introjs-prevbutton").hide();
+							
+							var charVal = String.fromCharCode($("#charVal").text());
+							var intVal = Math.floor($("#intVal").text());
+							var floatVal = ($("#floatVal").text().charCodeAt(0)).toFixed(2);
+							$("#bLetter").text(charVal);
+							$("#bPages").text(intVal);
+							$("#bPrice").text(floatVal);
+							$("#span1, #charVal").addClass("flash");
+							$("#bLetter").addClass("flash");
+							setTimeout(function() {
+								$("#bLetter").fadeIn("slow", function() {
+									var text = "<li><span class='ct-code-b-yellow'>1.25</span> is a <span class='ct-code-b-yellow'>float</span>,"
+												+" but is stored in <span class='ct-code-b-yellow'>int</span>"
+												+" variable <span class='ct-code-b-yellow'>pages</span>.<br> Here <span class='ct-code-b-yellow'>.25</span>"
+												+" is truncated and only <span class='ct-code-b-yellow'>1</span> is stored."
+												+"</li><span id='second'></span>";
+									typing("#first", text, function() {
+										$(".introjs-nextbutton, .introjs-prevbutton").hide();
+										$("#span2, #intVal").addClass("flash");
+										$("#bPages").addClass("flash");
+										setTimeout(function() {
+											$("#bPages").fadeIn("slow", function() {
+												var text = "<li><span class='ct-code-b-yellow'>'a'</span> is a <span class='ct-code-b-yellow'>"
+															+"character</span> constant, that is stored in "
+															+ " <span class='ct-code-b-yellow'>float</span> variable"
+															+ " <span class='ct-code-b-yellow'>price</span>.<br>"
+															+ " The <span class='ct-code-b-yellow'>ASCII</span> value for the character"
+															+ " <span class='ct-code-b-yellow'>'a'</span> is <span class='ct-code-b-yellow'>97</span>"
+															+ " and is stored as <span class='ct-code-b-yellow'>97.00</span>.</li>";
+												typing("#second", text, function() {
+													$(".introjs-nextbutton, .introjs-prevbutton").hide();
+													$("#span3, #floatVal").addClass("flash");
+													$("#bPrice").addClass("flash");
+													setTimeout(function() {
+														$("#bPrice").fadeIn("slow", function() {
+															$(".introjs-nextbutton, .introjs-prevbutton").show();
+														});
+													}, 1400);
+												});
 											});
-										});
-									}, 600);
+										}, 600);
+									});
 								});
-							});
-						}, 600);
-					});
+							}, 600);
+						});
+					} else {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					}
 				} else if (action == "thirdSyntax") {
 					var text = "When we try to access the float value <span class='ct-code-b-yellow'>b.price</span>,"
 								+ " we get some <span class='ct-code-b-yellow'>garbage</span> value.";
 					typing(".introjs-tooltiptext",text,function() {
-						$(".introjs-nextbutton").hide();
+						$(".introjs-nextbutton, .introjs-prevbutton").hide();
 						$("#bLetter").text($("#charVal").text());
 						$("#bPages").text($("#intVal").text());
 						$("#bPrice").text("0.00");
@@ -214,8 +263,12 @@ var structureIntializationReady = function() {
 						})
 					});
 				} else if (action == "fourthSyntax") {
+					if (intro._introItems[intro	._currentStep].isCompleted == "false") {
 					var text = "Here,the first <span class='ct-code-b-yellow'>3</span> values will be assigned and rest of the values are discarded.";
 					memoryArea(text);
+					} else {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					}
 				}
 			});
 		break;
@@ -229,7 +282,7 @@ var structureIntializationReady = function() {
 		break;
 			
 		case "outputDiv":
-			$(".introjs-nextbutton").hide();
+			$(".introjs-nextbutton, .introjs-prevbutton").hide();
 			$("#printMethod").addClass("zIndex");
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#outputDiv").removeClass("opacity00");				
@@ -239,6 +292,7 @@ var structureIntializationReady = function() {
 						$('.introjs-tooltip').removeClass("hide");
 						var text = "Let us consider another example.";
 						typing(".introjs-tooltiptext", text,function() {
+							$('.introjs-prevbutton').hide();
 							dynamicSteps("secondSyntax", false, true);
 							
 						})
@@ -254,6 +308,7 @@ var structureIntializationReady = function() {
 						$('.introjs-tooltip').removeClass("hide");
 						var text = "Let us consider another example.";
 						typing(".introjs-tooltiptext", text,function() {
+							$('.introjs-prevbutton').hide();
 							dynamicSteps("thirdSyntax", false, true);
 						})
 					});
@@ -266,6 +321,7 @@ var structureIntializationReady = function() {
 						$('.introjs-tooltip').removeClass("hide");
 						var text = "Let us consider another example.";
 						typing(".introjs-tooltiptext", text, function() {
+							$('.introjs-prevbutton').hide();
 							dynamicSteps("fourthSyntax", false, true);
 						});
 					})
@@ -288,7 +344,7 @@ var structureIntializationReady = function() {
 		break;
 			
 		case "restart":
-			$('.intorjs-tooltip').css({'min-width': '110px'});
+			$('.introjs-tooltip').css('min-width','150px');
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#restart").removeClass("opacity00");
 			});
@@ -297,14 +353,10 @@ var structureIntializationReady = function() {
 		}
 	});
 	intro.start();
-	var text = "Let us learn the initialization of <span class='ct-code-b-yellow'>structure</span>.";
-	typing(".introjs-tooltiptext", text, function() {
-		$(".introjs-prevbutton").hide();
-		$(".introjs-nextbutton").show();
-	})
+	
 	$("#restart").click(function() {
 		 location.reload();
-	})
+	});
 }
 
 function commonCode() {
@@ -314,7 +366,7 @@ function commonCode() {
 }
 function memoryArea(text) {
 	typing(".introjs-tooltiptext",text,function() {
-		$(".introjs-nextbutton").hide();
+		$(".introjs-nextbutton, .introjs-prevbutton").hide();
 		$("#bLetter").text($("#charVal").text());
 		$("#bPages").text($("#intVal").text());
 		$("#bPrice").text($("#floatVal").text());
@@ -380,7 +432,8 @@ function dynamicSteps(action, isRequired, isMemory) {
 			element : "#firstPre",
 			intro : "",
 			position : "right",
-			action : action
+			action : action,
+			isCompleted : "false"
 		}
 		intro.insertOption(intro._currentStep + ++step, nextStep);
 		
@@ -389,7 +442,8 @@ function dynamicSteps(action, isRequired, isMemory) {
 				element : "#structDeclaration",
 				intro : "",
 				position : "top",
-				action : action
+				action : action,
+				isCompleted : "false"
 			}
 			intro.insertOption(intro._currentStep + ++step, nextStep);
 		}
@@ -398,7 +452,8 @@ function dynamicSteps(action, isRequired, isMemory) {
 			element : "#structInitialization",
 			intro : "",
 			position : "right",
-			action : action
+			action : action,
+			isCompleted : "false"
 		}
 		intro.insertOption(intro._currentStep + ++step, nextStep);
 		
@@ -407,7 +462,8 @@ function dynamicSteps(action, isRequired, isMemory) {
 				element : "#memoryArea",
 				intro : "",
 				position : "bottom",
-				action : action
+				action : action,
+				isCompleted : "false"
 			}
 			intro.insertOption(intro._currentStep + ++step, nextStep);
 		}
@@ -416,7 +472,8 @@ function dynamicSteps(action, isRequired, isMemory) {
 			intro : "",
 			position : "right",
 			tooltipClass: "hide",
-			action : action
+			action : action,
+			isCompleted : "false"
 		}
 		intro.insertOption(intro._currentStep + ++step, nextStep);
 		
@@ -425,7 +482,8 @@ function dynamicSteps(action, isRequired, isMemory) {
 			intro : "",
 			tooltipClass: "hide",
 			position : "right",
-			action : action
+			action : action,
+			isCompleted : "false"
 		}
 		intro.insertOption(intro._currentStep + ++step, nextStep);
 }
@@ -441,6 +499,9 @@ function typing(selector, text, callBackFunction) {
 		$(".introjs-nextbutton, .introjs-prevbutton").show();
 		if (typeof callBackFunction === "function") {
 			callBackFunction();
+			intro._introItems[intro._currentStep].intro = $(".introjs-tooltiptext").html();
+			intro._introItems[intro._currentStep].tooltipClass = "";
+			intro._introItems[intro._currentStep].isCompleted = "true";
 		}
-	})
+	});
 }

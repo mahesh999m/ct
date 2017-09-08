@@ -130,7 +130,7 @@ pre {
 <body>
 <div class="col-xs-12 padding0">
 	<h2 class="text-center">
-		<span class="label label-default ct-demo-heading">Structure Initialization</span>
+		<span id="heading" class="label label-default ct-demo-heading">Structure Initialization</span>
 	</h2>
 </div>
 <div class="col-xs-12 margin-top10 text-center">

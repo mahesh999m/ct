@@ -303,7 +303,7 @@ function selfReferentialStructure() {
 				if (intro._introItems[intro._currentStep].isCompleted == "false") {
 					var text = "All the member variables of the <span class='ct-code-b-yellow'>struct example</span> will"
 						+" be allocated memory as per their datatype."
-						+"<br/><br/>Two bytes of memory will be allocated to <span class='ct-code-b-yellow'>s2</span>  i.e. the"
+						+"<br/><br/>Two bytes of memory will be allocated to <span class='ct-code-b-yellow'>s2</span>  i.e. the "
 						+"<span class='ct-code-b-yellow'>self referential structure</span>.";
 					typing(".introjs-tooltiptext", text, function() {
 						$('.introjs-nextbutton, .introjs-prevbutton').show();

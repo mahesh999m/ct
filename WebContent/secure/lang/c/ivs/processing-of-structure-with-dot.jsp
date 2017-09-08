@@ -162,7 +162,7 @@ td {
 };</span>
 main() {
 	<span id="variableDefinition"><b class="ct-code-b-green ">struct</b> employee_record <span
-			id="s1">emp1</span>, <span id="s2">emp2</span>, <span id="s3">emp3</span>;</span>
+			id="emp1">emp1</span>, <span id="emp2">emp2</span>, <span id="emp3">emp3</span>;</span>
 
 	<span id="firstRecord">printf("Enter details of first record name, age and salary \n");</span>
 	<span id="name1">printf("Enter name:");</span>
@@ -183,7 +183,7 @@ main() {
 	<span id="thirdRecord">printf("Enter details of third record name, age and salary \n");</span>
 	<span id="name3">printf("Enter name:");</span>
 	<span id="readName3">gets(emp3.name);</span>
-	<span id="age3">printf("\nEnter age:");</span>ll
+	<span id="age3">printf("\nEnter age:");</span>
 	<span id="readAge3">scanf("%d", &emp3.age);</span>
 	<span id="salary3">printf("\nEnter salary:");</span>
 	<span id="readSalary3">scanf("%d", &emp3.sal);</span>

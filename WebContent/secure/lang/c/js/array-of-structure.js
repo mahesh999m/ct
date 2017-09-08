@@ -274,7 +274,7 @@ function introSteps() {
 			case "condition1":
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					if (count < 5) {
-						var text = "As <span class='ct-code-b-yellow'>" + count + " < 4</span>, the condition evaluates to"
+						var text = "As <span class='ct-code-b-yellow'>" + $('#ivalue').text() + " < 4</span>, the condition evaluates to"
 									+ " <span class='ct-code-b-yellow'>true</span> and the loop begins.";
 						typing(".introjs-tooltiptext", text, function() {
 							 dynamicSteps(true);
@@ -353,13 +353,13 @@ function introSteps() {
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					if (intro._currentStep == 108) {
 						$('.introjs-nextbutton').hide();
-						var text = "As <span class='ct-code-b-yellow'>" + result + " < 4</span>, the condition evaluates to"
+						var text = "As <span class='ct-code-b-yellow'>" + $('#ivalue').text() + " < 4</span>, the condition evaluates to"
 									+ " <span class='ct-code-b-yellow'>false</span> and loop is exited.";
 						typing(".introjs-tooltiptext", text, function() {
 							$('.introjs-nextbutton').show();
 						});
 					} else {
-						var text = "As <span class='ct-code-b-yellow'>" + result + " < 4</span>, the condition evaluates to"
+						var text = "As <span class='ct-code-b-yellow'>" + $('#ivalue').text() + " < 4</span>, the condition evaluates to"
 								+ " <span class='ct-code-b-yellow'>true</span> and"
 								+ " loop executes.";
 						typing(".introjs-tooltiptext", text, function() {
@@ -642,7 +642,7 @@ function introSteps() {
 	
 	function changeText() {
 		$('.introjs-nextbutton').hide();
-		var text = "As <span class='ct-code-b-yellow'>" + count + " < 4</span>, the condition evaluates to"
+		var text = "As <span class='ct-code-b-yellow'>" + $('#ivalue').text() + " < 4</span>, the condition evaluates to"
 					+ " <span class='ct-code-b-yellow'>false</span> and loop is exited.";
 		typing(".introjs-tooltiptext", text, function() {
 			normalSteps();

@@ -36,7 +36,7 @@ var processingOfStructureWithDotReady = function() {
 				intro : "",
 				position:"right"
 			},{
-				element : "#s1",
+				element : "#emp1",
 				intro : "",
 				position:"right",
 			},{
@@ -44,7 +44,7 @@ var processingOfStructureWithDotReady = function() {
 				intro : "",
 				tooltipClass: "hide",
 			},{
-				element : "#s2",
+				element : "#emp2",
 				intro : "",
 				position:"right",
 			},{
@@ -52,7 +52,7 @@ var processingOfStructureWithDotReady = function() {
 				intro : "",
 				tooltipClass: 'hide',
 			},{
-				element : "#s3",
+				element : "#emp3",
 				intro : "",
 				position:"right",
 			},{
@@ -283,11 +283,11 @@ var processingOfStructureWithDotReady = function() {
 				});
 				
 			break;	
-			case "s3":
-			case "s2":
-			case "s1":
+			case "emp3":
+			case "emp2":
+			case "emp1":
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					var text = "All the member variables of <span class='ct-code-b-yellow'>emp1</span>"
+					var text = "All the member variables of <span class='ct-code-b-yellow'>"+ elementId +"</span>"
 								+" will be allocated memory as per their datatype.";
 					typing(".introjs-tooltiptext", text, function() {
 						$('.introjs-nextbutton, .introjs-prevbutton').show();   
@@ -393,7 +393,8 @@ var processingOfStructureWithDotReady = function() {
 					} else if (intro._currentStep == 55) {
 						$("#printingStmt1").append($("#s1age").text());
 						$("#printingStmt2").append($("#s1name").text());
-						$("#printingStmt3").append($("#s1sal").text());
+											$("#printingStmt3").append(
+													$("#s1sal").text());
 						setTimeToIntroNextStep();
 					} else if (intro._currentStep == 57) {
 						$("#printingStmt4").append($("#s2age").text());

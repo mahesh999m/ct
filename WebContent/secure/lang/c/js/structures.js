@@ -149,7 +149,7 @@ function structuresReady() {
 		case "studentVariables" :
 			$(".introjs-helperLayer").one("transitionend", function() {
 			$("#informationdiv").removeClass("opacity00");
-		  		typing('.introjs-tooltiptext',"This is a <span class='ct-code-b-yellow'>s1</span>structure definition<span class='ct-code-b-yellow'>s1</span>.<br><br>The variables"
+		  		typing('.introjs-tooltiptext',"This is a <span class='ct-code-b-yellow'>s1</span> structure definition <span class='ct-code-b-yellow'>s1</span>.<br><br>The variables"
 		  				+ " <span class='ct-code-b-yellow'>s1</span>, <span class='ct-code-b-yellow'>s2</span> and"
 		  				+ " <span class='ct-code-b-yellow'>s3</span> are created for user defined datatype <span class='ct-code-b-yellow'>student</span>." ,function() {
 		  			$('.introjs-nextbutton, .introjs-prevbutton').show();
@@ -160,9 +160,9 @@ function structuresReady() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 			$("#informationdiv, #storeS1, #storeS2, #storeS3").removeClass("opacity00");
 		  		typing('.introjs-tooltiptext',"The members can be accessed by using the <span class='ct-code-b-yellow'>dot</span> operator."
-		  				+ "<br/><b>For example</b><br/>To access the members of student <span class='ct-code-b-yellow'>s1</span> we use <br/><span class='ct-code-b-yellow'>s1.a s1.b s1.c</span><b></b>"
-		  				+ ".<br/><br/>To access the members of student <span class='ct-code-b-yellow'>s2</span> we use</br> <span class='ct-code-b-yellow'>s2.a s2.b s2.c</span>."
-		  				+ "</br><br/>To access the  members of student <span class='ct-code-b-yellow'>s3</span> we use </br><span class='ct-code-b-yellow'>s3.a s3.b s3.c.<span>",function() {
+		  				+ "<br/><b <span class='ct-code-b-yellow'>>For example</b><br/>To access the members of student <span class='ct-code-b-yellow'>s1</span> we use <br/><span class='ct-code-b-yellow'>s1.number s1.marks s1.section</span><b></b>"
+		  				+ ".<br/><br/>To access the members of student <span class='ct-code-b-yellow'>s2</span> we use</br> <span class='ct-code-b-yellow'>s2.number s2.marks s2.section</span>."
+		  				+ "</br><br/>To access the  members of student <span class='ct-code-b-yellow'>s3</span> we use </br><span class='ct-code-b-yellow'>s3.number s3.marks s3.section.<span>",function() {
 		  				/*+ "<li>Here s1.a <span class='ct-code-b-yellow'>&#8800;</span> s2.a"
 		  				+ " <span class='ct-code-b-yellow'>&#8800;</span> s3.a.<br> s1.b <span class='ct-code-b-yellow'>&#8800;</span>"
 		  				+ " s2.b <span class='ct-code-b-yellow'>&#8800;</span> s3.b.<br> s1.c <span class='ct-code-b-yellow'>&#8800;</span>"
