@@ -144,6 +144,7 @@ var differenceBetweenArrayAndStructure = function() {
 				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#declarationOrInitialization").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+						$("#declarationOrInitialization").removeClass("animated zoomIn");
 						var text = "An <span class='ct-code-b-yellow'>array's</span> declaration and definition is in the same statement.</br></br> "
 							+"The memory allocation of the <span class='ct-code-b-yellow'>array</span> happens in the same statement." 
 						typing(".introjs-tooltiptext", text, function() {
@@ -169,6 +170,7 @@ var differenceBetweenArrayAndStructure = function() {
 				$('.introjs-nextbutton, .introjs-prevbutton').hide(); 
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#definitionOfStructure").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+						$("#definitionOfStructure").removeClass("animated zoomIn");
 						var text = "<ul><li>This statement defines a <span class='ct-code-b-yellow'>structure</span>. The memory  " + 
 							"allocation for the <span class='ct-code-b-yellow'>structure</span> happens here.</li></ul>";
 						typing(".introjs-tooltiptext", text, function() {
@@ -189,11 +191,11 @@ var differenceBetweenArrayAndStructure = function() {
 						} else {
 							$("#totalInitializationOfArray").removeClass("opacity00");
 							$("#anotherInitializationOfArray").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+								$("#anotherInitializationOfArray").removeClass("animated zoomIn");
 								var text = "An <span class='ct-code-b-yellow'>array</span> can also be initialized with "
 											+"<span class='ct-code-b-yellow'>subscript</span> " 
 											+ "or <span class='ct-code-b-yellow'>indices</span>.";
 								typing(".introjs-tooltiptext", text, function() {
-									$("#anotherInitializationOfArray").removeClass("animated zoomIn");
 									$('.introjs-nextbutton, .introjs-prevbutton').show();
 								});
 							});
@@ -204,6 +206,7 @@ var differenceBetweenArrayAndStructure = function() {
 				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#initializationOfStructure").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+						$("#initializationOfStructure").removeClass("animated zoomIn");
 						var text = "The initialization of the <span class='ct-code-b-yellow'>structure</span> variable can be done"
 									+" at definition part.";
 						typing(".introjs-tooltiptext", text, function() {
@@ -225,6 +228,7 @@ var differenceBetweenArrayAndStructure = function() {
 					} else {
 						$("#initializationOfStructure").removeClass("opacity00");
 						$("#anotherInitializationOfStructure").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+							$("#anotherInitializationOfStructure").removeClass("animated zoomIn");
 							var text = "An initialization can also be done with <span class='ct-code-b-yellow'>structure</span>"
 										+ " <span class='ct-code-b-yellow'>member</span>, using the <span class='ct-code-b-yellow'>dot(.)</span> operator  ";
 							typing(".introjs-tooltiptext", text, function() {
@@ -245,7 +249,9 @@ var differenceBetweenArrayAndStructure = function() {
 						}); 
 					} else {
 						$("#memoryOfArray").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+							$("#memoryOfArray").removeClass("animated zoomIn");
 							$("#table1").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+								$("#table1").removeClass("animated zoomIn");
 								var text = "<ul><li>This is how the memory is allocated for an <span class='ct-code-b-yellow'>array</span> variable"
 										+" <span class='ct-code-b-yellow'>a[5]</span>.</li><li>The array name"
 										+" <span class='ct-code-b-yellow'>a</span>" 
@@ -253,7 +259,7 @@ var differenceBetweenArrayAndStructure = function() {
 										+ " array i.e, <span class='ct-code-b-yellow'>2024</span>.</li></ul>";
 								typing(".introjs-tooltiptext", text, function() {
 									intro.refresh();
-									$("#memoryOfArray").removeClass("animated zoomIn");
+									//$("#memoryOfArray").removeClass("animated zoomIn");
 									$("#arrayAddress1").effect( "highlight",{color: 'yellow'}, 1500,function(){
 										$('.introjs-nextbutton, .introjs-prevbutton').show();
 									});
@@ -284,7 +290,7 @@ var differenceBetweenArrayAndStructure = function() {
 					} else {
 						$("#memoryOfStructure").removeClass("opacity00");					
 						$("#point4").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-							$("#a").removeClass("opacity00").addClass("animated zoomIn");
+							$("#point4").removeClass("opacity00").addClass("animated zoomIn");
 							$("#memory").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 								var text = "<ul><li>This is the memory allocation of <span class='ct-code-b-yellow'>structure</span> variable"
 									+ " <span class='ct-code-b-yellow'>a</span>.</li><li>The <span class='ct-code-b-yellow'>structure</span>" 
@@ -306,11 +312,11 @@ var differenceBetweenArrayAndStructure = function() {
 				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#arrayAccess").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+						$("#arrayAccess").removeClass("animated zoomIn");
 						var text = "An <span class='ct-code-b-yellow'>array</span> elements can be accessed either by "
 							+"<span class='ct-code-b-yellow'>index</span> or <span class='ct-code-b-yellow'>subscript</span>."; 
 						typing(".introjs-tooltiptext", text, function() {
 							$("#index").effect( "highlight",{color: 'yellow'}, 1500,function(){
-								$("#arrayAccess").removeClass("animated zoomIn");
 								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							});
 						});
@@ -321,13 +327,13 @@ var differenceBetweenArrayAndStructure = function() {
 				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#structureAccess").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+						$("#structureAccess").removeClass("animated zoomIn");
 						var text = "<ul><li>The members of the <span class='ct-code-b-yellow'>structure</span> variable are accessed by using "
 							+"the <span class='ct-code-b-yellow'>dot(.)</span> operator.</li> " 
 							+ "<li>To access the <span class='ct-code-b-yellow'>structure pointer</span> variable, an " 
 							+ "<span class='ct-code-b-yellow'>arrow(->)</span> operator is used.</li></ul>";
 						typing(".introjs-tooltiptext", text, function() {
 							$("#dotOperator, #arrowOperator").effect( "highlight",{color: 'yellow'}, 1500,function(){
-								$("#structureAccess").removeClass("animated zoomIn");
 								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							});
 						});

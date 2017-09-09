@@ -31,7 +31,8 @@
 }
 
 .introjs-duplicate-nextbutton {
-	background-color: green;
+	background-color: yellow;
+	color : red;
 }
 
 .buttons-div {

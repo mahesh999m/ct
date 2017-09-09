@@ -218,7 +218,7 @@ function introSteps() {
 			break;
 			case "inc1":
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					var text = "The value of <span class='ct-code-b-yellow'>i</span> is incremented by 1. It becomes <span class='ct-code-b-yellow'> "
+					var text = "The value of <span class='ct-code-b-yellow'>i</span> is incremented by <span class=''ct-code-b-yellow'>1</span>. It becomes <span class='ct-code-b-yellow'> "
 						+ count + "</span>.";
 					typing(".introjs-tooltiptext", text, function() {
 						if (count <= 4) {
@@ -370,7 +370,7 @@ function introSteps() {
 			break;
 			case "inc2":
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					var text = "The value of <span class='ct-code-b-yellow'>i</span> is incremented by 1. It becomes <span class='ct-code-b-yellow'> "
+					var text = "The value of <span class='ct-code-b-yellow'>i</span> is incremented by <span class='ct-code-b-yellow'>1</span>. It becomes <span class='ct-code-b-yellow'> "
 						+ result + "</span>.";
 					typing(".introjs-tooltiptext", text, function() {
 						if (result < 4) {

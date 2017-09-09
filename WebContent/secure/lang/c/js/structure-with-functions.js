@@ -1,3 +1,4 @@
+var zeroAddingFlag = true;
 var structureWithFunctionsReady = function() {
 	intro = introJs();
 	$('#restartBtn').click(function() {
@@ -183,7 +184,11 @@ var structureWithFunctionsReady = function() {
 		        	var l = $("#price").offset();
 					$("#memory1").offset({"top": l.top,"left": l.left});
 			        TweenMax.to("#memory1", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
-			        	$('#memory1').append('00000');
+			        	if (zeroAddingFlag) {
+			        		$('#memory1').append('00000');
+			        		zeroAddingFlag = !zeroAddingFlag;
+			        	}
+			        	//$('#memory1').append('00000');
 			        	$('#price').removeClass('circle-css');
 			        	$('#pages').addClass('circle-css');
 			        	var l = $("#pages").offset();

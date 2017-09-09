@@ -1,5 +1,5 @@
 var introjs;
-var typingInterval = 5;
+var typingInterval = 1;
 
 var pointersDrawbacksReady = function() {
 	$('.introjs-nextbutton').keydown(function(e) {
@@ -23,6 +23,9 @@ function typing(typingId, typingContent, typingInterval, cursorColor, typingCall
 		$(typingId).removeClass('typingCursor');
 		if (typeof typingCallbackFunction === "function") {
 			typingCallbackFunction();
+			introjs._introItems[introjs._currentStep].intro = $(".introjs-tooltiptext").html();
+			introjs._introItems[introjs._currentStep].tooltipClass = "";
+			introjs._introItems[introjs._currentStep].isCompleted = "true";
 		}
 	});
 }
@@ -37,58 +40,73 @@ function introJsFunction() {
 		keyboardNavigation: false,
 		steps : [ {
 			element : "#preCode",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#line1",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#xBox",
 			intro : "",
 			animateStep : "xBoxAnimate",
-			tooltipClass: 'hide'
+			tooltipClass: 'hide',
+			isCompleted : "false"
 		}, {
 			element : "#line2",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#pBox",
 			intro : "",
 			animateStep : "pBoxAnimate",
-			tooltipClass: 'hide'
+			tooltipClass: 'hide',
+			isCompleted : "false"
 		}, {
 			element : "#line3",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#pBox",
 			intro : "",
-			animateStep : "pBoxValueAnimate"
+			animateStep : "pBoxValueAnimate",
+			isCompleted : "false"
 		}, {
 			element : "#animationDiv",
 			intro : "",
-			animateStep : "arrowAnimate"
+			animateStep : "arrowAnimate",
+			isCompleted : "false"
 		}, {
 			element : "#line4",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#animationDiv",
 			intro : "",
-			animateStep : "*pValueAnimate"
+			animateStep : "*pValueAnimate",
+			isCompleted : "false"
 		}, {
 			element : "#print1",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#xBox",
 			intro : "",
-			animateStep : "xValuePrint"
+			animateStep : "xValuePrint",
+			isCompleted : "false"
 		}, {
 			element : "#outputBox",
-			tooltipClass: "hide"
+			tooltipClass: "hide",
+			isCompleted : "false"
 		}, {
 			element : "#print2",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#animationDiv",
 			intro : "",
-			animateStep : "*pValuePrint"
+			animateStep : "*pValuePrint",
+			isCompleted : "false"
 		}, {
 			element : "#outputBox",
 			tooltipClass: "hide"
@@ -111,11 +129,15 @@ function introJsFunction() {
 			break;
 		case "line1":
 			$('.introjs-helperLayer').one('transitionend', function () {
-				var typingContent = 'This statement initializes an <span class="ct-code-b-yellow">int</span> variable'
-								+ ' <span class="ct-code-b-yellow">x</span> with value <span class="ct-code-b-yellow">3</span>.';
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-					$('.introjs-nextbutton').show();
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var typingContent = 'This statement initializes an <span class="ct-code-b-yellow">int</span> variable'
+									+ ' <span class="ct-code-b-yellow">x</span> with value <span class="ct-code-b-yellow">3</span>.';
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 			break;
 		case "xBox":
@@ -123,36 +145,48 @@ function introJsFunction() {
 				var animateStep = introjs._introItems[introjs._currentStep].animateStep;
 				switch (animateStep) {
 				case "xBoxAnimate":
-					animationXBox(function() {
-						$('.introjs-tooltip').removeClass('hide');
-						var typingContent = 'The variable <span class="ct-code-b-yellow">x</span> is of type '
-									+ '<span class="ct-code-b-yellow">int</span>, it occupies <span class="ct-code-b-yellow">2 bytes</span> '
-									+ 'in memory at some address (i.e. location). <br><br>Let its address be '
-									+ '<span class="ct-code-b-yellow">1111</span>. The variable x is initialized to <span class="ct-code-b-yellow">3</span>.';
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						animationXBox(function() {
+							$('.introjs-tooltip').removeClass('hide');
+							var typingContent = 'The variable <span class="ct-code-b-yellow">x</span> is of type '
+										+ '<span class="ct-code-b-yellow">int</span>, it occupies <span class="ct-code-b-yellow">2 bytes</span> '
+										+ 'in memory at some address (i.e. location). <br><br>Let its address be '
+										+ '<span class="ct-code-b-yellow">1111</span>. The variable x is initialized to <span class="ct-code-b-yellow">3</span>.';
+							typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
+							});
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
+					break;
+				case "xValuePrint":
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						$('#xValue').addClass('blinking-border-background-blue');
+						var typingContent = 'The blinking value is returned by <span class="ct-code-b-yellow">x</span>.';
 						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
 							$('.introjs-nextbutton').show();
 						});
-					});
-					break;
-				case "xValuePrint":
-					$('#xValue').addClass('blinking-border-background-blue');
-					var typingContent = 'The blinking value is returned by <span class="ct-code-b-yellow">x</span>.';
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-nextbutton').show();
-					});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 					break;
 				}
 			});
 			break;
 		case "line2":
 			$('.introjs-helperLayer').one('transitionend', function () {
-				var typingContent = 'The <span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span> occupies '
-								+ '<span class="ct-code-b-yellow">2 bytes</span> of memory.<br><br> This <span class="ct-code-b-yellow">pointer'
-								+ '</span> variable is declared with <span class="ct-code-b-yellow">int</span> datatype, so it should point '
-								+ 'to the address that contains an <span class="ct-code-b-yellow">int</span> value.';
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-					$('.introjs-nextbutton').show();
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var typingContent = 'The <span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span> occupies '
+									+ '<span class="ct-code-b-yellow">2 bytes</span> of memory.<br><br> This <span class="ct-code-b-yellow">pointer'
+									+ '</span> variable is declared with <span class="ct-code-b-yellow">int</span> datatype, so it should point '
+									+ 'to the address that contains an <span class="ct-code-b-yellow">int</span> value.';
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 			break;
 		case "pBox":
@@ -160,94 +194,126 @@ function introJsFunction() {
 				var animateStep = introjs._introItems[introjs._currentStep].animateStep;
 				switch (animateStep) {
 				case "pBoxAnimate":
-					animationPBox(function() {
-						$('.introjs-tooltip').removeClass('hide');
-						var typingContent = 'The variable <span class="ct-code-b-yellow">p</span> is of type '
-										+ '<span class="ct-code-b-yellow">int</span>, it occupies <span class="ct-code-b-yellow">2 bytes</span> '
-										+ 'in memory at some address (i.e. location). <br>Let its address be '
-										+ '<span class="ct-code-b-yellow">1234</span>.'
-										+ '<br></br>A <span class="ct-code-b-yellow">pointer</span>\'s initial value is always some '
-										+ '<span class="ct-code-b-yellow">garbage</span> value.';
-						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-							$('.introjs-nextbutton').show();
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						animationPBox(function() {
+							$('.introjs-tooltip').removeClass('hide');
+							var typingContent = 'The variable <span class="ct-code-b-yellow">p</span> is of type '
+											+ '<span class="ct-code-b-yellow">int</span>, it occupies <span class="ct-code-b-yellow">2 bytes</span> '
+											+ 'in memory at some address (i.e. location). <br>Let its address be '
+											+ '<span class="ct-code-b-yellow">1234</span>.'
+											+ '<br></br>A <span class="ct-code-b-yellow">pointer</span>\'s initial value is always some '
+											+ '<span class="ct-code-b-yellow">garbage</span> value.';
+							typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
+							});
 						});
-					});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 					break;
 				case "pBoxValueAnimate":
-					var typingContent = 'The address of <span class="ct-code-b-yellow">x</span>(i.e., <span class="ct-code-b-yellow">1111</span>'
-										+ ') is stored in <span class="ct-code-b-yellow">p</span>.';
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton' onclick='animationPBoxValue()'>" + 
-																"Next &#8594;</a>");
-					});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						var typingContent = 'The address of <span class="ct-code-b-yellow">x</span>(i.e., <span class="ct-code-b-yellow">1111</span>'
+											+ ') is stored in <span class="ct-code-b-yellow">p</span>.';
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton' onclick='animationPBoxValue()'>" + 
+																	"Next &#8594;</a>");
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 					break;
 				}
 			});
 			break;
 		case "line3":
-			$('.introjs-helperLayer').one('transitionend', function () {
-				var typingContent = 'The <span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span> is '
-									+ 'assigned with <span class="ct-code-b-yellow">&x</span>, so the address of '
-									+ '<span class="ct-code-b-yellow">x</span> is stored in <span class="ct-code-b-yellow">p</span>.';
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-					$('.introjs-nextbutton').show();
+			if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+				$('.introjs-helperLayer').one('transitionend', function () {
+					var typingContent = 'The <span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span> is '
+										+ 'assigned with <span class="ct-code-b-yellow">&x</span>, so the address of '
+										+ '<span class="ct-code-b-yellow">x</span> is stored in <span class="ct-code-b-yellow">p</span>.';
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
 				});
-			});
+			} else {
+				$('.introjs-nextbutton, .introjs-prevbutton').show();
+			}
 			break;
 		case "animationDiv":
 			$('.introjs-helperLayer').one('transitionend', function () {
 				var animateStep = introjs._introItems[introjs._currentStep].animateStep;
 				switch (animateStep) {
 				case "arrowAnimate":
-					var typingContent = 'Here the <span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span> has '
-										+ 'the address of <span class="ct-code-b-yellow">x</span>, so it can access the variable '
-										+ '<span class="ct-code-b-yellow">x</span>.';
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton' onclick='animationPointerArrow()'>" + 
-																"Next &#8594;</a>");
-					});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						var typingContent = 'Here the <span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span> has '
+											+ 'the address of <span class="ct-code-b-yellow">x</span>, so it can access the variable '
+											+ '<span class="ct-code-b-yellow">x</span>.';
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton' onclick='animationPointerArrow()'>" + 
+																	"Next &#8594;</a>");
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 					break;
 				case "*pValueAnimate":
-					var typingContent = 'The <span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span> '
-									+ 'is pointing to <span class="ct-code-b-yellow">x</span> and it has changed the value of <span class="ct-code-b-yellow">'
-									+ 'x</span> to <span class="ct-code-b-yellow">20</span>.<br/><br/>The <span class="ct-code-b-yellow">'
-									+ 'drawback</span> in pointers is, without the knowledge of variable <span class="ct-code-b-yellow">x</span>, '
-									+ 'the value of the variable <span class="ct-code-b-yellow">x</span> had been changed through the '
-									+ 'pointer variable <span class="ct-code-b-yellow">*p</span>.';
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton' onclick='animationXBoxValue()'>" + 
-																"Next &#8594;</a>");
-					});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						var typingContent = 'The <span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span> '
+										+ 'is pointing to <span class="ct-code-b-yellow">x</span> and it has changed the value of <span class="ct-code-b-yellow">'
+										+ 'x</span> to <span class="ct-code-b-yellow">20</span>.<br/><br/>The <span class="ct-code-b-yellow">'
+										+ 'drawback</span> in pointers is, without the knowledge of variable <span class="ct-code-b-yellow">x</span>, '
+										+ 'the value of the variable <span class="ct-code-b-yellow">x</span> had been changed through the '
+										+ 'pointer variable <span class="ct-code-b-yellow">*p</span>.';
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton' onclick='animationXBoxValue()'>" + 
+																	"Next &#8594;</a>");
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 					break;
 				case "*pValuePrint":
-					$('#xValue').addClass('blinking-border-background-blue');
-					var typingContent = 'The blinking value is returned by <span class="ct-code-b-yellow">*p</span>.';
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-nextbutton').show();
-					});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						$('#xValue').addClass('blinking-border-background-blue');
+						var typingContent = 'The blinking value is returned by <span class="ct-code-b-yellow">*p</span>.';
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 					break;
 				}
 			});
 			break;
 		case "line4":
 			$('.introjs-helperLayer').one('transitionend', function () {
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
 				var typingContent = 'Here the <span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">*p</span> '
 									+ 'is assigned with value <span class="ct-code-b-yellow">20</span>. <br><br/>In this case, since the '
 									+ '<span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span> '
 									+ 'is pointing to <span class="ct-code-b-yellow">x</span>, this assignment has changed the value stored in '
 									+ '<span class="ct-code-b-yellow">x</span> to <span class="ct-code-b-yellow">20</span>.'
 				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 			break;
 		case "print1":
-			$('.introjs-helperLayer').one('transitionend', function () {
-				var typingContent = 'This statement prints the <span class="ct-code-b-yellow">value</span> of <span class="ct-code-b-yellow">x</span>.';
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-					$('.introjs-nextbutton').show();
+			if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+				$('.introjs-helperLayer').one('transitionend', function () {
+					var typingContent = 'This statement prints the <span class="ct-code-b-yellow">value</span> of <span class="ct-code-b-yellow">x</span>.';
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
 				});
-			});
+			} else {
+				$('.introjs-nextbutton, .introjs-prevbutton').show();
+			}
 			break;
 		case "print2":
 			$('.introjs-helperLayer').one('transitionend', function () {
@@ -384,7 +450,7 @@ function animationPBoxValue() {
 		$('#xAddress').removeClass('circle-css');
 		$('#pValue').removeClass('visibility-hidden');
 		fromEffectWithTweenMax('#xAddress', '#pValue', function() {
-			$('.introjs-nextbutton').show();
+			$('.introjs-nextbutton, .introjs-prevbutton').show();
 		});
 	});
 }
@@ -400,7 +466,7 @@ function animationPointerArrow() {
 	var svgLineId = 'svgLine';
 	var markerId = 'markerEnd';
 	svgAnimatingLineSelector1LeftSideToSelector2RightSide(parentSelector, selector1, selector2, svgId, svgLineId, markerId, function() {
-		$('.introjs-nextbutton').show();
+		$('.introjs-nextbutton, .introjs-prevbutton').show();
 	});
 }
 
@@ -410,7 +476,7 @@ function animationXBoxValue() {
 		$('#valueOfP20').removeClass('circle-css');
 		$('#xValue').removeClass('visibility-hidden');
 		bounceFromEffextWithTimelineMax('#valueOfP20', '#xValue', function() {
-			$('.introjs-nextbutton').show();
+			$('.introjs-nextbutton, .introjs-prevbutton').show();
 		});
 	});
 }
