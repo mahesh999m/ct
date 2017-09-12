@@ -22,7 +22,6 @@ function typing(typingId, typingContent, typingInterval, cursorColor, typingCall
 		$(typingId).removeClass('typingCursor');
 		if (typeof typingCallbackFunction === "function") {
 			typingCallbackFunction();
-			typingCallbackFunction();
 			introjs._introItems[introjs._currentStep].intro = $(".introjs-tooltiptext").html();
 			introjs._introItems[introjs._currentStep].tooltipClass = "";
 			introjs._introItems[introjs._currentStep].isCompleted = "true";
@@ -116,7 +115,8 @@ function introJsFunction() {
 			isCompleted : "false"
 		}, {
 			element : "#xBox",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#yLine",
 			intro : "",
@@ -303,7 +303,7 @@ function introJsFunction() {
 							$('.introjs-nextbutton').show();
 						});
 					} else {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
+						$('.introjs-nextbutton').show();
 					}
 				});
 			break;
@@ -460,12 +460,16 @@ function introJsFunction() {
 			break;
 			case "printAfterSwapInSwap":
 				$('.introjs-helperLayer').one('transitionend', function () {
-					var typingContent = 'This statement prints the <span class="ct-code-b-yellow">values</span> of <span class="ct-code-b-yellow">' 
-										+ 'x</span>, <span class="ct-code-b-yellow">y</span>.<br/><br> Now, after the method call '
-										+ '<span class="ct-code-b-yellow">swap()</span>, the values have been interchanged.'
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-nextbutton').show();   
-					});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						var typingContent = 'This statement prints the <span class="ct-code-b-yellow">values</span> of <span class="ct-code-b-yellow">' 
+											+ 'x</span>, <span class="ct-code-b-yellow">y</span>.<br/><br> Now, after the method call '
+											+ '<span class="ct-code-b-yellow">swap()</span>, the values have been interchanged.'
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 				});
 			break;
 			case "swapMethodCloseBrace":
@@ -496,7 +500,7 @@ function introJsFunction() {
 										+ '<span class="ct-code-b-yellow">call by value</span> method works.<br><br>The method call sends a copy of the values,'
 										+'so any change affects the copy but not the orignal variable values.';
 					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-nextbutton').show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 			break;

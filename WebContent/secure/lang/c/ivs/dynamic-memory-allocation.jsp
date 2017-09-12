@@ -84,7 +84,7 @@
 }
 
 .introjs-duplicate-nextbutton, .user-btn {
-	background-color: green;
+	background-color: yellow;
 }
 
 .output-console-body {
