@@ -299,53 +299,73 @@ function introGuide() {
 				break;
 			case 'exampleTwo':
 				$('.introjs-helperLayer').one('transitionend', function() {
-					typing('.introjs-tooltiptext', "Let us consider another example.", function() {
-						$("#exampleTwo, #secondExDiv").removeClass("opacity00");
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						typing('.introjs-tooltiptext', "Let us consider another example.", function() {
+							$("#exampleTwo, #secondExDiv").removeClass("opacity00");
+							$(".introjs-nextbutton").show();
+						});
+					} else {
 						$(".introjs-nextbutton").show();
-					});
+					}
 				});
 				break;
 			case 'secondExLine1':
 				var animateStep = introjs._introItems[introjs._currentStep].animateStep;
 				switch(animateStep) {
 				case 'introduction':
-					$('.introjs-helperLayer').one('transitionend', function() {
-						var text = "An array variable <span class='ct-code-b-yellow'>a</span> with size " +
-									" <span class='ct-code-b-yellow'>5</span> is declared."
-						typing('.introjs-tooltiptext', text, function() {
-						$(".introjs-nextbutton").show();
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						$('.introjs-helperLayer').one('transitionend', function() {
+							var text = "An array variable <span class='ct-code-b-yellow'>a</span> with size " +
+										" <span class='ct-code-b-yellow'>5</span> is declared."
+							typing('.introjs-tooltiptext', text, function() {
+							$(".introjs-nextbutton, .introjs-prevbutton").show();
+							});
 						});
-					});
+					} else {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					}
 					break;
 				case 'valuesInitilization':
 					$('.introjs-helperLayer').one('transitionend', function() {
-						var text = "In this statement, the array is initialized with <span class='ct-code-b-yellow'>three</span> values " +
-									"and the memory is allocated for " +
-									"<span class='ct-code-b-yellow'>five</span> elements.<br/><br/> The rest of the memory allocated will be " +
-									" filled with <span class='ct-code-b-yellow'>zero's</span> as the datatype of array is int."
-						typing('.introjs-tooltiptext', text, function() {
-						$(".introjs-nextbutton").show();
-						});
+						if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+							var text = "In this statement, the array is initialized with <span class='ct-code-b-yellow'>three</span> values " +
+										"and the memory is allocated for " +
+										"<span class='ct-code-b-yellow'>five</span> elements.<br/><br/> The rest of the memory allocated will be " +
+										" filled with <span class='ct-code-b-yellow'>zero's</span> as the datatype of array is int."
+							typing('.introjs-tooltiptext', text, function() {
+								$(".introjs-nextbutton, .introjs-prevbutton").show();
+							});
+						} else {
+							$(".introjs-nextbutton, .introjs-prevbutton").show();
+						}
 					});
 					break;
 				}
 				break;
 			case 'secondExLine2':
 				$('.introjs-helperLayer').one('transitionend', function() {
-					typing('.introjs-tooltiptext', "The pointer variable <span class='ct-code-b-yellow'>p</span> occupies " +
-							"<span class='ct-code-b-yellow'>2 bytes</span> of memory since it is of <span class='ct-code-b-yellow'>int datatype" +
-							"</span>.<br/><br/> An int pointer variable can refer to only an <span class='ct-code-b-yellow'>int</span> value.", function() {
-						$(".introjs-nextbutton").show();
-					});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						typing('.introjs-tooltiptext', "The pointer variable <span class='ct-code-b-yellow'>p</span> occupies " +
+								"<span class='ct-code-b-yellow'>2 bytes</span> of memory since it is of <span class='ct-code-b-yellow'>int datatype" +
+								"</span>.<br/><br/> An int pointer variable can refer to only an <span class='ct-code-b-yellow'>int</span> value.", function() {
+							$(".introjs-nextbutton, .introjs-prevbutton").show();
+						});
+					} else {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					}
 				});
 				break;
 			case 'secondExLine3':
 				$('.introjs-helperLayer').one('transitionend', function() {
-					typing('.introjs-tooltiptext', "The pointer variable <span class='ct-code-b-yellow'>p</span> is " +
-							"assigned with <span class='ct-code-b-yellow'>&a</span><br/> i.e. the address of " +
-							"<span class='ct-code-b-yellow'>a</span> is copied to <span class='ct-code-b-yellow'>p</span>.", function() {
-						$(".introjs-nextbutton").show();
-					});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						typing('.introjs-tooltiptext', "The pointer variable <span class='ct-code-b-yellow'>p</span> is " +
+								"assigned with <span class='ct-code-b-yellow'>&a</span><br/> i.e. the address of " +
+								"<span class='ct-code-b-yellow'>a</span> is copied to <span class='ct-code-b-yellow'>p</span>.", function() {
+							$(".introjs-nextbutton, .introjs-prevbutton").show();
+						});
+					} else {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					}
 				});
 				break;
 			case 'arrayDiv':
@@ -353,54 +373,66 @@ function introGuide() {
 				switch(animateStep) {
 				case 'memoryAnimate':
 					$('.introjs-helperLayer').one('transitionend', function() {
-						$(".small-box").css("visibility", "visible");
-						$("#arrayDiv").removeClass("opacity00").addClass("animated zoomIn").one('animationend', function() {
-							$("#arrayDiv").removeClass("animated zoomIn");
-							$("#smallBox").effect("transfer", { to: $("#addressId")}, 1000).addClass(".ui-effects-transfer", function() {
-								$("#addressId").removeClass("opacity00", function() {
-									$("#elementId").removeClass("opacity00");
-									$('.introjs-tooltip').removeClass('hide');
-									var text = "Here <span class='ct-code-b-yellow'>1112</span> is the base address of the array.<br/><br/> " +
-												"This is incremented by <span class='ct-code-b-yellow'>2 bytes</span> for every element " +
-												"of the array.<br/>The array elements are of type <span class='ct-code-b-yellow'>int</span> hence occupy 2 bytes in memory.";
-									typing('.introjs-tooltiptext', text, function() {
-										$(".introjs-nextbutton").show();
+						if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+							$(".small-box").css("visibility", "visible");
+							$("#arrayDiv").removeClass("opacity00").addClass("animated zoomIn").one('animationend', function() {
+								$("#arrayDiv").removeClass("animated zoomIn");
+								$("#smallBox").effect("transfer", { to: $("#addressId")}, 1000).addClass(".ui-effects-transfer", function() {
+									$("#addressId").removeClass("opacity00", function() {
+										$("#elementId").removeClass("opacity00");
+										$('.introjs-tooltip').removeClass('hide');
+										var text = "Here <span class='ct-code-b-yellow'>1112</span> is the base address of the array.<br/><br/> " +
+													"This is incremented by <span class='ct-code-b-yellow'>2 bytes</span> for every element " +
+													"of the array.<br/>The array elements are of type <span class='ct-code-b-yellow'>int</span> hence occupy 2 bytes in memory.";
+										typing('.introjs-tooltiptext', text, function() {
+											$(".introjs-nextbutton, .introjs-prevbutton").show();
+										});
 									});
 								});
 							});
-						});
+						} else {
+							$(".introjs-nextbutton, .introjs-prevbutton").show();
+						}
 					});
 					break;
 				case 'initializingValues':
 					$('.introjs-helperLayer').one('transitionend', function() {
-						$("#inputArray").effect("transfer", { to: $("#smallBox")}, 1000).addClass(".ui-effects-transfer", function() {
-							$("#smallBox").removeClass("opacity00");
-							$("#valuesId1, #valuesId2, #valuesId3").removeClass("opacity00");
-							$('.introjs-tooltip').removeClass('hide');
-							typing('.introjs-tooltiptext', "The initilaized values are stored in the first three memory locations and the rest " +
-									"two are filled with <span class='ct-code-b-yellow'>zero's</span>.", function() {
-								$("#valuesId4").removeClass("opacity00").effect( "highlight", {color:"dodgerblue"}, 1000, function() {
-									$("#valuesId5").removeClass("opacity00").effect( "highlight", {color:"dodgerblue"}, 1000, function() {
-										$(".introjs-nextbutton").show();
+						if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+							$("#inputArray").effect("transfer", { to: $("#smallBox")}, 1000).addClass(".ui-effects-transfer", function() {
+								$("#smallBox").removeClass("opacity00");
+								$("#valuesId1, #valuesId2, #valuesId3").removeClass("opacity00");
+								$('.introjs-tooltip').removeClass('hide');
+								typing('.introjs-tooltiptext', "The initilaized values are stored in the first three memory locations and the rest " +
+										"two are filled with <span class='ct-code-b-yellow'>zero's</span>.", function() {
+									$("#valuesId4").removeClass("opacity00").effect( "highlight", {color:"dodgerblue"}, 1000, function() {
+										$("#valuesId5").removeClass("opacity00").effect( "highlight", {color:"dodgerblue"}, 1000, function() {
+											$(".introjs-nextbutton, .introjs-prevbutton").show();
+										});
 									});
 								});
 							});
-						});
+						} else {
+							$(".introjs-nextbutton, .introjs-prevbutton").show();
+						}
 					});
 					break;
 				}
 				break;
 			case 'pBox':
 				$('.introjs-helperLayer').one('transitionend', function() {
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
 					pBoxAnimation(function() {
 						$('.introjs-tooltip').removeClass('hide');
 						typing('.introjs-tooltiptext', "Here <span class='ct-code-b-yellow'>p</span> is a " +
 								"<span class='ct-code-b-yellow'>int pointer</span> variable, so it occupies <span class='ct-code-b-yellow'>2 bytes" +
 								"</span> in memory with some address.<br/><br> We assume the address to be  " +
 								"<span class='ct-code-b-yellow'>1044</span>.", function() {
-							$('.introjs-nextbutton').show();
+							$(".introjs-nextbutton, .introjs-prevbutton").show();
 						});
 					});
+					} else {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					}
 				});
 				break;
 			case 'secondExDiv':
@@ -433,13 +465,17 @@ function introGuide() {
 					break;
 				case 'arraySizeError':
 					$('.introjs-helperLayer').one('transitionend', function() {
-						var text = "The size of an array once declared cannot be changed, as memory allocation for the array has already been done once. "+
-						"<br><br>So, changing the size of the array <span class='ct-code-b-yellow'>a</span> throws an "+
-						" <span class='ct-color-red'><b>error</b></span>."
-						typing('.introjs-tooltiptext', text, function() {
-									$("#secondExLine4").addClass("ct-color-red");
-							$(".introjs-nextbutton").show();
-						});
+						if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+							var text = "The size of an array once declared cannot be changed, as memory allocation for the array has already been done once. "+
+							"<br><br>So, changing the size of the array <span class='ct-code-b-yellow'>a</span> throws an "+
+							" <span class='ct-color-red'><b>error</b></span>."
+							typing('.introjs-tooltiptext', text, function() {
+										$("#secondExLine4").addClass("ct-color-red");
+										$(".introjs-nextbutton, .introjs-prevbutton").show();
+							});
+						} else {
+							$(".introjs-nextbutton, .introjs-prevbutton").show();
+						}
 					});
 					break;
 				}
