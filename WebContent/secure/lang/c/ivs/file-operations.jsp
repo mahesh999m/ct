@@ -154,6 +154,10 @@ pre {
 .error-text {
 	font-weight: bold;
 }
+
+/* .introjs-nextbutton[id] {
+	background : yellow !important;
+} */
 </style>
 </head>
 <body>

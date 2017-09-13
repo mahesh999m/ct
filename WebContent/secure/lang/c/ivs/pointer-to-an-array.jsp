@@ -236,7 +236,7 @@ void <b class='ct-blue-color'>main()</b> {
 					<div class='col-xs-4' id='pArrayBox'>
 						<table align='center' class='visibility-hidden' id='pTable'>
 							<tbody>
-								<tr><td colspan='2'><span class='variable-color'>p</span></td></tr>
+								<tr><td></td><td><span class='variable-color'>p</span></td></tr>
 								<tr class='pTable-tr-css' id='pTableTr1'>
 									<td><span class='ct-lime-color'>1000</span></td>
 									<td class='td-value-css'><span id='pValue0' class='ct-blue-color'></span></td>

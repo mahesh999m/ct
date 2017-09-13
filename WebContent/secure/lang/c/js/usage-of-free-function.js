@@ -1,4 +1,4 @@
-var typingInterval = 5;
+var typingInterval = 1;
 var arr = [];
 var usageOfFreeFunctionReady = function() {
 	introGuide();
@@ -327,12 +327,16 @@ function introGuide() {
 			break;
 		case 'firstExLine3':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				var typingContent = "The <span class='ct-code-b-yellow'>free()</span> function is used to free the allocated memory by the " +
-				"<span class='ct-code-b-yellow'>malloc(), calloc() and realloc()</span> functions.<br><br/> This function returns a " +
-				"<span class='ct-code-b-yellow'>NULL</span> value, that is stored in the pointer variable <span class='ct-code-b-yellow'>p</span>.";
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var typingContent = "The <span class='ct-code-b-yellow'>free()</span> function is used to free the allocated memory by the " +
+					"<span class='ct-code-b-yellow'>malloc(), calloc() and realloc()</span> functions.<br><br/> This function returns a " +
+					"<span class='ct-code-b-yellow'>NULL</span> value, that is stored in the pointer variable <span class='ct-code-b-yellow'>p</span>.";
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$(".introjs-nextbutton").show();
+					});
+				} else {
 					$(".introjs-nextbutton").show();
-				});
+				}
 			});
 			break;
 		case 'firstExDiv':
@@ -399,7 +403,7 @@ function introGuide() {
 					TweenMax.to($("#preCodeTwo"), 1, {opacity: 1});
 					var typingContent = "Let us consider another example.";
 					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {	
-						$(".introjs-nextbutton").show();
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
 					});
 				} else {
 					$(".introjs-nextbutton, .introjs-prevbutton").show();
@@ -505,29 +509,33 @@ function introGuide() {
 				break;
 			case 'scaningValues':
 				$('.introjs-helperLayer').one('transitionend', function() {
-					var typingContent = "The values entered by the user are stored in the <span class='ct-code-b-yellow'>dynamically allocated memory</span>.";
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('#consoleInputLine').removeAttr('contenteditable placeholder');
-						var splittedText = $('#consoleInputLine').text().split(" ");
-						$('#consoleInputLine').html('');
-						$.each(splittedText, function(idx, val) {
-							if (val != '') {
-								$('#consoleInputLine').append('<span class="scanfValue">' + val + '</span> ');
-							} else {
-								$('#consoleInputLine').append(' ');
-							}
-						});
-						$('.scanfValue').addClass('output-value-circle circle-css');
-						TweenMax.fromTo($('.scanfValue'), 1, {backgroundColor: '#FFFFFF'}, {backgroundColor: 'inherit', onComplete: function() {
-							$('.scanfValue').removeClass('output-value-circle circle-css');
-							$.each(arr, function(idx, val) {
-								$('.heap-value').eq(idx).text(parseInt(val));
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						var typingContent = "The values entered by the user are stored in the <span class='ct-code-b-yellow'>dynamically allocated memory</span>.";
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$('#consoleInputLine').removeAttr('contenteditable placeholder');
+							var splittedText = $('#consoleInputLine').text().split(" ");
+							$('#consoleInputLine').html('');
+							$.each(splittedText, function(idx, val) {
+								if (val != '') {
+									$('#consoleInputLine').append('<span class="scanfValue">' + val + '</span> ');
+								} else {
+									$('#consoleInputLine').append(' ');
+								}
 							});
-							TweenMax.to($('.heap-value'), 1, {opacity: 1, onComplete: function() {
-								$(".introjs-nextbutton").show();
+							$('.scanfValue').addClass('output-value-circle circle-css');
+							TweenMax.fromTo($('.scanfValue'), 1, {backgroundColor: '#FFFFFF'}, {backgroundColor: 'inherit', onComplete: function() {
+								$('.scanfValue').removeClass('output-value-circle circle-css');
+								$.each(arr, function(idx, val) {
+									$('.heap-value').eq(idx).text(parseInt(val));
+								});
+								TweenMax.to($('.heap-value'), 1, {opacity: 1, onComplete: function() {
+									$(".introjs-nextbutton").show();
+								}});
 							}});
-						}});
-					});
+						});
+					} else {
+						$(".introjs-nextbutton").show();
+					}
 				});
 				break;
 			case 'valueSum':
@@ -542,88 +550,113 @@ function introGuide() {
 				break;
 			case 'pHeapRemove':
 				$('.introjs-helperLayer').one('transitionend', function() {
-					var typingContent = "When a call to the <span class='ct-code-b-yellow'>free()</span> function is made, it " + 
-									"frees the dynamic memory allocated by the <span class='ct-code-b-yellow'>malloc()</span> function and returns a " +
-									"<span class='ct-code-b-yellow'>NULL</span> value.<br/><br/>This NULL value is stored in <span class='ct-code-b-yellow'>p</span>.";
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$(".introjs-tooltipbuttons").append("<a class='introjs-button user-btn'>Next &#8594;</a>");
-						$(".user-btn").click(function() {
-							$(".user-btn").remove();
-							bounceFromEffectWithTimelineMax("#pSecondExValue", function() {
-								$("#dynamicDiv1").effect( "highlight", {color:"red"}, 1000, function() {
-									TweenMax.to($("#svg2, #dynamicDiv1"), 1, {opacity: 0, onComplete: function() {
-										$(".introjs-nextbutton").show();
-									}});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						var typingContent = "When a call to the <span class='ct-code-b-yellow'>free()</span> function is made, it " + 
+										"frees the dynamic memory allocated by the <span class='ct-code-b-yellow'>malloc()</span> function and returns a " +
+										"<span class='ct-code-b-yellow'>NULL</span> value.<br/><br/>This NULL value is stored in <span class='ct-code-b-yellow'>p</span>.";
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$(".introjs-tooltipbuttons").append("<a class='introjs-button user-btn'>Next &#8594;</a>");
+							$(".user-btn").click(function() {
+								$(".user-btn").remove();
+								bounceFromEffectWithTimelineMax("#pSecondExValue", function() {
+									$("#dynamicDiv1").effect( "highlight", {color:"red"}, 1000, function() {
+										TweenMax.to($("#svg2, #dynamicDiv1"), 1, {opacity: 0, onComplete: function() {
+											$(".introjs-nextbutton, .introjs-prevbutton").show();
+										}});
+									});
 								});
 							});
 						});
-					});
+					} else {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					}
 				});
 				break;
 			case 'qHeapRemove':
 				$('.introjs-helperLayer').one('transitionend', function() {
-					var typingContent = "When a call to the <span class='ct-code-b-yellow'>free()</span> function is made, it " + 
-									"frees the dynamic memory allocated by the <span class='ct-code-b-yellow'>malloc()</span> function and returns a " +
-									"<span class='ct-code-b-yellow'>NULL</span> value.<br><br>This NULL value is stored in <span class='ct-code-b-yellow'>q</span>";
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$(".introjs-tooltipbuttons").append("<a class='introjs-button user-btn'>Next &#8594;</a>");
-						$(".user-btn").click(function() {
-							$(".user-btn").remove();
-							bounceFromEffectWithTimelineMax("#qValue", function() {
-									$("#dynamicDiv2").addClass("blinking", function() {
-									TweenMax.to($("#svg3, #dynamicDiv2"), 1, {opacity: 0, onComplete: function() {
-										$(".introjs-nextbutton").show();
-									}});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						var typingContent = "When a call to the <span class='ct-code-b-yellow'>free()</span> function is made, it " + 
+										"frees the dynamic memory allocated by the <span class='ct-code-b-yellow'>malloc()</span> function and returns a " +
+										"<span class='ct-code-b-yellow'>NULL</span> value.<br><br>This NULL value is stored in <span class='ct-code-b-yellow'>q</span>";
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$(".introjs-tooltipbuttons").append("<a class='introjs-button user-btn'>Next &#8594;</a>");
+							$(".user-btn").click(function() {
+								$(".user-btn").remove();
+								bounceFromEffectWithTimelineMax("#qValue", function() {
+										$("#dynamicDiv2").addClass("blinking", function() {
+										TweenMax.to($("#svg3, #dynamicDiv2"), 1, {opacity: 0, onComplete: function() {
+											$(".introjs-nextbutton, .introjs-prevbutton").show();
+										}});
+									});
 								});
 							});
 						});
-					});
+					} else {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					}
 				});
 				break;
 			}
 			break;
+
 		case 'codeLine2':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				var typingContent = "Here, the <span class='ct-code-b-yellow'>pointer</span> variable <span class='ct-code-b-yellow'>p</span> is " +
-							"assigned with the return value of the <span class='ct-code-b-yellow'>malloc()</span> function.";
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-					$(".introjs-nextbutton").show();
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var typingContent = "Here, the <span class='ct-code-b-yellow'>pointer</span> variable <span class='ct-code-b-yellow'>p</span> is " +
+								"assigned with the return value of the <span class='ct-code-b-yellow'>malloc()</span> function.";
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					});
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 			break;
 		case 'heapMemoryBox1':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				boxAnimation("#heapMemoryBox1", function() {
-					$('.introjs-tooltip').removeClass('hide');
-					var typingContent = "This occupies <span class='ct-code-b-yellow'>2 bytes</span> in memory as it is an " +
-										"<span class='ct-code-b-yellow'>int data type</span>.<br><br/> Let us assume the address to be " +
-										"<span class='ct-code-b-yellow'>1038</span>.";
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$(".introjs-nextbutton").show();
-					});
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					boxAnimation("#heapMemoryBox1", function() {
+						$('.introjs-tooltip').removeClass('hide');
+						var typingContent = "This occupies <span class='ct-code-b-yellow'>2 bytes</span> in memory as it is an " +
+											"<span class='ct-code-b-yellow'>int data type</span>.<br><br/> Let us assume the address to be " +
+											"<span class='ct-code-b-yellow'>1038</span>.";
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$(".introjs-nextbutton, .introjs-prevbutton").show();
+						});
+					}); 
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 			break;
 		case 'codeLine3':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				var typingContent = "Here, the <span class='ct-code-b-yellow'>pointer</span> variable <span class='ct-code-b-yellow'>q</span> is " +
-									"assigned with the return value of the <span class='ct-code-b-yellow'>malloc()</span> function.";
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {	
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var typingContent = "Here, the <span class='ct-code-b-yellow'>pointer</span> variable <span class='ct-code-b-yellow'>q</span> is " +
+										"assigned with the return value of the <span class='ct-code-b-yellow'>malloc()</span> function.";
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {	
+						$(".introjs-nextbutton").show();
+					});
+				} else {
 					$(".introjs-nextbutton").show();
-				});
+				}
 			});
 			break;
 		case 'heapMemoryBox2':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				boxAnimation("#heapMemoryBox2", function() {
-					$('.introjs-tooltip').removeClass('hide');
-					var typingContent ="This occupies <span class='ct-code-b-yellow'>2 bytes</span> of memory as it is an " +
-										"<span class='ct-code-b-yellow'>int data type</span>.<br/><br/> Let us assume the address to be" +
-										" <span class='ct-code-b-yellow'>1992</span>.";
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$(".introjs-nextbutton").show();
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					boxAnimation("#heapMemoryBox2", function() {
+						$('.introjs-tooltip').removeClass('hide');
+						var typingContent ="This occupies <span class='ct-code-b-yellow'>2 bytes</span> of memory as it is an " +
+											"<span class='ct-code-b-yellow'>int data type</span>.<br/><br/> Let us assume the address to be" +
+											" <span class='ct-code-b-yellow'>1992</span>.";
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$(".introjs-nextbutton, .introjs-prevbutton").show();
+						});
 					});
-				});
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 			break;
 		case 'codeLine4':
@@ -637,20 +670,28 @@ function introGuide() {
 			break;
 		case 'codeLine7':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				var typingContent = "The <span class='ct-code-b-yellow'>free()</span> function is used to free the allocated memory at the " +
-				"address of pointer variable <span class='ct-code-b-yellow'>p</span>.<br>i.e., <span class='ct-code-b-yellow'>1038</span>.";
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var typingContent = "The <span class='ct-code-b-yellow'>free()</span> function is used to free the allocated memory at the " +
+					"address of pointer variable <span class='ct-code-b-yellow'>p</span>.<br>i.e., <span class='ct-code-b-yellow'>1038</span>.";
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$(".introjs-nextbutton").show();
+					});
+				} else {
 					$(".introjs-nextbutton").show();
-				});
+				}
 			});
 			break;
 		case 'codeLine8':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				var typingContent = "The <span class='ct-code-b-yellow'>free()</span> function is used to free the allocated memory at the " +
-				"address of pointer variable <span class='ct-code-b-yellow'>q</span>.<br>i.e., <span class='ct-code-b-yellow'>1992</span>.";
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-					$(".introjs-nextbutton").show();
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var typingContent = "The <span class='ct-code-b-yellow'>free()</span> function is used to free the allocated memory at the " +
+					"address of pointer variable <span class='ct-code-b-yellow'>q</span>.<br>i.e., <span class='ct-code-b-yellow'>1992</span>.";
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					});
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 			break;
 		case 'consoleId':

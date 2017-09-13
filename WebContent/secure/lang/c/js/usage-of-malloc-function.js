@@ -454,7 +454,7 @@ function introGuide() {
 }
 
 function typing(selector, text, callBackFunction) {
-	var typingSpeed = 10;
+	var typingSpeed = 1;
 	$(selector).typewriting( text , {
 		"typing_interval": typingSpeed,
 		"cursor_color": 'white',

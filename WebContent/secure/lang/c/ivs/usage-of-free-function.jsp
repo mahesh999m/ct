@@ -164,7 +164,7 @@ div, span {
 }
 
 .user-btn {
-	background-color: yellow;
+	background-color: green;
 }
 
 .ct-code-b-red {

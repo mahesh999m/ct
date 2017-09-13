@@ -1,5 +1,5 @@
 var introjs;
-var typingInterval = 5;
+var typingInterval = 1;
 function arrayOfPointersReady() {
 	$('.introjs-nextbutton').keydown(function(e) {
 		if (e.which == 13) {
@@ -21,6 +21,9 @@ function typing(typingId, typingContent, typingInterval, cursorColor, typingCall
 		$(typingId).removeClass('typingCursor');
 		if (typeof typingCallbackFunction === "function") {
 			typingCallbackFunction();
+			introjs._introItems[introjs._currentStep].intro = $(".introjs-tooltiptext").html();
+			introjs._introItems[introjs._currentStep].tooltipClass = "";
+			introjs._introItems[introjs._currentStep].isCompleted = "true";
 		}
 	});
 }
@@ -35,24 +38,30 @@ function introJsFunction() {
 		keyboardNavigation: false,
 		steps : [ {
 			element : "#array1",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#table1",
 			intro : "",
-			tooltipClass: 'hide'
+			tooltipClass: 'hide',
+			isCompleted : "false"
 		}, {
 			element : "#array2",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#table2",
 			intro : "",
-			tooltipClass: 'hide'
+			tooltipClass: 'hide',
+			isCompleted : "false"
 		}, {
 			element : "#table2Box",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#preCode",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#intLine",
 			intro : ""
@@ -154,47 +163,63 @@ function introJsFunction() {
 		var elementNumber = parseInt(introjs._introItems[introjs._currentStep].elementNumber);
 		switch (elementId) {
 		case "array1":
-			var typingContent = 'Lets declare an int array <span class="ct-code-b-yellow">a</span> of size <span class="ct-code-b-yellow">3</span>.';
-			typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+			if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+				var typingContent = 'Lets declare an int array <span class="ct-code-b-yellow">a</span> of size <span class="ct-code-b-yellow">3</span>.';
+				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+					$('.introjs-nextbutton').show();
+				});
+			} else {
 				$('.introjs-nextbutton').show();
-			});
+			}
 			break;
 		case "table1":
 			$('.introjs-helperLayer').one('transitionend', function () {
-				$('#table1').toggleClass('visibility-hidden animated zoomIn').one('animationend', function() {
-					$('#table1').removeClass('animated zoomIn');
-					$('.introjs-tooltip').removeClass('hide');
-					var typingContent = 'Here  <span class="ct-code-b-yellow">a</span> is assigned with values ' +
-										'<span class="ct-code-b-yellow">{10, 20, 30}</span> ' +
-										'at <span class="ct-code-b-yellow">0, 1, 2</span> indices.';
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton' onclick='animationTable1Values()'>" + 
-																"Next &#8594;</a>");
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					$('#table1').toggleClass('visibility-hidden animated zoomIn').one('animationend', function() {
+						$('#table1').removeClass('animated zoomIn');
+						$('.introjs-tooltip').removeClass('hide');
+						var typingContent = 'Here  <span class="ct-code-b-yellow">a</span> is assigned with values ' +
+											'<span class="ct-code-b-yellow">{10, 20, 30}</span> ' +
+											'at <span class="ct-code-b-yellow">0, 1, 2</span> indices.';
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton' onclick='animationTable1Values()'>" + 
+																	"Next &#8594;</a>");
+						});
 					});
-				});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 			break;
 		case "array2":
 			$('.introjs-helperLayer').one('transitionend', function () {
-				var typingContent = 'Now declare an int <span class="ct-code-b-yellow">pointer</span> array <span class="ct-code-b-yellow">a</span> ' +
-									'of size <span class="ct-code-b-yellow">3</span>.';
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-					$('.introjs-nextbutton').show();
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var typingContent = 'Now declare an int <span class="ct-code-b-yellow">pointer</span> array <span class="ct-code-b-yellow">a</span> ' +
+										'of size <span class="ct-code-b-yellow">3</span>.';
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 			break;
 		case "table2":
 			$('.introjs-helperLayer').one('transitionend', function () {
-				$('#table2').toggleClass('visibility-hidden animated zoomIn').one('animationend', function() {
-					$('#table2').removeClass('animated zoomIn');
-					$('.introjs-tooltip').removeClass('hide');
-					var typingContent = 'Here  <span class="ct-code-b-yellow">a</span> is assigned with addresses ' +
-										'<span class="ct-code-b-yellow">{1086, 2086, 3086}</span> ' +
-										'at <span class="ct-code-b-yellow">0, 1, 2</span> indices.';
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-nextbutton').show();
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					$('#table2').toggleClass('visibility-hidden animated zoomIn').one('animationend', function() {
+						$('#table2').removeClass('animated zoomIn');
+						$('.introjs-tooltip').removeClass('hide');
+						var typingContent = 'Here  <span class="ct-code-b-yellow">a</span> is assigned with addresses ' +
+											'<span class="ct-code-b-yellow">{1086, 2086, 3086}</span> ' +
+											'at <span class="ct-code-b-yellow">0, 1, 2</span> indices.';
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
 					});
-				});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 			break;
 		case "table2Box":
@@ -203,16 +228,20 @@ function introJsFunction() {
 							'at <span class="ct-code-b-yellow">0, 1, 2</span> indices.';
 			introjs._introItems[introjs._currentStep].intro = content;
 			$('.introjs-helperLayer').one('transitionend', function () {
-				var parentSelector = $('#table2Box');
-				svgAppend(parentSelector, 'svg1');
-				var svgId = $('#svg1');
-				var svgMarkerId = 'markerEnd1';
-				svgMarkerAppend(svgId, svgMarkerId)
-				animatingTable2Boxes(1, parentSelector, svgId, 'svgLine11', svgMarkerId);
-				animatingTable2Boxes(2, parentSelector, svgId, 'svgLine12', svgMarkerId);
-				animatingTable2Boxes(3, parentSelector, svgId, 'svgLine13', svgMarkerId, function() {
-					$('.introjs-nextbutton').show();
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var parentSelector = $('#table2Box');
+					svgAppend(parentSelector, 'svg1');
+					var svgId = $('#svg1');
+					var svgMarkerId = 'markerEnd1';
+					svgMarkerAppend(svgId, svgMarkerId)
+					animatingTable2Boxes(1, parentSelector, svgId, 'svgLine11', svgMarkerId);
+					animatingTable2Boxes(2, parentSelector, svgId, 'svgLine12', svgMarkerId);
+					animatingTable2Boxes(3, parentSelector, svgId, 'svgLine13', svgMarkerId, function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 			break;
 		case "preCode":
@@ -425,7 +454,7 @@ function svgAnimatingLineSelector1RightSideToSelector2LeftSide(parentSelector, s
 function animationTable1Values() {
 	$('.introjs-duplicate-nextbutton').remove();
 	TweenMax.from($('#table1 .opacity00').removeClass('opacity00'), 1, {left: 150, opacity: 0, onComplete: function() {
-		$('.introjs-nextbutton').show();
+		$('.introjs-nextbutton, .introjs-prevbutton').show();
 	}});
 }
 

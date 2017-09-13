@@ -520,7 +520,7 @@ function introGuide() {
 
 function typing(selector, text, callBackFunction) {
 	$(selector).typewriting( text , {
-		"typing_interval": '5',
+		"typing_interval": '1',
 		"cursor_color": 'white',
 	}, function() {
 		$(selector).removeClass("typingCursor");

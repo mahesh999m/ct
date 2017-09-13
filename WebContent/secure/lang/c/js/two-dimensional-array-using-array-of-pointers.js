@@ -1,5 +1,5 @@
 var introjs;
-var typingInterval = 5;
+var typingInterval = 1;
 var arr = [];
 var m;
 var n;
@@ -94,6 +94,9 @@ function typing(typingId, typingContent, typingInterval, cursorColor, typingCall
 		$(typingId).removeClass('typingCursor');
 		if (typeof typingCallbackFunction === "function") {
 			typingCallbackFunction();
+			introjs._introItems[introjs._currentStep].intro = $(".introjs-tooltiptext").html();
+			introjs._introItems[introjs._currentStep].tooltipClass = "";
+			introjs._introItems[introjs._currentStep].isCompleted = "true";
 		}
 	});
 }
@@ -108,35 +111,42 @@ function introJsFunction() {
 		keyboardNavigation: false,
 		steps : [ {
 			element : "#preCode",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#line1",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#pArrayBox",
 			intro : "",
-			tooltipClass: 'hide'
+			tooltipClass: 'hide',
+			isCompleted : "false"
 		}, {
 			element : "#printf1",
-			tooltipClass: "hide"
+			tooltipClass: "hide",
+			isCompleted : "false"
 		}, {
 			element : "#outputBox",
 			tooltipClass: "hide",
 			outputStep: 'printf'
 		}, {
 			element : "#scanf1",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#outputBox",
 			intro : "",
 			outputStep: 'scanf'
 		}, {
 			element : "#forPLine",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#animationBox",
 			intro : "",
-			animateStep: 'pArrayBoxes'
+			animateStep: 'pArrayBoxes',
+			isCompleted : "false"
 		}, {
 			element : "#printf2",
 			tooltipClass: "hide"
@@ -182,35 +192,47 @@ function introJsFunction() {
 		var elementId = targetElement.id;
 		switch (elementId) {
 		case "preCode":
-			var typingContent = 'Let us learn <span class="ct-code-b-yellow">two dimensional array using array of pointers</span>.';
-			typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-				$('.introjs-nextbutton').show();
-			});
-			break;
-		case "line1":
-			$('.introjs-helperLayer').one('transitionend', function () {
-				var typingContent = 'In this statement, we declare a <span class="ct-code-b-yellow">pointer</span> array ' +
-									'<span class="ct-code-b-yellow">p</span> of size <span class="ct-code-b-yellow">3</span>.<br/><br/> ' +
-									'Four variables <span class="ct-code-b-yellow">m</span>, <span class="ct-code-b-yellow">n</span>, ' +
-									'<span class="ct-code-b-yellow">i</span> and <span class="ct-code-b-yellow">j</span> of ' +
-									'<span class="ct-code-b-yellow">int</span> datatype are declared.<br/><br/>In this demo, we will ' + 
-									'display the <span class="ct-code-b-yellow">pointer</span> array <span class="ct-code-b-yellow">p</span> ' +
-									'as you are aware on how int variables work.';
+			if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+				var typingContent = 'Let us learn <span class="ct-code-b-yellow">two dimensional array using array of pointers</span>.';
 				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
 					$('.introjs-nextbutton').show();
 				});
+			} else {
+				$('.introjs-nextbutton').show();
+			}
+			break;
+		case "line1":
+			$('.introjs-helperLayer').one('transitionend', function () {
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var typingContent = 'In this statement, we declare a <span class="ct-code-b-yellow">pointer</span> array ' +
+										'<span class="ct-code-b-yellow">p</span> of size <span class="ct-code-b-yellow">3</span>.<br/><br/> ' +
+										'Four variables <span class="ct-code-b-yellow">m</span>, <span class="ct-code-b-yellow">n</span>, ' +
+										'<span class="ct-code-b-yellow">i</span> and <span class="ct-code-b-yellow">j</span> of ' +
+										'<span class="ct-code-b-yellow">int</span> datatype are declared.<br/><br/>In this demo, we will ' + 
+										'display the <span class="ct-code-b-yellow">pointer</span> array <span class="ct-code-b-yellow">p</span> ' +
+										'as you are aware on how int variables work.';
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 			break;
 		case "pArrayBox":
 			$('.introjs-helperLayer').one('transitionend', function () {
-				animationPArrayBox(function() {
-					$('.introjs-tooltip').removeClass('hide');
-					var typingContent = 'A <span class="ct-code-b-yellow">pointer</span> array <span class="ct-code-b-yellow">p</span> of size ' +
-										'<span class="ct-code-b-yellow">3</span> is declared.';
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-nextbutton').show();
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					animationPArrayBox(function() {
+						$('.introjs-tooltip').removeClass('hide');
+						var typingContent = 'A <span class="ct-code-b-yellow">pointer</span> array <span class="ct-code-b-yellow">p</span> of size ' +
+											'<span class="ct-code-b-yellow">3</span> is declared.';
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
 					});
-				});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 			break;
 		case "printf1":
@@ -266,28 +288,36 @@ function introJsFunction() {
 			break;
 		case "scanf1":
 			$('.introjs-helperLayer').one('transitionend', function () {
-				var typingContent = 'The <span class="ct-code-b-yellow">scanf()</span> method reads two numbers ' +
-									'<span class="ct-code-b-yellow">m</span> and  <span class="ct-code-b-yellow">n</span>.'
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var typingContent = 'The <span class="ct-code-b-yellow">scanf()</span> method reads two numbers ' +
+										'<span class="ct-code-b-yellow">m</span> and  <span class="ct-code-b-yellow">n</span>.'
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$('.introjs-nextbutton').show();
+					});
+				} else {
 					$('.introjs-nextbutton').show();
-				});
+				}
 			});
 			break;
 		case "forPLine":
 			$('.introjs-helperLayer').one('transitionend', function () {
-				$('#outputScanfLine1').removeAttr('contenteditable placeholder');
-				m = arr[0];
-				n = arr[1];
-				var typingContent = 'This <span class="ct-code-b-yellow">for</span> loop executes <span class="ct-code-b-yellow">' + m + '</span> ' +
-									'times(<span class="ct-code-b-yellow">m</span> represents the <span class="ct-code-b-yellow">no of rows</span> entered by user).<br/><br/>And in each iteration, the  '+
-									'<span class="ct-code-b-yellow">pointer</span> array <span class="ct-code-b-yellow">p</span> '+
-									'at its current index is assigned with the base address returned by the <span class="ct-code-b-yellow">'+
-									'malloc()</span> method. <br/><br/>The <span class="ct-code-b-yellow">malloc()</span> method creates an '+ 
-									'<span class="ct-code-b-yellow">int</span> array of size <span class="ct-code-b-yellow">n(columns</span> ' +
-									'i.e ' +'<span class="ct-code-b-yellow">' + n +'</span> ) and returns the allocated dynamic memory <span class="ct-code-b-yellow">base address</span>.';
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					$('#outputScanfLine1').removeAttr('contenteditable placeholder');
+					m = arr[0];
+					n = arr[1];
+					var typingContent = 'This <span class="ct-code-b-yellow">for</span> loop executes <span class="ct-code-b-yellow">' + m + '</span> ' +
+										'times(<span class="ct-code-b-yellow">m</span> represents the <span class="ct-code-b-yellow">no of rows</span> entered by user).<br/><br/>And in each iteration, the  '+
+										'<span class="ct-code-b-yellow">pointer</span> array <span class="ct-code-b-yellow">p</span> '+
+										'at its current index is assigned with the base address returned by the <span class="ct-code-b-yellow">'+
+										'malloc()</span> method. <br/><br/>The <span class="ct-code-b-yellow">malloc()</span> method creates an '+ 
+										'<span class="ct-code-b-yellow">int</span> array of size <span class="ct-code-b-yellow">n(columns</span> ' +
+										'i.e ' +'<span class="ct-code-b-yellow">' + n +'</span> ) and returns the allocated dynamic memory <span class="ct-code-b-yellow">base address</span>.';
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$('.introjs-nextbutton').show();
+					});
+				} else {
 					$('.introjs-nextbutton').show();
-				});
+				}
 			});
 			break;
 		case "animationBox":
@@ -295,15 +325,19 @@ function introJsFunction() {
 				var animateStep = introjs._introItems[introjs._currentStep].animateStep;
 				switch (animateStep) {
 				case "pArrayBoxes":
-					var typingContent = 'Here the loop executes for <span class="ct-code-b-yellow">m ('+ m +')</span> times, so the method ' +
-										'<span class="ct-code-b-yellow">(int *)malloc(n('+ n +') * sizeof(int))</span> is also executed ' +
-										'<span class="ct-code-b-yellow">('+ m +')</span> times.<br/><br/>In each iteration, '+
-										'<span class="ct-code-b-yellow">malloc()</span> method allocates dynamic memory and assigns the base address'+
-										' to the pointer array <span class="ct-code-b-yellow">p</span> at the respective index.' ;
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton' onclick='animationArrayBoxes()'>" + 
-																"Next &#8594;</a>");
-					});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						var typingContent = 'Here the loop executes for <span class="ct-code-b-yellow">m ('+ m +')</span> times, so the method ' +
+											'<span class="ct-code-b-yellow">(int *)malloc(n('+ n +') * sizeof(int))</span> is also executed ' +
+											'<span class="ct-code-b-yellow">('+ m +')</span> times.<br/><br/>In each iteration, '+
+											'<span class="ct-code-b-yellow">malloc()</span> method allocates dynamic memory and assigns the base address'+
+											' to the pointer array <span class="ct-code-b-yellow">p</span> at the respective index.' ;
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton' onclick='animationArrayBoxes()'>" + 
+																	"Next &#8594;</a>");
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 					break;
 				case "arrayBoxValues":
 					$('#outputScanfLine2').removeAttr('contenteditable placeholder');
@@ -497,7 +531,7 @@ function animationArrayBoxes() {
 		for (var i = 0; i < m; i++) {
 			if (i == (m - 1)) {
 				animatingTableBoxes(i, function() {
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			} else {
 				animatingTableBoxes(i);

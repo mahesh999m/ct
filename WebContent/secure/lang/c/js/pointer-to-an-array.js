@@ -1,5 +1,5 @@
 var introjs;
-var typingInterval = 5;
+var typingInterval = 1;
 var arr = [];
 var m;
 var n;

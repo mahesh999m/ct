@@ -1,5 +1,5 @@
 var introcode;
-var typingInterval = 10;
+var typingInterval = 1;
 var fpAddress;
 var enterText;
 var characterCount = 1;
@@ -35,11 +35,13 @@ function introGuide() {
 					element :'#code',
 					intro :'',
 					tooltipClass : "hide",
-					position: "right"
+					position: "right",
+					isCompleted : "false"
 				},{
 					element :'#filePointer',
 					intro :'',
 					tooltipClass : "hide",
+					isCompleted : "false"
 				},{
 					element :'#addressDiv1',
 					intro :'',
@@ -97,26 +99,35 @@ function introGuide() {
 					}});
 				break;
 				case "code":
+					$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 					$("#fileText").addClass("z-index1000000");
 						$('.introjs-helperLayer').one('transitionend', function() {
-						$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
-						$('.introjs-tooltip').removeClass('hide');
-						text = 'Here, we will learn how the <span class="ct-code-b-yellow">fgetc()</span> and'
-								+ ' <span class="ct-code-b-yellow">fputc()</span> methods work on a file.';
-						typing('.introjs-tooltiptext', text, typingInterval, 'white', function(){
+						if (introcode._introItems[introcode._currentStep].isCompleted == "false") {
+							$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
+							$('.introjs-tooltip').removeClass('hide');
+							text = 'Here, we will learn how the <span class="ct-code-b-yellow">fgetc()</span> and'
+									+ ' <span class="ct-code-b-yellow">fputc()</span> methods work on a file.';
+							typing('.introjs-tooltiptext', text, typingInterval, 'white', function(){
+								$('.introjs-nextbutton').show();
+							});
+						} else {
 							$('.introjs-nextbutton').show();
-						});
+						}
 					});
 				break;
 				case "filePointer" :
 					$('.introjs-helperLayer').one('transitionend', function() {
-						$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
-						$('.introjs-tooltip').removeClass('hide');
-						var text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions.<br/><br/> '
-							+ 'It points to the internal structure that describes the file.';
-						typing('.introjs-tooltiptext', text, typingInterval, 'white', function(){
-							$('.introjs-nextbutton').show();
-						});
+						if (introcode._introItems[introcode._currentStep].isCompleted == "false") {
+							$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
+							$('.introjs-tooltip').removeClass('hide');
+							var text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions.<br/><br/> '
+								+ 'It points to the internal structure that describes the file.';
+							typing('.introjs-tooltiptext', text, typingInterval, 'white', function(){
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
+							});
+						} else {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						}
 					});
 				break;
 				case "addressDiv1" :
@@ -792,6 +803,9 @@ function introGuide() {
 			$(typingId).removeClass("typingCursor");
 			typingCallbackFunction();
 			$('.introjs-tooltip').show();
+			introcode._introItems[introcode._currentStep].intro = $(".introjs-tooltiptext").html();
+			introcode._introItems[introcode._currentStep].tooltipClass = "";
+			introcode._introItems[introcode._currentStep].isCompleted = "true";
 		});
 	} 
 	

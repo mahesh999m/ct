@@ -1,5 +1,5 @@
 var introjs;
-var typingInterval = 5;
+var typingInterval = 1;
 var arr = [];
 var m;
 var n;
@@ -91,6 +91,9 @@ function typing(typingId, typingContent, typingInterval, cursorColor, typingCall
 		$(typingId).removeClass('typingCursor');
 		if (typeof typingCallbackFunction === "function") {
 			typingCallbackFunction();
+			introjs._introItems[introjs._currentStep].intro = $(".introjs-tooltiptext").html();
+			introjs._introItems[introjs._currentStep].tooltipClass = "";
+			introjs._introItems[introjs._currentStep].isCompleted = "true";
 		}
 	});
 }
@@ -105,25 +108,31 @@ function introJsFunction() {
 		keyboardNavigation: false,
 		steps : [ {
 			element : "#preCode",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#line1",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#variablesBox",
 			intro : "",
-			tooltipClass: 'hide'
+			tooltipClass: 'hide',
+			isCompleted : "false"
 		}, {
 			element : "#printf1",
-			tooltipClass: "hide"
+			tooltipClass: "hide",
+			isCompleted : "false"
 		}, {
 			element : "#outputBox",
 			tooltipClass: "hide",
-			outputStep: 'printf'
+			outputStep: 'printf',
+			isCompleted : "false"
 		}, {
 			element : "#scanf1",
 			intro : "",
-			tooltipClass : "hide"
+			tooltipClass : "hide",
+			isCompleted : "false"
 		}, {
 			element : "#outputBox",
 			intro : "",
@@ -181,34 +190,46 @@ function introJsFunction() {
 		var elementId = targetElement.id;
 		switch (elementId) {
 		case "preCode":
-			var typingContent = 'Let us learn <span class="ct-code-b-yellow">Pointers with Two Dimensional Array</span>.';
-			typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-				$('.introjs-nextbutton').show();
-			});
-			break;
-		case "line1":
-			$('.introjs-helperLayer').one('transitionend', function () {
-				var typingContent = 'Here, a <span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span> and ' +
-									'<span class="ct-code-b-yellow">4 int</span> variables <span class="ct-code-b-yellow">m</span>, ' +
-									'<span class="ct-code-b-yellow">n</span>, <span class="ct-code-b-yellow">i</span>, ' +
-									'<span class="ct-code-b-yellow">j</span> are declared.<br><br> The demo shows the memory allocation of only the ' +
-									'<span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span>.';
+			if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+				var typingContent = 'Let us learn <span class="ct-code-b-yellow">Pointers with Two Dimensional Array</span>.';
 				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
 					$('.introjs-nextbutton').show();
 				});
+			} else {
+				$('.introjs-nextbutton').show();
+			}
+			break;
+		case "line1":
+			$('.introjs-helperLayer').one('transitionend', function () {
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var typingContent = 'Here, a <span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span> and ' +
+										'<span class="ct-code-b-yellow">4 int</span> variables <span class="ct-code-b-yellow">m</span>, ' +
+										'<span class="ct-code-b-yellow">n</span>, <span class="ct-code-b-yellow">i</span>, ' +
+										'<span class="ct-code-b-yellow">j</span> are declared.<br><br> The demo shows the memory allocation of only the ' +
+										'<span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span>.';
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 			break;
 		case "variablesBox":
 			$('.introjs-helperLayer').one('transitionend', function () {
-				animationVariablesBox(function() {
-					$('.introjs-tooltip').removeClass('hide');
-					var typingContent = 'The <span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span> occupies ' +
-										'<span class="ct-code-b-yellow">2 bytes</span> in memory at some address <span class="ct-code-b-yellow"> i.e:' + 
-										$('#pAddress').text() +'</span>.';
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-nextbutton').show();
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					animationVariablesBox(function() {
+						$('.introjs-tooltip').removeClass('hide');
+						var typingContent = 'The <span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span> occupies ' +
+											'<span class="ct-code-b-yellow">2 bytes</span> in memory at some address <span class="ct-code-b-yellow"> i.e:' + 
+											$('#pAddress').text() +'</span>.';
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
 					});
-				});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 			break;
 		case "printf1":

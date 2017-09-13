@@ -1,5 +1,5 @@
 var introjs;
-var typingInterval = 5;
+var typingInterval = 1;
 
 var fileOperations = function() {
 	introGuide();
@@ -22,35 +22,43 @@ function introGuide() {
 		keyboardNavigation : false,
 		steps : [ {
 					element: '#heading',
-					intro: ''
+					intro: '',
+					isCompleted : "false"
 				 }, {
 				 	element: '#typingDiv',
 					intro: '',
-					tooltipClass: 'hide'
+					tooltipClass: 'hide',
+					isCompleted : "false"
 				}, {
 					element: '#fileOperation',
 					intro: '',
-					tooltipClass: 'hide'
+					tooltipClass: 'hide',
+					isCompleted : "false"
 				}, {
 					element: '#writeOpen',
 					intro: '',
 					tooltipClass: 'hide',
-					writeFileOpenSteps: 'writeFileOpen'
+					writeFileOpenSteps: 'writeFileOpen',
+					isCompleted : "false"
 				}, {
 					element: '#usrFile',
-					intro: ''
+					intro: '',
+					isCompleted : "false"
 				}, {
 					element: '#writeMode',
-					intro: ''
+					intro: '',
+					isCompleted : "false"
 				}, {
 					element: '#writeOpen',
 					intro: '',
-					writeFileOpenSteps: 'fileWriteMode2'
+					writeFileOpenSteps: 'fileWriteMode2',
+					isCompleted : "false"
 				}, {
 					element: '#txtFile',
 					intro: '',
 					tooltipClass: 'hide',
-					textFileSteps: 'fileWriteMode'
+					textFileSteps: 'fileWriteMode',
+					isCompleted : "false"
 				}, {
 					element: '#writeClose',
 					intro: '',
@@ -59,59 +67,72 @@ function introGuide() {
 					element: '#txtFile',
 					intro: '',
 					tooltipClass: 'hide',
-					textFileSteps: 'fileClose'
+					textFileSteps: 'fileClose',
+					isCompleted : "false"
 				}, {
 					element: '#readOpen',
 					intro: '',
 					tooltipClass: 'hide',
-					readOpenSteps: 'readFileOpen'
+					readOpenSteps: 'readFileOpen',
+					isCompleted : "false"
 				}, {
 					element: '#readMode',
-					intro: ''
+					intro: '',
+					isCompleted : "false"
 				}, {
 					element: '#readOpen',
 					intro: '',
-					readOpenSteps: 'readModeFile'
+					readOpenSteps: 'readModeFile',
+					isCompleted : "false"
 				}, {
 					element: '#txtFile',
 					intro: '',
 					tooltipClass: 'hide',
-					textFileSteps: 'fileReadMode'
+					textFileSteps: 'fileReadMode',
+					isCompleted : "false"
 				}, {
 					element: '#readClose',
 					intro: '',
-					tooltipClass: 'hide'
+					tooltipClass: 'hide',
+					isCompleted : "false"
 				}, {
 					element: '#txtFile',
 					intro: '',
 					tooltipClass: 'hide',
-					textFileSteps: 'fileClose'
+					textFileSteps: 'fileClose',
+					isCompleted : "false"
 				}, {
 					element: '#appendOpen',
 					intro: '',
 					tooltipClass: 'hide',
-					appendModeSteps: 'appendFileOpen'
+					appendModeSteps: 'appendFileOpen',
+					isCompleted : "false"
 				}, {
 					element: '#appendMode',
-					intro: ''
+					intro: '',
+					isCompleted : "false"
 				}, {
 					element: '#appendOpen',
 					intro: '',
-					appendModeSteps: 'appendModeFile'
+					appendModeSteps: 'appendModeFile',
+					isCompleted : "false"
 				}, {
 					element: '#txtFile',
 					intro: '',
 					tooltipClass: 'hide',
-					textFileSteps: 'fileAppendMode'
+					textFileSteps: 'fileAppendMode',
+					isCompleted : "false"
 				}, { 
 					element: '#appendClose',
 					intro: '',
-					tooltipClass: 'hide'
+					tooltipClass: 'hide',
+					isCompleted : "false"
 				}, {
 					element: '#txtFile',
 					intro: '',
 					tooltipClass: 'hide',
-					textFileSteps: 'fileClose'
+					textFileSteps: 'fileClose',
+					isCompleted : "false"
 				}, {
 					element: '#restart',
 					intro: 'Click to restart.',
@@ -126,27 +147,35 @@ function introGuide() {
 		switch (elementId) {
 		
 			case "heading":
-				var text = "Let us learn how  <span class='ct-code-b-yellow'>open</span> and <span class='ct-code-b-yellow'>close</span>"
-							+ " work on <b>files</b> in different <span class='ct-code-b-yellow'>modes</span>.";
-				typing('.introjs-tooltiptext', text, function() {
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var text = "Let us learn how  <span class='ct-code-b-yellow'>open</span> and <span class='ct-code-b-yellow'>close</span>"
+								+ " work on <b>files</b> in different <span class='ct-code-b-yellow'>modes</span>.";
+					typing('.introjs-tooltiptext', text, function() {
+						$('.introjs-nextbutton').show();
+					});
+				} else {
 					$('.introjs-nextbutton').show();
-				});
+				}
 				break;
 			
 			case "typingDiv":
 				$(".introjs-helperLayer").one('transitionend', function() {
-					$("#typingDiv").removeClass("opacity00");
-					TweenMax.to($("#line1"), 0.5, {opacity: 1, onComplete: function() {
-						$("#path").addClass("style-css");
-						$('.introjs-tooltip').removeClass("hide");
-						$('.introjs-tooltiptext').append('<ul><li></li></ul>');
-						var text = "<span class='ct-code-b-yellow'>filename</span> specifies the complete"
-									+ " <span class='ct-code-b-yellow'>path</span> of the file location.";
-						typing(".introjs-tooltiptext > ul li:last-child", text, function() {
-							$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-nextbutton' id='buttonMode'"
-													+ " onClick='modeBtn();'>Next &#8594;</a>");
-						});
-					}});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						$("#typingDiv").removeClass("opacity00");
+						TweenMax.to($("#line1"), 0.5, {opacity: 1, onComplete: function() {
+							$("#path").addClass("style-css");
+							$('.introjs-tooltip').removeClass("hide");
+							$('.introjs-tooltiptext').append('<ul><li></li></ul>');
+							var text = "<span class='ct-code-b-yellow'>filename</span> specifies the complete"
+										+ " <span class='ct-code-b-yellow'>path</span> of the file location.";
+							typing(".introjs-tooltiptext > ul li:last-child", text, function() {
+								$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-nextbutton' id='buttonMode'"
+														+ " onClick='modeBtn();'>Next &#8594;</a>");
+							});
+						}});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 				});
 				break;
 				
@@ -155,16 +184,20 @@ function introGuide() {
 				$("#readEditor").removeClass("opacity00");
 				introjs.refresh();
 				$(".introjs-helperLayer").one('transitionend', function() {
-					TweenMax.to($("#fileOperation"), 0.5, {opacity: 1, onComplete: function() {
-						$("#fileRd").addClass("blink");
-						$(".introjs-tooltip, #fileOperation").removeClass("hide opacity00");
-						text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions. '
-								+ '<br/><br/> This points to the internal structure that describes the file.';
-						typing('.introjs-tooltiptext', text, function() {
-							$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-nextbutton'"
-												+ " id='fPointer' onClick='filePointer();'>Next &#8594;</a>");
-						});
-					}});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						TweenMax.to($("#fileOperation"), 0.5, {opacity: 1, onComplete: function() {
+							$("#fileRd").addClass("blink");
+							$(".introjs-tooltip, #fileOperation").removeClass("hide opacity00");
+							text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions. '
+									+ '<br/><br/> This points to the internal structure that describes the file.';
+							typing('.introjs-tooltiptext', text, function() {
+								$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-nextbutton'"
+													+ " id='fPointer' onClick='filePointer();'>Next &#8594;</a>");
+							});
+						}});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();	
+					}
 				});
 				break;
 				
@@ -183,13 +216,17 @@ function introGuide() {
 						break;
 						
 					case "fileWriteMode2":
-						$('.introjs-tooltip').removeClass("hide");
-						text = 'Here <span class="ct-code-b-yellow">fopen()</span> opens the file <span class="ct-code-b-yellow">codetantra.txt'
-								+ '</span> in <span class="ct-code-b-yellow">write</span> mode.<br/><br/> The base address of this file structure'
-								+ ' is assigned to the file pointer <span class="ct-code-b-yellow">fp</span>.'; 
-						typing('.introjs-tooltiptext', text, function() {
-							$('.introjs-nextbutton').show();
-						});
+						if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+							$('.introjs-tooltip').removeClass("hide");
+							text = 'Here <span class="ct-code-b-yellow">fopen()</span> opens the file <span class="ct-code-b-yellow">codetantra.txt'
+									+ '</span> in <span class="ct-code-b-yellow">write</span> mode.<br/><br/> The base address of this file structure'
+									+ ' is assigned to the file pointer <span class="ct-code-b-yellow">fp</span>.'; 
+							typing('.introjs-tooltiptext', text, function() {
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
+							});
+						} else {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						}
 						break;
 					}
 				});
@@ -198,22 +235,30 @@ function introGuide() {
 			case "usrFile":
 				introjs.refresh();
 				$(".introjs-helperLayer").one('transitionend', function() {
-					var text = "This is a file with the name <span class='ct-code-b-yellow'>codetantra.txt</span>.";
-					typing('.introjs-tooltiptext', text, function() {
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						var text = "This is a file with the name <span class='ct-code-b-yellow'>codetantra.txt</span>.";
+						typing('.introjs-tooltiptext', text, function() {
+							$('.introjs-nextbutton').show();
+						});
+					} else {
 						$('.introjs-nextbutton').show();
-					});
+					}
 				});
 				break;
 				
 			case "writeMode":
 				$(".introjs-helperLayer").one('transitionend', function() {
-					text = "<span class='ct-code-b-yellow'>w</span> stands for <span class='ct-code-b-yellow'>write</span> mode.<br>In "
-							+ "<span class='ct-code-b-yellow'>write</span> mode, if the file <b class='ct-code-b-yellow'>does not exist</b>, a file with the specified"
-							+ " name is <span class='ct-code-b-yellow'>created</span>.<br><br> If the file <b>exists</b> with the same name,"
-							+"the contents of the file are <span class='ct-code-b-yellow'>deleted</span>.";
-					typing('.introjs-tooltiptext', text, function() {
-						$('.introjs-nextbutton').show();
-					});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						text = "<span class='ct-code-b-yellow'>w</span> stands for <span class='ct-code-b-yellow'>write</span> mode.<br>In "
+								+ "<span class='ct-code-b-yellow'>write</span> mode, if the file <b class='ct-code-b-yellow'>does not exist</b>, a file with the specified"
+								+ " name is <span class='ct-code-b-yellow'>created</span>.<br><br> If the file <b>exists</b> with the same name,"
+								+"the contents of the file are <span class='ct-code-b-yellow'>deleted</span>.";
+						typing('.introjs-tooltiptext', text, function() {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 				});
 				break;
 				
@@ -326,12 +371,16 @@ function introGuide() {
 							
 						case "readModeFile":
 							$('.introjs-tooltip').removeClass("hide");
-							var text = "Here we open <span class='ct-code-b-yellow'>codetantra.txt</span> file in read mode.<br>If the file "
-										+ "exists, it is opened with existing data, else an <span class='ct-code-b-red error-text'>error</span>"
-										+ " occurs that the file does not exist.";
-							typing('.introjs-tooltiptext', text, function() {
-								$('.introjs-nextbutton').show();
-							});
+							if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+								var text = "Here we open <span class='ct-code-b-yellow'>codetantra.txt</span> file in read mode.<br>If the file "
+											+ "exists, it is opened with existing data, else an <span class='ct-code-b-red error-text'>error</span>"
+											+ " occurs that the file does not exist.";
+								typing('.introjs-tooltiptext', text, function() {
+									$('.introjs-nextbutton, .introjs-prevbutton').show();
+								});
+							} else {
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
+							}
 							break;
 					}
 				});
@@ -340,12 +389,16 @@ function introGuide() {
 			case "readMode":
 				introjs.refresh();
 				$(".introjs-helperLayer").one('transitionend', function() {
-					var text = "<span class='ct-code-b-yellow'>r</span> stands for <span class='ct-code-b-yellow'>read</span> mode."
-							+ " <br><br>In <span class='ct-code-b-yellow'>read</span> mode, the file data can only be read"
-							+ " and the user will not be able to add/modify/append data."
-					typing('.introjs-tooltiptext', text, function() {
-						$('.introjs-nextbutton').show();		
-					});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						var text = "<span class='ct-code-b-yellow'>r</span> stands for <span class='ct-code-b-yellow'>read</span> mode."
+								+ " <br><br>In <span class='ct-code-b-yellow'>read</span> mode, the file data can only be read"
+								+ " and the user will not be able to add/modify/append data."
+						typing('.introjs-tooltiptext', text, function() {
+							$('.introjs-nextbutton').show();		
+						});
+					} else {
+						$('.introjs-nextbutton').show();	
+					}
 				});
 				break;
 				
@@ -353,22 +406,24 @@ function introGuide() {
 				$(".introjs-helperLayer").one('transitionend', function() {
 					var appendModeSteps = introjs._introItems[introjs._currentStep].appendModeSteps;
 					switch(appendModeSteps) {
-						
 						case "appendFileOpen":
 							TweenMax.to($("#appendOpen"), 0.5, {opacity: 1, onComplete: function() {
 								setTimeout(function() {
 									introjs.nextStep();
 								}, 500);
 							}});
-							break;
-							
+						break;
 						case "appendModeFile":
-							$('.introjs-tooltip').removeClass("hide");
-							var text = "Here we open <span class='ct-code-b-yellow'>codetantra.txt</span> file in append mode.";
-							typing('.introjs-tooltiptext', text, function() {
-								$('.introjs-nextbutton').show();
-							});
-							break;
+							if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+								$('.introjs-tooltip').removeClass("hide");
+								var text = "Here we open <span class='ct-code-b-yellow'>codetantra.txt</span> file in append mode.";
+								typing('.introjs-tooltiptext', text, function() {
+									$('.introjs-nextbutton, .introjs-prevbutton').show();
+								});
+							} else {
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
+							}
+						break;
 					}
 				});
 				break;
@@ -377,14 +432,18 @@ function introGuide() {
 				$("#txtFile").addClass("opacity00");
 				introjs.refresh();
 				$(".introjs-helperLayer").one('transitionend', function() {
-					$("#appendOpen").removeClass("opacity00");
-					var text = "<span class='ct-code-b-yellow'>a</span> stands for <span class='ct-code-b-yellow'>append</span> mode."
-								+ " <br><br>In <span class='ct-code-b-yellow'>append</span> mode, If the file with the name exists,"
-								+ " new data is added to the existing data of the file.<br><br>"
-								+ " If the file does not exist a new file with the given name is created and the data is added.";
-					typing('.introjs-tooltiptext', text, function() {
-						$('.introjs-nextbutton').show();		
-					});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						$("#appendOpen").removeClass("opacity00");
+						var text = "<span class='ct-code-b-yellow'>a</span> stands for <span class='ct-code-b-yellow'>append</span> mode."
+									+ " <br><br>In <span class='ct-code-b-yellow'>append</span> mode, If the file with the name exists,"
+									+ " new data is added to the existing data of the file.<br><br>"
+									+ " If the file does not exist a new file with the given name is created and the data is added.";
+						typing('.introjs-tooltiptext', text, function() {
+							$('.introjs-nextbutton').show();		
+						});
+					} else {
+						$('.introjs-nextbutton').show();	
+					}
 				});
 				break;
 				
@@ -407,6 +466,9 @@ function typing(typingId, typingContent,callBackFunction) {
 		$(typingId).removeClass('typingCursor');
 		if (typeof callBackFunction === "function") {
 			callBackFunction();
+			introjs._introItems[introjs._currentStep].intro = $(".introjs-tooltiptext").html();
+			introjs._introItems[introjs._currentStep].tooltipClass = "";
+			introjs._introItems[introjs._currentStep].isCompleted = "true";
 		}
 	});
 }
@@ -449,7 +511,7 @@ function fCloseBtn() {
 		$('.introjs-tooltiptext > ul').append('<li></li>');
 		var text = "<span class='ct-code-b-yellow'>fp</span> is the pointer to the <span class='ct-code-b-yellow'>FILE</span> data structure.";
 		typing(".introjs-tooltiptext > ul li:last-child", text, function() {
-			$('.introjs-nextbutton').show();
+			$('.introjs-nextbutton, .introjs-prevbutton').show();
 		});
 	}});
 }
@@ -466,7 +528,7 @@ function filePointer() {
 		$("#fpRd").removeClass("blink");
 		$('#fileOperation').effect( "transfer", { to: $("#fpDiv"), className: "ui-effects-transfer" }, 1000, function() {
 			$("#fpDiv").removeClass("opacity00 z-index");
-			$('.introjs-nextbutton').show();
+			$('.introjs-nextbutton, .introjs-prevbutton').show();
 		});
 	});
 }
@@ -510,6 +572,7 @@ function inputEvent(value, id) {
 function event(id) {
 	if ($(id).val().length < 1) {
 		$(".introjs-nextbutton").hide();
+		$('.ct-code-b-red').eq(0).remove();
 		$('.introjs-tooltiptext').append("<span class='ct-code-b-red error-text'><br/>Please enter a character.</span>");
 		$(".fp-address").text($(".address").text());
 	} else {
