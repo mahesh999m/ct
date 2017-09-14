@@ -311,8 +311,10 @@ function introJsFunction() {
 				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
 				var typingContent = 'The <span class="ct-code-b-yellow">swap()</span> method takes two <span class="ct-code-b-yellow">int</span> ' +
 									'variables <span class="ct-code-b-yellow">x</span>, <span class="ct-code-b-yellow">y</span> and they ' +
-									'are assigned with the values of a and b.<br><br> Here the values of a and b are' +
-									'assigned to x and y.The values of <span class="ct-code-b-yellow">' + $('#aValue').text() +
+									'are assigned with the values of a and b.<br><br> Here the values of <span class="ct-code-b-yellow">a</span>'+
+									' and <span class="ct-code-b-yellow">b</span> are' +
+									'assigned to <span class="ct-code-b-yellow">x</span> and '+
+									'<span class="ct-code-b-yellow">y</span>.The values of <span class="ct-code-b-yellow">' + $('#aValue').text() +
 									'</span>, <span class="ct-code-b-yellow"> ' + $('#bValue').text() + '</span> .';
 				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
@@ -500,7 +502,7 @@ function introJsFunction() {
 										+ '<span class="ct-code-b-yellow">call by value</span> method works.<br><br>The method call sends a copy of the values,'
 										+'so any change affects the copy but not the orignal variable values.';
 					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
+						$('.introjs-nextbutton').show();
 					});
 				});
 			break;

@@ -151,7 +151,7 @@ function introJsFunction() {
 							var typingContent = 'The variable <span class="ct-code-b-yellow">x</span> is of type '
 										+ '<span class="ct-code-b-yellow">int</span>, it occupies <span class="ct-code-b-yellow">2 bytes</span> '
 										+ 'in memory at some address (i.e. location). <br><br>Let its address be '
-										+ '<span class="ct-code-b-yellow">1111</span>. The variable x is initialized to <span class="ct-code-b-yellow">3</span>.';
+										+ '<span class="ct-code-b-yellow">1111</span>. The variable <span class="ct-code-b-yellow">x</span> is initialized to <span class="ct-code-b-yellow">3</span>.';
 							typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
 								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							});

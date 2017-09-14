@@ -161,8 +161,8 @@ function introGuide() {
 			$('.introjs-helperLayer').one('transitionend', function() {
 				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
 					typing('.introjs-tooltiptext', "A pointer variable <span class='ct-code-b-yellow'>p</span> is declared of datatype " +
-							"<span class='ct-code-b-yellow'>float</span>.<br/> " +
-							"A float pointer variable, should always point to a <span class='ct-code-b-yellow'>float</span> value.", function() {
+							"<span class='ct-code-b-yellow'>float</span>.<br/><br/> " +
+							"A <span class='ct-code-b-yellow'>float</span> pointer variable, should always point to a <span class='ct-code-b-yellow'>float</span> value.", function() {
 						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				} else {
@@ -193,7 +193,7 @@ function introGuide() {
 			$('.introjs-helperLayer').one('transitionend', function() {
 				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
 					var text = "<span class='ct-code-b-yellow'>sizeof</span> is an operator that returns the number of bytes " +
-								"allocated for the required datatype, variable, or constant.";
+								"allocated for the required <span class='ct-code-b-yellow'>datatype, variable, or constant</span>.";
 					typing('.introjs-tooltiptext', text, function() {
 						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
@@ -319,13 +319,17 @@ function introGuide() {
 		case 'preCodeTwo':
 			introjs.refresh();
 			$('.introjs-helperLayer').one('transitionend', function() {
-				$("#exampleTwo").removeClass("opacity00");
-				typing('.introjs-tooltiptext', "Let us consider another example.", function() {
-					TweenMax.to($("#preCodeTwo"), 1, {opacity: 1, onComplete: function(){
-						$("#preCodeTwo").removeClass("opacity00");
-						$(".introjs-nextbutton").show();
-					}});
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					$("#exampleTwo").removeClass("opacity00");
+					typing('.introjs-tooltiptext', "Let us consider another example.", function() {
+						TweenMax.to($("#preCodeTwo"), 1, {opacity: 1, onComplete: function(){
+							$("#preCodeTwo").removeClass("opacity00");
+							$(".introjs-nextbutton").show();
+						}});
+					});
+				} else {
+					$(".introjs-nextbutton").show();
+				}
 			});
 			break;
 		case 'secondExLine1':
@@ -333,7 +337,7 @@ function introGuide() {
 				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
 					var text =  "A pointer variable <span class='ct-code-b-yellow'>k</span> is declared of datatype " +
 								"<span class='ct-code-b-yellow'>int</span>.<br/><br/> " +
-								"An int pointer variable, should always point to an <span class='ct-code-b-yellow'>int</span> value." 
+								"An <span class='ct-code-b-yellow'>int</span> pointer variable, should always point to an <span class='ct-code-b-yellow'>int</span> value." 
 					typing('.introjs-tooltiptext', text, function() {
 						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
@@ -423,18 +427,20 @@ function introGuide() {
 			var animateStep = introjs._introItems[introjs._currentStep].animateStep;
 			switch(animateStep) {
 			case 'tweenmaxArrowAnimate':
-				$('.introjs-helperLayer').one('transitionend', function() {
+				//$('.introjs-helperLayer').one('transitionend', function() {
 					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					var text = "The base address of <span class='ct-code-b-yellow'>heap memory</span> is stored in " +
-							"<span class='ct-code-b-yellow'>k</span><br> " +
-							"i.e <span class='ct-code-b-yellow'>1924</span> is stored in <span class='ct-code-b-yellow'>k</span>.";
-					typing('.introjs-tooltiptext', text, function() {
-						tweenmaxArrayAnimation();
-					});
+						console.log('if if if');
+						var text = "The base address of <span class='ct-code-b-yellow'>heap memory</span> is stored in " +
+								"<span class='ct-code-b-yellow'>k</span><br> " +
+								"i.e <span class='ct-code-b-yellow'>1924</span> is stored in <span class='ct-code-b-yellow'>k</span>.";
+						typing('.introjs-tooltiptext', text, function() {
+							tweenmaxArrayAnimation();
+						});
 					} else {
+						console.log('else else else');
 						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					}
-				});
+				//});
 				break;
 			case 'scaleFactor':
 					scaleFactorExplanation();
@@ -511,6 +517,7 @@ function tweenmaxValueAnimation() {
 }
 
 function tweenmaxArrayAnimation() {
+	console.log('i am inside function');
 	var l3 = $("#firstAddressId").offset();
 	var l4 = $("#kValue").offset();
 	var topLength = l3.top - l4.top;

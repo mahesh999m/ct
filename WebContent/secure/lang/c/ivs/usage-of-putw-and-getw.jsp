@@ -186,6 +186,7 @@ div, span, .fa {
 .introjs-tooltip {
 	min-width: 300px;
 }
+
 </style>
 </head>
 

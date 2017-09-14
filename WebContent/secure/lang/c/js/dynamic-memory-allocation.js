@@ -347,7 +347,7 @@ function introGuide() {
 					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
 						typing('.introjs-tooltiptext', "The pointer variable <span class='ct-code-b-yellow'>p</span> occupies " +
 								"<span class='ct-code-b-yellow'>2 bytes</span> of memory since it is of <span class='ct-code-b-yellow'>int datatype" +
-								"</span>.<br/><br/> An int pointer variable can refer to only an <span class='ct-code-b-yellow'>int</span> value.", function() {
+								"</span>.<br/><br/> An <span class='ct-code-b-yellow'>int</span> pointer variable can refer to only an <span class='ct-code-b-yellow'>int</span> value.", function() {
 							$(".introjs-nextbutton, .introjs-prevbutton").show();
 						});
 					} else {
@@ -482,11 +482,15 @@ function introGuide() {
 				break;
 			case 'secondExLine4':
 				$('.introjs-helperLayer').one('transitionend', function() {
-					$("#secondExLine4").removeClass("opacity00");
-					typing('.introjs-tooltiptext', "Let us increase the size of array from <span class='ct-code-b-yellow'>5</span> " +
-							" to <span class='ct-code-b-yellow'>10.</span>", function() {
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						$("#secondExLine4").removeClass("opacity00");
+						typing('.introjs-tooltiptext', "Let us increase the size of array from <span class='ct-code-b-yellow'>5</span> " +
+								" to <span class='ct-code-b-yellow'>10.</span>", function() {
+							$(".introjs-nextbutton").show();
+						});
+					} else {
 						$(".introjs-nextbutton").show();
-					});
+					}
 				});
 				break;
 			case 'finalDiv':
