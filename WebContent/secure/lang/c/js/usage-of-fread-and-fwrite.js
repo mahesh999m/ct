@@ -1,5 +1,5 @@
 var introcode;
-var typingInterval = 10;
+var typingInterval = 1;
 var fpAddress;
 var enterText;
 var addressCount = 1;

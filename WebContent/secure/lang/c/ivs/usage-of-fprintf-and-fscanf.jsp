@@ -36,7 +36,7 @@
 }
 
 .introjs-duplicate-nextbutton {
-	background-color: green;
+	background-color: green;  /*green*/
 }
 
 .box-border {

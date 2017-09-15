@@ -1,5 +1,6 @@
 var introjs;
 var typingInterval = 1;
+var toggle = true;
 function arrayOfPointersReady() {
 	$('.introjs-nextbutton').keydown(function(e) {
 		if (e.which == 13) {
@@ -64,7 +65,8 @@ function introJsFunction() {
 			isCompleted : "false"
 		}, {
 			element : "#intLine",
-			intro : ""
+			intro : "",
+			isCompleted : "false"
 		}, {
 			element : "#animationBox",
 			tooltipClass: "hide",
@@ -72,19 +74,23 @@ function introJsFunction() {
 		}, {
 			element : "#a0Line",
 			intro : "",
-			elementNumber: '0'
+			elementNumber: '0',
+			isCompleted : "false"
 		}, {
 			element : "#animationBox",
 			intro : "",
-			animateStep: 'a0Line'
+			animateStep: 'a0Line',
+			isCompleted : "false"
 		}, {
 			element : "#a1Line",
 			intro : "",
-			elementNumber: '1'
+			elementNumber: '1',
+			isCompleted : "false"
 		}, {
 			element : "#animationBox",
 			intro : "",
-			animateStep: 'a1Line'
+			animateStep: 'a1Line',
+			isCompleted : "false"
 		}, {
 			element : "#printf1",
 			tooltipClass: "hide"
@@ -237,6 +243,7 @@ function introJsFunction() {
 					animatingTable2Boxes(1, parentSelector, svgId, 'svgLine11', svgMarkerId);
 					animatingTable2Boxes(2, parentSelector, svgId, 'svgLine12', svgMarkerId);
 					animatingTable2Boxes(3, parentSelector, svgId, 'svgLine13', svgMarkerId, function() {
+						introjs._introItems[introjs._currentStep].isCompleted = "true";
 						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				} else {
@@ -245,24 +252,35 @@ function introJsFunction() {
 			});
 			break;
 		case "preCode":
-			$('#box1, #box2').toggleClass('display-none');
+			if (toggle) {
+				$('#box1, #box2').toggleClass('display-none');
+				toggle = !toggle;
+			}
 			introjs.refresh();
 			$('.introjs-helperLayer').one('transitionend', function () {
-				var typingContent = 'Now let us learn <span class="ct-code-b-yellow">array of pointers</span>.';
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var typingContent = 'Now let us learn <span class="ct-code-b-yellow">array of pointers</span>.';
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$('.introjs-nextbutton').show();
+					});
+				} else {
 					$('.introjs-nextbutton').show();
-				});
+				}
 			});
 			break;
 		case "intLine":
 			$('.introjs-helperLayer').one('transitionend', function () {
-				var typingContent = 'We declare <span class="ct-code-b-yellow">pointer</span> array <span class="ct-code-b-yellow">a</span> of size ' +
-									'<span class="ct-code-b-yellow">2</span>. Two int variables <span class="ct-code-b-yellow">f1</span> and ' +
-									'<span class="ct-code-b-yellow">f2</span> are initialized with <span class="ct-code-b-yellow">10</span> and ' +
-									'<span class="ct-code-b-yellow">20</span>.';
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-					$('.introjs-nextbutton').show();
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var typingContent = 'We declare <span class="ct-code-b-yellow">pointer</span> array <span class="ct-code-b-yellow">a</span> of size ' +
+										'<span class="ct-code-b-yellow">2</span>. Two int variables <span class="ct-code-b-yellow">f1</span> and ' +
+										'<span class="ct-code-b-yellow">f2</span> are initialized with <span class="ct-code-b-yellow">10</span> and ' +
+										'<span class="ct-code-b-yellow">20</span>.';
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 			break;
 		case "animationBox":
@@ -286,22 +304,30 @@ function introJsFunction() {
 					var svgId = $('#svg2');
 					var svgMarkerId = 'markerEnd2';
 					svgMarkerAppend(svgId, svgMarkerId);
-					var typingContent = 'The address of <span class="ct-code-b-yellow">f1</span> is assigned to ' +
-										'<span class="ct-code-b-yellow">a[0]</span>. An <span class="ct-code-b-yellow">&</span> returns the ' +
-										'address (i.e., <span class="ct-code-b-yellow">' + $('#f1Address').text() + '</span>).';
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton'" +
-																"onclick=\"animationALine(1)\">Next &#8594;</a>");
-					});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						var typingContent = 'The address of <span class="ct-code-b-yellow">f1</span> is assigned to ' +
+											'<span class="ct-code-b-yellow">a[0]</span>. An <span class="ct-code-b-yellow">&</span> returns the ' +
+											'address (i.e., <span class="ct-code-b-yellow">' + $('#f1Address').text() + '</span>).';
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton'" +
+																	"onclick=\"animationALine(1)\">Next &#8594;</a>");
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 					break;
 				case "a1Line":
-					var typingContent = 'The address of <span class="ct-code-b-yellow">f2</span> is assigned to ' + 
-										'<span class="ct-code-b-yellow">a[1]</span>. An <span class="ct-code-b-yellow">&</span> returns the' +
-										' address (i.e., <span class="ct-code-b-yellow">' + $('#f2Address').text() + '</span>).';
-					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton'" +
-																"onclick=\"animationALine(2)\">Next &#8594;</a>");
-					});
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						var typingContent = 'The address of <span class="ct-code-b-yellow">f2</span> is assigned to ' + 
+											'<span class="ct-code-b-yellow">a[1]</span>. An <span class="ct-code-b-yellow">&</span> returns the' +
+											' address (i.e., <span class="ct-code-b-yellow">' + $('#f2Address').text() + '</span>).';
+						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+							$('.introjs-tooltipbuttons').append("<a class='introjs-button introjs-duplicate-nextbutton'" +
+																	"onclick=\"animationALine(2)\">Next &#8594;</a>");
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 					break;
 				case "printf1":
 				case "printf2":
@@ -351,11 +377,15 @@ function introJsFunction() {
 		case "a0Line":
 		case "a1Line":
 			$('.introjs-helperLayer').one('transitionend', function () {
-				var typingContent = 'Here <span class="ct-code-b-yellow">a[' + elementNumber + ']</span> is assigned with address of ' +
-									'<span class="ct-code-b-yellow">f' + (elementNumber + 1) + '</span>.';
-				typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var typingContent = 'Here <span class="ct-code-b-yellow">a[' + elementNumber + ']</span> is assigned with address of ' +
+										'<span class="ct-code-b-yellow">f' + (elementNumber + 1) + '</span>.';
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$('.introjs-nextbutton').show();
+					});
+				} else {
 					$('.introjs-nextbutton').show();
-				});
+				}
 			});
 			break;
 		case "printf1":
@@ -502,7 +532,7 @@ function animationALine(index) {
 			var selector1 = $('#aTable .td-value-css').eq(index - 1);
 			var selector2 = $('#f' + index + 'Table .td-value-css');
 			svgAnimatingLineSelector1RightSideToSelector2LeftSide(parentSelector, selector1, selector2, svgId, svgLineId, svgMarkerId, function() {
-				$('.introjs-nextbutton').show();
+				$('.introjs-nextbutton, .introjs-prevbutton').show();
 			});
 		});
 	}});

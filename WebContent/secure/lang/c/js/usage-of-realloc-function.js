@@ -218,29 +218,33 @@ function introGuide() {
 			switch(animateStep) {
 			case 'tweenmaxAnimation':
 				$('.introjs-helperLayer').one('transitionend', function() {
-					typing('.introjs-tooltiptext', "So the base address is stored in pointer variable <span class='ct-code-b-yellow'>p</span>.<br>" +
-							"i.e. <span class='ct-code-b-yellow'>1924</span>.", function() {
-						$(".introjs-tooltipbuttons").append("<a class='introjs-button user-btn'>Next &#8594;</a>");
-						$(".user-btn").click(function() {
-							$(".user-btn").remove();
-							tweenmaxAnimation("#firstAddressId", "#pValue", function() {
-								$(".introjs-tooltipbuttons").append("<a class='introjs-button user-btn'>Next &#8594;</a>");
-								$(".user-btn").click(function() {
-									$(".user-btn").remove();
-									var text = "As the base address of the allocated <span class='ct-code-b-yellow'>heap memory</span> is stored in " +
-									"<span class='ct-code-b-yellow'>p</span>, it can be accessed using pointer <span class='ct-code-b-yellow'>p</span>." +
-									"<br>i.e., value stored from <span class='ct-code-b-yellow'>1924</span> location." ;
-									typing('.introjs-tooltiptext', text, function() {
-										svgAppend($('#firstExDiv'), 'svg1');
-										svgMarkerAppend($('#svg1'), 'marker1');
-										svgAnimatingLineSelector1RightSideToSelector2LeftSide($('#firstExDiv'), $('#memoryBox1'), $('#trBox1'), $('#svg1'), 'svgLine1', 'marker1', function() {	
-											$(".introjs-nextbutton").show();
-										});	
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+						typing('.introjs-tooltiptext', "So the base address is stored in pointer variable <span class='ct-code-b-yellow'>p</span>.<br>" +
+								"i.e. <span class='ct-code-b-yellow'>1924</span>.<div id='appendDiv'></div>", function() {
+							$(".introjs-tooltipbuttons").append("<a class='introjs-button user-btn'>Next &#8594;</a>");
+							$(".user-btn").click(function() {
+								$(".user-btn").remove();
+								tweenmaxAnimation("#firstAddressId", "#pValue", function() {
+									$(".introjs-tooltipbuttons").append("<a class='introjs-button user-btn'>Next &#8594;</a>");
+									$(".user-btn").click(function() {
+										$(".user-btn").remove();
+										var text = "<br><br>As the base address of the allocated <span class='ct-code-b-yellow'>heap memory</span> is stored in " +
+										"<span class='ct-code-b-yellow'>p</span>, it can be accessed using pointer <span class='ct-code-b-yellow'>p</span>." +
+										"<br>i.e., value stored from <span class='ct-code-b-yellow'>1924</span> location." ;
+										typing('#appendDiv', text, function() {
+											svgAppend($('#firstExDiv'), 'svg1');
+											svgMarkerAppend($('#svg1'), 'marker1');
+											svgAnimatingLineSelector1RightSideToSelector2LeftSide($('#firstExDiv'), $('#memoryBox1'), $('#trBox1'), $('#svg1'), 'svgLine1', 'marker1', function() {	
+												$(".introjs-nextbutton, .introjs-prevbutton").show();	
+											});	
+										});
 									});
 								});
 							});
 						});
-					});
+					} else {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();	
+					}
 				});
 				break;
 			case 'reallocMemory':
@@ -424,6 +428,9 @@ function typing(selector, text, callBackFunction) {
 		$(".introjs-nextbutton").removeClass("opacity00");
 		if (typeof callBackFunction === "function") {
 			callBackFunction();
+			introjs._introItems[introjs._currentStep].intro = $(".introjs-tooltiptext").html();
+			introjs._introItems[introjs._currentStep].tooltipClass = "";
+			introjs._introItems[introjs._currentStep].isCompleted = "true";
 		}
 	})
 }
