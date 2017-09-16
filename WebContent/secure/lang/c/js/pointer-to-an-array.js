@@ -493,7 +493,8 @@ function animationArrayBoxes(callBackFunction) {
 		for (var i = 0; i < m; i++) {
 			if (i == (m - 1)) {
 				animatingTableBoxes(i, function() {
-					$('.introjs-nextbutton').show();
+					callBackFunction();
+					//$('.introjs-nextbutton').show();
 				});
 			} else {
 				animatingTableBoxes(i,callBackFunction);

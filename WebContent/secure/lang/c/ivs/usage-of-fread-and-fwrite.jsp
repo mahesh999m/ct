@@ -145,7 +145,7 @@ div,span {
     z-index: 10000000 !important;
 }
 
-#tableValue >td{
+#tableValue > td {
     padding: 4px 6px;
     border: 2px solid gray;
     height: 30px !important;
