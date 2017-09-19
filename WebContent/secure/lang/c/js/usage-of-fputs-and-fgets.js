@@ -186,6 +186,7 @@ function introGuide() {
 				break;
 				
 			case "program":
+				$('#typingDiv').addClass('z-index');
 				$('.introjs-helperLayer').one('transitionend', function() {
 					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
 						$("#program").removeClass("opacity00");

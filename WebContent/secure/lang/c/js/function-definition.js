@@ -17,39 +17,50 @@ var functionDefinitionReady = function() {
 		steps :	[{
 			element :'#informationdiv',
 			intro :'',
-			tooltipClass:"hide"
+			tooltipClass:"hide",
+			isCompleted : "false"
 		},{
 			element :'#format',
 			intro :'',
-			tooltipClass: "hide"
+			tooltipClass: "hide",
+			isCompleted : "false"
 		},{
 			element :'#returnType1',
-			intro :''
+			intro :'',
+			isCompleted : "false"
 		},{
 			element :'#functionName1',
-			intro :''
+			intro :'',
+			isCompleted : "false"
 		},{
 			element :'#argument1',
 			intro :'',
-			position:"bottom"
+			position:"bottom",
+			isCompleted : "false"
 		},{
 			element :'#functionBody',
-			intro :''
+			intro :'',
+			isCompleted : "false"
 		},{
 			element :'#returnValue',
-			intro :''
+			intro :'',
+			isCompleted : "false"
 		},{
 			element :'#declaration1',
-			intro :''
+			intro :'',
+			isCompleted : "false"
 		},{
 			element :'#functionDeclaration',
-			intro :''
+			intro :'',
+			isCompleted : "false"
 		},{
 			element :'#functionBody3',
-			intro :''
+			intro :'',
+			isCompleted : "false"
 		},{
 			element :'#returnS',
-			intro :''
+			intro :'',
+			isCompleted : "false"
 	 	},{
 			element :'#restartBtn',
 			intro :'Click to restart.',
@@ -72,79 +83,115 @@ var functionDefinitionReady = function() {
 		break;
 		case "returnType1" :
 			$(".introjs-helperLayer").one("transitionend", function() {
-				typing('.introjs-tooltiptext', "<ul><li><span class='ct-code-b-yellow'>return_type</span> is data type of the value returned by"
-						+ " function.</li><li>Function that does not return any value then the <span class='ct-code-b-yellow'>return_type</span>"
-						+ " uses the keyword <span class='ct-code-b-yellow'>void</span>.</li></ul>", function() {  
+				if (intro._introItems[intro._currentStep].isCompleted == "false") {
+					typing('.introjs-tooltiptext', "<ul><li><span class='ct-code-b-yellow'>return_type</span> is data type of the value returned by"
+							+ " function.</li><li>Function that does not return any value then the <span class='ct-code-b-yellow'>return_type</span>"
+							+ " uses the keyword <span class='ct-code-b-yellow'>void</span>.</li></ul>", function() {  
+						$('.introjs-nextbutton').show();
+					});
+				} else {
 					$('.introjs-nextbutton').show();
-				});
+				}
 			});
 		break;
 		case "functionName1" :
 			$(".introjs-helperLayer").one("transitionend", function() {
-				typing('.introjs-tooltiptext', "<ul><li>Any valid identifier can be used as a <span class='ct-code-b-yellow'>function_name</span>."
-						+ "</li><li><y>Keywords</y> should not be used to name user-defined <span class='ct-code-b-yellow'>function_names</span>.</li></ul>",
-						function() {  
-					$('.introjs-nextbutton').show();
-				});
+				if (intro._introItems[intro._currentStep].isCompleted == "false") {
+					typing('.introjs-tooltiptext', "<ul><li>Any valid identifier can be used as a <span class='ct-code-b-yellow'>function_name</span>."
+							+ "</li><li><y>Keywords</y> should not be used to name user-defined <span class='ct-code-b-yellow'>function_names</span>.</li></ul>",
+							function() {  
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 		break;
 		case "argument1" :
 			$(".introjs-helperLayer").one("transitionend", function() {
-				typing('.introjs-tooltiptext', "<span class='ct-code-b-yellow'>Parameters</span> in the function are defined as a list with datatype"
-						+ " of the <span class='ct-code-b-yellow'>variable</span> and <span class='ct-code-b-yellow'>name</span> of the variable"
-		  				+ " seperated by a <span class='ct-code-b-yellow'>space</span>(i.e., int a).<br><br> If there are more than one parameters,"
-		  				+ " they are seperated by a <span class='ct-code-b-yellow'>comma</span>.", function() {  
-		  			$('.introjs-nextbutton').show();
-				});
+				if (intro._introItems[intro._currentStep].isCompleted == "false") {
+					typing('.introjs-tooltiptext', "<span class='ct-code-b-yellow'>Parameters</span> in the function are defined as a list with datatype"
+							+ " of the <span class='ct-code-b-yellow'>variable</span> and <span class='ct-code-b-yellow'>name</span> of the variable"
+			  				+ " seperated by a <span class='ct-code-b-yellow'>space</span>(i.e., int a).<br><br> If there are more than one parameters,"
+			  				+ " they are seperated by a <span class='ct-code-b-yellow'>comma</span>.", function() {  
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 		break;
 		case "functionBody" :
 			$(".introjs-helperLayer").one("transitionend", function() {
-				typing('.introjs-tooltiptext', "The function body is a <y>collection of statements</y> that define what the function does.", function() {  
-					$('.introjs-nextbutton').show();
-				});
+				if (intro._introItems[intro._currentStep].isCompleted == "false") {
+					typing('.introjs-tooltiptext', "The function body is a <y>collection of statements</y> that define what the function does.", function() {  
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 		break;
 		case "returnValue" :
 			$(".introjs-helperLayer").one("transitionend", function() {
-				typing('.introjs-tooltiptext', "<ul><li>A <span class='ct-code-b-yellow'>return</span> statement is used to return a value by the"
-						+ " function.</li><li>If a function does not return any value, the <span class='ct-code-b-yellow'>return</span> "
-						+ "type is specified as <span class='ct-code-b-yellow'>void</span>.</li></ul>", function() {  
-		  			$('.introjs-nextbutton').show();
-				});
+				if (intro._introItems[intro._currentStep].isCompleted == "false") {
+					typing('.introjs-tooltiptext', "<ul><li>A <span class='ct-code-b-yellow'>return</span> statement is used to return a value by the"
+							+ " function.</li><li>If a function does not return any value, the <span class='ct-code-b-yellow'>return</span> "
+							+ "type is specified as <span class='ct-code-b-yellow'>void</span>.</li></ul>", function() {  
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 		break;    
 		case "declaration1" :
 			$(".introjs-helperLayer").one("transitionend", function() {
-		  		typing('.introjs-tooltiptext', "Let us consider the example of a <y>function definition</y>.", function() {  
-		  			$("#declaration1").removeClass("opacity00");
-					$('.introjs-nextbutton').show();
-				});
+				if (intro._introItems[intro._currentStep].isCompleted == "false") {
+			  		typing('.introjs-tooltiptext', "Let us consider the example of a <y>function definition</y>.", function() {  
+			  			$("#declaration1").removeClass("opacity00");
+						$('.introjs-nextbutton').show();
+					});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 		break;
 		case "functionDeclaration" :
 			$(".introjs-helperLayer").one("transitionend", function() {
-				typing('.introjs-tooltiptext', "Here the name of the function is <span class='ct-code-b-yellow'>sum</span>, it takes two"
-			  			+ " <span class='ct-code-b-yellow'>int</span> arguments and it will return a value of type <span class='ct-code-b-yellow'>"
-			  			+ "int</span>.", function() {  
-					$('.introjs-nextbutton').show();
-				});
+				if (intro._introItems[intro._currentStep].isCompleted == "false") {
+					typing('.introjs-tooltiptext', "Here the name of the function is <span class='ct-code-b-yellow'>sum</span>, it takes two"
+				  			+ " <span class='ct-code-b-yellow'>int</span> arguments and it will return a value of type <span class='ct-code-b-yellow'>"
+				  			+ "int</span>.", function() {  
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 		break;
 		case "functionBody3" :
 			$(".introjs-helperLayer").one("transitionend", function() {
-				typing('.introjs-tooltiptext', "The function body defines <y>local variable</y> declarations and some <y>executable statements</y>.", function() {  
-					$('.introjs-nextbutton').show();
-				});
+					if (intro._introItems[intro._currentStep].isCompleted == "false") {
+					typing('.introjs-tooltiptext', "The function body defines <y>local variable</y> declarations and some <y>executable statements</y>.", function() {  
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 			});
 		break;
 		case "returnS" :
 			$(".introjs-helperLayer").one("transitionend", function() {
-				typing('.introjs-tooltiptext', "Here, it returns the value <span class='ct-code-b-yellow'>s</span> which is the"
-						+ " <span class='ct-code-b-yellow'>sum</span> of adding variables <span class='ct-code-b-yellow'>a</span> and"
-						+ " <span class='ct-code-b-yellow'>b</span>.", function() {  
-					$('.introjs-nextbutton').show();
-				});
+				if (intro._introItems[intro._currentStep].isCompleted == "false") {
+					typing('.introjs-tooltiptext', "Here, it returns the value <span class='ct-code-b-yellow'>s</span> which is the"
+							+ " <span class='ct-code-b-yellow'>sum</span> of adding variables <span class='ct-code-b-yellow'>a</span> and"
+							+ " <span class='ct-code-b-yellow'>b</span>.", function() {  
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+				} else {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				}
 			});
 		break;
 		case "restartBtn":
@@ -185,6 +232,9 @@ function typing(selector, text, callBackFunction) {
 		$(".introjs-nextbutton").removeClass("opacity00");
 		if (typeof callBackFunction === "function") {
 			callBackFunction();
+			intro._introItems[intro._currentStep].intro = $(".introjs-tooltiptext").html();
+			intro._introItems[intro._currentStep].tooltipClass = "";
+			intro._introItems[intro._currentStep].isCompleted = "true";
 		}
 	})
 }

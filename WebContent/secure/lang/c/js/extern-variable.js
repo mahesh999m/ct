@@ -298,7 +298,7 @@ function initIntroJS() {
 					});
 				} else {
 					var text = "Let us consider an example."
-						if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
 						typing('.introjs-tooltiptext', text, function() {
 							$('.introjs-nextbutton').show();
 						});	

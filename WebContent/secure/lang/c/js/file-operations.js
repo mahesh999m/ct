@@ -392,7 +392,7 @@ function introGuide() {
 					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
 						var text = "<span class='ct-code-b-yellow'>r</span> stands for <span class='ct-code-b-yellow'>read</span> mode."
 								+ " <br><br>In <span class='ct-code-b-yellow'>read</span> mode, the file data can only be read"
-								+ " and the user will not be able to add/modify/append data."
+								+ " and the user will not be able to add / modify / append data."
 						typing('.introjs-tooltiptext', text, function() {
 							$('.introjs-nextbutton').show();		
 						});
