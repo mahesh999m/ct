@@ -1,4 +1,4 @@
-var typingInterval = 10;
+var typingInterval = 1;
 var intro;
 var indexCount = 0;
 
@@ -13,34 +13,41 @@ function introFunction() {
 		steps : [{
 			element : "#program",
 			intro	: "",
-			position : "bottom"
+			position : "bottom",
+			isCompleted : "false"
 		},{
 			element : "#savingFileStep",
 			intro:'Let us save the file to <span class="ct-code-b-yellow">example.c</span>.',
-			position : "bottom"
+			position : "bottom",
+			isCompleted : "false"
 		},{
 			element : "#compilation",
 			intro	: '',
 			position : "bottom",
-			tooltipClass : "hide"
+			tooltipClass : "hide",
+			isCompleted : "false"
 		},{
 			element : "#commandLineValues",
 			intro	: '',
 			position : "bottom",
-			tooltipClass : "hide"
+			tooltipClass : "hide",
+			isCompleted : "false"
 		},{
 			element : "#mainMethod",
 			intro	: '',
 			position : "bottom",
-			tooltipClass : "hide"
+			tooltipClass : "hide",
+			isCompleted : "false"
 		},{
 			element : "#argcCount",
 			intro 	: "",
-			position : "bottom"
+			position : "bottom",
+			isCompleted : "false"
 		},{
 			element : "#argsLine",
 			intro :"",
-			position : "bottom"
+			position : "bottom",
+			isCompleted : "false"
 		},{
 			element : "#animationBox",
 			tooltipClass : "hide",
@@ -121,10 +128,14 @@ function introFunction() {
 			case "program" :
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-tooltip').removeClass('hide');
-				text = 'Let us learn how <span class="ct-code-b-yellow">command line arguments</span> work.';
-				typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
+				if (intro._introItems[intro._currentStep].isCompleted == "false") {
+					text = 'Let us learn how <span class="ct-code-b-yellow">command line arguments</span> work.';
+					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
+						$('.introjs-nextbutton').show();
+					});	
+				} else {
 					$('.introjs-nextbutton').show();
-				});	
+				}
 			break;
 			case "savingFileStep" :
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
@@ -137,78 +148,98 @@ function introFunction() {
 			case"compilation" :
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-helperLayer').one('transitionend', function() {
-					$('.introjs-tooltip').removeClass('hide');
-					$("#compilation").removeClass("opacity00");
-					text = $("#compilation").html();
-					typing('#compilation', text, typingInterval, 'white', function() {
-						text = "<ul><li><span class='ct-code-b-yellow'>gcc</span> is a compiler used to"+
-								" compile the given program.</li><li><span class='ct-code-b-yellow'>example</span> is an "+
-								"executable file which is created only when <span class='ct-code-b-yellow'>example.c</span>"+
-								" is successfully compiled.</li><li><span class='ct-code-b-yellow'>example.c</span>"+
-								" is our file name.</li>";
-						typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
-							$('.introjs-nextbutton').show();
+					if (intro._introItems[intro._currentStep].isCompleted == "false") {
+						$('.introjs-tooltip').removeClass('hide');
+						$("#compilation").removeClass("opacity00");
+						text = $("#compilation").html();
+						typing('#compilation', text, typingInterval, 'white', function() {
+							text = "<ul><li><span class='ct-code-b-yellow'>gcc</span> is a compiler used to"+
+									" compile the given program.</li><li><span class='ct-code-b-yellow'>example</span> is an "+
+									"executable file which is created only when <span class='ct-code-b-yellow'>example.c</span>"+
+									" is successfully compiled.</li><li><span class='ct-code-b-yellow'>example.c</span>"+
+									" is our file name.</li>";
+							typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
+							});
 						});
-					});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 				});
 				break;
 			case "commandLineValues" :
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-helperLayer').one('transitionend', function() {
-					$('.introjs-tooltip').removeClass('hide');
-					$("#commandLineValues").removeClass("opacity00");
-					text = $("#commandLineValues").html();
-					typing('#commandLineValues', text, typingInterval, 'white', function() {
-						text = "<ul><li>When we successfully compile the <span class='ct-code-b-yellow'>example.c</span> file, an "
-								+"executable <span class='ct-code-b-yellow'>./example</span> file is created. "+
-								"</li><li>The arguments that are passed to the program from the command line are "+
-								"called <span class='ct-code-b-yellow'>command line arguments"+
-								"</span>.</li><li>Each argument "+
-								"must be separated by a space.</li><li>In c, <span class='ct-code-b-yellow'>./example</span>"+
-								" is also taken as one argument.</li></ul>";
-						typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
-							$('.introjs-nextbutton').show();
+					if (intro._introItems[intro._currentStep].isCompleted == "false") {
+						$('.introjs-tooltip').removeClass('hide');
+						$("#commandLineValues").removeClass("opacity00");
+						text = $("#commandLineValues").html();
+						typing('#commandLineValues', text, typingInterval, 'white', function() {
+							text = "<ul><li>When we successfully compile the <span class='ct-code-b-yellow'>example.c</span> file, an "
+									+"executable <span class='ct-code-b-yellow'>./example</span> file is created. "+
+									"</li><li>The arguments that are passed to the program from the command line are "+
+									"called <span class='ct-code-b-yellow'>command line arguments"+
+									"</span>.</li><li>Each argument "+
+									"must be separated by a space.</li><li>In c, <span class='ct-code-b-yellow'>./example</span>"+
+									" is also taken as one argument.</li></ul>";
+							typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
+							});
 						});
-					});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 				});
 			break;
 			case "mainMethod" :
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-helperLayer').one('transitionend', function() {
-					$('.introjs-tooltip').removeClass('hide');
-					text = "This is the main method, its reads the command line arguments.<ul><li>"
-							+ "The <span class='ct-code-b-yellow'>argc</span> is the count of"
-							+ " the total number of arguments that"
-							+ " are passed to the command line.</li>"
-							+ "<li><span class='ct-code-b-yellow'>argv</span>"
-							+ " is a vector which contains the "
-							+ "commad line arguments.</li></ul>";
-					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
-						$('.introjs-nextbutton').show();
-					});
+					if (intro._introItems[intro._currentStep].isCompleted == "false") {
+						$('.introjs-tooltip').removeClass('hide');
+						text = "This is the main method, it reads the command line arguments.<ul><li>"
+								+ "The <span class='ct-code-b-yellow'>argc</span> is the count of"
+								+ " the total number of arguments that"
+								+ " are passed to the command line.</li>"
+								+ "<li><span class='ct-code-b-yellow'>argv</span>"
+								+ " is a vector which contains the "
+								+ "commad line arguments.</li></ul>";
+						typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 				});
 			break;
 			case "argcCount" :
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-helperLayer').one('transitionend', function() {
-					$('.introjs-tooltip').removeClass('hide');
-					text = "<ul><li><span class='ct-code-b-yellow'>argc</span> is the argument count which stores the"+
-							" total number of arguments passed to the main method.</li><li>"+
-							"It can be accessed using the reference <span class='ct-code-b-yellow'>argc</span>.</li></ul>";
-					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
-						$('.introjs-nextbutton').show();
-					});
+					if (intro._introItems[intro._currentStep].isCompleted == "false") {
+						$('.introjs-tooltip').removeClass('hide');
+						text = "<ul><li><span class='ct-code-b-yellow'>argc</span> is the argument count which stores the"+
+								" total number of arguments passed to the main method.</li><li>"+
+								"It can be accessed using the reference <span class='ct-code-b-yellow'>argc</span>.</li></ul>";
+						typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 				});
 			break;
 			case "argsLine" :
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-helperLayer').one('transitionend', function() {
-					$('.introjs-tooltip').removeClass('hide');
-					text = "<ul><li><span class='ct-code-b-yellow'>argv</span> is a vector which contain all the commad line arguments.</li><li>"+
-							"They can be accessed using the reference <span class='ct-code-b-yellow'>argv</span>.</li></ul>";
-					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
-						$('.introjs-nextbutton').show();
-					});
+					if (intro._introItems[intro._currentStep].isCompleted == "false") {
+						$('.introjs-tooltip').removeClass('hide');
+						text = "<ul><li><span class='ct-code-b-yellow'>argv</span> is a vector which contain all the commad line arguments.</li><li>"+
+								"They can be accessed using the reference <span class='ct-code-b-yellow'>argv</span>.</li></ul>";
+						typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 				});
 			break;
 			case "animationBox" :
@@ -289,16 +320,21 @@ function introFunction() {
 
 //save file animation
 function saveFile() {
-	$('.arrow1').append('<i class="fa fa-arrow-right faa-passing animated"></i>');
-	$('#dotJavaFileAboveText').show(1000).text('Saving').addClass('loading');
-	$('.dotJavaFile').fadeTo(3000,1,function() {
-		$('.arrow1 i').removeClass('faa-passing')
-		$('#dotJavaFileAboveText').text('Saved').removeClass('loading');
-		$("#className").text('example'),$("#extention").text('.c'),
-		$('#dotJavaFileBelowText').addClass('pulse').on('animationend',function() {
-			$('.introjs-nextbutton').show();
+	if (intro._introItems[intro._currentStep].isCompleted == "false") {
+		$('.arrow1').append('<i class="fa fa-arrow-right faa-passing animated"></i>');
+		$('#dotJavaFileAboveText').show(1000).text('Saving').addClass('loading');
+		$('.dotJavaFile').fadeTo(3000,1,function() {
+			$('.arrow1 i').removeClass('faa-passing')
+			$('#dotJavaFileAboveText').text('Saved').removeClass('loading');
+			$("#className").text('example'),$("#extention").text('.c'),
+			$('#dotJavaFileBelowText').addClass('pulse').on('animationend',function() {
+				intro._introItems[intro._currentStep].isCompleted = "true";
+				$('.introjs-nextbutton, .introjs-prevbutton').show();
+			});
 		});
-	});
+	} else {
+		$('.introjs-nextbutton, .introjs-prevbutton').show();
+	}
 }
 
 function animateArrayWith(index) {
@@ -411,5 +447,8 @@ function typing(typingId, typingContent, typingInterval, cursorColor, typingCall
 		$(typingId).removeClass("typingCursor");
 		typingCallbackFunction();
 		//$('.introjs-tooltip').show();
+		intro._introItems[intro._currentStep].intro = $(".introjs-tooltiptext").html();
+		intro._introItems[intro._currentStep].tooltipClass = "";
+		intro._introItems[intro._currentStep].isCompleted = "true";
 	});
 }

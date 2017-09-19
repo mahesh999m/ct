@@ -568,7 +568,7 @@ function initIntroJS() {
 					$('.introjs-tooltip').removeClass('hide');
 					text = 'Here <b>putw()</b> is used to <b>write</b> the value of the variable <span class="ct-code-b-yellow">a</span> in to'
 								+ ' <span class="ct-code-b-yellow">numbers.txt</span> file. This value of'
-								+ ' <span class="ct-code-b-yellow">a</span> is written in the file at <span class="ct-code-b-yellow">fp address</fp>.'
+								+ ' <span class="ct-code-b-yellow">a</span> is written in the file at <span class="ct-code-b-yellow">fp address</span>.'
 								+ '<br><br> After the value is written the <span class="ct-code-b-yellow">fp</span> will'
 								+ ' be automatically incremented by <span class="ct-code-b-yellow">2</span>.';
 					typing('.introjs-tooltiptext', text, function() {

@@ -443,7 +443,7 @@ function introGuide() {
 									var text = 'The value entered is <span class="ct-code-b-yellow">'+ ctrlText + 
 											' </span> and <span class="ct-code-b-yellow">'+ ctrlText 
 											+ '</span> !=  <span class="ct-code-b-yellow">'+
-											'EOF(ctrl + d)</span>, so condition evaluates to  <span class="ct-code-b-yellow">false</span>.';
+											'EOF(ctrl + d)</span>, so condition evaluates to  <span class="ct-code-b-yellow">true</span>.';
 									typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 										fileCloseAndOpenSteps();
 										$('.introjs-nextbutton').show();
@@ -454,7 +454,7 @@ function introGuide() {
 									var text = 'The value entered is <span class="ct-code-b-yellow">'+ $("#character" + characterCount).val()  +
 											'</span> and <span class="ct-code-b-yellow">'+ $("#character" + characterCount).val()  +
 											'</span>!=  <span class="ct-code-b-yellow">'+
-											'EOF(ctrl + d)</span>, so the condition evaluates to <span class="ct-code-b-yellow">true</span>.';
+											'EOF(ctrl + d)</span>, so the condition evaluates to <span class="ct-code-b-yellow">false</span>.';
 									typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 										$('.introjs-nextbutton').show();
 									});
@@ -478,7 +478,7 @@ function introGuide() {
 									+ $("#putcharacter" + printCharacterCount).text() +'</span> and '
 									+ '<span class="ct-code-b-yellow">'+ $("#putcharacter" + printCharacterCount).text() 
 									+ '</span> !=  <span class="ct-code-b-yellow">'+
-									'EOF(ctrl + d)</span>so, the condition evaluates to <span class="ct-code-b-yellow">'+ con +'</span>.';
+									'EOF(ctrl + d)</span> so, the condition evaluates to <span class="ct-code-b-yellow">'+ con +'</span>.';
 								if (con) {
 									typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 										var options = {

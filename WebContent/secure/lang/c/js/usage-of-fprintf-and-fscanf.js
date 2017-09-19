@@ -476,7 +476,7 @@ function introGuide() {
 									});
 								});
 							} else {
-								$('.introjs-nextbutton, .prevbutton').show();
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							}
 						break;
 						
@@ -666,7 +666,7 @@ function introGuide() {
 							'into a <span class="ct-code-b-yellow">file</span>.<br><br>'+
 							'The <span class="ct-code-b-yellow">fp</span> will automatically be incremented'
 							+' by <span class="ct-code-b-yellow">one</span>.<br><br>'+
-							'<b>Note:</b> <span class="ct-code-b-yellow">\/n</span> is used by the '+
+							'<b>Note:</b> <span class="ct-code-b-yellow">&#92;n</span> is used by the '+
 							'cursor to point to the next line.';
 					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 						$('.introjs-nextbutton').show();

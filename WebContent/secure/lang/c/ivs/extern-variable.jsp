@@ -124,7 +124,7 @@ y {
 		<div class="col-xs-12">
 			<div class="col-xs-8 col-xs-offset-2 explanation opacity00" id="printDefinition">
 				<ul>
-					<li id='line1' class="opacity00">The variables that are declare <span class='ct-green'>outside</span> of any function are known as  
+					<li id='line1' class="opacity00">The variables that are declared <span class='ct-green'>outside</span> and not a part of any function are known as  
 							<span class='ct-green'>extern </span> or <span class='ct-green'>global variables</span>.</li>
 					<li id='line2' class="opacity00">The scope of <span class='ct-green'>extern variables</span> is throughout the program.</li>
 				</ul>

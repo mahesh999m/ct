@@ -157,7 +157,7 @@ function introJsFunction() {
 						var typingContent = '<ul><li>This is an example of <span class="ct-code-b-yellow">auto</span> storage class.</li>' +
 											'<li>Here <span class="ct-code-b-yellow">a</span>, <span class="ct-code-b-yellow">b</span> are' +
 											' <span class="ct-code-b-yellow">auto</span> variables and <span class="ct-code-b-yellow">auto</span>' +
-											' keyword is never required.</li>' + 
+											' keyword is never required.But we are using for the variable a for demo.</li>' + 
 											'<li>The <span class="ct-code-b-yellow">scope</span> and <span class="ct-code-b-yellow">lifetime</span>' +
 											' of <span class="ct-code-b-yellow">a</span> is with in the <span class="ct-code-b-yellow">main()</span>' +
 											' method and <span class="ct-code-b-yellow">b</span> is with in the' + 
@@ -195,11 +195,11 @@ function introJsFunction() {
 				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
 					TweenMax.to($('#registerPreCode'), 1, {opacity: 1, onComplete: function() {
 						$('.introjs-tooltip').removeClass('hide');
-						var typingContent = '<ul><li>This is an example of <span class="ct-code-b-yellow">register</span> storage class.</li>' +
-											'<li>Here <span class="ct-code-b-yellow">a</span> is <span class="ct-code-b-yellow">register</span>' +
-											' variables and storaged in <span class="ct-code-b-yellow">CPU register</span>.</li>' + 
+						var typingContent = '<ul><li>This is an example of <span class="ct-code-b-yellow">register</span> variable.</li>' +
+											'<li>Here <span class="ct-code-b-yellow">a</span> is a <span class="ct-code-b-yellow">register</span>' +
+											' variable and stored in <span class="ct-code-b-yellow">CPU registers</span>.</li>' + 
 											'<li>The <span class="ct-code-b-yellow">scope</span> and <span class="ct-code-b-yellow">lifetime</span>' +
-											' of <span class="ct-code-b-yellow">a</span> is with in <span class="ct-code-b-yellow">main()</span>' +
+											' of <span class="ct-code-b-yellow">a</span> is within the <span class="ct-code-b-yellow">main()</span>' +
 											' method.';
 						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
 							$('.introjs-prevbutton, .introjs-nextbutton').show();
@@ -214,13 +214,13 @@ function introJsFunction() {
 			$('.introjs-helperLayer').one('transitionend', function () {
 				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
 					var typingContent = 'The <span class="ct-code-b-yellow">static</span> variable is declared using the ' +
-										'static</span> keyword, A static variable is initialized to their default' +
-										' value based on the type.<br><br> The scope of a static variable declared in the function is within the function,' +
-										' if declared outside scope is throughout the program.<br/>' +
+										'static</span> keyword.<br/><br/> A <span class="ct-code-b-yellow">static</span> variable is initialized to their default' +
+										' value based on the declared datatype.<br><br> The <span class="ct-code-b-yellow">scope</span> of a static variable declared in the function is within the function,' +
+										' if declared outside, scope is throughout the program.<br/>' +
 										'<ul><li><span class="ct-code-b-yellow">Storage : </span> Main memory</li>' +
 										'<li><span class="ct-code-b-yellow">Initial value : </span> Zero</li>' +
 										'<li><span class="ct-code-b-yellow">Keyword : </span> static</li>' +
-										'<li><span class="ct-code-b-yellow">Scope : </span> Local to the block in which the it is defined</li>' +
+										'<li><span class="ct-code-b-yellow">Scope : </span> Local to the block in which it is defined</li>' +
 										'<li><span class="ct-code-b-yellow">Lifetime : </span> Throughout the entire program</li></ul>';
 					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
 						$('.introjs-prevbutton, .introjs-nextbutton').show();
@@ -241,7 +241,7 @@ function introJsFunction() {
 											'<span class="ct-code-b-yellow">lifetime</span> is throughout the program.</li>' +
 											'<li>And <span class="ct-code-b-yellow">b</span> is a static variable ' +
 											'declared inside the <span class="ct-code-b-yellow">main()</span> method, so the ' +
-											'<span class="ct-code-b-yellow">scope</span> is with in the method and' +  
+											'<span class="ct-code-b-yellow">scope</span> is with in the method and ' +  
 											'<span class="ct-code-b-yellow">lifetime</span> is throughout the program.</li>';
 						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
 							$('.introjs-prevbutton, .introjs-nextbutton').show();
@@ -283,8 +283,8 @@ function introJsFunction() {
 											' of this variable is throughout the program. The <span class="ct-code-b-yellow">extern</span>' +
 											' keyword is not required when we declare it outside the method.</li>' +
 											'<li>And <span class="ct-code-b-yellow">b</span> is an <span class="ct-code-b-yellow">extern</span>' +
-											' variable declared within the <span class="ct-code-b-yellow">main()</span> method.Using the extern'+
-											' keyword for the variable <span class="ct-code-b-yellow">b</span> '
+											' variable declared within the <span class="ct-code-b-yellow">main()</span> method. We are using the extern'+
+											' keyword for the variable <span class="ct-code-b-yellow">b</span>, which '+
 											'specifies that the b is declared somewhere in the program as a global variable.</li>' +
 											'<li>The <span class="ct-code-b-yellow">scope</span> and ' +
 											'<span class="ct-code-b-yellow">lifetime</span> of this variable is throughout the program.</li></ul>';

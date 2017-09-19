@@ -300,12 +300,12 @@ div,span {
 				<div class = "col-xs-8 col-xs-offset-2 box-border margin-top" id = "fileText">
 				<ul><li id="text1" class="opacity00">The function <span class = "ct-code-b-green">fwrite()</span> is 
 					used to write a structure block to a given file.<br/>
-					Syntax: <span class = "ct-code-b-green"> fwrite (&Structure_variable, sizeof(structure), 
+					Syntax: <span class = "ct-code-b-green"> fwrite(&Structure_variable, sizeof(structure), 
 					integer, file_pointer);</span><br></li>
-					<li id="text2" class="opacity00">The function fread() is 
+					<li id="text2" class="opacity00">The function <span class = "ct-code-b-green">fread()</span> is 
 						used to <span class = "ct-code-b-green">read</span> an entire structure block from a given file.<br/>
 						Syntax: <span class = "ct-code-b-green">
-							fread (&Structure_variable, sizeof(structure), integer, file_pointer);</span>
+							fread(&Structure_variable, sizeof(structure), integer, file_pointer);</span>
 					 	<a class="introjs-button introjs-duplicate-nextbutton opacity00 display-inline">Next &#8594;</a></li></ul>
 				</div>
 			</div>

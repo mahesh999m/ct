@@ -249,7 +249,7 @@ div,span {
 				<div class="col-xs-8 col-xs-offset-2 box-border margin-top" id="fileText">
 					<ul><li id="text1" class="opacity00">The <span class="ct-code-b-green">fprintf()</span> function is used to write data into a file.<br/>
 							Syntax:  <span class="ct-code-b-green">fprintf(FILE *fp, char *controlstring, variables);</span></li>
-							<li id="text2" class="opacity00">The <span class="ct-code-b-green">fscanf</span> function is used to read data from a file.<br/>
+							<li id="text2" class="opacity00">The <span class="ct-code-b-green">fscanf()</span> function is used to read data from a file.<br/>
 							Syntax:  <span class="ct-code-b-green">fscanf(FILE *fp, char *controlstring, &variables);</span>
 							 <a class="introjs-button introjs-duplicate-nextbutton opacity00">Next &#8594;</a></li></ul>
 				</div>

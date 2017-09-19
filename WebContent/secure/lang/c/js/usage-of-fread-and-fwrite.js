@@ -195,6 +195,7 @@ function introGuide() {
 			break;
 			case "code":
 				$("#fileText").addClass("z-index1000000");
+				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-helperLayer').one('transitionend', function() {
 					if (introcode._introItems[introcode._currentStep].isCompleted == "false") {
 						$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
@@ -215,7 +216,7 @@ function introGuide() {
 					if (introcode._introItems[introcode._currentStep].isCompleted == "false") {
 						$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 						$('.introjs-tooltip').removeClass('hide');
-						text = 'It is the declaration of new user defind data type <span class="ct-code-b-yellow">record</span>.';
+						text = 'It is the declaration of new user defined data type <span class="ct-code-b-yellow">record</span>.';
 						typing('.introjs-tooltiptext', text, typingInterval, 'white', function(){
 							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
@@ -252,7 +253,7 @@ function introGuide() {
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-helperLayer').one('transitionend', function() {
 					$('.introjs-tooltip').removeClass('hide');
-					text = 'It is structor definition which allocats memory to the structor variables '+
+					text = 'It is structure definition which allocates memory to the structure variables '+
 							'<span class="ct-code-b-yellow">emp</span>.';
 					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
 						$('.introjs-nextbutton').show();

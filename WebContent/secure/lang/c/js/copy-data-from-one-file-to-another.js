@@ -1,4 +1,4 @@
-var typingInterval = 10;
+var typingInterval = 1;
 var intro;
 var filePointerCount = 1;
 
@@ -14,33 +14,40 @@ var copyDataFromOneFileToAnotherReady = function() {
 		steps : [{
 			element : "#program",
 			intro	: "",
+			isCompleted : "false"
 		},{
 			element : "#savingFileStep",
 			intro:' Let us save the above code to <span class="ct-code-b-yellow">example.c</span> file.',
+			isCompleted : "false"
 		},{
 			element : "#outputDiv",
 			intro	: '',
 			tooltipClass : "hide",
-			animateStep: "editGangaFile"
+			animateStep: "editGangaFile",
+			isCompleted : "false"
 		},{
 			element : "#gangaFile",
 			intro	: '',
 			position : "right",
 			tooltipClass : "hide",
-			animateStep: "OpenGangaFileIngedit"
+			animateStep: "OpenGangaFileIngedit",
+			isCompleted : "false"
 		},{
 			element : "#outputDiv",
 			intro	: '',
 			tooltipClass : "hide",
-			animateStep: "compilation"
+			animateStep: "compilation",
+			isCompleted : "false"
 		},{
 			element : "#mainMethod",
 			intro	: '',
-			tooltipClass : "hide"
+			tooltipClass : "hide",
+			isCompleted : "false"
 		},{
 			element : "#fileDeclaraion",
 			intro	: '',
-			tooltipClass : "hide"
+			tooltipClass : "hide",
+			isCompleted : "false"
 		},{
 			element : "#filePointerMenory",
 			intro	: '',
@@ -212,11 +219,15 @@ var copyDataFromOneFileToAnotherReady = function() {
 		switch (elementId) {
 			case "program" :
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
-				$('.introjs-tooltip').removeClass('hide');
-				text = 'Let us learn how to  <span class="ct-code-b-yellow">copy</span> data from one file to another file.';
-				typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
+				if (intro._introItems[intro._currentStep].isCompleted == "false") {
+					$('.introjs-tooltip').removeClass('hide');
+					text = 'Let us learn how to  <span class="ct-code-b-yellow">copy</span> data from one file to another file.';
+					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
+						$('.introjs-nextbutton').show();
+					});
+				} else {
 					$('.introjs-nextbutton').show();
-				});	
+				}
 			break;
 			
 			case "savingFileStep" :
@@ -234,16 +245,20 @@ var copyDataFromOneFileToAnotherReady = function() {
 					var animateStep = intro._introItems[intro._currentStep].animateStep;
 					switch(animateStep) {
 						case "editGangaFile" :
-							$("#geditGanga").removeClass("opacity00");
-							text = $("#geditGanga").html();
-							typing('#geditGanga', text, typingInterval, 'white', function() {
-								$('.introjs-tooltip').removeClass('hide');
-								text = "The <span class='ct-code-b-yellow'>gedit</span> is "+
-										"a simple text editor used to  <span class='ct-code-b-yellow'>create</span> and  <span class='ct-code-b-yellow'>edit</span> text files.";
-								typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
-									$('.introjs-nextbutton').show();
+							if (intro._introItems[intro._currentStep].isCompleted == "false") {
+								$("#geditGanga").removeClass("opacity00");
+								text = $("#geditGanga").html();
+								typing('#geditGanga', text, typingInterval, 'white', function() {
+									$('.introjs-tooltip').removeClass('hide');
+									text = "The <span class='ct-code-b-yellow'>gedit</span> is "+
+											"a simple text editor used to  <span class='ct-code-b-yellow'>create</span> and  <span class='ct-code-b-yellow'>edit</span> text files.";
+									typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
+										$('.introjs-nextbutton, .introjs-prevbutton').show();
+									});
 								});
-							});
+							} else {
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
+							}
 						break;
 						case "compilation" :
 							$("#gangaFile").addClass("opacity00");
@@ -319,31 +334,39 @@ var copyDataFromOneFileToAnotherReady = function() {
 			case "mainMethod" :
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-helperLayer').one('transitionend', function() {
-					$('.introjs-tooltip').removeClass('hide');
-					text = "This is the  <span class='ct-code-b-yellow'>main</span> method, its  <span class='ct-code-b-yellow'>reads</span> the command line arguments.<ul><li>"+
-							"The <span class='ct-code-b-yellow'>argc</span> is the  <span class='ct-code-b-yellow'>count</span> of the total number of arguments that"+
-							" will be passed to the method.</li>"+
-							"<li><span class='ct-code-b-yellow'>argv</span> is a vector which contains the "+
-							" <span class='ct-code-b-yellow'>commad line arguments</span>.</li></ul>";
-					typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
-						$('.introjs-nextbutton').show();
-					});
+						if (intro._introItems[intro._currentStep].isCompleted == "false") {
+						$('.introjs-tooltip').removeClass('hide');
+						text = "This is the  <span class='ct-code-b-yellow'>main</span> method, its  <span class='ct-code-b-yellow'>reads</span> the command line arguments.<ul><li>"+
+								"The <span class='ct-code-b-yellow'>argc</span> is the  <span class='ct-code-b-yellow'>count</span> of the total number of arguments that"+
+								" will be passed to the method.</li>"+
+								"<li><span class='ct-code-b-yellow'>argv</span> is a vector which contains the "+
+								" <span class='ct-code-b-yellow'>commad line arguments</span>.</li></ul>";
+						typing('.introjs-tooltiptext', text, typingInterval, 'white', function() {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 				});
 			break;
 			
 			case "fileDeclaraion" :
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-helperLayer').one('transitionend', function() {
-					$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
-					$('.introjs-tooltip').removeClass('hide');
-					var text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions '
-								+ 'and points to the internal structure that describes the file.'
-								+'<br> Here we take two file pointers : <ul><li><span class="ct-code-b-yellow">*fpRead</span> for '
-								+ 'ganga.txt</li><li><span class="ct-code-b-yellow">*fpWrite</span> for'
-								+ ' yamuna.txt.';
-					typing('.introjs-tooltiptext', text, typingInterval, 'white', function(){
-						$('.introjs-nextbutton').show();
-					});
+					if (intro._introItems[intro._currentStep].isCompleted == "false") {
+						$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
+						$('.introjs-tooltip').removeClass('hide');
+						var text = '<span class="ct-code-b-yellow">FILE</span> is a data structure defined in the standard I/O functions '
+									+ 'and points to the internal structure that describes the file.'
+									+'<br> Here we take two file pointers : <ul><li><span class="ct-code-b-yellow">*fpRead</span> for '
+									+ 'ganga.txt</li><li><span class="ct-code-b-yellow">*fpWrite</span> for'
+									+ ' yamuna.txt.';
+						typing('.introjs-tooltiptext', text, typingInterval, 'white', function(){
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
+					} else {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}
 				});
 			break;
 			
@@ -649,6 +672,7 @@ var copyDataFromOneFileToAnotherReady = function() {
 			break;
 			
 			case "mainMethodCloseBrace" :
+				$('.introjs-tooltip').css('min-width','150px');
 				$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 				$('.introjs-helperLayer').one('transitionend', function() {
 					$('.introjs-tooltip').removeClass('hide');
@@ -689,7 +713,7 @@ var copyDataFromOneFileToAnotherReady = function() {
 function introNextStep() {
 	setTimeout(function() {
 		intro.nextStep();
-	},800);
+	},500);
 }
 
 function fpAddressStore() {
@@ -721,7 +745,7 @@ function commandLineValues() {
 				"</li>"+
 				"<li>In c <span class='ct-code-b-yellow'>./example</span>"+
 				" is also taken as one argument.</li>"+
-				"<li>Here,<span class='ct-code-b-yellow'>ganga.txt</span> is the source file and"+
+				"<li>Here, <span class='ct-code-b-yellow'>ganga.txt</span> is the source file and"+
 				" <span class='ct-code-b-yellow'>yamuna.txt</span> is the destination file.</li>"+
 				"<li>Each argument must be separated by a  <span class='ct-code-b-yellow'>space</span>.</li>"+
 				"</ul>";
@@ -756,16 +780,21 @@ function fromEffectWithTweenMax(selector1, selector2, callBackFunction) {
 
 //save file animation
 function saveFile() {
-	$('.arrow1').append('<i class="fa fa-arrow-right faa-passing animated"></i>');
-	$('#dotJavaFileAboveText').show(1000).text('Saving').addClass('loading');
-	$('.dotJavaFile').fadeTo(3000,1,function() {
-		$('.arrow1 i').removeClass('faa-passing')
-		$('#dotJavaFileAboveText').text('Saved').removeClass('loading');
-		$("#className").text('example'),$("#extention").text('.c'),
-		$('#dotJavaFileBelowText').addClass('pulse').on('animationend',function() {
-			$('.introjs-nextbutton').show();
+	if (intro._introItems[intro._currentStep].isCompleted == "false") {
+		$('.arrow1').append('<i class="fa fa-arrow-right faa-passing animated"></i>');
+		$('#dotJavaFileAboveText').show(1000).text('Saving').addClass('loading');
+		$('.dotJavaFile').fadeTo(3000,1,function() {
+			$('.arrow1 i').removeClass('faa-passing')
+			$('#dotJavaFileAboveText').text('Saved').removeClass('loading');
+			$("#className").text('example'),$("#extention").text('.c'),
+			$('#dotJavaFileBelowText').addClass('pulse').on('animationend',function() {
+				$('.introjs-nextbutton, .introjs-prevbutton').show();
+				intro._introItems[intro._currentStep].isCompleted = "true";
+			});
 		});
-	});
+	} else {
+		$('.introjs-nextbutton, .introjs-prevbutton').show();
+	}
 }
 //zooming effect function
 function zoomInEffect(selector1, callBackFunction) {
@@ -795,5 +824,8 @@ function typing(typingId, typingContent, typingInterval, cursorColor, typingCall
 		$(typingId).removeClass("typingCursor");
 		typingCallbackFunction();
 		$('.introjs-tooltip').show();
+		intro._introItems[intro._currentStep].intro = $(".introjs-tooltiptext").html();
+		intro._introItems[intro._currentStep].tooltipClass = "";
+		intro._introItems[intro._currentStep].isCompleted = "true";
 	});
 }

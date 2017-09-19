@@ -113,9 +113,10 @@ var automaticVarReady=function() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 		  		$('.introjs-tooltip').removeClass("hide");
 				typing('.introjs-tooltiptext', "An <span class='ct-code-b-yellow'>automatic</span> or <span class='ct-code-b-yellow'>local</span>"
-							+ " variable is declared with the keyword <span class='ct-code-b-yellow'>auto</span> and is not <y>mandatory</y>.", function() { 
+							+ " variable is declared with the keyword <span class='ct-code-b-yellow'>auto</span>.<br><br>Using the keyword "
+							+"<span class='ct-code-b-yellow'>auto</span> is <y>optional</y>.", function() { 
 					$('#animationDiv').css({'opacity':'1'});
-					$('.introjs-nextbutton, .introjs-prevbutton').show();	
+					$('.introjs-nextbutton').show();	
 				});
 			});
 		break;
@@ -144,8 +145,8 @@ var automaticVarReady=function() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$('#addressDiv1').removeClass('visibility-hidden').toggleClass('animated zoomIn').one('animationend', function() {
 					$("#addressDiv1").removeClass('animated zoomIn');
-					typing('.introjs-tooltiptext', "Variable <span class='ct-code-b-yellow'>a</span> is allocated some <y>memory</y>.", function() { 
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					typing('.introjs-tooltiptext', "An <y>int</y> variable <span class='ct-code-b-yellow'>a</span> is allocated  2 bytes in <y>memory</y>.", function() { 
+						$('.introjs-nextbutton').show();
 			  		});
 				});
 			});
@@ -192,7 +193,7 @@ var automaticVarReady=function() {
 		
 		case "mainMemory" :
 			$(".introjs-helperLayer").one("transitionend", function() {
-				typing('.introjs-tooltiptext', "The default values of <y>automatic</y> variable of <span class='ct-code-b-yellow'>a</span>"
+				typing('.introjs-tooltiptext', "The default value of the <y>automatic</y> variable <span class='ct-code-b-yellow'>a</span>"
 							+ "  is some <y>garbage value</y>.", function() { 
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
 	  		 	});
@@ -211,7 +212,7 @@ var automaticVarReady=function() {
 		case "variableDeclaration2" :
 			$('.introjs-tooltip').css({'min-width' : '300px'});
 			$(".introjs-helperLayer").one("transitionend", function() {
-				text = "A variable <span class='ct-code-b-yellow'>a</span> is declared and initialized.<br/><br/> This variable is treated as a" +
+				text = "Another <y>int</y> variable <span class='ct-code-b-yellow'>a</span> is declared and initialized.<br/><br/> This variable is treated as a" +
 						" <b class='ct-code-b-yellow'>different</b> variable from the one declared in <y>main method</y>.<br/><br/> The <y>scope</y> of this variable <span class='ct-code-b-yellow'>a" +
 						"</span> is within the function <span class='ct-code-b-yellow'>ganga()</span>, so it is treated as "+
 						"<span class='ct-code-b-yellow'>local / automatic</span> variable.<br><br>Note :<br> Here, " +
@@ -230,8 +231,8 @@ var automaticVarReady=function() {
 				//$('#addressDiv3').toggleClass('visibility-hidden animated zoomIn').one('animationend', function() {});
 				$('#addressDiv3, #functionMemory').removeClass('visibility-hidden');
 	  			$('.introjs-tooltip').removeClass("hide");
-				typing('.introjs-tooltiptext', "Memory is allocated to variable <span class='ct-code-b-yellow'>a</span> and will <y>exist</y> till"
-									+ " the  end of function <span class='ct-code-b-yellow'>ganga()</span>.", function() { 
+				typing('.introjs-tooltiptext', "Memory is allocated to the variable <span class='ct-code-b-yellow'>a</span> and this will <y>exist</y> till"
+									+ " the function <span class='ct-code-b-yellow'>ganga()</span> ends.", function() { 
 		  			TweenMax.to('#numberDiv3', 1, {opacity: 1, onComplete: function() {
 						$('#number3').addClass('circle-css').effect("highlight", {color: 'yellow'}, 1000, function() {
 							$('#number3').removeClass('circle-css');

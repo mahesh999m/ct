@@ -75,8 +75,8 @@ var registerVariableReady = function() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 		  		var text = "<ul><li>A <span class='ct-code-b-yellow'>register</span> variable is declared with the keyword"
 		  					+ " <span class='ct-code-b-yellow'>register</span>.</li>"
-		  					+ "<li><span class='ct-code-b-yellow'>Register</span> variables are stored at <span class='ct-code-b-yellow'>"
-		  					+ "registers</span>(A register is one of a small set of data holding places that are a part of the CPU)</li>"
+		  					+ "<li><span class='ct-code-b-yellow'>Register</span> variables are stored in <span class='ct-code-b-yellow'>"
+		  					+ "registers. </span><br/>A register is one of a small set of data holding places that are a part of the CPU</li>"
 		  					+ "<li>Accessing <span class='ct-code-b-yellow'>register</span> variables are <span class='ct-code-b-yellow'>"
 		  					+ "faster</span> than variables stored in <y>memory</y>.</li></ul>";
 				typing('.introjs-tooltiptext', text ,function() { 

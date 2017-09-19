@@ -236,7 +236,7 @@ div,span, .fa {
 					 </li>
 					<li id="text4" class="opacity00">The function  
 						<span class="ct-code-b-green">fputc()</span> is used to write a character to the file.
-							<br/>Syntax: <span class="ct-code-b-green">int fputc(int char, FILE *stream) </span>
+							<br/>Syntax: <span class="ct-code-b-green">int fputc(int char, FILE *stream); </span>
 							 <a class="introjs-button introjs-duplicate-nextbutton opacity00">Next &#8594;</a></li></ul>
 				</div>
 			</div>
