@@ -602,6 +602,7 @@ function initIntroJS() {
 								$("#addressValue4").text($("#number4").text());
 								$("#addressValue4").removeClass("opacity00");
 								fromEffectWithTweenMax('#number4', '#addressValue4', function() {
+									$('#number4').removeClass("z-index1000000");
 									$('.introjs-tooltip').removeClass("hide");
 									var text = "The value <span class='ct-code-b-yellow'>1</span> is assigned to the "
 										+"local variable <span class='ct-code-b-yellow'>x</span> and is stored"
@@ -712,6 +713,7 @@ function fromEffectWithTweenMax(selector1, selector2, callBackFunction) {
 	var l2 = $(selector2).offset();
 	var topLength = l1.top - l2.top;
 	var leftLength = l1.left - l2.left;
+	$(selector1).addClass('z-index1000000').effect('highlight', {'color' : 'yellow'}, 1000);
 	TweenMax.from($(selector2), 1, {top: topLength, left: leftLength, onComplete: function() {
 		if (typeof callBackFunction === "function") {
 			callBackFunction();
@@ -741,6 +743,7 @@ function printDecimalValue() {
 		$("#xValue" + count).removeClass("z-index1000000");
 		$('.output-console-body').append('<div id="outputAValue' + count + '">' + $("#addressValue" + index).text() + '</div>\n')
 		fromEffectWithTweenMax("#xValue" + index, "#outputAValue" + count, function() {
+			$("#xValue" + index).removeClass("z-index1000000");
 			setTimeout(function () {
 				introjs.nextStep();	
 			}, 500);
@@ -753,6 +756,7 @@ function printDecimalValue1() {
 		$("#xValue" + count).removeClass("z-index1000000");
 		$('.output-console-body').append('<div id="outputAValue' + count + '">' + $("#addressValue" + index).text() + '</div>\n')
   		fromEffectWithTweenMax("#xValue" + count, "#outputAValue" + count, function() {
+  			$("#xValue" + count).removeClass("z-index1000000");
   			setTimeout(function () {
   				introjs.nextStep();	
 			}, 500);

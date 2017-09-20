@@ -199,7 +199,7 @@ y {
 <body>
 	<div class="col-xs-12">
 		<div class="ct-box-main">
-			<div class="text-center"><h1 class="label ct-demo-heading text-center">Automatic variables</h1></div> 
+			<div class="text-center"><h1 class="label ct-demo-heading text-center">Automatic Variables</h1></div> 
 			<div class='buttons-div'><button type="button" class="btn btn-warning visibility-hidden" id="restartBtn">Restart</button></div> 
 			<div id="printDefinition" class="col-xs-8 col-xs-offset-2 box-border visibility-hidden padding0 explanation">
 				<ul>

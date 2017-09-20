@@ -19,19 +19,23 @@ function introGuide() {
 		steps : [ {
 			element : "#heading",
 			intro : "",
-			position : "right"
+			position : "right",
+			isCompleted : "false"
 		}, {
 			element : "#codeAnimation",
 			intro : "",
-			position : "right"
+			position : "right",
+			isCompleted : "false"
 		}, {
 			element : "#funcDec",
 			intro : "",
-			position : "right"
+			position : "right",
+			isCompleted : "false"
 		}, {
 			element : "#globalVar",
 			intro : "",
-			position : "right"
+			position : "right",
+			isCompleted : "false"
 		}, {
 			element : "#addressDiv",
 			intro : "",
@@ -40,20 +44,24 @@ function introGuide() {
 		}, {
 			element : "#mainFunc",
 			intro : "",
-			position : "right"
+			position : "right",
+			isCompleted : "false"
 		}, {
 			element : "#funcDef",
 			intro : "",
-			position : "right"
+			position : "right",
+			isCompleted : "false"
 		}, {
 			element : "#localVar",
 			intro : "",
-			position : "right"
+			position : "right",
+			isCompleted : "false"
 		}, {
 			element : "#addressDiv",
 			intro : "",
 			position : "left",
-			tooltipClass : "hide"
+			tooltipClass : "hide",
+			isCompleted : "false"
 		},{
 			element : "#printf1",
 			intro : "",
@@ -79,12 +87,14 @@ function introGuide() {
 		}, {
 			element : "#functionCall",
 			intro : "",
-			position : "right"
+			position : "right",
+			isCompleted : "false"
 		}, {
 			element : "#formalArgs",
 			intro : "",
 			position : "right",
-			tooltipClass : "hide"
+			tooltipClass : "hide",
+			isCompleted : "false"
 		}, {
 			element : "#addressDiv",
 			intro : "",
@@ -93,24 +103,29 @@ function introGuide() {
 		}, {
 			element : "#sumRes",
 			intro : "",
-			position : "right"
+			position : "right",
+			isCompleted : "false"
 		}, {
 			element : "#sumDec",
 			intro : "",
-			position : "right"
+			position : "right",
+			isCompleted : "false"
 		}, {
 			element : "#addVar",
 			intro : "",
-			position : "right"
+			position : "right",
+			isCompleted : "false"
 		}, {
 			element : "#addressDiv",
 			intro : "",
 			position : "left",
-			tooltipClass : "hide"
+			tooltipClass : "hide",
+			isCompleted : "false"
 		}, {
 			element : "#endFunction",
 			intro : "",
-			position : "right"
+			position : "right",
+			isCompleted : "false"
 		}, {
 			element : "#printf2",
 			intro : "",
@@ -138,34 +153,46 @@ function introGuide() {
 		switch (elementId) {
 		
 		case "heading":
-			var text = "Let us understand <span class='ct-code-b-yellow'>Formal and Actual arguments</span>.";
-			typing(".introjs-tooltiptext", text, function() {
+			if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+				var text = "Let us understand <span class='ct-code-b-yellow'>Formal and Actual arguments</span>.";
+				typing(".introjs-tooltiptext", text, function() {
+					$(".introjs-nextbutton").show();
+				});
+			} else {
 				$(".introjs-nextbutton").show();
-			});
+			}
 			break;
 			
 		case "codeAnimation":
 			$("#codeAnimation").removeClass("opacity00");
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Consider an example.";
-				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var text = "Consider an example.";
+					typing(".introjs-tooltiptext", text, function() {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					});
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 			break;
 			
 		case "funcDec":
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "We declare a <span class='ct-code-b-yellow'>function</span> with name <span class='ct-code-b-yellow'>"
-							+"addition(int, int)</span> with two arguments of type <b class='ct-code-b-yellow'>int</b> and "
-							+" <b class='ct-code-b-yellow'>no</b> return value.";
-				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var text = "We declare a <span class='ct-code-b-yellow'>function</span> with name <span class='ct-code-b-yellow'>"
+								+"addition(int, int)</span> with two arguments of type <b class='ct-code-b-yellow'>int</b> and "
+								+" <b class='ct-code-b-yellow'>no</b> return value.";
+					typing(".introjs-tooltiptext", text, function() {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					});
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 			break;
 			
-		case "addressDiv":
+		case "addressDiv":   
 			$("#addressDiv").removeClass("opacity00");
 			$(".introjs-helperLayer").one("transitionend", function() {
 				if($("#sumAddress").hasClass("check")) {
@@ -176,8 +203,7 @@ function introGuide() {
 							$("#aAddress").addClass("check");
 							$('.introjs-tooltip').removeClass("hide");
 							var text = "The variable <span class='ct-code-b-yellow'>sum</span> will be allocated <b class='ct-code-b-yellow'>"
-										+"2 bytes</b> of memory in some memory"
-										+ " location.";
+										+"2 bytes</b> of memory in some memory location.";
 							typing(".introjs-tooltiptext", text, function() {
 								$(".introjs-nextbutton").show();
 							});
@@ -255,7 +281,7 @@ function introGuide() {
 						});
 					}
 				} else if($("#xAddress").hasClass("check")) {
-					$("#xVal").text($("#num1").text().substring(0, $("#num1").text().indexOf(" ")))
+					$("#xVal").text($("#num1").text().substring(0, $("#num1").text().indexOf(" ")));
 					$("#yVal").text($("#num1").text().substring($("#num1").text().indexOf(" ") + 1));
 					$("#xAddress").removeClass("check");
 					$("#formalArgs").addClass("blinking-white");
@@ -306,43 +332,59 @@ function introGuide() {
 			
 		case "globalVar":
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Here we declare a variable <span class='ct-code-b-yellow'>sum</span> of type <span class='ct-code-b-yellow'>int</span> above the"
-							+ " <span class='ct-code-b-yellow'>main()</span> method. <br>" 
-							+ "<br> This type of variables are called <span class='ct-code-b-yellow'>global variables</span>, and they can be used"
-							+ " anywhere in the program (including the function body).";
-				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var text = "Here we declare a variable <span class='ct-code-b-yellow'>sum</span> of type <span class='ct-code-b-yellow'>int</span> above the"
+								+ " <span class='ct-code-b-yellow'>main()</span> method. <br>" 
+								+ "<br> This type of variables are called <span class='ct-code-b-yellow'>global variables</span>, and they can be used"
+								+ " anywhere in the program (including the function body).";
+					typing(".introjs-tooltiptext", text, function() {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					});
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 			break;
 			
 		case "mainFunc":
 			$("#globalVar").removeClass("blinking-white");
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This is the <span class='ct-code-b-yellow'>main()</span> method, in which the call to the function"
-							+ " <span class='ct-code-b-yellow'>addition()</span> is made.";
-				typing(".introjs-tooltiptext", text, function() {
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var text = "This is the <span class='ct-code-b-yellow'>main()</span> method, in which the call to the function"
+								+ " <span class='ct-code-b-yellow'>addition()</span> is made.";
+					typing(".introjs-tooltiptext", text, function() {
+						$(".introjs-nextbutton").show();
+					});
+				} else {
 					$(".introjs-nextbutton").show();
-				});
+				}
 			});
 			break;
 			
 		case "funcDef":
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This is the definition of the function <span class='ct-code-b-yellow'>addition(int x, int y)</span>.";
-				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var text = "This is the definition of the function <span class='ct-code-b-yellow'>addition(int x, int y)</span>.";
+					typing(".introjs-tooltiptext", text, function() {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					});
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 			break;
 			
 		case "localVar":
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "We have declared two integer variables <span class='ct-code-b-yellow'>a</span> and"
-							+ " <span class='ct-code-b-yellow'>b</span> of type <span class='ct-code-b-yellow'>int</span>.";
-				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var text = "We have declared two integer variables <span class='ct-code-b-yellow'>a</span> and"
+								+ " <span class='ct-code-b-yellow'>b</span> of type <span class='ct-code-b-yellow'>int</span>.";
+					typing(".introjs-tooltiptext", text, function() {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					});
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 			break;
 			
@@ -446,21 +488,29 @@ function introGuide() {
 			
 		case "sumRes":
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Here we are adding the values of <b class='ct-code-b-yellow'>x</b> and <b class='ct-code-b-yellow'>y</b>.";
-				typing(".introjs-tooltiptext", text, function() {
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var text = "Here we are adding the values of <b class='ct-code-b-yellow'>x</b> and <b class='ct-code-b-yellow'>y</b>.";
+					typing(".introjs-tooltiptext", text, function() {
+						$(".introjs-nextbutton").show();
+					});
+				} else {
 					$(".introjs-nextbutton").show();
-				});
+				}
 			});
 			break;
 			
 		case "sumDec":
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Here, <span class='ct-code-b-yellow'>sum</span> being a <span class='ct-code-b-yellow'>global variable</span>"
-							+ " is accessible throughout the program."; 
-				typing(".introjs-tooltiptext", text, function() {
-					$("#globalVar").addClass("blinking-white");
-					$(".introjs-nextbutton").show();
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var text = "Here, <span class='ct-code-b-yellow'>sum</span> being a <span class='ct-code-b-yellow'>global variable</span>"
+								+ " is accessible throughout the program."; 
+					typing(".introjs-tooltiptext", text, function() {
+						$("#globalVar").addClass("blinking-white");
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					});
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 			break;
 			
@@ -468,10 +518,14 @@ function introGuide() {
 			$("#localVar").removeClass("blinking-white");
 			$("#globalVar").removeClass("blinking-white");
 			$(".introjs-helperLayer").one("transitionend", function() { 
-				var text = "The result of adding <b>x</b> and <b>y</b> is stored in <span class='ct-code-b-yellow'>sum</span>.";
-				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var text = "The result of adding <b>x</b> and <b>y</b> is stored in <span class='ct-code-b-yellow'>sum</span>.";
+					typing(".introjs-tooltiptext", text, function() {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					});
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 			break;
 			
@@ -479,30 +533,38 @@ function introGuide() {
 			$("[contenteditable=true]").attr("contenteditable", false);
 			$("#localVar").removeClass("blinking-white");
 			$(".introjs-helperLayer").one("transitionend", function() { 
-				var text = "A call to the function <span class='ct-code-b-yellow'>addition(a, b)</span> is made by sending" 
-							+ " <b class='ct-code-b-yellow'>a</b> and <b class='ct-code-b-yellow'>b</b>(actual arguments) as parameters.<br><br>This <span class='ct-code-b-yellow'>a</span>"
-							+ " and <span class='ct-code-b-yellow'>b</span> are called <span class='ct-code-b-yellow'>actual arguments</span>.";
-				typing(".introjs-tooltiptext", text, function() {
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var text = "A call to the function <span class='ct-code-b-yellow'>addition(a, b)</span> is made by sending" 
+								+ " <b class='ct-code-b-yellow'>a</b> and <b class='ct-code-b-yellow'>b</b>(actual arguments) as parameters.<br><br>This <span class='ct-code-b-yellow'>a</span>"
+								+ " and <span class='ct-code-b-yellow'>b</span> are called <span class='ct-code-b-yellow'>actual arguments</span>.";
+					typing(".introjs-tooltiptext", text, function() {
+						$(".introjs-nextbutton").show();
+					});
+				} else {
 					$(".introjs-nextbutton").show();
-				});
+				}
 			});
 			break;
 			
 		case "formalArgs":
 			$("#localVar").removeClass("blinking-white");
-			$(".introjs-helperLayer").one("transitionend", function() { 
-				$("#actArg1").effect( "transfer", { to: $("#formArg1"), className: "ui-effects-transfer" }, 1000 , function() {
-					$("#actArg2").effect( "transfer", { to: $("#formArg2"), className: "ui-effects-transfer" }, 1000 , function() {
-						$('.introjs-tooltip').removeClass('hide');
-						var text = "Here the two integer variables <span class='ct-code-b-yellow'>x</span> and <span class='ct-code-b-yellow'>y</span>"
-									+ " are called  <span class='ct-code-b-yellow'>formal arguments</span>. <br><br>The variables" 
-									+ " <span class='ct-code-b-yellow'>x</span> and <span class='ct-code-b-yellow'>y</span> will store the values"
-									+ " of <span class='ct-code-b-yellow'>a</span> and <span class='ct-code-b-yellow'>b</span>.";
-						typing(".introjs-tooltiptext", text, function() {
-							$(".introjs-nextbutton").show();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					$("#actArg1").effect( "transfer", { to: $("#formArg1"), className: "ui-effects-transfer" }, 1000 , function() {
+						$("#actArg2").effect( "transfer", { to: $("#formArg2"), className: "ui-effects-transfer" }, 1000 , function() {
+							$('.introjs-tooltip').removeClass('hide');
+							var text = "Here the two integer variables <span class='ct-code-b-yellow'>x</span> and <span class='ct-code-b-yellow'>y</span>"
+										+ " are called  <span class='ct-code-b-yellow'>formal arguments</span>. <br><br>The variables" 
+										+ " <span class='ct-code-b-yellow'>x</span> and <span class='ct-code-b-yellow'>y</span> will store the values"
+										+ " of <span class='ct-code-b-yellow'>a</span> and <span class='ct-code-b-yellow'>b</span>.";
+							typing(".introjs-tooltiptext", text, function() {
+								$(".introjs-nextbutton, .introjs-prevbutton").show();
+							});
 						});
 					});
-				});
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			
 			});
 			break;
@@ -538,6 +600,9 @@ function typing(selector, text, callBackFunction) {
 		$(selector).removeClass("typingCursor");
 		if (typeof callBackFunction === "function") {
 			callBackFunction();
+			introjs._introItems[introjs._currentStep].intro = $(".introjs-tooltiptext").html();
+			introjs._introItems[introjs._currentStep].tooltipClass = "";
+			introjs._introItems[introjs._currentStep].isCompleted = "true";
 		}
 	});
 }
