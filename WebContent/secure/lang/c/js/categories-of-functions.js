@@ -48,14 +48,25 @@ function introGuide() {
 	});
 	
 	introjs.onafterchange(function(targetElement) {
+		introjs.refresh();
 		$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 		var elementId = targetElement.id;
-		switch (elementId) {
 		
+		if (introjs._introItems[introjs._currentStep]["isCompleted"]) {
+			if (introjs._currentStep != 0) {
+				$('.introjs-prevbutton').show();
+			}
+			introjs._introItems[introjs._currentStep]["tooltipClass"] = "";
+			$('.introjs-nextbutton').show();
+			return;
+		}
+		
+		introjs._introItems[introjs._currentStep]["isCompleted"] = true;
+		switch (elementId) {
 		case "heading":
 			var text = "Let us understand different <span class='ct-code-b-yellow'>categories of functions</span>. "; 
 			typing(".introjs-tooltiptext", text, function() {
-				$(".introjs-nextbutton").show();
+				$('.introjs-nextbutton').show();
 			});
 			break;
 		
@@ -64,6 +75,7 @@ function introGuide() {
 			$("#type" + i).removeClass("clicked");
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#description").empty();
+				/*$("#funcType" + i).addClass("hide opacity00");*/
 				$("#funcType" + i).addClass("hide opacity00");
 				$(".output-text").remove();
 				$("#funcHeading").empty();
@@ -84,6 +96,9 @@ function introGuide() {
 		case "funcType" + i:
 			$("#funcHeading").removeClass('opacity00');
 			$("#actionBox").removeClass('opacity00');
+			$("#funcType1, #funcType2, #funcType3, #funcType4").addClass("hide opacity00");
+			$("#funcType" + i).removeClass("hide opacity00");
+			introjs.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				if($("#type1").hasClass("clicked")) {
 					var text = "This example code uses a function with <span class='ct-code-b-yellow'>no</span> arguments " 
@@ -99,7 +114,7 @@ function introGuide() {
 								+ " and <span class='ct-code-b-yellow'>with</span> return type.";
 				}
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 			break;
@@ -124,13 +139,13 @@ function introGuide() {
 								+ " <span class='ct-code-b-yellow'>with</span> return type int is declared.";
 				}
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 			break;
 			
 		case "main" + i:
-			$('.introjs-tooltip').addClass('hide');
+			//$('.introjs-tooltip').addClass('hide');
 			$(".introjs-helperLayer").one("transitionend", function() {
 				setTimeout(function() {
 					introjs.nextStep();
@@ -144,7 +159,7 @@ function introGuide() {
 				var text = "This function prints the message on the standard " 
 					+ " output device(monitor).";
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 			break;
@@ -162,7 +177,7 @@ function introGuide() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "This is the function definition.";
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 			break;
@@ -184,7 +199,7 @@ function introGuide() {
 					  		   + " is stored in variable <span class='ct-code-b-yellow'>total</span>.";
 				}
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 			break;
@@ -200,7 +215,7 @@ function introGuide() {
 								+ "<li> <span class='ct-code-b-yellow'>b</span> is intialized to <span class='ct-code-b-yellow'>20</span>.</li></ul>";
 				}
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 			break;
@@ -216,7 +231,7 @@ function introGuide() {
 					var text = "We declare an integer variable <span class='ct-code-b-yellow'>sum</span>." 
 				}
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 			break;
@@ -226,7 +241,7 @@ function introGuide() {
 				var text = "<span class='ct-code-b-yellow'>a</span> and <span class='ct-code-b-yellow'>b</span> are added and the"
 						+ " result is stored in <span class='ct-code-b-yellow'>sum</span>.";
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 			break;
@@ -240,7 +255,7 @@ function introGuide() {
 							+ " statement in the function will not be executed as the control gets transferred to the <span class='ct-code-b-yellow'>"
 							+ "main()</span> method once the return statement is reached.";
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 			break;
@@ -250,7 +265,7 @@ function introGuide() {
 				var text = "The function ends here and the control is transferred to the <span class='ct-code-b-yellow'>main()</span> method and"
 							+ " the statement after the function call is executed.";
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 			break;
@@ -259,7 +274,7 @@ function introGuide() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "The program execution ends here.";
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 			break;
@@ -278,7 +293,7 @@ function introGuide() {
 							$('.introjs-tooltip').removeClass("hide");
 							var text = "Click on next to go to <b>Function Categories</b>.";
 							typing(".introjs-tooltiptext", text, function() {
-								$(".introjs-nextbutton").show();
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							});
 						}});
 					}});
@@ -293,7 +308,7 @@ function introGuide() {
 							$('.introjs-tooltip').removeClass("hide");
 							var text = "Click on next to go to <b>Function Categories</b>.";
 							typing(".introjs-tooltiptext", text, function() {
-								$(".introjs-nextbutton").show();
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							});
 						}});
 					}});
@@ -309,7 +324,7 @@ function introGuide() {
 							$('.introjs-tooltip').removeClass("hide");
 							var text = "Click on next to go to <b>Function Categories</b>.";
 							typing(".introjs-tooltiptext", text, function() {
-								$(".introjs-nextbutton").show();
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							});
 						}});
 					}});
@@ -325,7 +340,7 @@ function introGuide() {
 							$('.introjs-tooltip').removeClass("hide");
 							var text = "Click on next to go to <b>Function Categories</b>.";
 							typing(".introjs-tooltiptext", text, function() {
-								$(".introjs-nextbutton").show();
+								$('.introjs-nextbutton, .introjs-prevbutton').show();
 							});
 						}});
 					}});
@@ -393,6 +408,7 @@ function typing(selector, text, callBackFunction) {
 		"typing_interval": 1,
 		"cursor_color": 'white',
 	}, function() {
+		introjs._introItems[introjs._currentStep]["intro"] = $(".introjs-tooltiptext").html();
 		$(selector).removeClass("typingCursor");
 		if (typeof callBackFunction === "function") {
 			callBackFunction();

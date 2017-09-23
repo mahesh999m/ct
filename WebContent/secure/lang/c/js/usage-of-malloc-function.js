@@ -24,81 +24,63 @@ function introGuide() {
 			element :'#infoDiv',
 			intro : '',
 			tooltipClass : 'hide',
-			isCompleted : "false"
 		}, {
 			element : '#preCode',
 			intro : '',
-			isCompleted : "false"
 		}, {
 			element : '#firstExLine1',
 			intro : '',
-			isCompleted : "false"
 		}, {
 			element : '#pBox',
 			intro : '',
 			tooltipClass: 'hide',
-			isCompleted : "false"
 		}, {
 			element : '#sizeofSpan',
 			intro : '',
-			isCompleted : "false"
 		}, {
 			element : '#mallocSpan1',
 			intro : '',
-			isCompleted : "false"
 		}, {
 			element : '#firstExLine2',
 			intro : '',
-			isCompleted : "false"
 		}, {
 			element : '#newBox',
 			intro : '',
 			tooltipClass: 'hide',
-			isCompleted : "false"
 		}, {
 			element : '#firstExDiv',
 			intro : '',
 			animateStep : 'tweenmaxSvg',
-			isCompleted : "false"
 		}, {
 			element : '#firstExLine3',
 			intro : '',
-			isCompleted : "false"
 		}, {
 			element : '#firstExDiv',
 			intro : '',
 			animateStep : 'tweenmax',
-			isCompleted : "false"
 		}, {
 			element : '#firstExLine4',
 			intro : '',
-			isCompleted : "false"
 		}, {
 			element : '#consoleId',
 			intro : '',
 			tooltipClass : 'hide',
-			isCompleted : "false"
 		}, {
 			element : '#preCodeTwo',
 			intro : '',
-			isCompleted : "false"
 		}, {
 			element : '#secondExLine1',
 			intro : '',
-			isCompleted : "false"
 		}, {
 			element : '#kBox',
 			intro : '',
 			tooltipClass: 'hide',
-			isCompleted : "false"
 		}, {
 			element : '#sizeofSpan2',
 			intro : '',
-			isCompleted : "false"
 		}, {
 			element : '#mallocSpan2',
 			intro : '',
-			isCompleted : "false"
 		}, {
 			element : '#secondExLine2',
 			intro : '',
@@ -107,18 +89,15 @@ function introGuide() {
 			element : '#arrayDiv',
 			intro : '',
 			tooltipClass: 'hide',
-			isCompleted : "false"
 		}, {
 			element : '#secondExDiv',
 			intro : '',
 			animateStep: 'tweenmaxArrowAnimate',
-			isCompleted : "false"
 		}, {
 			element : '#secondExDiv',
 			intro : '',
 			animateStep: 'scaleFactor',
 			position : 'left',
-			isCompleted : "false"
 		}, {
 			element :'#restart',
 			intro : "Click to restart.",
@@ -128,6 +107,15 @@ function introGuide() {
 	
 	introjs.onafterchange(function(targetElement) {
 		$(".introjs-skipbutton, .introjs-prevbutton, .introjs-nextbutton").hide();
+		if (introjs._introItems[introjs._currentStep]["isCompleted"]) {
+			if (introjs._currentStep != 0) {
+				$('.introjs-prevbutton').show();
+			}
+			introjs._introItems[introjs._currentStep]["tooltipClass"] = "";
+			$('.introjs-nextbutton').show();
+			return;
+		}
+		introjs._introItems[introjs._currentStep]["isCompleted"] = true;
 		var elementId = targetElement.id;
 		switch(elementId) {
 		case 'infoDiv':
@@ -144,135 +132,100 @@ function introGuide() {
 		case 'preCode':
 			introjs.refresh();
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					$("#exampleOne").removeClass("opacity00");
-					typing('.introjs-tooltiptext',"Let us consider an example.", function() {
-						TweenMax.to($("#preCode"), 1, {opacity: 1, onComplete: function(){
-							$("#preCode").removeClass("opacity00");
-							$(".introjs-nextbutton").show();
-						}});
-					});
-				} else {
-					$(".introjs-nextbutton").show();
-				}
+				$("#exampleOne").removeClass("opacity00");
+				typing('.introjs-tooltiptext',"Let us consider an example.", function() {
+					TweenMax.to($("#preCode"), 1, {opacity: 1, onComplete: function(){
+						$("#preCode").removeClass("opacity00");
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}});
+				});
 			});
 			break;
 		case 'firstExLine1':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					typing('.introjs-tooltiptext', "A pointer variable <span class='ct-code-b-yellow'>p</span> is declared of datatype " +
-							"<span class='ct-code-b-yellow'>float</span>.<br/><br/> " +
-							"A <span class='ct-code-b-yellow'>float</span> pointer variable, should always point to a <span class='ct-code-b-yellow'>float</span> value.", function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				typing('.introjs-tooltiptext', "A pointer variable <span class='ct-code-b-yellow'>p</span> is declared of datatype " +
+						"<span class='ct-code-b-yellow'>float</span>.<br/><br/> " +
+						"A <span class='ct-code-b-yellow'>float</span> pointer variable, should always point to a <span class='ct-code-b-yellow'>float</span> value.", function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 			break;
 		case 'pBox':
 			$('.introjs-fixParent').removeClass('introjs-fixParent');
 			$("#totalfirstExDiv").removeClass("opacity00");
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					boxAnimation("#pBox", function() {
-						$('.introjs-tooltip').removeClass('hide');
-						var text = "The variable pointer <span class='ct-code-b-yellow'>p</span> is of type <span class='ct-code-b-yellow'>float</span> " +
-									"and it occupies <span class='ct-code-b-yellow'>2 bytes</span> of memory with some address. " +
-									"<br><br>Let us assume this address to be <span class='ct-code-b-yellow'>2024</span>.";
-						typing('.introjs-tooltiptext', text, function() {
-							$('.introjs-nextbutton, .introjs-prevbutton').show();
-						});
+				boxAnimation("#pBox", function() {
+					$('.introjs-tooltip').removeClass('hide');
+					var text = "The variable pointer <span class='ct-code-b-yellow'>p</span> is of type <span class='ct-code-b-yellow'>float</span> " +
+								"and it occupies <span class='ct-code-b-yellow'>2 bytes</span> of memory with some address. " +
+								"<br><br>Let us assume this address to be <span class='ct-code-b-yellow'>2024</span>.";
+					typing('.introjs-tooltiptext', text, function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
-				} else {
-					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 			break;
 		case 'sizeofSpan':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					var text = "<span class='ct-code-b-yellow'>sizeof</span> is an operator that returns the number of bytes " +
-								"allocated for the required <span class='ct-code-b-yellow'>datatype, variable, or constant</span>.";
-					typing('.introjs-tooltiptext', text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				var text = "<span class='ct-code-b-yellow'>sizeof</span> is an operator that returns the number of bytes " +
+							"allocated for the required <span class='ct-code-b-yellow'>datatype, variable, or constant</span>.";
+				typing('.introjs-tooltiptext', text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 			break;
 		case 'firstExLine2':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					$("#dataTypeFloat1, #dataTypeFloat2").addClass("blinking");
-					var text = "<ul><li> A <span class='ct-code-b-yellow'>malloc()</span> function returns the pointer to the " + 
-								"<span class='ct-code-b-yellow'>base address</span> of the <span class='ct-code-b-yellow'>heap memory</span> allocated." + 
-								"</li><li>A <span class='ct-code-b-yellow'>malloc()</span> function always returns a <span class='ct-code-b-yellow'>" +
-								"void</span> pointer. So a typecast should be used to convert to the datatype of the pointer.</li></ul>";
-					typing('.introjs-tooltiptext', text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				$("#dataTypeFloat1, #dataTypeFloat2").addClass("blinking");
+				var text = "<ul><li> A <span class='ct-code-b-yellow'>malloc()</span> function returns the pointer to the " + 
+							"<span class='ct-code-b-yellow'>base address</span> of the <span class='ct-code-b-yellow'>heap memory</span> allocated." + 
+							"</li><li>A <span class='ct-code-b-yellow'>malloc()</span> function always returns a <span class='ct-code-b-yellow'>" +
+							"void</span> pointer. So a typecast should be used to convert to the datatype of the pointer.</li></ul>";
+				typing('.introjs-tooltiptext', text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 			break;
 		case 'mallocSpan1':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					var text = "A <span class='ct-code-b-yellow'>malloc()</span> function allocates a part of the " +
-								"<span class='ct-code-b-yellow'>heap memory</span>, which is of the size that is declared as its argument.";
-					typing('.introjs-tooltiptext', text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				var text = "A <span class='ct-code-b-yellow'>malloc()</span> function allocates a part of the " +
+							"<span class='ct-code-b-yellow'>heap memory</span>, which is of the size that is declared as its argument.";
+				typing('.introjs-tooltiptext', text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 			break;
 		case 'firstExLine3':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					var text = "Here the <span class='ct-code-b-yellow'>pointer</span> variable <span class='ct-code-b-yellow'>*p</span> is " +
-								"assigned a value of <span class='ct-code-b-yellow'>20</span>.";
-					typing('.introjs-tooltiptext', text, function() {
-						$('.introjs-nextbutton').show();
-					});
-				} else {
-					$('.introjs-nextbutton').show();
-				}
+				var text = "Here the <span class='ct-code-b-yellow'>pointer</span> variable <span class='ct-code-b-yellow'>*p</span> is " +
+							"assigned a value of <span class='ct-code-b-yellow'>20</span>.";
+				typing('.introjs-tooltiptext', text, function() {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				});
 			});
 			break;
 		case 'firstExLine4':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					var text = 'This statement prints the <span class="ct-code-b-yellow">value</span> of <span class="ct-code-b-yellow">*p</span>.';
-					typing('.introjs-tooltiptext', text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				var text = 'This statement prints the <span class="ct-code-b-yellow">value</span> of <span class="ct-code-b-yellow">*p</span>.';
+				typing('.introjs-tooltiptext', text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 			break;
 		case 'newBox':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					boxAnimation("#newBox", function() {
-						$('.introjs-tooltip').removeClass('hide');
-						var text = "The size of memory allocated is <span class='ct-code-b-yellow'>4 bytes</span> in " + 
-									"<span class='ct-code-b-yellow'>heap memory</span>, " +
-									"as the sizeof operator has returned <span class='ct-code-b-yellow'>4 bytes</span> for the" +
-									" <span class='ct-code-b-yellow'>float</span> datatype. " +
-									"<br><br>Let us assume the address as <span class='ct-code-b-yellow'>1054</span>.";
-						typing('.introjs-tooltiptext', text, function() {
-							$('.introjs-nextbutton, .introjs-prevbutton').show();
-						});
+				boxAnimation("#newBox", function() {
+					$('.introjs-tooltip').removeClass('hide');
+					var text = "The size of memory allocated is <span class='ct-code-b-yellow'>4 bytes</span> in " + 
+								"<span class='ct-code-b-yellow'>heap memory</span>, " +
+								"as the sizeof operator has returned <span class='ct-code-b-yellow'>4 bytes</span> for the" +
+								" <span class='ct-code-b-yellow'>float</span> datatype. " +
+								"<br><br>Let us assume the address as <span class='ct-code-b-yellow'>1054</span>.";
+					
+					typing($('.introjs-tooltiptext'), text, function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
-				} else {
-					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 			break;
 		case 'firstExDiv':
@@ -319,128 +272,91 @@ function introGuide() {
 		case 'preCodeTwo':
 			introjs.refresh();
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					$("#exampleTwo").removeClass("opacity00");
-					typing('.introjs-tooltiptext', "Let us consider another example.", function() {
-						TweenMax.to($("#preCodeTwo"), 1, {opacity: 1, onComplete: function(){
-							$("#preCodeTwo").removeClass("opacity00");
-							$(".introjs-nextbutton").show();
-						}});
-					});
-				} else {
-					$(".introjs-nextbutton").show();
-				}
+				$("#exampleTwo").removeClass("opacity00");
+				typing('.introjs-tooltiptext', "Let us consider another example.", function() {
+					TweenMax.to($("#preCodeTwo"), 1, {opacity: 1, onComplete: function(){
+						$("#preCodeTwo").removeClass("opacity00");
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					}});
+				});
 			});
 			break;
 		case 'secondExLine1':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					var text =  "A pointer variable <span class='ct-code-b-yellow'>k</span> is declared of datatype " +
-								"<span class='ct-code-b-yellow'>int</span>.<br/><br/> " +
-								"An <span class='ct-code-b-yellow'>int</span> pointer variable, should always point to an <span class='ct-code-b-yellow'>int</span> value." 
-					typing('.introjs-tooltiptext', text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				var text =  "A pointer variable <span class='ct-code-b-yellow'>k</span> is declared of datatype " +
+							"<span class='ct-code-b-yellow'>int</span>.<br/><br/> " +
+							"An <span class='ct-code-b-yellow'>int</span> pointer variable, should always point to an <span class='ct-code-b-yellow'>int</span> value." 
+				typing('.introjs-tooltiptext', text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 			break;
 		case 'kBox':
 			$('.introjs-fixParent').removeClass('introjs-fixParent');
 			$("#secondExDiv").removeClass("opacity00");
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					boxAnimation("#kBox", function() {
-						$('.introjs-tooltip').removeClass('hide');
-						var text = "The variable pointer <span class='ct-code-b-yellow'>k</span> is of type <span class='ct-code-b-yellow'>int</span> " +
-									"and it occupies <span class='ct-code-b-yellow'>2 bytes</span> in memory with some address. " +
-									"<br><br>Let us assume this address to be <span class='ct-code-b-yellow'>1234</span>.";
-						typing('.introjs-tooltiptext', text, function() {
-							$('.introjs-nextbutton, .introjs-prevbutton').show();
-						});
+				boxAnimation("#kBox", function() {
+					$('.introjs-tooltip').removeClass('hide');
+					var text = "The variable pointer <span class='ct-code-b-yellow'>k</span> is of type <span class='ct-code-b-yellow'>int</span> " +
+								"and it occupies <span class='ct-code-b-yellow'>2 bytes</span> in memory with some address. " +
+								"<br><br>Let us assume this address to be <span class='ct-code-b-yellow'>1234</span>.";
+					typing('.introjs-tooltiptext', text, function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
-				} else {
-					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 			break;
 		case 'sizeofSpan2':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					typing('.introjs-tooltiptext', "<span class='ct-code-b-yellow'>sizeof(int)</span> returns the size of an integer.", function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				typing('.introjs-tooltiptext', "<span class='ct-code-b-yellow'>sizeof(int)</span> returns the size of an integer.", function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
-
+				});
 			});
 			break;
 		case 'mallocSpan2':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					var text = "Here <span class='ct-code-b-yellow'>5</span> is the size of the one dimensional array and is also " +
-								"the number of memory locations to be allocated " +
-								" on the <span class='ct-code-b-yellow'>heap</span>.<br/><br/> These five locations are allocated in sequence.";
-					typing('.introjs-tooltiptext', text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				var text = "Here <span class='ct-code-b-yellow'>5</span> is the size of the one dimensional array and is also " +
+						"the number of memory locations to be allocated " +
+						" on the <span class='ct-code-b-yellow'>heap</span>.<br/><br/> These five locations are allocated in sequence.";
+				typing('.introjs-tooltiptext', text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 			break;
 		case 'arrayDiv':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					boxAnimation("#arrayDiv", function() {
-						$('.introjs-tooltip').removeClass('hide');
-						var text = "Here each int value will occupy <span class='ct-code-b-yellow'>2 bytes</span> of memory, so total memory " +
-									"allocated is <span class='ct-code-b-yellow'>10 bytes</span> divided as <span class='ct-code-b-yellow'>5</span> addresses.";
-						typing('.introjs-tooltiptext', text, function() {
-							$('.introjs-nextbutton, .introjs-prevbutton').show();
-						});
+				boxAnimation("#arrayDiv", function() {
+					$('.introjs-tooltip').removeClass('hide');
+					var text = "Here each int value will occupy <span class='ct-code-b-yellow'>2 bytes</span> of memory, so total memory " +
+								"allocated is <span class='ct-code-b-yellow'>10 bytes</span> divided as <span class='ct-code-b-yellow'>5</span> addresses.";
+					typing('.introjs-tooltiptext', text, function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
-				}  else {
-					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 			break;
 		case 'secondExLine2':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					$("#dataTypeInt1, #dataTypeInt2").addClass("blinking");
-					var text = "<span class='ct-code-b-yellow'>malloc()</span> function here selects <span class='ct-code-b-yellow'>10 bytes(5 * 2)" +
-								"</span> of memory from the <span class='ct-code-b-yellow'>heap</span>.<br><br>" +
-								"The address of first byte(base address) is typecasted to <span class='ct-code-b-yellow'>int*</span>.<br><br>" +
-								"This address is stored  in the <span class='ct-code-b-yellow'>int</span> pointer <span class='ct-code-b-yellow'>k</span>."; 
-					typing('.introjs-tooltiptext', text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				$("#dataTypeInt1, #dataTypeInt2").addClass("blinking");
+				var text = "<span class='ct-code-b-yellow'>malloc()</span> function here selects <span class='ct-code-b-yellow'>10 bytes(5 * 2)" +
+							"</span> of memory from the <span class='ct-code-b-yellow'>heap</span>.<br><br>" +
+							"The address of first byte(base address) is typecasted to <span class='ct-code-b-yellow'>int*</span>.<br><br>" +
+							"This address is stored  in the <span class='ct-code-b-yellow'>int</span> pointer <span class='ct-code-b-yellow'>k</span>."; 
+				typing('.introjs-tooltiptext', text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 			break;
 		case 'secondExDiv':
 			var animateStep = introjs._introItems[introjs._currentStep].animateStep;
 			switch(animateStep) {
 			case 'tweenmaxArrowAnimate':
-				//$('.introjs-helperLayer').one('transitionend', function() {
-					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-						console.log('if if if');
-						var text = "The base address of <span class='ct-code-b-yellow'>heap memory</span> is stored in " +
-								"<span class='ct-code-b-yellow'>k</span><br> " +
-								"i.e <span class='ct-code-b-yellow'>1924</span> is stored in <span class='ct-code-b-yellow'>k</span>.";
-						typing('.introjs-tooltiptext', text, function() {
-							tweenmaxArrayAnimation();
-						});
-					} else {
-						console.log('else else else');
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					}
-				//});
+					var text = "The base address of <span class='ct-code-b-yellow'>heap memory</span> is stored in " +
+							"<span class='ct-code-b-yellow'>k</span><br> " +
+							"i.e <span class='ct-code-b-yellow'>1924</span> is stored in <span class='ct-code-b-yellow'>k</span>.";
+					typing('.introjs-tooltiptext', text, function() {
+						tweenmaxArrayAnimation();
+					});
 				break;
 			case 'scaleFactor':
 					scaleFactorExplanation();
@@ -469,9 +385,7 @@ function typing(selector, text, callBackFunction) {
 		$(".introjs-nextbutton").removeClass("opacity00");
 		if (typeof callBackFunction === "function") {
 			callBackFunction();
-			introjs._introItems[introjs._currentStep].intro = $(".introjs-tooltiptext").html();
-			introjs._introItems[introjs._currentStep].tooltipClass = "";
-			introjs._introItems[introjs._currentStep].isCompleted = "true";
+			introjs._introItems[introjs._currentStep].intro = introjs._introItems[introjs._currentStep]["intro"] +  $(".introjs-tooltiptext").html();
 		}
 	})
 }
@@ -490,11 +404,13 @@ function tweenmaxAnimation() {
 				var text = "Here the <span class='ct-code-b-yellow'>pointer</span> variable <span class='ct-code-b-yellow'>p</span> has the " +
 							"address of the <span class='ct-code-b-yellow'>dynamic memory</span> allocated, so it can access the " +
 							"value at <span class='ct-code-b-yellow'>1054</span>.";
-				typing('.introjs-tooltiptext', text, function() {
+				$(".introjs-tooltiptext").empty();
+				$(".introjs-tooltiptext").append("<div></div>");
+				typing($('.introjs-tooltiptext div:last'), text, function() {
 					svgAppend($('#firstExDiv'), 'svg1');
 					svgMarkerAppend($('#svg1'), 'marker1');
 					svgAnimatingLine($('#firstExDiv'), $('#memoryBox1'), $('#memoryBox2'), $('#svg1'), 'svgLine1', 'marker1', function() {	
-						$(".introjs-nextbutton, introjs-prevbutton").show();
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
 					});	
 				});
 			});

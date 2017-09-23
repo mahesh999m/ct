@@ -4,7 +4,7 @@ var timelineLite = new TimelineLite();
 
 var functionCallReady = function() {
 	introGuide();
-	 $("[contenteditable=true]").on("click keydown keyup", function(e) {
+	/* $("[contenteditable=true]").on("click keydown keyup", function(e) {
 		$(".errMsg").remove();
 		if ($(this).text() == "") {
 			$(this).addClass("empty");
@@ -33,7 +33,7 @@ var functionCallReady = function() {
 		if((e.keyCode >= 65 && e.keyCode <= 90)){
 			return;
 		}
-	});
+	});*/
 	 $("#restart").click(function(){
 		 location.reload();
 	});
@@ -130,6 +130,11 @@ function introGuide() {
 	
 	introjs.onafterchange(function(targetElement) {
 		$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
+		
+		/*if (introjs._introItems[introjs._currentStep]["isCompleted"]) {
+			console.log(introjs._introItems[introjs._currentStep]["isCompleted"]);
+		}*/
+		
 		var elementId = targetElement.id;
 		switch (elementId) {
 		case "totalDiv":
@@ -273,9 +278,15 @@ function introGuide() {
 		case "printf1":
 			introjs.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				setTimeout(function() {
-					introjs.nextStep()
-				}, 1000);
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					introjs._introItems[introjs._currentStep]["isCompleted"] = true;
+					setTimeout(function() {
+						introjs.nextStep();
+					}, 1000);
+				} else {
+					$(".introjs-tooltip").removeClass("hide");
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 		break;
 		case "outputDiv":
@@ -283,42 +294,60 @@ function introGuide() {
 			introjs.refresh();
 			$("#outputDiv").removeClass("opacity00");
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<b class='val-color'> Codetantra </b>";
-				$("#outputBody").append("<div></div>");
-				typing($("#outputBody > div:last-child"), text, function() {
-					setTimeout(function(){
-						introjs.nextStep();
-					}, 1500);
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var text = "<b class='val-color'> Codetantra </b>";
+					$("#outputBody").append("<div></div>");
+					typing($("#outputBody > div:last-child"), text, function() {
+						setTimeout(function(){
+							introjs.nextStep();
+						}, 1500);
+					});
+				} else {
+					$(".introjs-tooltip").removeClass("hide");
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 		 } else if (introjs._currentStep == 14){
 			introjs.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<b class='val-color'> inside main(), after printName() </b>";
-				$("#outputBody").append("<div></div>");
-				typing($("#outputBody > div:last-child"), text, function() {
-					setTimeout(function(){
-						introjs.nextStep();
-					}, 1500);
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var text = "<b class='val-color'> inside main(), after printName() </b>";
+					$("#outputBody").append("<div></div>");
+					typing($("#outputBody > div:last-child"), text, function() {
+						setTimeout(function(){
+							introjs.nextStep();
+						}, 1500);
+					});
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 		 }
 		break;
 		case "endFunc":
 			$('.introjs-helperLayer').one('transitionend', function() {
-				var text = "When the end of the function is reached, the control is transferred back to the "
-							+"<b class='ct-code-b-yellow'>calling method</b>.";
-				typing('.introjs-tooltiptext', text, function() {
-					$('.introjs-nextbutton').show()
-				});
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					var text = "When the end of the function is reached, the control is transferred back to the "
+								+"<b class='ct-code-b-yellow'>calling method</b>.";
+					typing('.introjs-tooltiptext', text, function() {
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					});
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
 			});
 		break;
 		case "printf2":
 			introjs.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				setTimeout(function() {
-					introjs.nextStep()
-				}, 1000);
+				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
+					setTimeout(function() {
+						introjs.nextStep()
+					}, 1000);
+				} else {
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
+				}
+				
 			});
 		break;
 		case "restart":
