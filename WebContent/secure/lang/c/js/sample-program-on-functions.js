@@ -1,4 +1,4 @@
-var putElement;
+ var putElement;
 var introjs;
 var timelineLite = new TimelineLite();	
 var typingSpeed = 1;
@@ -31,7 +31,7 @@ var sampleProgramOnFunctionsReady = function() {
 			$(".introjs-tooltiptext").append("<div class='errMsg'>Max Length 2 digits only.</div>")
 			e.preventDefault();
 		}
-		if((e.keyCode >= 65 && e.keyCode <= 90)){
+		if((e.keyCode >= 65 && e.keyCode <= 90)) {
 			return;
 		}
 	});
@@ -52,57 +52,50 @@ function introGuide() {
 			 		element : "#demoTitle",
 					intro : "",
 					position : "right",
-					isCompleted : "false"
 				},{
 			 		element : "#leftDiv",
 					intro : "",
 					position : "right",
-					isCompleted : "false"
 				},{
 			 		element : "#funDec",
 					intro : "",
 					position : "right",
-					isCompleted : "false"
 				},{
 			 		element : "#varDec",
 					intro : "",
 					position : "right",
-					isCompleted : "false"
+					animation : "repeat"
 				},{
 			 		element : "#sum",
 					intro : "",
 					tooltipClass : "hide",
-					isCompleted : "false"
+					animation : "repeat"
 				},{
 			 		element : "#callingFun",
 					intro : "",
 					position : "right",
-					isCompleted : "false"
 				},{
 			 		element : "#funDef",
 					intro : "",
 					position : "right",
-					isCompleted : "false"
 				},{
 			 		element : "#return",
 					intro : "",
 					position : "right",
-					isCompleted : "false"
+					animation : "repeat"
 				},{
 			 		element : "#callingFun",
 					intro : "",
 					position : "right",
-					isCompleted : "false"
 				},{
 			 		element : "#printf",
 					intro : "",
 					tooltipClass : "hide",
-					isCompleted : "false"
+					animation : "repeat"
 				},{
 			 		element : "#outputDiv",
 					intro : "",
 					tooltipClass : "hide",
-					isCompleted : "false"
 				},{
 			 		element : "#restart",
 					intro : "",
@@ -111,48 +104,49 @@ function introGuide() {
 			]});
 	
 	introjs.onafterchange(function(targetElement) {
+		$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
+		if (introjs._introItems[introjs._currentStep]["isCompleted"]) {
+			if (introjs._currentStep != 0) {
+				$('.introjs-prevbutton').show();
+			}
+			$('.introjs-nextbutton').show();
+			return;
+		}
+		
+		if (introjs._introItems[introjs._currentStep]["animation"] != "repeat") {
+			introjs._introItems[introjs._currentStep]["isCompleted"] = true;
+		}
+		
 		var elementId = targetElement.id;
 		switch (elementId) {
 		case "demoTitle":
 			$(".introjs-nextbutton, .introjs-prevbutton").hide();
 			$('#code').removeClass("opacity00");
-			if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-				var text = "Here, we will learn <b class ='ct-code-b-yellow'>Function Definition</b>"
-						+ ", <b class ='ct-code-b-yellow'>Function Declaration</b> and <b class ='ct-code-b-yellow'>Function Call</b>.";
-				typing($(".introjs-tooltiptext"), text, function() {
-					$(".introjs-nextbutton").show();
-				});
-			} else {
+			var text = "Here, we will learn <b class ='ct-code-b-yellow'>Function Definition</b>"
+					+ ", <b class ='ct-code-b-yellow'>Function Declaration</b> and <b class ='ct-code-b-yellow'>Function Call</b>.";
+			typing($(".introjs-tooltiptext"), text, function() {
 				$(".introjs-nextbutton").show();
-			}
+			});
 		break;
 		case "leftDiv":
 			$('.introjs-nextbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					$('#leftDiv').removeClass("opacity00");
-					var text = "Let us consider an example.";
-					typing($(".introjs-tooltiptext"), text, function() {
-						$(".introjs-nextbutton, .introjs-prevbutton").show();
-					});
-				} else {
+				$('#leftDiv').removeClass("opacity00");
+				var text = "Let us consider an example.";
+				typing($(".introjs-tooltiptext"), text, function() {
 					$(".introjs-nextbutton, .introjs-prevbutton").show();
-				}
+				});
 			});
 		break;
 		case "funDec":
 			$(".introjs-nextbutton, .introjs-prevbutton").hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-						var text = "We declare a <span class='ct-code-b-yellow'>function</span> with name <span class='ct-code-b-yellow'>"
-									+"addition(int, int)</span> with <span class='ct-code-b-yellow'>two</span> arguments of type <b>int</b> "
-									+"and <span class='ct-code-b-yellow'>return value</span> of type int.";
-						typing($(".introjs-tooltiptext"), text, function() {
-							$(".introjs-nextbutton, .introjs-prevbutton").show();
-						});
-					} else {
+					var text = "We declare a <span class='ct-code-b-yellow'>function</span> with name <span class='ct-code-b-yellow'>"
+								+"addition(int, int)</span> with <span class='ct-code-b-yellow'>two</span> arguments of type <b>int</b> "
+								+"and <span class='ct-code-b-yellow'>return value</span> of type int.";
+					typing($(".introjs-tooltiptext"), text, function() {
 						$(".introjs-nextbutton, .introjs-prevbutton").show();
-					}
+					});
 				});
 		break;
 		case "varDec":
@@ -171,9 +165,15 @@ function introGuide() {
 			$(".introjs-nextbutton, .introjs-prevbutton").hide();
 			introjs.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				setTimeout(function() {
-					introjs.nextStep()
-				}, 1000);
+				if ((introjs._introItems[introjs._currentStep]["animation"] == "repeat") && (introjs._direction == "backward")) {
+					setTimeout(function() {
+						introjs.previousStep();
+					}, 400);
+				} else {
+					setTimeout(function() {
+						introjs.nextStep();
+					}, 500);
+				}
 			});
 		break;
 		case "callingFun":
@@ -181,32 +181,22 @@ function introGuide() {
 				$(".introjs-nextbutton, .introjs-prevbutton").hide();
 				introjs.refresh();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-						var text = "A call to the function <span class='ct-code-b-yellow'>addition(a, b)</span> is made by sending" 
-									+ " <b>a</b> and <b>b</b> as parameters.<br><br> This is known as <span class='ct-code-b-yellow'>Funciton Call</span>.";
-						typing($(".introjs-tooltiptext"), text, function() {
-							introjs.refresh();
-							$(".introjs-nextbutton").show();
-						});
-					} else {
+					var text = "A call to the function <span class='ct-code-b-yellow'>addition(a, b)</span> is made by sending" 
+								+ " <b>a</b> and <b>b</b> as parameters.<br><br> This is known as <span class='ct-code-b-yellow'>Funciton Call</span>.";
+					typing($(".introjs-tooltiptext"), text, function() {
 						introjs.refresh();
-						$(".introjs-nextbutton").show();
-					}
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					});
 				});
 			} else if (introjs._currentStep == 8) {
 				$(".introjs-nextbutton, .introjs-prevbutton").hide();
 				introjs.refresh();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-						var text = "The return value will be stored in <b class ='ct-code-b-yellow'>sum</b>.";
-						typing($(".introjs-tooltiptext"), text, function() {
-							introjs.refresh();
-							$(".introjs-nextbutton").show();
-						});
-					} else {
+					var text = "The return value will be stored in <b class ='ct-code-b-yellow'>sum</b>.";
+					typing($(".introjs-tooltiptext"), text, function() {
 						introjs.refresh();
-						$(".introjs-nextbutton").show();
-					}
+						$(".introjs-nextbutton, .introjs-prevbutton").show();
+					});
 				});
 			}
 		break;
@@ -214,19 +204,14 @@ function introGuide() {
 			$(".introjs-nextbutton, .introjs-prevbutton").hide();
 			introjs.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-					var text = "This is <b class ='ct-code-b-yellow'>Function Definition</b>."
-						+ " <br><br>Whenever a function call is made, the argument values of the calling function i.e "
-						+ " values of <b class ='ct-code-b-yellow'>a</b> and <b class ='ct-code-b-yellow'>b</b> are copied into the parameters "
-						+ "of the called function i.e., <b class ='ct-code-b-yellow'>x</b> and <b class ='ct-code-b-yellow'>y</b>.";
-					typing($(".introjs-tooltiptext"), text, function() {
-						introjs.refresh();
-						$(".introjs-nextbutton, .introjs-prevbutton").show();
-					});
-				} else {
+				var text = "This is <b class ='ct-code-b-yellow'>Function Definition</b>."
+					+ " <br><br>Whenever a function call is made, the argument values of the calling function i.e "
+					+ " values of <b class ='ct-code-b-yellow'>a</b> and <b class ='ct-code-b-yellow'>b</b> are copied into the parameters "
+					+ "of the called function i.e., <b class ='ct-code-b-yellow'>x</b> and <b class ='ct-code-b-yellow'>y</b>.";
+				typing($(".introjs-tooltiptext"), text, function() {
 					introjs.refresh();
 					$(".introjs-nextbutton, .introjs-prevbutton").show();
-				}
+				});
 			});
 		break;
 		case "return":
@@ -274,9 +259,15 @@ function introGuide() {
 			$(".introjs-nextbutton, .introjs-prevbutton").hide();
 			introjs.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				setTimeout(function() {
-					introjs.nextStep()
-				}, 1000);
+				if ((introjs._introItems[introjs._currentStep]["animation"] == "repeat") && (introjs._direction == "backward")) {
+					setTimeout(function() {
+						introjs.previousStep();
+					}, 400);
+				} else {
+					setTimeout(function() {
+						introjs.nextStep();
+					}, 500);
+				}
 			});
 		break;
 		case "outputDiv":
@@ -290,7 +281,7 @@ function introGuide() {
 					$("#outputBody > div:last-child").append("<span id='intVal1'><input id='inputVal1' maxlength='2' class='input-val' tabindex='0'/></span>");
 					setTimeout(function() {
 						introjs.nextStep();
-					}, 1000);
+					}, 500);
 				});
 			});
 		break;
@@ -324,8 +315,6 @@ function typing(selector, text, callBackFunction) {
 		if (typeof callBackFunction === "function") {
 			callBackFunction();
 			introjs._introItems[introjs._currentStep].intro = $(".introjs-tooltiptext").html();
-			introjs._introItems[introjs._currentStep].tooltipClass = "";
-			introjs._introItems[introjs._currentStep].isCompleted = "true";
 		}
 	});
 }

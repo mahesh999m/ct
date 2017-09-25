@@ -63,7 +63,7 @@
 }
 
 .blinking-white {
-	animation-name: blink-border-background-white ;
+	animation-name: blink-border-background-white;
 	animation-duration: 1s ;
 	animation-iteration-count: infinite;
 	animation-direction: alternate ;
