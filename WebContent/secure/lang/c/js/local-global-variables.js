@@ -39,12 +39,10 @@ function introGuide() {
 			intro : "",
 			tooltipClass : "hide",
 			position : "left",
-			animation : "repeat"
 		}, {
 			element : "#mainFunc",
 			intro : "",
 			tooltipClass : "hide",
-			animation : "repeat"
 		}, {
 			element : "#funcDef",
 			intro : "",
@@ -53,7 +51,6 @@ function introGuide() {
 			element : "#startMain",
 			intro : "",
 			tooltipClass : "hide",
-			animation : "repeat"
 		}, {
 			element : "#localVar",
 			intro : "",
@@ -63,18 +60,15 @@ function introGuide() {
 			intro : "",
 			tooltipClass : "hide",
 			position : "left",
-			animation : "repeat"
 		}, {
 			element : "#mainPf1",
 			intro : "",
 			tooltipClass : "hide",
 			position : "right",
-			animation : "repeat"
 		}, {
 			element : "#consoleId",
 			intro : "",
 			tooltipClass : "hide",
-			animation : "repeat"
 		}, {
 			element : "#functionCall",
 			intro : "",
@@ -95,18 +89,15 @@ function introGuide() {
 			intro : "",
 			tooltipClass : "hide",
 			position : "left",
-			animation : "repeat"
 		}, {
 			element : "#userPrintf",
 			intro : "",
 			tooltipClass : "hide",
 			position : "right",
-			animation : "repeat"
 		}, {
 			element : "#consoleId",
 			intro : "",
 			tooltipClass : "hide",
-			animation : "repeat"
 		}, {
 			element : "#endFunc",
 			intro : "",
@@ -116,12 +107,10 @@ function introGuide() {
 			intro : "",
 			tooltipClass : "hide",
 			position : "right",
-			animation : "repeat"
 		}, {
 			element : "#consoleId",
 			intro : "",
 			tooltipClass : "hide",
-			animation : "repeat"
 		}, {
 			element : "#endMain",
 			intro : "",
@@ -135,6 +124,11 @@ function introGuide() {
 	});
 	
 	introjs.onafterchange(function(targetElement) {
+		
+		if (introjs._introItems[introjs._currentStep]["tooltipClass"] == "hide") {
+			introjs._introItems[introjs._currentStep]["animation"] = "repeat";
+		}
+		
 		$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 		var elementId = targetElement.id;
 		if (introjs._introItems[introjs._currentStep]["isCompleted"]) {
@@ -159,6 +153,7 @@ function introGuide() {
 			}
 			return;
 		}
+		
 		
 		if (introjs._introItems[introjs._currentStep]["animation"] != "repeat") {
 			introjs._introItems[introjs._currentStep]["isCompleted"] = true;
@@ -209,10 +204,8 @@ function introGuide() {
 		case "mainFunc":
 			$("#globalVar").removeClass("blinking-white");
 			$(".introjs-helperLayer").one("transitionend", function() {
-				if ((introjs._introItems[introjs._currentStep]["animation"] == "repeat") && (introjs._direction == "backward")) {
-					setTimeout(function() {
+				if (introjs._direction == "backward") {
 						introjs.previousStep();
-					}, 400);
 				} else {
 					setTimeout(function() {
 						introjs.nextStep();
@@ -315,10 +308,8 @@ function introGuide() {
 		case "mainPf2":
 		case "userPrintf":
 			$(".introjs-helperLayer").one("transitionend", function() {
-				if ((introjs._introItems[introjs._currentStep]["animation"] == "repeat") && (introjs._direction == "backward")) {
-					setTimeout(function() {
+				if (introjs._direction == "backward") {
 						introjs.previousStep();
-					}, 400);
 				} else {
 					setTimeout(function() {
 						introjs.nextStep();
@@ -438,10 +429,8 @@ function typing(selector, text, callBackFunction) {
 }
 
 function nextStep() {
-	if ((introjs._introItems[introjs._currentStep]["animation"] == "repeat") && (introjs._direction == "backward")) {
-		setTimeout(function() {
+	if (introjs._direction == "backward") {
 			introjs.previousStep();
-		}, 1000);
 	} else {
 		setTimeout(function() {
 			introjs.nextStep();
