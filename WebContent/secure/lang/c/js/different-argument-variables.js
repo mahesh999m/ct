@@ -132,6 +132,67 @@ function introGuide() {
 		} ]
 	});
 	
+	introjs.onbeforechange(function(targetElement) {
+		var elementId = targetElement.id;
+		switch (elementId) {
+		case "heading":
+			$("#codeAnimation").addClass("opacity00");
+			break;
+		case "codeAnimation":
+			$("#codeAnimation").removeClass("opacity00");
+			break;
+		case "globalVar":
+			$("#addressDiv").addClass("opacity00");
+			$("#globalVar").removeClass("blinking-white")
+			break;
+			
+		case "addressDiv":
+			if (introjs._currentStep == 4) {
+				$("#sumAddress").addClass("check");
+			} else if (introjs._currentStep == 13) {
+				$("#aAddress").addClass("check");
+			} else if (introjs._currentStep == 16) {
+				$("#xAddress").addClass("check");
+				$("#sumAddress").removeClass("check");
+			}
+			
+			if($("#sumAddress").hasClass("check")) {
+				if (introjs._currentStep == 4) {
+					$("#sumAddress").removeAttr("style");
+				} else {
+					//$("#sumVal").removeAttr("style");
+				}
+			} else if ($("#aAddress").hasClass("check")) {
+				$("#aVal, #bVal").removeAttr("style");
+			} else if ($("#xAddress").hasClass("check")) {
+				$("#xVal, #yVal").removeAttr("style").text("");
+			}
+			break;
+			
+		case "localVar":
+			$("#localVar").removeClass("blinking-white");
+			$("#sumVal").removeAttr("style");
+			$("#varBox1").addClass("opacity00").css("opacity", "");
+			$("#aAddress, #bAddress").css("opacity", "").addClass("opacity00");
+			$("#boxHeading1").css("opacity", "").addClass("opacity00");
+			break;
+		case "mainFunc":
+			$("#globalVar").removeClass("blinking-white")
+			break;
+		case "formalArgs":
+			$("#varBox2").addClass("opacity00").css("opacity", "");
+			$("#xAddress, #yAddress").css("opacity", "").addClass("opacity00");
+			$("#boxHeading2").css("opacity", "").addClass("opacity00");
+			$("#xVal, #yVal").addClass("opacity00").text("");
+			break;
+			
+		case "addVar":
+			$("#sumVal").text("");
+			$("#sumAddress").addClass("check");
+			break;
+		}
+	});
+	
 	introjs.onafterchange(function(targetElement) {
 		$('.introjs-nextbutton, .introjs-skipbutton, .introjs-prevbutton').hide();
 		
@@ -139,30 +200,16 @@ function introGuide() {
 			introjs._introItems[introjs._currentStep]["animation"] = "repeat";
 		}
 		
-		/*if (introjs._introItems[introjs._currentStep]["isCompleted"]) {
+		if (introjs._introItems[introjs._currentStep]["isCompleted"]) {
 			if (introjs._currentStep != 0) {
 				$('.introjs-prevbutton').show();
 			}
 			$('.introjs-nextbutton').show();
-			introjs._introItems[introjs._currentStep]["html"] = $("#" + targetElement.id).html();
-			if (introjs._introItems[introjs._currentStep + 1]["animation"] == "repeat") {
-				console.log("this is the console");
-				$("#" + introjs._introItems[introjs._currentStep + 1].element.id).html(introjs._introItems[introjs._currentStep + 1]["html"]);
-			}
 			return;
-		}*/
-		
-		introjs._introItems[introjs._currentStep]["html"] = $("#" + targetElement.id).html();
-		if (introjs._introItems[introjs._currentStep + 1]["animation"] == "repeat") {
-			console.log("this is the console");
-			$("#" + introjs._introItems[introjs._currentStep + 1].element.id).html(introjs._introItems[introjs._currentStep + 1]["html"]);
 		}
-		
 		if (introjs._introItems[introjs._currentStep]["animation"] != "repeat") {
 			introjs._introItems[introjs._currentStep]["isCompleted"] = true;
 		}
-		
-		
 		var elementId = targetElement.id;
 		switch (elementId) {
 		
@@ -207,7 +254,7 @@ function introGuide() {
 							var text = "The variable <span class='ct-code-b-yellow'>sum</span> will be allocated <b class='ct-code-b-yellow'>"
 										+"2 bytes</b> of memory in some memory location.";
 							typing(".introjs-tooltiptext", text, function() {
-								$(".introjs-nextbutton").show();
+								$(".introjs-nextbutton, .introjs-prevbutton").show();
 							});
 						}});
 					} else {
@@ -223,7 +270,7 @@ function introGuide() {
 							$('.introjs-tooltip').removeClass("hide");
 							var text = "The value of <span class='ct-code-b-yellow'>sum</span> is stored in the memory allocated for the same.";
 							typing(".introjs-tooltiptext", text, function() {
-								$(".introjs-nextbutton").show();
+								$(".introjs-nextbutton, .introjs-prevbutton").show();
 							});
 						}});
 					}
@@ -240,7 +287,7 @@ function introGuide() {
 									var text = "<span class='ct-code-b-yellow'>a</span> and <span class='ct-code-b-yellow'>b</span> are allocated"
 												+ " <b class='ct-code-b-yellow'>2 bytes</b> of memory each.";
 									typing(".introjs-tooltiptext", text, function() {
-										$(".introjs-nextbutton").show();
+										$(".introjs-nextbutton, .introjs-prevbutton").show();
 									});
 								}});
 							}});
@@ -257,14 +304,14 @@ function introGuide() {
 						$("#bVal").offset({"top": l2.top, "left": l2.left});
 						
 						$("#d1").addClass("blinking-white");
-						$("#aVal").delay(1000).queue(function() {
+						//$("#aVal").delay(1000).queue(function() {
 							$("#d1").removeClass("blinking-white");
 							$("#aVal, #addr1").addClass("blinking-white");
 							$("#aVal").removeClass("opacity00");
 							tl.to("#aVal", 1, {opacity: 1, top: 0, left: 0, onComplete: function() {
 								$("#aVal, #addr1").removeClass("blinking-white");
 								$("#d2").addClass("blinking-white");
-								$("#bVal").delay(1000).queue(function() {
+								//$("#bVal").delay(1000).queue(function() {
 									$("#bVal, #addr2").addClass("blinking-white");
 									$("#d2").removeClass("blinking-white");
 									$("#bVal").removeClass("opacity00");
@@ -275,12 +322,12 @@ function introGuide() {
 													+"<b class='ct-code-b-yellow'>b</b>.";
 										typing(".introjs-tooltiptext", text, function() {
 											$("#xAddress").addClass("check");
-											$(".introjs-nextbutton").show();
+											$(".introjs-nextbutton, .introjs-prevbutton").show();
 										});
 									}});
-								});
+								//});
 							}});
-						});
+						//});
 					}
 				} else if($("#xAddress").hasClass("check")) {
 					$("#xVal").text($("#num1").text().substring(0, $("#num1").text().indexOf(" ")));
@@ -299,7 +346,7 @@ function introGuide() {
 								$("#xVal").offset({"top": l1.top, "left": l1.left});
 								$("#yVal").offset({"top": l2.top, "left": l2.left});
 								$("#formArg1, #xVal").addClass("blinking-white");
-								$("#xVal").delay(1000).queue(function() {
+								//$("#xVal").delay(1000).queue(function() {
 									$("#formArg1").removeClass("blinking-white");
 									$("#xVal").removeClass("opacity00");
 									tl.to("#xVal", 1, {opacity: 1, top: 0, left: 0, onComplete: function() {
@@ -320,11 +367,11 @@ function introGuide() {
 														+ "</span> and <b>y</b> = <span class='ct-code-b-yellow'>"
 														+ $("#num1").text().substring($("#num1").text().indexOf(" ") + 1)+ "</span>.";
 											typing(".introjs-tooltiptext", text, function() {
-												$(".introjs-nextbutton").show();
+												$(".introjs-nextbutton, .introjs-prevbutton").show();
 											});
 										}});
 									}});
-								});
+								//});
 							}});
 						}});
 					}});
@@ -350,7 +397,7 @@ function introGuide() {
 				var text = "This is the <span class='ct-code-b-yellow'>main()</span> method, in which the call to the function"
 							+ " <span class='ct-code-b-yellow'>addition()</span> is made.";
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
 				});
 			});
 			break;
@@ -511,7 +558,7 @@ function introGuide() {
 							+ " <b class='ct-code-b-yellow'>a</b> and <b class='ct-code-b-yellow'>b</b>(actual arguments) as parameters.<br><br>This <span class='ct-code-b-yellow'>a</span>"
 							+ " and <span class='ct-code-b-yellow'>b</span> are called <span class='ct-code-b-yellow'>actual arguments</span>.";
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
 				});
 			});
 			break;
@@ -556,6 +603,18 @@ function introGuide() {
 		}
 	});
 	introjs.start();
+	
+	/*var a = document.querySelectorAll("#mainBox *");
+	
+	for (var i = 0; i < a.length; i++) {
+		a[i].addEventListener('DOMAttrModified', function(e) {
+			if (e.attrName === 'style' || e.attrName === "class") {
+				console.log('prevValue: ' + e.prevValue);
+				console.log('newValue: ' + e.newValue);
+			}
+		});
+	}*/
+	
 }
 
 function typing(selector, text, callBackFunction) {
