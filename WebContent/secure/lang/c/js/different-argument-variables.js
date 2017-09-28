@@ -154,6 +154,9 @@ function introGuide() {
 			} else if (introjs._currentStep == 16) {
 				$("#xAddress").addClass("check");
 				$("#sumAddress").removeClass("check");
+				$("#xVal, #yVal").addClass("opacity00").text("");
+			} else if (introjs._currentStep == 20) {
+				$("#sumAddress").addClass("check");
 			}
 			
 			if($("#sumAddress").hasClass("check")) {
@@ -187,8 +190,15 @@ function introGuide() {
 			break;
 			
 		case "addVar":
+			$("#localVar, #globalVar").removeClass("blinking-white");
 			$("#sumVal").text("");
 			$("#sumAddress").addClass("check");
+			break;
+		case "sumRes":
+			$(".blinking-white").removeClass("blinking-white");
+			break;
+		case "sumDec":
+			$("#globalVar").addClass("blinking-white");
 			break;
 		}
 	});
@@ -322,7 +332,7 @@ function introGuide() {
 													+"<b class='ct-code-b-yellow'>b</b>.";
 										typing(".introjs-tooltiptext", text, function() {
 											$("#xAddress").addClass("check");
-											$(".introjs-nextbutton, .introjs-prevbutton").show();
+											$(".introjs-nextbutton").show();
 										});
 									}});
 								//});
@@ -523,7 +533,7 @@ function introGuide() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "Here we are adding the values of <b class='ct-code-b-yellow'>x</b> and <b class='ct-code-b-yellow'>y</b>.";
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
 				});
 			});
 			break;
@@ -540,8 +550,7 @@ function introGuide() {
 			break;
 			
 		case "addVar":
-			$("#localVar").removeClass("blinking-white");
-			$("#globalVar").removeClass("blinking-white");
+			$("#localVar, #globalVar").removeClass("blinking-white");
 			$(".introjs-helperLayer").one("transitionend", function() { 
 				var text = "The result of adding <b>x</b> and <b>y</b> is stored in <span class='ct-code-b-yellow'>sum</span>.";
 				typing(".introjs-tooltiptext", text, function() {
@@ -587,7 +596,7 @@ function introGuide() {
 				var text = "When the end of the function is reached, the control is transferred to the <span class='ct-code-b-yellow'>main()"
 							+ "</span> method and the next statement after the function call starts executing.";
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
 				});
 			});
 			break;
