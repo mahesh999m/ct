@@ -70,7 +70,8 @@ function introGuide() {
 		}, {
 			element : "#consoleId",
 			intro : "",
-			position : "left"
+			position : "left",
+			tooltipClass : "hide"
 		}, {
 			element : "#addressDiv",
 			intro : "",
@@ -150,6 +151,7 @@ function introGuide() {
 			if (introjs._currentStep == 4) {
 				$("#sumAddress").addClass("check");
 			} else if (introjs._currentStep == 13) {
+				$("#sumAddress").removeClass("check");
 				$("#aAddress").addClass("check");
 			} else if (introjs._currentStep == 16) {
 				$("#xAddress").addClass("check");
@@ -162,8 +164,6 @@ function introGuide() {
 			if($("#sumAddress").hasClass("check")) {
 				if (introjs._currentStep == 4) {
 					$("#sumAddress").removeAttr("style");
-				} else {
-					//$("#sumVal").removeAttr("style");
 				}
 			} else if ($("#aAddress").hasClass("check")) {
 				$("#aVal, #bVal").removeAttr("style");
@@ -287,7 +287,11 @@ function introGuide() {
 					
 				} else if($("#aAddress").hasClass("check")) {
 					if(introjs._currentStep == 8) {
+						$("#boxHeading1").css("opacity", "").addClass("opacity00");
 						$("#localVar").addClass("blinking-white");
+						$("#sumVal").removeAttr("style");
+						$("#varBox1").addClass("opacity00").css("opacity", "");
+						$("#aAddress, #bAddress").css("opacity", "").addClass("opacity00");
 						tl.to("#boxHeading1, #varBox1", 1, {opacity: 1, onComplete: function() {
 							$("#boxHeading1, #varBox1").removeClass("opacity00");
 							tl.to("#aAddress", 1, {opacity: 1, onComplete: function() {
@@ -305,6 +309,7 @@ function introGuide() {
 						
 					} else if(introjs._currentStep == 13) {
 						$("#aAddress").removeClass("check");
+						$('#num1').text($('#num1').text().trim());
 						$("#aVal").text($("#num1").text().substring(0, $("#num1").text().indexOf(" ")));
 						$("#bVal").text($("#num1").text().substring($("#num1").text().indexOf(" ") + 1));
 						
@@ -314,30 +319,26 @@ function introGuide() {
 						$("#bVal").offset({"top": l2.top, "left": l2.left});
 						
 						$("#d1").addClass("blinking-white");
-						//$("#aVal").delay(1000).queue(function() {
-							$("#d1").removeClass("blinking-white");
-							$("#aVal, #addr1").addClass("blinking-white");
-							$("#aVal").removeClass("opacity00");
-							tl.to("#aVal", 1, {opacity: 1, top: 0, left: 0, onComplete: function() {
-								$("#aVal, #addr1").removeClass("blinking-white");
-								$("#d2").addClass("blinking-white");
-								//$("#bVal").delay(1000).queue(function() {
-									$("#bVal, #addr2").addClass("blinking-white");
-									$("#d2").removeClass("blinking-white");
-									$("#bVal").removeClass("opacity00");
-									tl.to("#bVal", 1, {opacity: 1, top: 0, left: 0, onComplete: function() {
-										$("#bVal, #addr2").removeClass("blinking-white");
-										$('.introjs-tooltip').removeClass("hide");
-										var text = "The two values are stored in variables <b class='ct-code-b-yellow'>a</b> and "
-													+"<b class='ct-code-b-yellow'>b</b>.";
-										typing(".introjs-tooltiptext", text, function() {
-											$("#xAddress").addClass("check");
-											$(".introjs-nextbutton").show();
-										});
-									}});
-								//});
+						$("#d1").removeClass("blinking-white");
+						$("#aVal, #addr1").addClass("blinking-white");
+						$("#aVal").removeClass("opacity00");
+						tl.to("#aVal", 1, {opacity: 1, top: 0, left: 0, onComplete: function() {
+							$("#aVal, #addr1").removeClass("blinking-white");
+							$("#d2").addClass("blinking-white");
+							$("#bVal, #addr2").addClass("blinking-white");
+							$("#d2").removeClass("blinking-white");
+							$("#bVal").removeClass("opacity00");
+							tl.to("#bVal", 1, {opacity: 1, top: 0, left: 0, onComplete: function() {
+								$("#bVal, #addr2").removeClass("blinking-white");
+								$('.introjs-tooltip').removeClass("hide");
+								var text = "The two values are stored in variables <b class='ct-code-b-yellow'>a</b> and "
+											+"<b class='ct-code-b-yellow'>b</b>.";
+								typing(".introjs-tooltiptext", text, function() {
+									$("#xAddress").addClass("check");
+									$(".introjs-nextbutton, .introjs-prevbutton").show();
+								});
 							}});
-						//});
+						}});
 					}
 				} else if($("#xAddress").hasClass("check")) {
 					$("#xVal").text($("#num1").text().substring(0, $("#num1").text().indexOf(" ")));
@@ -356,32 +357,30 @@ function introGuide() {
 								$("#xVal").offset({"top": l1.top, "left": l1.left});
 								$("#yVal").offset({"top": l2.top, "left": l2.left});
 								$("#formArg1, #xVal").addClass("blinking-white");
-								//$("#xVal").delay(1000).queue(function() {
-									$("#formArg1").removeClass("blinking-white");
-									$("#xVal").removeClass("opacity00");
-									tl.to("#xVal", 1, {opacity: 1, top: 0, left: 0, onComplete: function() {
-										$("#xVal").removeClass("blinking-white");
-										$("#formArg2, #yVal").addClass("blinking-white");
-										$("#yVal").removeClass("opacity00");
-										tl.to("#yVal", 1, {opacity: 1, top: 0, left: 0, onComplete: function() {
-											$("#formArg2, #yVal").removeClass("blinking-white");
-											$("#sumAddress").addClass("check");
-											$('.introjs-tooltip').removeClass("hide");
-											var text = "The variables <b class='ct-code-b-yellow'>x</b> and <b class='ct-code-b-yellow'>y</b> are "
-														+"allocated memory of <b class='ct-code-b-yellow'>2</b> bytes each at different" 
-														+ " locations.<br><br>When a call is made with <span class='ct-code-b-yellow'>a</span> and"
-														+ " <span class='ct-code-b-yellow'>b</span> values to the function "
-														+ "<span class='ct-code-b-yellow'>addition()</span> the values of a and b are stored in x and y.<br>"
-														+ " Now <b>x</b> = <span class='ct-code-b-yellow'>"
-														+ $("#num1").text().substring(0, $("#num1").text().indexOf(" ")) 
-														+ "</span> and <b>y</b> = <span class='ct-code-b-yellow'>"
-														+ $("#num1").text().substring($("#num1").text().indexOf(" ") + 1)+ "</span>.";
-											typing(".introjs-tooltiptext", text, function() {
-												$(".introjs-nextbutton, .introjs-prevbutton").show();
-											});
-										}});
+								$("#formArg1").removeClass("blinking-white");
+								$("#xVal").removeClass("opacity00");
+								tl.to("#xVal", 1, {opacity: 1, top: 0, left: 0, onComplete: function() {
+									$("#xVal").removeClass("blinking-white");
+									$("#formArg2, #yVal").addClass("blinking-white");
+									$("#yVal").removeClass("opacity00");
+									tl.to("#yVal", 1, {opacity: 1, top: 0, left: 0, onComplete: function() {
+										$("#formArg2, #yVal").removeClass("blinking-white");
+										$("#sumAddress").addClass("check");
+										$('.introjs-tooltip').removeClass("hide");
+										var text = "The variables <b class='ct-code-b-yellow'>x</b> and <b class='ct-code-b-yellow'>y</b> are "
+													+"allocated memory of <b class='ct-code-b-yellow'>2</b> bytes each at different" 
+													+ " locations.<br><br>When a call is made with <span class='ct-code-b-yellow'>a</span> and"
+													+ " <span class='ct-code-b-yellow'>b</span> values to the function "
+													+ "<span class='ct-code-b-yellow'>addition()</span> the values of a and b are stored in x and y.<br>"
+													+ " Now <b>x</b> = <span class='ct-code-b-yellow'>"
+													+ $("#num1").text().substring(0, $("#num1").text().indexOf(" ")) 
+													+ "</span> and <b>y</b> = <span class='ct-code-b-yellow'>"
+													+ $("#num1").text().substring($("#num1").text().indexOf(" ") + 1)+ "</span>.";
+										typing(".introjs-tooltiptext", text, function() {
+											$(".introjs-nextbutton, .introjs-prevbutton").show();
+										});
 									}});
-								//});
+								}});
 							}});
 						}});
 					}});
@@ -436,9 +435,13 @@ function introGuide() {
 		case "endMain":
 			$("#localVar").removeClass("blinking-white");
 			$(".introjs-helperLayer").one("transitionend", function() {
-				setTimeout(function() {
-					introjs.nextStep();
-				}, 500);
+				if (introjs._direction == "forward") {
+					setTimeout(function() {
+						introjs.nextStep();
+					}, 500);
+				} else {
+					introjs.previousStep();
+				}
 			});
 			break;
 			
@@ -447,22 +450,34 @@ function introGuide() {
 			$("#localVar").removeClass("blinking-white");
 			$(".introjs-helperLayer").one("transitionend", function() {
 				if(introjs._currentStep == 10) {
-					var text = "Enter two numbers : <span id='inputVal'></span>";
-					typing("#runEditor1", text, function() {
-						setTimeout(function() {
-							introjs.nextStep();
-						}, 1000);
-					});
+					if (introjs._direction == "forward") {
+						var text = "Enter two numbers : <span id='inputVal'></span>";
+						typing("#runEditor1", text, function() {
+							setTimeout(function() {
+								introjs.nextStep();
+							}, 1000);
+						});
+					} else {
+						$('#runEditor1').empty();
+						introjs.previousStep();
+					}
+					
 				} else if(introjs._currentStep == 12) {
+					$('#inputVal, #aVal, #bVal, #xVal, #yVal').empty();
 					var text1 = "<span id='num1' contenteditable = 'true' maxlength='1' spellcheck='false'"
 								+ " class='text-center span-box output-scanf-line'></span>";
 					typing("#inputVal", text1, function() {
+						$('.introjs-tooltip').removeClass('hide');
 						var text2 = "Please enter two numbers seperated by a <span class='ct-code-b-yellow'>space</span>."
 						typing(".introjs-tooltiptext", text2, function() {
 							$("#num1").focus();
+							$(".output-console-body").click(function() {
+								$("#num1").focus();
+							});
+							
 							arr = [];
 							$('.output-scanf-line').on("keydown", function(e) {
-								if (arr.length == 2) {
+								if (arr.length == 2 || arr.length == 0) {
 									if (e.keyCode == 32) {
 										e.preventDefault();
 									}
@@ -482,7 +497,7 @@ function introGuide() {
 									$('.introjs-tooltiptext').append("<span class='ct-code-b-red length-error-text'><br/>" 
 																	+ "Please enter 2 numbers and separate each with space.</span>");
 								}
-								var givenText = $(this).text();
+								var givenText = $('#num1').text().trim();
 								var splittedText = givenText.split(" ");
 								arr = [];
 								
@@ -495,7 +510,7 @@ function introGuide() {
 								if (arr.length < 2) {
 									$(".introjs-nextbutton").hide();
 								} else if (arr.length == 2) {
-									$(".introjs-nextbutton").show();
+									$(".introjs-nextbutton, .introjs-prevbutton").show();
 								}
 								
 								$.each(arr, function(idx, val) {
@@ -523,9 +538,14 @@ function introGuide() {
 		case "scanf":
 			$("#localVar").removeClass("blinking-white");
 			$(".introjs-helperLayer").one("transitionend", function() { 
-				setTimeout(function() {
-					introjs.nextStep();
-				}, 500);
+				if (introjs._direction == "forward") {
+					setTimeout(function() {
+						introjs.nextStep();
+					}, 500);
+				} else {
+					introjs.previousStep();
+				}
+				
 			});
 			break;
 			

@@ -179,7 +179,7 @@ div, span {
 						<div class="col-xs-12 padding10">
 							<div class='col-xs-6'>
 								<div class='center width200'>
-									<div class='col-xs-12 visibility-hidden' id='xBox'>
+									<div class='col-xs-12 opacity00' id='xBox'>
 										<div class='col-xs-4 Vertical-text-center'>x =</div>
 										<div class="col-xs-6 text-center">
 											<div><span class='color-gray'>2 bytes</span></div>
@@ -191,7 +191,7 @@ div, span {
 							</div>
 							<div class='col-xs-6'>
 								<div class='center width200'>
-									<div class='col-xs-12 visibility-hidden' id='yBox'>
+									<div class='col-xs-12 opacity00' id='yBox'>
 										<div class='col-xs-4 Vertical-text-center'>y =</div>
 										<div class="col-xs-6 text-center">
 											<div><span class='color-gray'>2 bytes</span></div>
@@ -204,7 +204,7 @@ div, span {
 						</div>
 						<div class="col-xs-12 padding10">
 							<div class='center width200'>
-								<div class='col-xs-12 visibility-hidden' id='zBox'>
+								<div class='col-xs-12 opacity00' id='zBox'>
 									<div class='col-xs-4 Vertical-text-center'>z =</div>
 									<div class="col-xs-6 text-center">
 										<div><span class='color-gray'>2 bytes</span></div>
@@ -218,7 +218,7 @@ div, span {
 							<marker id="arrowEnd" refX="4" refY="2.5" markerWidth="5" markerHeight="5" orient="auto" style="fill: gray;">
 								<path d="M0,0 L5,2.5 L0,5 Z"/>
 							</marker>
-							<line class="svg-line" x1="47.7%" y1="73%" x2="47.6%" y2="73%"/>
+							<line class="svg-line" x1="47.7%" y1="73%" x2="47.7%" y2="73%"/>
 						</svg>
 					</div>
 					<div class='col-xs-12 margin-top30'>

@@ -109,7 +109,7 @@
 
 .span-box {
     height: 17px;
-    width: 3%;
+    width: 30%;
 }
 
 [contenteditable=true] {
@@ -142,6 +142,9 @@
 	position: relative;
 	z-index: 9999999;
 }
+
+
+
 
 </style>
 </head>
@@ -222,11 +225,6 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			differentArgumentVariableReady();
-			/* document.documentElement.addEventListener('DOMAttrModified', function(e){
-				if (e.attrName === 'style') {
-					console.log('prevValue: ' + e.prevValue, 'newValue: ' + e.newValue);
-				}
-			}, false); */
 		});
 	</script>
 </body>

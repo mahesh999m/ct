@@ -4,7 +4,7 @@ var timelineLite = new TimelineLite();
 
 var functionCallReady = function() {
 	introGuide();
-	 $("#restart").click(function(){
+	 $("#restart").click(function() {
 		 location.reload();
 	});
 }
@@ -86,9 +86,6 @@ function introGuide() {
 	
 	introjs.onafterchange(function(targetElement) {
 		$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
-		
-		
-		
 		
 		if (introjs._introItems[introjs._currentStep]["tooltipClass"] == "hide") {
 			introjs._introItems[introjs._currentStep]["animation"] = "repeat";

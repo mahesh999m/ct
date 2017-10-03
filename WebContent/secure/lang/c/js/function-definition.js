@@ -86,13 +86,39 @@ var functionDefinitionReady = function() {
 		
 		
 		switch (elementId) {
+		
+		case "informationdiv":
+			$("#informationdiv").removeClass("opacity00").empty();
+		  	$("#informationdiv").append("<ul><li id='li1' class='opacity00'>A <span class='color-green'>function definition</span> is the body of the function"
+		  			+ " that contains the set of statements that perform a task. A function definition starts with the same <span class='color-green'>syntax"
+		  			+ "</span> as the declaration,  with the <span class='color-green'>name</span> of the function, its <span class='color-green'>parameter"
+		  			+ " types</span> with their <span class='color-green'>names</span>, and the data type of the <span class='color-green'>value</span>"
+		  			+ " it would return.</li><li id='li2' class='opacity00'>A function body can have the declarations of its <span class='color-green'>"
+		  			+ "local variables</span>, and the statements that determine what the function does.</li>");
+		  	TweenMax.to($('#li1'), 0.5, {opacity: 1, onComplete: function() {
+		  		TweenMax.to($('#li2'), 0.5, {opacity: 1, onComplete: function() {
+		  			$('.introjs-tooltip').removeClass('hide');
+		  			typing('.introjs-tooltiptext',"Let us consider the syntax of <y>function definition</y>." ,function() {
+		  				$('.introjs-nextbutton').show();
+		  			});
+		  		}});
+		  	}});
+			
+			break;
+		
 		case "format" :
 			$("#informationdiv").addClass('zindex10');
 			$(".introjs-helperLayer").one("transitionend", function() {
-			$("#format").removeClass("opacity00");
-			setTimeout(function() {
-				intro.nextStep();
-			}, 500);
+				if (intro._direction == "forward") {
+					$("#format").removeClass("opacity00");
+					setTimeout(function() {
+						intro.nextStep();
+					}, 500);
+				} else {
+					$("#informationdiv").removeClass('zindex10');
+					$("#format").addClass("opacity00");
+					intro.previousStep();
+				}
 			});
 		break;
 		case "returnType1" :
@@ -100,7 +126,7 @@ var functionDefinitionReady = function() {
 				typing('.introjs-tooltiptext', "<ul><li><span class='ct-code-b-yellow'>return_type</span> is data type of the value returned by"
 						+ " function.</li><li>Function that does not return any value then the <span class='ct-code-b-yellow'>return_type</span>"
 						+ " uses the keyword <span class='ct-code-b-yellow'>void</span>.</li></ul>", function() {  
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
@@ -183,21 +209,6 @@ var functionDefinitionReady = function() {
 	
 	intro.start();
 
-	$("#informationdiv").removeClass("opacity00");
-  	$("#informationdiv").append("<ul><li id='li1' class='opacity00'>A <span class='color-green'>function definition</span> is the body of the function"
-  			+ " that contains the set of statements that perform a task. A function definition starts with the same <span class='color-green'>syntax"
-  			+ "</span> as the declaration,  with the <span class='color-green'>name</span> of the function, its <span class='color-green'>parameter"
-  			+ " types</span> with their <span class='color-green'>names</span>, and the data type of the <span class='color-green'>value</span>"
-  			+ " it would return.</li><li id='li2' class='opacity00'>A function body can have the declarations of its <span class='color-green'>"
-  			+ "local variables</span>, and the statements that determine what the function does.</li>");
-  	TweenMax.to($('#li1'), 0.5, {opacity: 1, onComplete: function() {
-  		TweenMax.to($('#li2'), 0.5, {opacity: 1, onComplete: function() {
-  			$('.introjs-tooltip').removeClass('hide');
-  			typing('.introjs-tooltiptext',"Let us consider the syntax of <y>function definition</y>." ,function() {
-  				$('.introjs-nextbutton').show();
-  			});
-  		}});
-  	}});
 }
 
 function typing(selector, text, callBackFunction) {
