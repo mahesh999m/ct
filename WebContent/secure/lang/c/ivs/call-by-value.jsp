@@ -185,7 +185,7 @@ pre > span {
 								<div class="col-xs-12 padding10">
 									<div class='col-xs-6'>
 										<div class='center width200'>
-											<div class='col-xs-12 visibility-hidden' id='aBox'>
+											<div class='col-xs-12 opacity00' id='aBox'>
 												<div class='col-xs-4 Vertical-text-center'>a</div>
 												<div class="col-xs-6 text-center">
 													<div><span class='color-gray'>2 bytes</span></div>
@@ -197,7 +197,7 @@ pre > span {
 									</div>
 									<div class='col-xs-6'>
 										<div class='center width200'>
-											<div class='col-xs-12 visibility-hidden' id='bBox'>
+											<div class='col-xs-12 opacity00' id='bBox'>
 												<div class='col-xs-4 Vertical-text-center'>b</div>
 												<div class="col-xs-6 text-center">
 													<div><span class='color-gray'>2 bytes</span></div>
@@ -216,7 +216,7 @@ pre > span {
 								<div class="col-xs-12 padding10" id='swapAnimationDiv'>
 									<div class='col-xs-6'>
 										<div class='center width200'>
-											<div class='col-xs-12 visibility-hidden' id='xBox'>
+											<div class='col-xs-12 opacity00' id='xBox'>
 												<div class='col-xs-4 Vertical-text-center'>x</div>
 												<div class="col-xs-6 text-center">
 													<div><span class='color-gray'>2 bytes</span></div>
@@ -228,7 +228,7 @@ pre > span {
 									</div>
 									<div class='col-xs-6'>
 										<div class='center width200'>
-											<div class='col-xs-12 visibility-hidden' id='yBox'>
+											<div class='col-xs-12 opacity00' id='yBox'>
 												<div class='col-xs-4 Vertical-text-center'>y</div>
 												<div class="col-xs-6 text-center">
 													<div><span class='color-gray'>2 bytes</span></div>
@@ -242,7 +242,7 @@ pre > span {
 								<div class="col-xs-12 padding10">
 									<div class='col-xs-12'>
 										<div class='center width200'>
-											<div class='col-xs-12 visibility-hidden' id='tBox'>
+											<div class='col-xs-12 opacity00' id='tBox'>
 												<div class='col-xs-4 Vertical-text-center'>t</div>
 												<div class="col-xs-6 text-center">
 													<div><span class='color-gray'>2 bytes</span></div>

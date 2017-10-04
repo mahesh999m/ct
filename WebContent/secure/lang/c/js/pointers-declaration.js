@@ -74,14 +74,61 @@ function introJsFunction() {
 		}, {
 			element : "#animationBox",
 			intro : "",
+			tooltipClass: 'hide',
 		}, {
 			element : "#restartBtn",
 			intro : "Click to restart.",
 			position : "right"
 		} ]});
+	
+	introjs.onbeforechange(function(targetElement){
+		var elementId = targetElement.id;
+		switch(elementId) {
+		case "line1":
+			$('#xBox').addClass('opacity00');
+			$('#xValue').addClass('visibility-hidden');
+			break;
+		case "animationBox":
+			$('#pValue').text("");
+			break;
+		case "line2":
+			var animateStep = introjs._introItems[introjs._currentStep].animateStep;
+			switch (animateStep) {
+				case "floatP":
+					$('#pBox').addClass('opacity00');
+					break;
+			}
+			break;
+		case "line3":
+			var animateStep = introjs._introItems[introjs._currentStep].animateStep;
+			switch (animateStep) {
+				case "intP":
+					$('svg').remove();
+					$('#pValue').text("");
+					break;
+			}
+			break;
+		}
+	});
 
 	introjs.onafterchange(function(targetElement) {
 		$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
+		if (introjs._introItems[introjs._currentStep]["tooltipClass"] == "hide") {
+			introjs._introItems[introjs._currentStep]["animation"] = "repeat";
+		}
+		
+		if (introjs._introItems[introjs._currentStep]["isCompleted"]) {
+			if (introjs._currentStep != 0) {
+				$('.introjs-prevbutton').show();
+			}
+
+			$('.introjs-nextbutton').show();
+			return;
+		}
+		
+		if (introjs._introItems[introjs._currentStep]["animation"] != "repeat") {
+			introjs._introItems[introjs._currentStep]["isCompleted"] = true;
+		}
 		var elementId = targetElement.id;
 		switch (elementId) {
 		case "preCode":
@@ -102,6 +149,7 @@ function introJsFunction() {
 			});
 			break;
 		case "xBox":
+			$('#xValue').addClass('visibility-hidden');
 			$('.introjs-helperLayer').one('transitionend', function () {
 				animationXBox(function() {
 					$('.introjs-tooltip').removeClass('hide');
@@ -163,7 +211,7 @@ function introJsFunction() {
 					var typingContent = 'The variable <span class="ct-code-b-yellow">p</span> is a <span class="ct-code-b-yellow">pointer</span>, '
 										+ 'it occupies <span class="ct-code-b-yellow">2 bytes</span> in memory to store the address.';
 					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-nextbutton').show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 					break;
 				}
@@ -200,7 +248,10 @@ function introJsFunction() {
 			});
 			break;
 		case "animationBox":
+			$('#pValue').text();
+			$('svg').remove();
 			$('.introjs-helperLayer').one('transitionend', function () {
+				$('.introjs-tooltip').removeClass('hide');
 				var typingContent = 'Now the address of <span class="ct-code-b-yellow">x</span> is stored in ' +
 									'<span class="ct-code-b-yellow">pointer</span> variable <span class="ct-code-b-yellow">p</span>. <br>So the ' +
 									'pointer variable <span class="ct-code-b-yellow">p</span> points to <span class="ct-code-b-yellow">x</span>.'
@@ -281,7 +332,7 @@ function svgAnimatingLineSelector1LeftSideToSelector2RightSide(parentSelector, s
 }
 
 function animationXBox(callBackFunction) {
-	$('#xBox').toggleClass('visibility-hidden animated zoomIn').one('animationend', function() {
+	$('#xBox').addClass('animated zoomIn').removeClass('opacity00').one('animationend', function() {
 		$('#xBox').removeClass('animated zoomIn');
 		$('#valueOfX').addClass('circle-css').effect("highlight", {color: '#FFFFFF'}, 1000, function() {
 			$('#valueOfX').removeClass('circle-css');
@@ -294,14 +345,14 @@ function animationXBox(callBackFunction) {
 }
 
 function animationPBox(callBackFunction) {
-	$('#pBox').toggleClass('visibility-hidden animated zoomIn').one('animationend', function() {
+	$('#pBox').addClass('animated zoomIn').removeClass('opacity00').one('animationend', function() {
 		$('#pBox').removeClass('animated zoomIn');
 		callBackFunction();
 	});
 }
 
 function animationPBoxArrow() {
-	$('.introjs-duplicate-nextbutton').remove();
+	$('.introjs-duplicate-nextbutton, svg').remove();
 	TweenMax.from($('#xAddress'), 1, {ease: Power4.easeIn, backgroundColor: 'blue', onComplete: function() {
 		$('#pValue').text($('#xAddress').text());
 		fromEffectWithTweenMax($('#xAddress'), $('#pValue'), function() {

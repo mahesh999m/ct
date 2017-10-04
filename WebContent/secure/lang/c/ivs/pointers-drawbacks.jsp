@@ -173,7 +173,7 @@ div, span {
 						<div class="col-xs-12 padding10">
 							<div class='col-xs-6'>
 								<div class='center width200'>
-									<div class='col-xs-12 visibility-hidden' id='xBox'>
+									<div class='col-xs-12 opacity00' id='xBox'>
 										<div class='col-xs-4 Vertical-text-center'>x =</div>
 										<div class="col-xs-6 text-center">
 											<div><span class='color-gray'>2 bytes</span></div>
@@ -185,7 +185,7 @@ div, span {
 							</div>
 							<div class='col-xs-6'>
 								<div class='center width200'>
-									<div class='col-xs-12 visibility-hidden' id='pBox'>
+									<div class='col-xs-12 opacity00' id='pBox'>
 										<div class='col-xs-4 Vertical-text-center padding-col0'><span class='padding10'>p =</span></div>
 										<div class="col-xs-6 text-center">
 											<div><span class='color-gray'>2 bytes</span></div>
