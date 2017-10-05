@@ -91,12 +91,14 @@ function introJsFunction() {
 			element : "#tBox",
 			intro : "",
 			animateStep : "tBoxValueAnimate",
+			tooltipClass: 'hide',
 		}, {
 			element : "#xLine",
 			intro : "",
 		}, {
 			element : "#xBox",
 			intro : "",
+			tooltipClass: 'hide'
 		}, {
 			element : "#yLine",
 			intro : "",
@@ -104,6 +106,7 @@ function introJsFunction() {
 			element : "#yBox",
 			intro : "",
 			position : "left",
+			tooltipClass: 'hide'
 		}, {
 			element : "#printAfterSwapInSwap",
 			intro : "",
@@ -132,42 +135,30 @@ function introJsFunction() {
 	introjs.onbeforechange(function(targetElement) {
 		var elementId = targetElement.id;
 		switch (elementId) {
-		case "preCode":
-		break;
-		case "swapDeclareLine":
-		break;
-		case "mainMethodBlock":
-		break;
-		case "aLine":
-		case "aBox":
-			if (elementId == "aLine") {
-				$('#mainMethodBox').removeAttr('style');
-			}
-			introjs.refresh();
-			$('#aBox').addClass('opacity00');
-			$('#aValue').text("");
-		break;
-		case "bLine":
-		case "bBox":
-			$('#bBox').addClass('opacity00');
-			$('#bValue').text("");
-		break;
-		case "printBeforeSwapInMain":
-		break;
-		case "outputBox":
-		break;
-		case "swapLine":
-		break;
-		case "swapMethodBlock":
-		case "swapAnimationDiv":
-			$('#swapMethodBox').removeAttr('style');
-			$('#xBox, #yBox').addClass('opacity00');
-			$('#xValue, #yValue').text("");
-		break;
-		case "tDeclareLine":
-			$('#tBox').addClass('opacity00');
-		break;
-		case "tBox":
+			case "aLine":
+			case "aBox":
+				if (elementId == "aLine") {
+					$('#mainMethodBox').removeAttr('style');
+				}
+				introjs.refresh();
+				$('#aBox').addClass('opacity00');
+				$('#aValue').text("");
+			break;
+			case "bLine":
+			case "bBox":
+				$('#bBox').addClass('opacity00');
+				$('#bValue').text("");
+			break;
+			case "swapMethodBlock":
+			case "swapAnimationDiv":
+				$('#swapMethodBox').removeAttr('style');
+				$('#xBox, #yBox').addClass('opacity00');
+				$('#xValue, #yValue').text("");
+			break;
+			case "tDeclareLine":
+				$('#tBox').addClass('opacity00');
+			break;
+			case "tBox":
 				var animateStep = introjs._introItems[introjs._currentStep].animateStep;
 				switch (animateStep) {
 					case "tBoxAnimate":
@@ -177,30 +168,18 @@ function introJsFunction() {
 						$('#tValue').text("");
 					break;
 				}
-		break;
-		case "tAssignLine":
-			$('#tValue').text("");
-		break;
-		case "xLine":
-			$('#xValue').text($('#aValue').text());
-		break;
-		case "xBox":
-			$('#xValue').text($('#aValue').text());
-		break;
-		case "yLine":
-		break;
-		case "yBox":
-		break;
-		case "printAfterSwapInSwap":
-		break;
-		case "swapMethodCloseBrace":
-		break;
-		case "animationDiv":
-		break;
-		case "printAfterSwapInMain":
-		break;
-		case "restartBtn":
-		break;
+			break;
+			case "tAssignLine":
+				$('#tValue').text("");
+			break;
+			case "xLine":
+			case "xBox":
+				$('#xValue').text($('#aValue').text());
+			break;
+			case "yLine":
+			case "yBox":
+				$('#yValue').text($('#bValue').text());
+			break;
 		}
 	});
 
@@ -397,6 +376,7 @@ function introJsFunction() {
 							});
 						break;
 						case "tBoxValueAnimate":
+							$('.introjs-tooltip').removeClass('hide');
 							var typingContent = 'Here the value of <span class="ct-code-b-yellow">t</span> is assigned with the value of '
 												+ '<span class="ct-code-b-yellow">x</span>  (i.e. <span class="ct-code-b-yellow">' 
 												+ $('#xValue').text() + '</span>).';
@@ -428,6 +408,7 @@ function introJsFunction() {
 			break;
 			case "xBox":
 				$('.introjs-helperLayer').one('transitionend', function () {
+					$('.introjs-tooltip').removeClass('hide');
 					var typingContent = 'The value of <span class="ct-code-b-yellow">y</span> is now assigned to <span class="ct-code-b-yellow">' 
 										+ 'x</span> (i.e. <span class="ct-code-b-yellow">' + $('#yValue').text() + '</span>).';
 					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
@@ -447,6 +428,7 @@ function introJsFunction() {
 			break;
 			case "yBox":
 				$('.introjs-helperLayer').one('transitionend', function () {
+					$('.introjs-tooltip').removeClass('hide');
 					var typingContent = 'The value of <span class="ct-code-b-yellow">t</span> is now copied to <span class="ct-code-b-yellow">y</span> '
 										+ '(i.e. <span class="ct-code-b-yellow">' + $('#tValue').text() + '</span>).';
 					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
@@ -471,17 +453,23 @@ function introJsFunction() {
 										+ '<span class="ct-code-b-yellow">x</span>, <span class="ct-code-b-yellow">y</span> and '
 										+ '<span class="ct-code-b-yellow">t</span> are destroyed.';
 					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-nextbutton').show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 			break;
 			case "animationDiv":
 				$('.introjs-helperLayer').one('transitionend', function () {
-					TweenMax.to($('#swapMethodBox'), 1, {opacity: 0, onComplete: function() {
-						setTimeout(function() {
-							introjs.nextStep();
-						}, 1000);
-					}});
+					if (introjs._direction == "forward") {
+						TweenMax.to($('#swapMethodBox'), 1, {opacity: 0, onComplete: function() {
+							setTimeout(function() {
+								introjs.nextStep();
+							}, 1000);
+						}});
+					} else {
+						$('#swapMethodBox').removeAttr('style').css('opacity',"1");
+						introjs.previousStep();
+					}
+					
 				});
 			break;
 			case "printAfterSwapInMain":
@@ -493,7 +481,7 @@ function introJsFunction() {
 										+ '<span class="ct-code-b-yellow">call by value</span> method works.<br><br>The method call sends a copy of the values,'
 										+'so any change affects the copy but not the orignal variable values.';
 					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-						$('.introjs-nextbutton').show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 			break;
