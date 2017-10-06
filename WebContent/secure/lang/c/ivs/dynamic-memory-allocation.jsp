@@ -194,6 +194,14 @@ div, span {
 .ct-green-color {
 	color: green;
 }
+.circle-css {
+	border: 1px solid;
+	border-radius: 50%;
+	padding: 2px;
+	position: relative;
+	z-index: 9999999;
+	background: white;
+}
 </style>
 
 </head>

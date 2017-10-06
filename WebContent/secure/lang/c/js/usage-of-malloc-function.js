@@ -84,7 +84,6 @@ function introGuide() {
 		}, {
 			element : '#secondExLine2',
 			intro : '',
-			isCompleted : "false"
 		}, {
 			element : '#arrayDiv',
 			intro : '',
@@ -107,19 +106,9 @@ function introGuide() {
 	
 	introjs.onafterchange(function(targetElement) {
 		$(".introjs-skipbutton, .introjs-prevbutton, .introjs-nextbutton").hide();
-		if (introjs._introItems[introjs._currentStep]["isCompleted"]) {
-			if (introjs._currentStep != 0) {
-				$('.introjs-prevbutton').show();
-			}
-			introjs._introItems[introjs._currentStep]["tooltipClass"] = "";
-			$('.introjs-nextbutton').show();
-			return;
-		}
-		introjs._introItems[introjs._currentStep]["isCompleted"] = true;
 		var elementId = targetElement.id;
 		switch(elementId) {
 		case 'infoDiv':
-			//$("#infoDiv").css({height: $("#infoDiv").outerHeight()});
 			$("#list1").fadeTo(300, 1, function() {
 				$("#list2").fadeTo(300, 1, function() {
 					$("#infoDiv").addClass('z-index9999999');
@@ -242,18 +231,14 @@ function introGuide() {
 				break;
 			case 'tweenmax':
 				$('.introjs-helperLayer').one('transitionend', function() {
-					if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-						var text = "The <span class='ct-code-b-yellow'>pointer</span> variable <span class='ct-code-b-yellow'>p</span> is " +
-									"pointed to the address <span class='ct-code-b-yellow'>1054</span>.<br>" +
-									"<span class='ct-code-b-yellow'>*p</span> represents value at that address. " +
-									"So the value <span class='ct-code-b-yellow'>20</span> is stored at " +
-									"<span class='ct-code-b-yellow'>1054</span>.";
-						typing('.introjs-tooltiptext', text, function() {
-							tweenmaxValueAnimation();
-						});
-					} else {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					}
+					var text = "The <span class='ct-code-b-yellow'>pointer</span> variable <span class='ct-code-b-yellow'>p</span> is " +
+								"pointed to the address <span class='ct-code-b-yellow'>1054</span>.<br>" +
+								"<span class='ct-code-b-yellow'>*p</span> represents value at that address. " +
+								"So the value <span class='ct-code-b-yellow'>20</span> is stored at " +
+								"<span class='ct-code-b-yellow'>1054</span>.";
+					typing('.introjs-tooltiptext', text, function() {
+						tweenmaxValueAnimation();
+					});
 				});
 				break;
 			}
