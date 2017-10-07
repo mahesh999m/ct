@@ -329,10 +329,11 @@ div, span {
 		<div class="text-center margin-top-5" id="restartDiv"><a class="btn btn-warning opacity00" id="restart">Restart</a></div>
 	</div>
 </div>
-</body>
 <script type="text/javascript">
 $(document).ready(function() {
 	usageOfmallocFunctionReady();
 });
 </script>
+</body>
+
 </html>

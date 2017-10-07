@@ -204,10 +204,6 @@ function introGuide() {
 				break;
 			}
 			break;
-		case 'secondExLine4':
-			break;
-		case 'finalDiv':
-			break;
 		}
 	});
 	

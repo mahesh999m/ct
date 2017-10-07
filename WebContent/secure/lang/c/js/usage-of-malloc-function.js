@@ -51,6 +51,7 @@ function introGuide() {
 			element : '#firstExDiv',
 			intro : '',
 			animateStep : 'tweenmaxSvg',
+			tooltipClass: 'hide',
 		}, {
 			element : '#firstExLine3',
 			intro : '',
@@ -58,6 +59,7 @@ function introGuide() {
 			element : '#firstExDiv',
 			intro : '',
 			animateStep : 'tweenmax',
+			tooltipClass: 'hide',
 		}, {
 			element : '#firstExLine4',
 			intro : '',
@@ -68,6 +70,7 @@ function introGuide() {
 		}, {
 			element : '#preCodeTwo',
 			intro : '',
+			tooltipClass : 'hide',
 		}, {
 			element : '#secondExLine1',
 			intro : '',
@@ -92,6 +95,7 @@ function introGuide() {
 			element : '#secondExDiv',
 			intro : '',
 			animateStep: 'tweenmaxArrowAnimate',
+			tooltipClass: 'hide',
 		}, {
 			element : '#secondExDiv',
 			intro : '',
@@ -104,8 +108,116 @@ function introGuide() {
 		}]
 	});
 	
+	introjs.onbeforechange(function(targetElement) {
+		var elementId = targetElement.id;
+		switch(elementId) {
+		case 'infoDiv':
+			break;
+		case 'preCode':
+			break;
+		case 'firstExLine1':
+			$("#totalfirstExDiv, #pBox").addClass("opacity00");
+			break;
+		case 'pBox':
+			$("#pBox").addClass("opacity00");
+			break;
+		case 'sizeofSpan':
+			break;
+		case 'firstExLine2':
+			$("#dataTypeFloat1, #dataTypeFloat2").addClass("blinking");
+			$("#newBox").addClass("opacity00");
+			break;
+		case 'mallocSpan1':
+			$(".blinking").removeClass("blinking");
+			break;
+		case 'firstExLine3':
+			$('#Value').addClass('opacity00');
+			break;
+		case 'firstExLine4':
+			break;
+		case 'newBox':
+			$(".blinking").removeClass("blinking");
+			$("#newBox").addClass("opacity00");
+			$("#cValue").addClass("opacity00");
+			$('#svg1').remove();
+			break;
+		case 'firstExDiv':
+			var animateStep = introjs._introItems[introjs._currentStep].animateStep;
+			switch(animateStep) {
+			case 'tweenmaxSvg':
+				$("#cValue, #value").addClass("opacity00");
+				$('#svg1').remove();
+				
+				break;
+			case 'tweenmax':
+				$('#Value').addClass('opacity00');
+				break;
+			}
+			break;
+		case 'consoleId':
+			break;
+		case 'preCodeTwo':
+			break;
+		case 'secondExLine1':
+			$('#kBox').addClass('opacity00');
+			break;
+		case 'kBox':
+			$('#kBox').addClass('opacity00');
+			break;
+		case 'sizeofSpan2':
+			break;
+		case 'mallocSpan2':
+			$(".blinking").removeClass("blinking");
+			break;
+		case 'arrayDiv':
+			$(".blinking").removeClass("blinking");
+			$('#arrayDiv, #kValue').addClass('opacity00');
+			$('#svg2').remove();
+			break;
+		case 'secondExLine2':
+			$('#arrayDiv').addClass('opacity00');
+			$("#dataTypeInt1, #dataTypeInt2").addClass("blinking");
+			break;
+		case 'secondExDiv':
+			var animateStep = introjs._introItems[introjs._currentStep].animateStep;
+			switch(animateStep) {
+				case 'tweenmaxArrowAnimate':
+					$('#kValue').addClass('opacity00');
+					$('#svg2').remove();
+					break;
+				case 'scaleFactor':
+					break;
+			}
+			break;
+		}
+	});
+	
 	introjs.onafterchange(function(targetElement) {
 		$(".introjs-skipbutton, .introjs-prevbutton, .introjs-nextbutton").hide();
+		
+		
+		// ********************** start back button logic
+		
+		if (introjs._introItems[introjs._currentStep]["tooltipClass"] == "hide") {
+			introjs._introItems[introjs._currentStep]["animation"] = "repeat";
+		}
+		
+		if (introjs._introItems[introjs._currentStep]["isCompleted"]) {
+			if (introjs._currentStep != 1) {
+				$('.introjs-prevbutton').show();
+			}
+
+			$('.introjs-nextbutton').show();
+			return;
+		}
+		
+		if (introjs._introItems[introjs._currentStep]["animation"] != "repeat") {
+			introjs._introItems[introjs._currentStep]["isCompleted"] = true;
+		}
+		
+		// ********************** end back button logic
+		
+		
 		var elementId = targetElement.id;
 		switch(elementId) {
 		case 'infoDiv':
@@ -125,7 +237,7 @@ function introGuide() {
 				typing('.introjs-tooltiptext',"Let us consider an example.", function() {
 					TweenMax.to($("#preCode"), 1, {opacity: 1, onComplete: function(){
 						$("#preCode").removeClass("opacity00");
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
+						$('.introjs-nextbutton').show();
 					}});
 				});
 			});
@@ -210,7 +322,6 @@ function introGuide() {
 								"as the sizeof operator has returned <span class='ct-code-b-yellow'>4 bytes</span> for the" +
 								" <span class='ct-code-b-yellow'>float</span> datatype. " +
 								"<br><br>Let us assume the address as <span class='ct-code-b-yellow'>1054</span>.";
-					
 					typing($('.introjs-tooltiptext'), text, function() {
 						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
@@ -222,6 +333,7 @@ function introGuide() {
 			switch(animateStep) {
 			case 'tweenmaxSvg':
 				$('.introjs-helperLayer').one('transitionend', function() {
+					$('.introjs-tooltip').removeClass('hide');
 					var text = "So the address is stored into the variable <span class='ct-code-b-yellow'>p</span> i.e. " +
 								"<span class='ct-code-b-yellow'>1054</span> is stored.";
 					typing('.introjs-tooltiptext', text, function() {
@@ -231,6 +343,7 @@ function introGuide() {
 				break;
 			case 'tweenmax':
 				$('.introjs-helperLayer').one('transitionend', function() {
+					$('.introjs-tooltip').removeClass('hide');
 					var text = "The <span class='ct-code-b-yellow'>pointer</span> variable <span class='ct-code-b-yellow'>p</span> is " +
 								"pointed to the address <span class='ct-code-b-yellow'>1054</span>.<br>" +
 								"<span class='ct-code-b-yellow'>*p</span> represents value at that address. " +
@@ -245,21 +358,32 @@ function introGuide() {
 			break;
 		case 'consoleId':
 			$('.introjs-helperLayer').one('transitionend', function() {
-				$("#printText").removeClass("visibility-hidden");
-				var text = $("#printText").html();
-				typing($("#printText"), text, function() {
-					setTimeout(function () {
-						introjs.nextStep();
-					}, 1000);
-				});
+				if (introjs._direction == "forward") {
+					$("#printText").removeClass("visibility-hidden");
+					var text = $("#printText").html();
+					typing($("#printText"), text, function() {
+						setTimeout(function () {
+							introjs.nextStep();
+						}, 500);
+					});
+				} else {
+					$("#printText").addClass("visibility-hidden");
+					introjs.previousStep();
+					$("#exampleTwo").addClass("opacity00");
+					$('#preCodeTwo').removeAttr('style').addClass('opacity00');
+				}
+				
 			});
 			break;
 		case 'preCodeTwo':
 			introjs.refresh();
+			$('.introjs-fixParent').removeClass('introjs-fixParent');
 			$('.introjs-helperLayer').one('transitionend', function() {
+				$('.introjs-tooltip').removeClass('hide');
 				$("#exampleTwo").removeClass("opacity00");
 				typing('.introjs-tooltiptext', "Let us consider another example.", function() {
-					TweenMax.to($("#preCodeTwo"), 1, {opacity: 1, onComplete: function(){
+					TweenMax.to($("#preCodeTwo"), 0.5, {opacity: 1, onComplete: function(){
+						introjs.refresh();
 						$("#preCodeTwo").removeClass("opacity00");
 						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					}});
@@ -333,20 +457,38 @@ function introGuide() {
 			});
 			break;
 		case 'secondExDiv':
-			var animateStep = introjs._introItems[introjs._currentStep].animateStep;
-			switch(animateStep) {
-			case 'tweenmaxArrowAnimate':
-					var text = "The base address of <span class='ct-code-b-yellow'>heap memory</span> is stored in " +
-							"<span class='ct-code-b-yellow'>k</span><br> " +
-							"i.e <span class='ct-code-b-yellow'>1924</span> is stored in <span class='ct-code-b-yellow'>k</span>.";
-					typing('.introjs-tooltiptext', text, function() {
-						tweenmaxArrayAnimation();
+				var animateStep = introjs._introItems[introjs._currentStep].animateStep;
+				switch(animateStep) {
+				case 'tweenmaxArrowAnimate':
+					$('.introjs-helperLayer').one('transitionend', function() {
+						$('.introjs-tooltip').removeClass('hide');
+						var text = "The base address of <span class='ct-code-b-yellow'>heap memory</span> is stored in " +
+								"<span class='ct-code-b-yellow'>k</span><br> " +
+								"i.e <span class='ct-code-b-yellow'>1924</span> is stored in <span class='ct-code-b-yellow'>k</span>.";
+						typing('.introjs-tooltiptext', text, function() {
+							tweenmaxArrayAnimation();
+						});
 					});
-				break;
-			case 'scaleFactor':
-					scaleFactorExplanation();
-				break;
-			}
+					break;
+				case 'scaleFactor':
+					//$('.introjs-helperLayer').one('transitionend', function() {
+						$('.introjs-tooltip').css("min-width", "370px");
+						var text = "Here the locations are accessed using pointers as :<br><br>" +
+									"<ul class='ct-code-b-yellow'><li>(p + 0) --> (1924 + 0) --> (1924 + (0 x 2)) = 1924.</li>"+
+									"<li>(p + 1) --> (1924 + 1) --> (1924 + (1 x 2)) = 1926.</li></ul><br><br>" +
+									"The value stored at the address can be accessed by appending <span class='ct-code-b-yellow'>*</span> before the address.<br>" +
+									"<ul><li class='ct-code-b-yellow'>*(p + 0) --> *(1924) --> value at 1924.</li></ul>" +
+									"<br><span class='ct-code-b-yellow'>Note:</span><ul><li> In (p + 0), <span class='ct-code-b-yellow'>p</span> is " +
+									"<span class='ct-code-b-yellow'>address</span> and <span class='ct-code-b-yellow'>0</span> is the " +
+									"<span class='ct-code-b-yellow'>array index</span> value. </li>" +
+									"<li>This <span class='ct-code-b-yellow'>index</span> value is not added to the address but to be multiplied by 2.</li>" +
+									" <li>Here 2 is known as the <span class='ct-code-b-yellow'>scale factor</span> for <span class='ct-code-b-yellow'>int</span>.</li></ul>";
+						typing('.introjs-tooltiptext', text, function() {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
+					//});
+					break;
+				}
 			break;
 		case 'restart':
 			$(".introjs-tooltip").css("min-width", "-moz-max-content");
@@ -370,7 +512,7 @@ function typing(selector, text, callBackFunction) {
 		$(".introjs-nextbutton").removeClass("opacity00");
 		if (typeof callBackFunction === "function") {
 			callBackFunction();
-			introjs._introItems[introjs._currentStep].intro = introjs._introItems[introjs._currentStep]["intro"] +  $(".introjs-tooltiptext").html();
+			introjs._introItems[introjs._currentStep].intro = $(".introjs-tooltiptext").html();
 		}
 	})
 }
@@ -418,7 +560,6 @@ function tweenmaxValueAnimation() {
 }
 
 function tweenmaxArrayAnimation() {
-	console.log('i am inside function');
 	var l3 = $("#firstAddressId").offset();
 	var l4 = $("#kValue").offset();
 	var topLength = l3.top - l4.top;
@@ -444,26 +585,23 @@ function boxAnimation(id, callBackFunction) {
 	});
 }
 
-function scaleFactorExplanation() {
-	if (introjs._introItems[introjs._currentStep].isCompleted == "false") {
-		$(".introjs-tooltip").css("min-width", "370px");
-		var text = "Here the locations are accessed using pointers as :<br><br>" +
-					"<ul class='ct-code-b-yellow'><li>(p + 0) --> (1924 + 0) --> (1924 + (0 x 2)) = 1924.</li>"+
-					"<li>(p + 1) --> (1924 + 1) --> (1924 + (1 x 2)) = 1926.</li></ul><br><br>" +
-					"The value stored at the address can be accessed by appending <span class='ct-code-b-yellow'>*</span> before the address.<br>" +
-					"<ul><li class='ct-code-b-yellow'>*(p + 0) --> *(1924) --> value at 1924.</li></ul>" +
-					"<br><span class='ct-code-b-yellow'>Note:</span><ul><li> In (p + 0), <span class='ct-code-b-yellow'>p</span> is " +
-					"<span class='ct-code-b-yellow'>address</span> and <span class='ct-code-b-yellow'>0</span> is the " +
-					"<span class='ct-code-b-yellow'>array index</span> value. </li>" +
-					"<li>This <span class='ct-code-b-yellow'>index</span> value is not added to the address but to be multiplied by 2.</li>" +
-					" <li>Here 2 is known as the <span class='ct-code-b-yellow'>scale factor</span> for <span class='ct-code-b-yellow'>int</span>.</li></ul>";
-		typing('.introjs-tooltiptext', text, function() {
-			$('.introjs-nextbutton, .introjs-prevbutton').show();
-		});
-	} else {
+/*function scaleFactorExplanation() {
+	introjs.refresh();
+	$(".introjs-tooltip").css("min-width", "370px");
+	var text = "Here the locations are accessed using pointers as :<br><br>" +
+				"<ul class='ct-code-b-yellow'><li>(p + 0) --> (1924 + 0) --> (1924 + (0 x 2)) = 1924.</li>"+
+				"<li>(p + 1) --> (1924 + 1) --> (1924 + (1 x 2)) = 1926.</li></ul><br><br>" +
+				"The value stored at the address can be accessed by appending <span class='ct-code-b-yellow'>*</span> before the address.<br>" +
+				"<ul><li class='ct-code-b-yellow'>*(p + 0) --> *(1924) --> value at 1924.</li></ul>" +
+				"<br><span class='ct-code-b-yellow'>Note:</span><ul><li> In (p + 0), <span class='ct-code-b-yellow'>p</span> is " +
+				"<span class='ct-code-b-yellow'>address</span> and <span class='ct-code-b-yellow'>0</span> is the " +
+				"<span class='ct-code-b-yellow'>array index</span> value. </li>" +
+				"<li>This <span class='ct-code-b-yellow'>index</span> value is not added to the address but to be multiplied by 2.</li>" +
+				" <li>Here 2 is known as the <span class='ct-code-b-yellow'>scale factor</span> for <span class='ct-code-b-yellow'>int</span>.</li></ul>";
+	typing('.introjs-tooltiptext', text, function() {
 		$('.introjs-nextbutton, .introjs-prevbutton').show();
-	}
-}
+	});
+}*/
 
 function svgAppend(selector, svgId) {
 	var code = '<svg class="svg-css" id="' + svgId + '"></svg>';
