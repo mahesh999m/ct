@@ -94,13 +94,8 @@ function introGuide() {
 		}, {
 			element : '#secondExDiv',
 			intro : '',
-			animateStep: 'tweenmaxArrowAnimate',
-			tooltipClass: 'hide',
-		}, {
-			element : '#secondExDiv',
-			intro : '',
-			animateStep: 'scaleFactor',
 			position : 'left',
+			tooltipClass: 'hide',
 		}, {
 			element :'#restart',
 			intro : "Click to restart.",
@@ -111,17 +106,11 @@ function introGuide() {
 	introjs.onbeforechange(function(targetElement) {
 		var elementId = targetElement.id;
 		switch(elementId) {
-		case 'infoDiv':
-			break;
-		case 'preCode':
-			break;
 		case 'firstExLine1':
 			$("#totalfirstExDiv, #pBox").addClass("opacity00");
 			break;
 		case 'pBox':
 			$("#pBox").addClass("opacity00");
-			break;
-		case 'sizeofSpan':
 			break;
 		case 'firstExLine2':
 			$("#dataTypeFloat1, #dataTypeFloat2").addClass("blinking");
@@ -132,8 +121,6 @@ function introGuide() {
 			break;
 		case 'firstExLine3':
 			$('#Value').addClass('opacity00');
-			break;
-		case 'firstExLine4':
 			break;
 		case 'newBox':
 			$(".blinking").removeClass("blinking");
@@ -154,17 +141,12 @@ function introGuide() {
 				break;
 			}
 			break;
-		case 'consoleId':
-			break;
-		case 'preCodeTwo':
-			break;
 		case 'secondExLine1':
-			$('#kBox').addClass('opacity00');
+			$('#kBox, #secondExDiv').addClass('opacity00');
 			break;
 		case 'kBox':
-			$('#kBox').addClass('opacity00');
-			break;
-		case 'sizeofSpan2':
+			$('.introjs-fixParent').removeClass('introjs-fixParent');
+			$('#kBox, #secondExDiv').addClass('opacity00');
 			break;
 		case 'mallocSpan2':
 			$(".blinking").removeClass("blinking");
@@ -178,23 +160,11 @@ function introGuide() {
 			$('#arrayDiv').addClass('opacity00');
 			$("#dataTypeInt1, #dataTypeInt2").addClass("blinking");
 			break;
-		case 'secondExDiv':
-			var animateStep = introjs._introItems[introjs._currentStep].animateStep;
-			switch(animateStep) {
-				case 'tweenmaxArrowAnimate':
-					$('#kValue').addClass('opacity00');
-					$('#svg2').remove();
-					break;
-				case 'scaleFactor':
-					break;
-			}
-			break;
 		}
 	});
 	
 	introjs.onafterchange(function(targetElement) {
 		$(".introjs-skipbutton, .introjs-prevbutton, .introjs-nextbutton").hide();
-		
 		
 		// ********************** start back button logic
 		
@@ -457,38 +427,16 @@ function introGuide() {
 			});
 			break;
 		case 'secondExDiv':
-				var animateStep = introjs._introItems[introjs._currentStep].animateStep;
-				switch(animateStep) {
-				case 'tweenmaxArrowAnimate':
-					$('.introjs-helperLayer').one('transitionend', function() {
-						$('.introjs-tooltip').removeClass('hide');
-						var text = "The base address of <span class='ct-code-b-yellow'>heap memory</span> is stored in " +
-								"<span class='ct-code-b-yellow'>k</span><br> " +
-								"i.e <span class='ct-code-b-yellow'>1924</span> is stored in <span class='ct-code-b-yellow'>k</span>.";
-						typing('.introjs-tooltiptext', text, function() {
-							tweenmaxArrayAnimation();
-						});
-					});
-					break;
-				case 'scaleFactor':
-					//$('.introjs-helperLayer').one('transitionend', function() {
-						$('.introjs-tooltip').css("min-width", "370px");
-						var text = "Here the locations are accessed using pointers as :<br><br>" +
-									"<ul class='ct-code-b-yellow'><li>(p + 0) --> (1924 + 0) --> (1924 + (0 x 2)) = 1924.</li>"+
-									"<li>(p + 1) --> (1924 + 1) --> (1924 + (1 x 2)) = 1926.</li></ul><br><br>" +
-									"The value stored at the address can be accessed by appending <span class='ct-code-b-yellow'>*</span> before the address.<br>" +
-									"<ul><li class='ct-code-b-yellow'>*(p + 0) --> *(1924) --> value at 1924.</li></ul>" +
-									"<br><span class='ct-code-b-yellow'>Note:</span><ul><li> In (p + 0), <span class='ct-code-b-yellow'>p</span> is " +
-									"<span class='ct-code-b-yellow'>address</span> and <span class='ct-code-b-yellow'>0</span> is the " +
-									"<span class='ct-code-b-yellow'>array index</span> value. </li>" +
-									"<li>This <span class='ct-code-b-yellow'>index</span> value is not added to the address but to be multiplied by 2.</li>" +
-									" <li>Here 2 is known as the <span class='ct-code-b-yellow'>scale factor</span> for <span class='ct-code-b-yellow'>int</span>.</li></ul>";
-						typing('.introjs-tooltiptext', text, function() {
-							$('.introjs-nextbutton, .introjs-prevbutton').show();
-						});
-					//});
-					break;
-				}
+			$('.introjs-tooltip').css("min-width", "370px");
+			$('.introjs-helperLayer').one('transitionend', function() {
+				$('.introjs-tooltip').removeClass('hide');
+				var text = "The base address of <span class='ct-code-b-yellow'>heap memory</span> is stored in " +
+						"<span class='ct-code-b-yellow'>k</span><br> " +
+						"i.e <span class='ct-code-b-yellow'>1924</span> is stored in <span class='ct-code-b-yellow'>k</span>.";
+				typing('.introjs-tooltiptext', text, function() {
+					$(".introjs-tooltipbuttons").append("<a class='introjs-button user-btn' onClick='tweenmaxArrayAnimation()'>Next &#8594;</a>");
+				});
+			});
 			break;
 		case 'restart':
 			$(".introjs-tooltip").css("min-width", "-moz-max-content");
@@ -560,6 +508,7 @@ function tweenmaxValueAnimation() {
 }
 
 function tweenmaxArrayAnimation() {
+	$(".user-btn").remove();
 	var l3 = $("#firstAddressId").offset();
 	var l4 = $("#kValue").offset();
 	var topLength = l3.top - l4.top;
@@ -570,7 +519,20 @@ function tweenmaxArrayAnimation() {
 			svgAppend($('#secondExDiv'), 'svg2');
 			svgMarkerAppend($('#svg2'), 'marker2');
 			svgAnimatingLine($('#secondExDiv'), $('#memoryBox3'), $('#memoryBox4'), $('#svg2'), 'svgLine2', 'marker2', function() {	
-				$(".introjs-nextbutton, .introjs-prevbutton").show();
+				var text = "Here the locations are accessed using pointers as :<br><br>" +
+				"<ul class='ct-code-b-yellow'><li>(p + 0) --> (1924 + 0) --> (1924 + (0 x 2)) = 1924.</li>"+
+				"<li>(p + 1) --> (1924 + 1) --> (1924 + (1 x 2)) = 1926.</li></ul><br><br>" +
+				"The value stored at the address can be accessed by appending <span class='ct-code-b-yellow'>*</span> before the address.<br>" +
+				"<ul><li class='ct-code-b-yellow'>*(p + 0) --> *(1924) --> value at 1924.</li></ul>" +
+				"<br><span class='ct-code-b-yellow'>Note:</span><ul><li> In (p + 0), <span class='ct-code-b-yellow'>p</span> is " +
+				"<span class='ct-code-b-yellow'>address</span> and <span class='ct-code-b-yellow'>0</span> is the " +
+				"<span class='ct-code-b-yellow'>array index</span> value. </li>" +
+				"<li>This <span class='ct-code-b-yellow'>index</span> value is not added to the address but to be multiplied by 2.</li>" +
+				" <li>Here 2 is known as the <span class='ct-code-b-yellow'>scale factor</span> for <span class='ct-code-b-yellow'>int</span>.</li></ul>";
+				typing('.introjs-tooltiptext', text, function() {
+					introjs.refresh();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				});
 			});
 		}});
 	});
@@ -585,23 +547,6 @@ function boxAnimation(id, callBackFunction) {
 	});
 }
 
-/*function scaleFactorExplanation() {
-	introjs.refresh();
-	$(".introjs-tooltip").css("min-width", "370px");
-	var text = "Here the locations are accessed using pointers as :<br><br>" +
-				"<ul class='ct-code-b-yellow'><li>(p + 0) --> (1924 + 0) --> (1924 + (0 x 2)) = 1924.</li>"+
-				"<li>(p + 1) --> (1924 + 1) --> (1924 + (1 x 2)) = 1926.</li></ul><br><br>" +
-				"The value stored at the address can be accessed by appending <span class='ct-code-b-yellow'>*</span> before the address.<br>" +
-				"<ul><li class='ct-code-b-yellow'>*(p + 0) --> *(1924) --> value at 1924.</li></ul>" +
-				"<br><span class='ct-code-b-yellow'>Note:</span><ul><li> In (p + 0), <span class='ct-code-b-yellow'>p</span> is " +
-				"<span class='ct-code-b-yellow'>address</span> and <span class='ct-code-b-yellow'>0</span> is the " +
-				"<span class='ct-code-b-yellow'>array index</span> value. </li>" +
-				"<li>This <span class='ct-code-b-yellow'>index</span> value is not added to the address but to be multiplied by 2.</li>" +
-				" <li>Here 2 is known as the <span class='ct-code-b-yellow'>scale factor</span> for <span class='ct-code-b-yellow'>int</span>.</li></ul>";
-	typing('.introjs-tooltiptext', text, function() {
-		$('.introjs-nextbutton, .introjs-prevbutton').show();
-	});
-}*/
 
 function svgAppend(selector, svgId) {
 	var code = '<svg class="svg-css" id="' + svgId + '"></svg>';
