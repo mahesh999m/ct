@@ -168,7 +168,7 @@ div, span {
 
 .animated-border {
 	border-color: rgba(255, 255, 255, 0);
-    animation: 2s ease 0s normal none 1 running animated-border;
+    animation: 0.5s ease 0s normal none 1 running animated-border;
 }
 
 @keyframes animated-border {  
@@ -244,7 +244,7 @@ div, span {
 										<tr id="elementId">
 											<%for (int i = 1; i <= 6; i++) {%>
 												<%if (i > 3) {%>
-													<td class="element-box"><span class="opacity00" id="element<%=i%>"><%=(i - 1)%></span></td>
+													<td class="element-box"><span class="opacity00 first-location-hide" id="element<%=i%>"><%=(i - 1)%></span></td>
 												<%} else {%>
 													<td class="element-box"><span class="" id="element<%=i%>"><%=(i - 1)%></span></td>
 												<%}%>

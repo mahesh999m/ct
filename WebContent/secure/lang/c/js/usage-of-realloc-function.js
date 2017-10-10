@@ -46,6 +46,7 @@ function introGuide() {
 			element : '#firstExDiv',
 			intro : '',
 			animateStep : 'tweenmaxAnimation',
+			tooltipClass: 'hide',
 		}, {
 			element : '#firstExLine3',
 			intro : '',
@@ -53,6 +54,7 @@ function introGuide() {
 			element : '#firstExDiv',
 			intro : '',
 			animateStep : 'reallocMemory',
+			tooltipClass: 'hide',
 		}, {
 			element : '#preCodeTwo',
 			intro : '',
@@ -74,6 +76,7 @@ function introGuide() {
 			element : '#secondExDiv',
 			intro : '',
 			animateStep : 'tweenmaxAnimation',
+			tooltipClass: 'hide',
 		}, {
 			element : '#secondExLine3',
 			intro : '',
@@ -81,6 +84,7 @@ function introGuide() {
 			element : '#secondExDiv',
 			intro : '',
 			animateStep : 'memoryDecrease',
+			tooltipClass: 'hide',
 		}, {
 			element :'#restart',
 			intro : "Click to restart.",
@@ -91,49 +95,73 @@ function introGuide() {
 	introjs.onbeforechange(function(targetElement) {
 		var elementId = targetElement.id;
 		switch(elementId) {
-		case 'infoDiv':
-			break;
 		case 'preCode':
 			introjs.refresh();
 			break;
 		case 'firstExLine1':
+			$('#pBox, #totalfirstExDiv').addClass('opacity00');
 			break;
 		case 'pBox':
+			$('#pBox').addClass('opacity00');
 			break;
 		case 'firstExLine2':
+			$('#firstMemoryAllocation').removeAttr('style');
 			break;
 		case 'firstExLine3':
+			$('#firstMemoryAllocation .small-box[id]').addClass('border-invisible');
+			$('#firstMemoryAllocation #addressId > td[id], #firstMemoryAllocation .first-location-hide').addClass('opacity00');
 			break;
 		case 'firstMemoryAllocation':
+			$('#firstMemoryAllocation').removeAttr('style');
+			$('#pValue').addClass('opacity00');
+			$('#svg1').remove();
 			break;
 		case 'firstExDiv':
 			var animateStep = introjs._introItems[introjs._currentStep].animateStep;
 			switch(animateStep) {
 			case 'tweenmaxAnimation':
+				$('#pValue').addClass('opacity00');
+				$('#svg1').remove();
 				break;
 			case 'reallocMemory':
+				$('#firstMemoryAllocation .small-box[id]').addClass('border-invisible');
+				$("#smallBox4, #smallBox5, #smallBox6").on();
+				$('#firstMemoryAllocation #addressId > td[id], #firstMemoryAllocation .first-location-hide').addClass('opacity00');
+				$("#exampleTwo").addClass("opacity00");
+				$("#preCodeTwo").removeAttr('style').removeClass("opacity00");
 				break;
 			}
 			break;
 		case 'preCodeTwo':
 			introjs.refresh();
+			$('.introjs-fixParent').removeClass('introjs-fixParent');
+			$("#preCodeTwo, #exampleTwo").removeAttr('style').removeClass("opacity00");
 			break;
 		case 'secondExLine1':
+			$('#pBoxSecond, #totalSecondExDiv').addClass('opacity00');
 			break;
 		case 'pBoxSecond':
+			$('.introjs-fixParent').removeClass('introjs-fixParent');
+			$('#pBoxSecond').addClass('opacity00');
+			return;
 			break;
 		case 'secondExLine2':
+			$('#arraySecondDiv').addClass('opacity00');
 			break;
 		case 'arraySecondDiv':
+			$('#arraySecondDiv, #pValueSecond').addClass('opacity00');
+			$('#svg2').remove();
 			break;
 		case 'secondExLine3':
+			$("#secondExBox6, #secondExBox7").removeClass("border-invisible opacity00");
+			$("#secondExAddressBox6, #secondExAddressBox7, #SecondExElement6, #SecondExElement7").removeClass('opacity00');
 			break;
 		case 'secondExDiv':
 			var animateStep = introjs._introItems[introjs._currentStep].animateStep;
 			switch(animateStep) {
 			case 'tweenmaxAnimation':
-				break;
-			case 'memoryDecrease':
+				$('#pValueSecond').addClass('opacity00');
+				$('#svg2').remove();
 				break;
 			}
 			break;
@@ -254,6 +282,7 @@ function introGuide() {
 			switch(animateStep) {
 			case 'tweenmaxAnimation':
 				$('.introjs-helperLayer').one('transitionend', function() {
+					$('.introjs-tooltip').removeClass('hide');
 					typing('.introjs-tooltiptext', "So the base address is stored in pointer variable <span class='ct-code-b-yellow'>p</span>.<br>" +
 							"i.e. <span class='ct-code-b-yellow'>1924</span>.<div id='appendDiv'></div>", function() {
 						$(".introjs-tooltipbuttons").append("<a class='introjs-button user-btn'>Next &#8594;</a>");
@@ -281,6 +310,7 @@ function introGuide() {
 				break;
 			case 'reallocMemory':
 				$('.introjs-helperLayer').one('transitionend', function() {
+					$('.introjs-tooltip').removeClass('hide');
 					typing('.introjs-tooltiptext', "Here, the memory has been <span class='ct-code-b-yellow'>increased</span> from " + 
 							"<span class='ct-code-b-yellow'>3</span> to <span class='ct-code-b-yellow'>6</span> locations.", function() {
 						$(".introjs-tooltipbuttons").append("<a class='introjs-button user-btn'>Next &#8594;</a>");
@@ -288,6 +318,7 @@ function introGuide() {
 							$(".user-btn").remove();
 							$("#smallBox4, #smallBox5, #smallBox6").removeClass("border-invisible");
 							$("#smallBox4, #smallBox5, #smallBox6").addClass("animated-border").one('animationend', function() {
+								$('.animated-border').removeClass('animated-border');
 								$("#smallBox4, #smallBox5, #smallBox6").off();
 								$("#smallBox4, #smallBox5, #smallBox6").css("border-color", "gray");
 								addressRecursion(4);
@@ -302,7 +333,7 @@ function introGuide() {
 			introjs.refresh();
 			$('.introjs-helperLayer').one('transitionend', function() {
 				$("#exampleTwo").removeClass("opacity00");
-				TweenMax.to($("#preCodeTwo"), 1, {opacity: 1, onComplete: function(){
+				TweenMax.to($("#preCodeTwo"), 0.5, {opacity: 1, onComplete: function(){
 					$("#preCodeTwo").removeClass("opacity00");
 					typing('.introjs-tooltiptext',"Let us consider an example on <span class='ct-code-b-yellow'>decreasing</span> the size of" +
 								" memory using <span class='ct-code-b-yellow'>realloc()</span>.", function() {
@@ -317,7 +348,7 @@ function introGuide() {
 							"<span class='ct-code-b-yellow'>int</span>. <br/><br/>" +
 							"An int pointer variable, should always point to an <span class='ct-code-b-yellow'>int</span> value."; 
 				typing('.introjs-tooltiptext', text, function() {
-					$(".introjs-nextbutton, .introjs-prevbutton").show();	
+					$(".introjs-nextbutton, .introjs-prevbutton").show();
 				});
 			});
 			break;
@@ -374,6 +405,7 @@ function introGuide() {
 			switch(animateStep) {
 			case 'tweenmaxAnimation':
 				$('.introjs-helperLayer').one('transitionend', function() {
+					$('.introjs-tooltip').removeClass('hide');
 					typing('.introjs-tooltiptext', "So the base address is stored in pointer variable <span class='ct-code-b-yellow'>p</span>.<br>" +
 							"i.e., <span class='ct-code-b-yellow'>2012</span>.", function() {
 						$(".introjs-tooltipbuttons").append("<a class='introjs-button user-btn'>Next &#8594;</a>");
@@ -401,6 +433,7 @@ function introGuide() {
 				break;
 			case 'memoryDecrease':
 				$('.introjs-helperLayer').one('transitionend', function() {
+					$('.introjs-tooltip').removeClass('hide');
 					typing('.introjs-tooltiptext', "Here, the memory has been <span class='ct-code-b-yellow'>decreased</span> by " + 
 								"<span class='ct-code-b-yellow'>2</span> locations.", function() { 
 						$(".introjs-tooltipbuttons").append("<a class='introjs-button user-btn'>Next &#8594;</a>");
@@ -528,25 +561,23 @@ function elementRecursion(i) {
 			elementRecursion(++i);
 		}
 		else {
-			$(".introjs-nextbutton").show();
+			$(".introjs-nextbutton, .introjs-prevbutton").show();
 		}
 	});
 }
 
 function tweenmaxElementOpacity(i) {
 	$("#SecondExElement" + i).addClass("opacity00", function() {
-	//TweenMax.to($("#SecondExElement" + i), 1, {opacity: 0}, function() {
 		if (i < 7) {
 			tweenmaxElementOpacity(++i);
 		} else {
-			$(".introjs-nextbutton").show();
+			$(".introjs-nextbutton, .introjs-prevbutton").show();
 		}
 	});
 }
 
 function tweenmaxAddressOpacity(i) {
 	$("#secondExAddressBox" + i).addClass("opacity00", function() {
-	//TweenMax.to($("#secondExAddressBox" + i), 1, {opacity: 0}, function() {
 		if (i < 7) {
 			tweenmaxAddressOpacity(++i);
 		} else {
