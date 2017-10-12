@@ -125,7 +125,7 @@ pre > span {
 	display: none;
 	marker-end: url("#arrowEnd");
 	position: relative;
-	stroke: gray;
+	stroke: black;
 	stroke-width: 2; 
 }
 
@@ -172,23 +172,29 @@ pre > span {
 	color: green;
 	font-weight: bold;
 }
+
 .blue {
  	border:1px solid blue;
  }
+ 
  .red {
  	border:1px solid red;
  }
+ 
  .green {
  	border:1px solid green;
  }
+ 
   .red-text {
  	color: red;
  	font-weight: bold;
  }
+ 
   .green-text {
  	color: green;
  	font-weight: bold;
  }
+ 
   .blue-text {
  	color: blue;
  	font-weight: bold;
@@ -203,6 +209,29 @@ pre > span {
 	<div class="col-xs-12">
 		<div class='col-xs-5'>
 			<div class='col-xs-12 box-border'>
+<!-- <pre class='creamPreTab4' id='preCode'>
+<span>#include&lt;iostream&gt;</span>
+<span>using namespace std;</span>
+int <b class='ct-blue-color'>main()</b> {
+	<span id='line1'>int *p, m, n, i, j;</span>
+	<span id='printf1'>cout << "Enter number of rows and columns : ";</span>
+	<span id='scanf1'>cin >> m >> n;</span>
+	<span id='pLine'>p = <span class='ct-green-color'>new int[m * n]</span>;</span>
+	<span id='printf2'>cout << "Enter the matrix elements : ";</span>
+	<span id='forScanf'>for (i = 0; i < m; i++) {
+		for (j = 0; j < n; j++) {
+			<span id='scanf2'>cin >> *(p + (i * n) + j);</span>
+		}
+	}</span>
+	<span id='printf3'>cout << "The given matrix is : \n";</span>
+	<span id='forPrintf'>for (i = 0; i < m; i++) {
+		for (j = 0; j < n; j++) {
+			<span id='printf4'>cout << *(p + (i * n) + j) << " ";</span>
+		}
+		<span id='printf5'>cout << "\n";</span>
+	}</span>
+}
+</pre> -->
 <pre class='creamPreTab4' id='preCode'>
 void <b class='ct-blue-color'>main()</b> {
 	<span id='line1'>int *p, m, n, i, j;</span>
@@ -231,7 +260,7 @@ void <b class='ct-blue-color'>main()</b> {
 				<div class='col-xs-12 vertical-align-center' id='animationBox'>
 					<div class='col-xs-4' id='variablesBox'>
 						<div class='center width200'>
-							<div class='col-xs-12 visibility-hidden' id='pBox'>
+							<div class='col-xs-12 opacity00' id='pBox'>
 								<div class='col-xs-3 Vertical-text-center'>p</div>
 								<div class="col-xs-7 text-center">
 									<div><span class='color-gray'>2 bytes</span></div>
@@ -241,14 +270,14 @@ void <b class='ct-blue-color'>main()</b> {
 							</div>
 						</div>
 					</div>
-					<div class='col-xs-8 visibility-hidden' id='arrayBox'>
+					<div class='col-xs-8 opacity00' id='arrayBox'>
 						<table class='table-css'>
 							<tbody><tr></tr><tr></tr><tr></tr></tbody>
 						</table>
 					</div>
 					
 					<svg class='svg-css' id='svg'>
-						<marker id="arrowEnd" refX="4" refY="2.5" markerWidth="5" markerHeight="5" orient="auto" style="fill: gray;">
+						<marker id="arrowEnd" refX="4" refY="2.5" markerWidth="5" markerHeight="5" orient="auto" style="fill: black;">
 							<path d="M0,0 L5,2.5 L0,5 Z"/>
 						</marker>
 						<line class="svg-line" x1="23.8%" y1="50%" x2="25%" y2="50%"/>

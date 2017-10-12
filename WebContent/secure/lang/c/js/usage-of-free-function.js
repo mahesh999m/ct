@@ -186,6 +186,7 @@ function introGuide() {
 			element : '#secondExMemory',
 			intro : '',
 			animateStep : 'pHeapRemove',
+			tooltipClass: 'hide',
 		}, {
 			element : '#codeLine8',
 			intro : '',
@@ -193,6 +194,7 @@ function introGuide() {
 			element : '#secondExMemory',
 			intro : '',
 			animateStep : 'qHeapRemove',
+			tooltipClass: 'hide',
 		}, {
 			element :'#restart',
 			intro : "Click to restart.",
@@ -266,8 +268,12 @@ function introGuide() {
 			case 'valueSum':
 				break;
 			case 'pHeapRemove':
+				$('#pSecondExValue').text("1038");
+				$('#svg2, #dynamicDiv1').removeAttr('style');
 				break;
 			case 'qHeapRemove':
+				$('#qValue').text("1992");
+				$('#svg3, #dynamicDiv2').removeAttr('style');
 				break;
 			}
 			break;
@@ -296,8 +302,12 @@ function introGuide() {
 		case 'codeLine6':
 			break;
 		case 'codeLine7':
+			$('#pSecondExValue').text("1038");
+			$('#svg2, #dynamicDiv1').removeAttr('style');
 			break;
 		case 'codeLine8':
+			$('#qValue').text("1992");
+			$('#svg3, #dynamicDiv2').removeAttr('style');
 			break;
 		case 'consoleId':
 			var animateStep = introjs._introItems[introjs._currentStep].animateStep;
@@ -587,6 +597,7 @@ function introGuide() {
 			case 'scaningValues':
 				$('.introjs-helperLayer').one('transitionend', function() {
 					$('.introjs-tooltip').removeClass('hide');
+					$('.heap-value').empty();
 					var typingContent = "The values entered by the user are stored in the <span class='ct-code-b-yellow'>dynamically allocated memory</span>.";
 					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
 						$('#consoleInputLine').removeAttr('contenteditable placeholder');
@@ -624,6 +635,7 @@ function introGuide() {
 				break;
 			case 'pHeapRemove':
 				$('.introjs-helperLayer').one('transitionend', function() {
+					$('.introjs-tooltip').removeClass('hide');
 					var typingContent = "When a call to the <span class='ct-code-b-yellow'>free()</span> function is made, it " + 
 									"frees the dynamic memory allocated by the <span class='ct-code-b-yellow'>malloc()</span> function and returns a " +
 									"<span class='ct-code-b-yellow'>NULL</span> value.<br/><br/>This NULL value is stored in <span class='ct-code-b-yellow'>p</span>.";
@@ -644,6 +656,7 @@ function introGuide() {
 				break;
 			case 'qHeapRemove':
 				$('.introjs-helperLayer').one('transitionend', function() {
+					$('.introjs-tooltip').removeClass('hide');
 					var typingContent = "When a call to the <span class='ct-code-b-yellow'>free()</span> function is made, it " + 
 									"frees the dynamic memory allocated by the <span class='ct-code-b-yellow'>malloc()</span> function and returns a " +
 									"<span class='ct-code-b-yellow'>NULL</span> value.<br><br>This NULL value is stored in <span class='ct-code-b-yellow'>q</span>";
@@ -718,9 +731,7 @@ function introGuide() {
 						introjs.nextStep();
 					}, 1000);
 				} else {
-					console.log('codeLine4');
 					setTimeout(function () {
-						console.log('codeLine4');
 						introjs.previousStep();
 					}, 1000);
 				}
@@ -759,7 +770,6 @@ function introGuide() {
 							}, 1000);
 						});
 					} else {
-						console.log('printText');
 						$("#printText1").addClass("visibility-hidden");
 						introjs.previousStep();
 					}
@@ -767,50 +777,57 @@ function introGuide() {
 				break;
 			case 'inputValue':
 				$('.introjs-helperLayer').one('transitionend', function() {
+					$('.console-input-line').empty();
+					$('.introjs-tooltip').removeClass('hide');
+					var typingContent = 'Here enter <span class="ct-code-b-yellow">2</span> values and separate each with a space.';
+					typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
+						$('.console-input-line').attr({contenteditable: 'true', placeholder: 'Enter 2 values'});
+						charAtEnd(document.getElementById('consoleInputLine'));
+					});
+				});
+				break;
+			case 'outputPrint':
+				$('.introjs-helperLayer').one('transitionend', function() {
 					if (introjs._direction == "forward") {
-						$('.introjs-tooltip').removeClass('hide');
-						var typingContent = 'Here enter <span class="ct-code-b-yellow">2</span> values and separate each with a space.';
-						typing('.introjs-tooltiptext', typingContent, typingInterval, 'white', function() {
-							$('.console-input-line').attr({contenteditable: 'true', placeholder: 'Enter 2 values'});
-							charAtEnd(document.getElementById('consoleInputLine'));
+						$("#printText2").removeClass("visibility-hidden");
+						var typingContent = $("#printText2").html();
+						typing('#printText2', typingContent, '30', 'white', function() {
+							setTimeout(function () {
+								introjs.nextStep();
+							}, 1000);
 						});
 					} else {
-						console.log('inputValue');
-						$('.console-input-line').removeAttr('contenteditable placeholder').empty();
+						$("#printText2").addClass("visibility-hidden");
 						introjs.previousStep();
 					}
 					
 				});
 				break;
-			case 'outputPrint':
-				$('.introjs-helperLayer').one('transitionend', function() {
-					$("#printText2").removeClass("visibility-hidden");
-					var typingContent = $("#printText2").html();
-					typing('#printText2', typingContent, '30', 'white', function() {
-						setTimeout(function () {
-							introjs.nextStep();
-						}, 1000);
-					});
-				});
-				break;
 			case 'sumPrint':
 				$("#sumCondition").removeClass("z-index9999999");
 				$('.introjs-helperLayer').one('transitionend', function() {
-					$("#result").append(parseInt($("#pHeapValue").text()) + parseInt($("#qHeapValue").text()));
-					setTimeout(function () {
-						introjs.nextStep();
-					}, 1000);
+					if (introjs._direction == "forward") {
+						$("#result").append(parseInt($("#pHeapValue").text()) + parseInt($("#qHeapValue").text()));
+						setTimeout(function () {
+							introjs.nextStep();
+						}, 1000);
+					} else {
+						$("#result").empty();
+						setTimeout(function () {
+							introjs.previousStep();
+						}, 1000);
+					}
 				});
 				break;
 			}
 			break;
-		case 'sumCondition':
+		/*case 'sumCondition':
 			$('.introjs-helperLayer').one('transitionend', function() {
 				setTimeout(function () {
 					introjs.nextStep();
 				}, 1000);
 			});
-			break;
+			break;*/
 		case 'restart':
 			$(".introjs-tooltip").css({"min-width" : "110px"});
 			$('.introjs-helperLayer').one("transitionend", function() {
