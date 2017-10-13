@@ -126,7 +126,7 @@ pre > span {
 	display: none;
 	marker-end: url("#arrowEnd");
 	position: relative;
-	stroke: gray;
+	stroke: black;
 	stroke-width: 2; 
 }
 
@@ -201,7 +201,7 @@ void <b class="ct-blue-color">main()</b> {
 				<div class='col-xs-12 vertical-align-center' id='animationBox'>
 					<div class='col-xs-5' id='variablesBox'>
 						<div class='center width200'>
-							<div class='col-xs-12 visibility-hidden' id='pBox'>
+							<div class='col-xs-12 opacity00' id='pBox'>
 								<div class='col-xs-3 Vertical-text-center'>p</div>
 								<div class="col-xs-7 text-center">
 									<div><span class='color-gray'>2 bytes</span></div>
@@ -211,7 +211,7 @@ void <b class="ct-blue-color">main()</b> {
 							</div>
 						</div>
 					</div>
-					<div class='col-xs-7 visibility-hidden' id='arrayBox'>
+					<div class='col-xs-7 opacity00' id='arrayBox'>
 						<table class='table-css'>
 							<tbody>
 								<tr>
@@ -228,7 +228,7 @@ void <b class="ct-blue-color">main()</b> {
 						</table>
 					</div>
 					<svg class='svg-css' id='svg'>
-						<marker id="arrowEnd" refX="4" refY="2.5" markerWidth="5" markerHeight="5" orient="auto" style="fill: gray;">
+						<marker id="arrowEnd" refX="4" refY="2.5" markerWidth="5" markerHeight="5" orient="auto" style="fill: black;">
 							<path d="M0,0 L5,2.5 L0,5 Z"/>
 						</marker>
 						<line class="svg-line" x1="27.8%" y1="50%" x2="29%" y2="48%"/>

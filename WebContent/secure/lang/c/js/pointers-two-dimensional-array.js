@@ -255,7 +255,7 @@ function introJsFunction() {
 				$('td').remove();
 				break;
 			case "arrayBoxValues":
-				
+				$('.arrayValue').empty();
 				break;
 			}
 			break;
