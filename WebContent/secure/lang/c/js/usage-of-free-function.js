@@ -282,8 +282,7 @@ function introGuide() {
 			$('#heapMemoryBox1').addClass('opacity00');
 			break;
 		case 'heapMemoryBox1':
-			$('#heapMemoryBox1').addClass('opacity00');
-			$('#pSecondExValue').addClass('opacity00');
+			$('#heapMemoryBox1, #pSecondExValue').addClass('opacity00');
 			$('#svg2').remove();
 			break;
 		case 'codeLine3':

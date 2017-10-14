@@ -159,7 +159,7 @@ pre > span {
 					<span class='cream-span-css' id='array1'>int a[3];</span>
 				</div>
 				<div class='col-xs-12 padding10 vertical-align-center'>
-					<table align='center' class='visibility-hidden' id='table1'>
+					<table align='center' class='opacity00' id='table1'>
 						<tbody>
 							<tr>
 								<td><span class='variable-color'>a[0]</span></td>
@@ -185,7 +185,7 @@ pre > span {
 				</div>
 				<div class='col-xs-12 padding10 vertical-align-center' id='table2Box'>
 					<div class='col-xs-4'>
-						<table align='center' class='visibility-hidden' id='table2'>
+						<table align='center' class='opacity00' id='table2'>
 							<tbody>
 								<tr>
 									<td><span class='variable-color'>a[0]</span></td>
@@ -204,7 +204,7 @@ pre > span {
 					</div>
 					<div class='col-xs-offset-2 col-xs-6'>
 						<div class='col-xs-12 padding-top-bottom'>
-							<table align='center' class='visibility-hidden' id='table21'>
+							<table align='center' class='opacity00' id='table21'>
 								<tbody>
 									<tr><td class='td-value-css'></td><td class='td-value-css'></td><td class='td-value-css'></td></tr>
 									<tr>
@@ -215,7 +215,7 @@ pre > span {
 							</table>
 						</div>
 						<div class='col-xs-12 padding-top-bottom'>
-							<table align='center' class='visibility-hidden' id='table22'>
+							<table align='center' class='opacity00' id='table22'>
 								<tbody>
 									<tr><td class='td-value-css'></td><td class='td-value-css'></td></tr>
 									<tr>
@@ -226,7 +226,7 @@ pre > span {
 							</table>
 						</div>
 						<div class='col-xs-12 padding-top-bottom'>
-							<table align='center' class='visibility-hidden' id='table23'>
+							<table align='center' class='opacity00' id='table23'>
 								<tbody>
 									<tr>
 										<td class='td-value-css'></td><td class='td-value-css'></td>
