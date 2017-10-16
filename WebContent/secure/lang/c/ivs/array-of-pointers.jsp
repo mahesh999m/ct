@@ -266,7 +266,7 @@ void <b class='ct-blue-color'>main()</b> {
 		</div>
 		<div class='col-xs-6'>
 			<div class='col-xs-offset-1 col-xs-9 box-border text-center'>
-				<div class='col-xs-12 padding10 vertical-align-center visibility-hidden' id='animationBox'>
+				<div class='col-xs-12 padding10 vertical-align-center opacity00' id='animationBox'>
 					<div class='col-xs-4'>
 						<table align='center' id='aTable'>
 							<tbody>
