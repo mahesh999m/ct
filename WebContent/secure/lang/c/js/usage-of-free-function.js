@@ -44,7 +44,7 @@ function introGuide() {
 			}
 		});
 		if (arr.length < maxNumberOfInputs) {
-			$(".introjs-nextbutton").hide();
+			$(".introjs-nextbutton, .introjs-prevbutton").hide();
 		} else if (arr.length == maxNumberOfInputs && $.isNumeric(arr[1])) {
 			$(".introjs-nextbutton, .introjs-prevbutton").show();
 		}

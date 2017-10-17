@@ -507,7 +507,7 @@ function introJsFunction() {
 						}, 1000);
 					});
 				} else {
-					$('.temp:last').removeClass("temp").addClass("visibility-hidden");
+					$('.temp:last').addClass("visibility-hidden").removeClass("temp");
 					introjs.previousStep();
 				}
 			});

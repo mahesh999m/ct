@@ -163,8 +163,6 @@ function introJsFunction() {
 		var elementId = targetElement.id;
 		switch (elementId) {
 		case "array1":
-			$('.temp1, #table1').addClass('opacity00').removeAttr('style');
-			break;
 		case "table1":
 			$('.temp1, #table1').addClass('opacity00').removeAttr('style');
 			break;
@@ -209,24 +207,6 @@ function introJsFunction() {
 					$('#a1Value').empty();
 					$('#svgLine22').remove();
 					break;
-				case "printf1":
-				case "printf2":
-					if (introjs._direction == "backward") {
-						$('.address:last').remove();
-					}
-					break;
-				case "printf3":
-				case "printf4":
-					if (introjs._direction == "backward") {
-						$('.value:last').remove();
-					}
-					break;
-				case "printf5":
-				case "printf6":
-					if (introjs._direction == "backward") {
-						$('.final-value:last').remove();
-					}
-					break;
 				}
 			break;
 		case "a0Line":
@@ -235,6 +215,9 @@ function introJsFunction() {
 		case "a1Line":
 			break;
 		case "printf1":
+			//*** Below code removes the child class ***//
+			$('.output-console-body > .visibility-hidden').find('span').remove();
+			break;
 		case "printf2":
 		case "printf3":
 		case "printf4":

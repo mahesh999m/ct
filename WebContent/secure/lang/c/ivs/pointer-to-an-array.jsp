@@ -196,6 +196,12 @@ td, th {
 .ct-blue-color {
 	font-weight: bold;
 }
+
+[contenteditable="true"]:active,
+[contenteditable="true"]:focus{
+border:none;
+outline:none;
+}
 </style>
 
 </head>
@@ -234,20 +240,20 @@ void <b class='ct-blue-color'>main()</b> {
 			<div class='col-xs-12 box-border'>
 				<div class='col-xs-12 vertical-align-center animation-box text-center' id='animationBox'>
 					<div class='col-xs-4' id='pArrayBox'>
-						<table align='center' class='visibility-hidden' id='pTable'>
+						<table align='center' class='opacity00' id='pTable'>
 							<tbody>
 								<tr><td></td><td><span class='variable-color'>p</span></td></tr>
 								<tr class='pTable-tr-css' id='pTableTr1'>
 									<td><span class='ct-lime-color'>1000</span></td>
-									<td class='td-value-css'><span id='pValue0' class='ct-blue-color'></span></td>
+									<td class='td-value-css'><span id='pValue0' class='ct-blue-color p-value'></span></td>
 								</tr>
 								<tr class='pTable-tr-css' id='pTableTr2'>
 									<td><span class='ct-lime-color'>1002</span></td>
-									<td class='td-value-css'><span id='pValue1' class='ct-blue-color'></span></td>
+									<td class='td-value-css'><span id='pValue1' class='ct-blue-color p-value'></span></td>
 								</tr>
 								<tr class='pTable-tr-css' id='pTableTr3'>
 									<td><span class='ct-lime-color'>1004</span></td>
-									<td class='td-value-css'><span id='pValue2' class='ct-blue-color'></span></td>
+									<td class='td-value-css'><span id='pValue2' class='ct-blue-color p-value'></span></td>
 								</tr>
 							</tbody>
 						</table>
@@ -260,7 +266,7 @@ void <b class='ct-blue-color'>main()</b> {
 				<div id="outputBox" class="output-console center">
 					<div class="output-console-title-bar"><span>Output</span></div>
 <div class="output-console-body"><span class="visibility-hidden">Enter number of rows : </span>
-<span class='output-scanf-line' id='outputScanfLine1'></span>
+<span class='output-scanf-line' tabindex="0" id='outputScanfLine1'></span>
 <span class="visibility-hidden">Enter the matrix elements : </span>
 <span class='output-scanf-line' id='outputScanfLine2'></span>
 <span class="visibility-hidden">The given matrix is : </span>
