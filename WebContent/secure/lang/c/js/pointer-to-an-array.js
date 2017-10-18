@@ -202,6 +202,7 @@ function introJsFunction() {
 					$('#outputScanfLine1').text('').removeAttr('contenteditable placeholder');
 					break;
 				case "forScanf":
+					$('.arrayValue').empty();
 					$('#outputScanfLine2').text('').removeAttr('contenteditable placeholder');
 					break;
 				case "forPrintf":
@@ -234,6 +235,7 @@ function introJsFunction() {
 				}
 			break;
 		case "forScanf":
+			$('#outputScanfLine2').text('').removeAttr('contenteditable placeholder');
 			arr[0] = $('#outputScanfLine1').text();
 			break;
 		case "forPrintf":
@@ -321,7 +323,6 @@ function introJsFunction() {
 						});
 					} else {
 						setTimeout(function() {
-							$('#outputScanfLine2').text('').removeAttr('contenteditable placeholder');
 							$('.temp:last').addClass('visibility-hidden').removeClass('temp');
 							introjs.previousStep();
 						}, 100);
@@ -398,6 +399,7 @@ function introJsFunction() {
 					});
 					break;
 				case "arrayBoxValues":
+					$('#outputPrintfLine').empty();
 					$('#outputScanfLine2').removeAttr('contenteditable placeholder');
 					var splittedText = $('#outputScanfLine2').text().split(" ");
 					$('#outputScanfLine2').html('');

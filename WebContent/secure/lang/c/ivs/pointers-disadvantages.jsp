@@ -195,7 +195,7 @@ void <b class='ct-blue-color'>main()</b> {
 					<div class='col-xs-12 vertical-align-center'>
 						<div class='col-xs-4' id='arrayBox1'>
 							<div class='center width200'>
-								<div class='col-xs-12 visibility-hidden' id='aBox'>
+								<div class='col-xs-12 opacity00' id='aBox'>
 									<div class='col-xs-3 Vertical-text-center'>a</div>
 									<div class="col-xs-7 text-center">
 										<div><span class='color-gray'>2 bytes</span></div>
@@ -205,7 +205,7 @@ void <b class='ct-blue-color'>main()</b> {
 								</div>
 							</div>
 						</div>
-						<div class='col-xs-offset-2 col-xs-6 visibility-hidden' id='mallocTablesDiv1'>
+						<div class='col-xs-offset-2 col-xs-6 opacity00' id='mallocTablesDiv1'>
 							<table align='center'>
 								<tbody>
 									<tr><td class="td-value-css"></td><td class="td-value-css"></td></tr>
@@ -217,7 +217,7 @@ void <b class='ct-blue-color'>main()</b> {
 					<div class='col-xs-12 vertical-align-center'>
 						<div class='col-xs-4' id='arrayBox2'>
 							<div class='center width200'>
-								<div class='col-xs-12 visibility-hidden' id='bBox'>
+								<div class='col-xs-12 opacity00' id='bBox'>
 									<div class='col-xs-3 Vertical-text-center'>b</div>
 									<div class="col-xs-7 text-center">
 										<div><span class='color-gray'>2 bytes</span></div>
@@ -227,7 +227,7 @@ void <b class='ct-blue-color'>main()</b> {
 								</div>
 							</div>
 						</div>
-						<div class='col-xs-offset-2 col-xs-6 visibility-hidden' id='mallocTablesDiv2'>
+						<div class='col-xs-offset-2 col-xs-6 opacity00' id='mallocTablesDiv2'>
 							<table align='center'>
 								<tbody>
 									<tr><td class="td-value-css"></td><td class="td-value-css"></td><td class="td-value-css"></td></tr>

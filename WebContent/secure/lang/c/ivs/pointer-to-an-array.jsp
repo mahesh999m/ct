@@ -266,7 +266,7 @@ void <b class='ct-blue-color'>main()</b> {
 				<div id="outputBox" class="output-console center">
 					<div class="output-console-title-bar"><span>Output</span></div>
 <div class="output-console-body"><span class="visibility-hidden">Enter number of rows : </span>
-<span class='output-scanf-line' tabindex="0" id='outputScanfLine1'></span>
+<span class='output-scanf-line' id='outputScanfLine1'></span>
 <span class="visibility-hidden">Enter the matrix elements : </span>
 <span class='output-scanf-line' id='outputScanfLine2'></span>
 <span class="visibility-hidden">The given matrix is : </span>
