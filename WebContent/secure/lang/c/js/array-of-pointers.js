@@ -159,6 +159,9 @@ function introJsFunction() {
 			intro : "Click to restart.",
 			position : "right"
 		} ]});
+	
+	
+	
 	introjs.onbeforechange(function(targetElement) {
 		var elementId = targetElement.id;
 		switch (elementId) {
