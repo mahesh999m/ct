@@ -236,6 +236,7 @@ function introJsFunction() {
 			$('#outputScanfLine2').text('').removeAttr('contenteditable placeholder');
 			break;
 		case "pLine":
+				arr = $('#outputScanfLine1').text().split(' ');
 				m = arr[0];
 				n = arr[1];
 				$('.svg-line').hide();

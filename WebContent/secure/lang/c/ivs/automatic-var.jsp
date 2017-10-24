@@ -235,7 +235,7 @@ y {
 						<div id="mainmemoryheading" class='text-center opacity00'>In main()</div>
 						<div class="col-xs-12 padding0 visibility-hidden" id="mainMemory">
 							<div id="numberDiv1" class="col-xs-offset-4 col-xs-4 margin10">
-				    			<div class="panel-primary number-div visibility-hidden"  id="addressDiv1">
+				    			<div class="panel-primary number-div opacity00"  id="addressDiv1">
     								<div class="panel-heading text-center number-div"><span id="aheading1">a</span></div>
     								<div class="panel panel-body number-body text-center">
     									<span class="text-center" id="addressValue1"></span>

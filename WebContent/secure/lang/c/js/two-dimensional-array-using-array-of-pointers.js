@@ -76,11 +76,11 @@ var twoDimensionalArrayUsingArrayOfPointersReady = function() {
 			if ((val > 3 || val == 0) && id == 'outputScanfLine1') {
 				$('.introjs-tooltiptext').append("<span class='ct-code-b-red length-error-text'><br/>" + 
 														"Please limit the index " + idx + " number in between 1 and 3 .</span>");
-				$('.introjs-nextbutton, .introjs-prevbutton').show();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			} else if ((val > 9 || val < 0) && id == 'outputScanfLine2') {
 				$('.introjs-tooltiptext').append("<span class='ct-code-b-red length-error-text'><br/>" + 
 														"Please limit the index " + idx + " number in between 0 and 9 .</span>");
-				$('.introjs-nextbutton, .introjs-prevbutton').show();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			}
 		});
 	});
@@ -204,6 +204,7 @@ function introJsFunction() {
 					$('#outputScanfLine1').removeAttr('contenteditable placeholder').empty();
 					break;
 				case "forScanf":
+					$('.arrayValue').text('');
 					$('#outputScanfLine2').removeAttr('contenteditable placeholder').empty();
 					break;
 				case "forPrintf":
@@ -214,6 +215,7 @@ function introJsFunction() {
 			$('#outputScanfLine1').removeAttr('contenteditable placeholder').empty();
 			break;
 		case "forPLine":
+			arr = $('#outputScanfLine1').text().split(' ');
 			m = arr[0];
 			n = arr[1];	
 			$('#mallocTablesDiv, .p-value').empty();
@@ -227,6 +229,7 @@ function introJsFunction() {
 					$('svg').remove();
 					break;
 				case "arrayBoxValues":
+					$('.arrayValue').text('');
 					break;
 				}
 			break;
@@ -411,6 +414,7 @@ function introJsFunction() {
 				case "arrayBoxValues":
 					$('#outputScanfLine2').removeAttr('contenteditable placeholder');
 					var splittedText = $('#outputScanfLine2').text().split(" ");
+					$('#outputPrintfLine').empty();
 					$('#outputScanfLine2').html('');
 					var values = [];
 					$.each(splittedText , function(idx, val) {
