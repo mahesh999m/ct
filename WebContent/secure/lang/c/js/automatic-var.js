@@ -121,6 +121,8 @@ var automaticVarReady=function() {
 		case "numberDiv3" :
 			intro.refresh();
 			$("#addressValue3").empty();
+			$('#numberDiv3').removeClass('box-border');
+			$('#addressDiv3, #functionMemory').addClass('visibility-hidden');
 		break; 
 		}
 	});
