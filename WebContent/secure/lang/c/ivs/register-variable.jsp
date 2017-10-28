@@ -166,6 +166,10 @@ y {
 	font-weight: bold;
 	color: yellow;
 }
+
+.introjs-fixParent {
+	position: relative !important;
+}
 </style>
 </head>
 
@@ -205,7 +209,7 @@ y {
 	<span id="closeBrace">}</span><br>
 </pre>
 					</div>
-					<div class=" col-xs-offset-1 col-xs-10 opacity00 margin20" id="animationDiv">
+					<div class=" col-xs-offset-1 col-xs-10  margin20" id="animationDiv">
 						<div class="col-xs-12 padding0">
 							<div id="mainmemoryheading" class='text-center opacity00'>In register</div>
 							<div class="col-xs-offset-2 col-xs-8 padding0 visibility-hidden" id="mainMemory">
@@ -224,7 +228,7 @@ y {
 				<div class="col-xs-5">
 					<div class="col-xs-12 padding0">
 						<div class="col-xs-offset-2 col-xs-8">
-				  		<div class="panel-primary output-div margin-left opacity00" id="outputDiv">
+				  		<div class="panel-primary output-div margin-left" id="outputDiv">
 		    				<div class="panel-heading text-center" id="outputDiv">Output</div>
 		    				<div class="panel panel-body">
 			    					<div class="output col-xs-12 ct-code-b-yellow" style="font-weight: bold">

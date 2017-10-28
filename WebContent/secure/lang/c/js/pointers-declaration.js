@@ -108,11 +108,20 @@ function introJsFunction() {
 					break;
 			}
 			break;
+		case "pBox":
+			var animateStep = introjs._introItems[introjs._currentStep].animateStep;
+			switch (animateStep) {
+				case "floatP":
+					$('#pBox').addClass('opacity00');
+					break;
+			}
+			break;
 		}
 	});
 
 	introjs.onafterchange(function(targetElement) {
 		$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
+		
 		if (introjs._introItems[introjs._currentStep]["tooltipClass"] == "hide") {
 			introjs._introItems[introjs._currentStep]["animation"] = "repeat";
 		}
@@ -178,14 +187,26 @@ function introJsFunction() {
 					});
 					break;
 				case "intP":
-					TweenMax.to($('#line2'), 1, {opacity: 0, onComplete: function() {
-						$('#line2').text('int *p;');
-						TweenMax.to($('#line2'), 1, {opacity: 1, onComplete: function() {
-							setTimeout(function() {
-								introjs.nextStep();
-							}, 1000);
+					if (introjs._direction == "forward") {
+						TweenMax.to($('#line2'), 1, {opacity: 0, onComplete: function() {
+							$('#line2').text('int *p;');
+							TweenMax.to($('#line2'), 1, {opacity: 1, onComplete: function() {
+								setTimeout(function() {
+									introjs.nextStep();
+								}, 1000);
+							}});
 						}});
-					}});
+					} else {
+						TweenMax.to($('#line2'), 1, {opacity: 0, onComplete: function() {
+							$('#line2').text('float *p;');
+							introjs.refresh();
+							TweenMax.to($('#line2'), 1, {opacity: 1, onComplete: function() {
+								setTimeout(function() {
+									introjs.previousStep();
+								}, 1000);
+							}});
+						}});
+					}
 					break;
 				}
 			});

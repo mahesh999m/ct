@@ -48,6 +48,7 @@ function introGuide() {
 	});
 	
 	introjs.onafterchange(function(targetElement) {
+		
 		$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 		introjs.refresh();
 		var elementId = targetElement.id;
@@ -202,7 +203,7 @@ function introGuide() {
 					});
 				}
 			});
-			break; // 
+			break;
 			
 		case "localVal":
 			$(".introjs-helperLayer").one("transitionend", function() {
@@ -383,7 +384,7 @@ function dynamicSteps() {
 	
 	if (introjs._introItems[introjs._currentStep]["visited_flag"] == undefined) {
 		introjs._introItems[introjs._currentStep]["visited_flag"] = true;
-		console.log('This is visiting flag  ' + introjs._currentStep );
+		console.log(introjs._introItems[introjs._currentStep]["element"]["id"] + ' This is visiting flag  ' + introjs._currentStep );
 		
 		var n = 0;
 		var dynamicStep = getStep("#functionCall" + i, "", "", "right");

@@ -53,11 +53,7 @@ function structuresReady() {
 			element :'#structureName',
 			intro :'',
 			position:"bottom"
-		},/*{
-			element :'#enclosedBraces',
-			intro :'',
-			position:"left"
-		},*/{
+		},{
 			element :'#semicolon',
 			intro :'',
 			position:"right"
@@ -103,8 +99,86 @@ function structuresReady() {
 			position:"right"
 		}]
 	});
+	
+	intro.onbeforechange(function(targetElement) { 
+		var elementId = targetElement.id;
+		switch (elementId) {
+		
+		case "declarationDefination" :
+		break;
+		case "exampleOfStudent" :
+			
+		break;
+		case "members" :
+		break;
+		case "studentStruct" :
+		break;
+		case "studentVariables" :
+			$("#storeS1, #storeS2, #storeS3").addClass("opacity00");
+		break;
+		case "tables" :
+			$("#storeS1, #storeS2, #storeS3").removeClass("opacity00");
+			$("#structureDeclaration").addClass("opacity00");
+		break;
+		case "declarationSyntax" :
+			$("#structureDeclaration").removeClass("opacity00");
+		break;
+		case "keyWord" :
+		break;
+		case "structureName" :
+		break;
+		case "semicolon" :
+			$('#exampleStructureDeclaration').addClass('opacity00');
+		break;
+		case "exampleStructureDeclaration" :
+			$('#exampleStructureDeclaration').removeClass('opacity00');
+		break;
+		case "structutreIdentifier" :
+		break;
+		case "name" :
+		break;
+		case "id" :
+		break;
+		case "long" :
+			$('#definitionSyntax').addClass('opacity00');
+		break;
+		case "definitionSyntax" :
+			$('#definitionSyntax').removeClass('opacity00');
+		break;
+		case "keyWord1" :
+		break;
+		case "structureName1" :
+		break;
+		case "structureVariables" :
+		break;
+		}
+	});
+	
+	
 	intro.onafterchange(function(targetElement) { 
 		$('.introjs-nextbutton, .introjs-skipbutton, .introjs-prevbutton').hide();
+		
+		
+		
+		if (intro._introItems[intro._currentStep]["tooltipClass"] == "hide") {
+			intro._introItems[intro._currentStep]["animation"] = "repeat";
+		}
+		
+		if (intro._introItems[intro._currentStep]["isCompleted"]) {
+			if (intro._currentStep != 2) {
+				$('.introjs-prevbutton').show();
+			}
+
+			$('.introjs-nextbutton').show();
+			return;
+		}
+		
+		if (intro._introItems[intro._currentStep]["animation"] != "repeat") {
+			intro._introItems[intro._currentStep]["isCompleted"] = true;
+		}
+		
+		
+		
 		var elementId = targetElement.id;
 		switch (elementId) {
 		
@@ -113,7 +187,6 @@ function structuresReady() {
 			$("#declarationDefination").removeClass("opacity00");
 		  		typing('.introjs-tooltiptext',"Let us consider an example." ,function() {
 		  			$('.introjs-nextbutton, .introjs-prevbutton').show();
-		  			//$('.introjs-prevbutton').hide();
 				});
 			});
 		break;
@@ -126,7 +199,6 @@ function structuresReady() {
 			});
 		break;
 		case "members" :
-			$('.introjs-nextbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 			$("#informationdiv").removeClass("opacity00");
 		  		typing('.introjs-tooltiptext'," The variables <span class='ct-code-b-yellow'>number</span>, "
@@ -160,13 +232,9 @@ function structuresReady() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 			$("#informationdiv, #storeS1, #storeS2, #storeS3").removeClass("opacity00");
 		  		typing('.introjs-tooltiptext',"The members can be accessed by using the <span class='ct-code-b-yellow'>dot</span> operator."
-		  				+ "<br/><b <span class='ct-code-b-yellow'>>For example</b><br/>To access the members of student <span class='ct-code-b-yellow'>s1</span> we use <br/><span class='ct-code-b-yellow'>s1.number s1.marks s1.section</span><b></b>"
+		  				+ "<br/><b <span class='ct-code-b-yellow'>For example</b><br/>To access the members of student <span class='ct-code-b-yellow'>s1</span> we use <br/><span class='ct-code-b-yellow'>s1.number s1.marks s1.section</span><b></b>"
 		  				+ ".<br/><br/>To access the members of student <span class='ct-code-b-yellow'>s2</span> we use</br> <span class='ct-code-b-yellow'>s2.number s2.marks s2.section</span>."
 		  				+ "</br><br/>To access the  members of student <span class='ct-code-b-yellow'>s3</span> we use </br><span class='ct-code-b-yellow'>s3.number s3.marks s3.section.<span>",function() {
-		  				/*+ "<li>Here s1.a <span class='ct-code-b-yellow'>&#8800;</span> s2.a"
-		  				+ " <span class='ct-code-b-yellow'>&#8800;</span> s3.a.<br> s1.b <span class='ct-code-b-yellow'>&#8800;</span>"
-		  				+ " s2.b <span class='ct-code-b-yellow'>&#8800;</span> s3.b.<br> s1.c <span class='ct-code-b-yellow'>&#8800;</span>"
-		  				+ " s2.c <span class='ct-code-b-yellow'>&#8800;</span> s3.c.</li></ul>" ,function() {*/
 		  			$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
@@ -199,13 +267,6 @@ function structuresReady() {
 			});
 		break;
 		
-		/*case "enclosedBraces" :
-			$(".introjs-helperLayer").one("transitionend", function() {
-		  		typing('.introjs-tooltiptext',"The <span class='ct-code-b-yellow'>members</span> of the structure must be enclosed in braces." ,function() {
-		  			$('.introjs-nextbutton').show();
-		  		});
-			});
-		break;*/
 		case "semicolon" :
 			$(".introjs-helperLayer").one("transitionend", function() {
 		  		typing('.introjs-tooltiptext',"A structure declaration ends with a <span class='ct-code-b-yellow'>semicolon(;)</span>." ,function() {
@@ -336,6 +397,7 @@ function typing(selector, text, callBackFunction) {
 		$(".introjs-nextbutton").removeClass("opacity00");
 		if (typeof callBackFunction === "function") {
 			callBackFunction();
+			intro._introItems[intro._currentStep].intro = $(".introjs-tooltiptext").html();
 		}
 	})
 }
