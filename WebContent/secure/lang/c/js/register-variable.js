@@ -101,6 +101,7 @@ var registerVariableReady = function() {
 	
 	intro.onafterchange(function(targetElement) { 
 		$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
+		
 		// ********************** start ************back button logic
 		if (intro._introItems[intro._currentStep]["tooltipClass"] == "hide") {
 			intro._introItems[intro._currentStep]["animation"] = "repeat";
@@ -116,6 +117,7 @@ var registerVariableReady = function() {
 			intro._introItems[intro._currentStep]["isCompleted"] = true;
 		}
 		// ********************** end ************back button logic
+		
 		var elementId = targetElement.id;
 		switch (elementId) {
 		case "registermainDeclaration" :

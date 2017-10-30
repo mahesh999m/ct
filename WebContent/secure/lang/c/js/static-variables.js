@@ -36,10 +36,12 @@ function introGuide() {
 			element : "#startMain",
 			intro : "",
 			tooltipClass : "hide",
+			stepFlag: "false"
 		}, {
 			element : "#endMain",
 			intro : "",
 			tooltipClass : "hide",
+			stepFlag: "false"
 		}, {
 			element : "#restart",
 			intro : "Click to restart.",
@@ -47,28 +49,127 @@ function introGuide() {
 		} ]
 	});
 	
-	introjs.onafterchange(function(targetElement) {
-		
-		$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
-		introjs.refresh();
+	introjs.onbeforechange(function(targetElement) {
 		var elementId = targetElement.id;
 		switch (elementId) {
+			case "codeAnimation":
+				$(".output-console-body").empty();
+			break;
+			case "functionDec":
+			break;
+			case "mainFunction":
+			break;
+			case "functionDef":
+				$('#varDec').text('int i = 1;');
+			break;
+			case "startMain":
+			break;
+			case "functionCall" + i:
+			break;
+			case "varDec":
+				if (introjs._currentStep == 6) {
+					$("#boxHeading, #functionBox").css({'opacity' : '0'});
+					$("#localVal").addClass("opacity00");
+					$("#animationBox").addClass("opacity00");
+					$("#varDec").removeClass("blinking-white");
+				}
+				if(count != 0) {
+					$("#varDec").text("int i = 1;");
+				}
+			break;
+			case "animationBox":
+				if (introjs._currentStep == 7) {
+					$("#animationBox").addClass("opacity00");
+				}
+				if((i < 4) && (count == 0)) {
+					$("#lVal").text(1);
+					if( i == 1) {
+						$("#boxHeading, #functionBox").css({'opacity' : '0'});
+						$("#localVal").addClass("opacity00");
+					}
+					$("#localVal, #lVal").css({'opacity' : '0'});
+				} else {
+					if(i == 1) {
+						$("#lVal").text(1);
+						$("#localVal").css({opacity: '0'})
+					}
+					$("#lVal").css({opacity: '0'});
+					$("#lVal").addClass("opacity00");
+				}
+			break;
+			case "localVal":
+				$("#lVal").text(1);
+				$("#localVal").removeClass("blinking-white");
+				$("#localVal, #lVal").css({opacity: '1'});
+				$("#localVal, #lVal").removeClass("opacity00");
+				break;
+			case "printf":
+			break;
+			case "iInc":
+			break;
+			case "consoleId":
+				if (count == 0) {
+					$("#lVal").text(1);
+				}
+			break;
+			case "endFunc":
+				if(i < 4 && count == 0) {
+					$("#localVal").removeClass("blinking-white");
+					$("#localVal, #lVal").css({opacity: '1'})
+					$("#localVal, #lVal").removeClass("opacity00");
+				}
+				break;
+			case "endMain":
+				if (count == 1 && introjs._direction == 'backward') {
+					i = 4;
+					--count;
+					for (let t = 1; t <= 3; t++) {
+						$('.output-console-body').append('<div id="runEditor' + t + '">i = 1</div>');
+					}
+				}
+			break;
+		}
+	});
+	
+	introjs.onafterchange(function(targetElement) {
+		$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
+		introjs.refresh();
+		// ********************** start ************back button logic
 		
+		if (introjs._introItems[introjs._currentStep]["tooltipClass"] == "hide") {
+			introjs._introItems[introjs._currentStep]["animation"] = "repeat";
+		}
+		if (introjs._introItems[introjs._currentStep]["isCompleted"]) {
+			if (introjs._currentStep != 0) {
+				$('.introjs-prevbutton').show();
+			}
+			$('.introjs-nextbutton').show();
+			return;
+		}
+		if (introjs._introItems[introjs._currentStep]["animation"] != "repeat") {
+			introjs._introItems[introjs._currentStep]["isCompleted"] = true;
+		}
+		// ********************** end ************back button logic
+		
+		var elementId = targetElement.id;
+		switch (elementId) {
 		case "codeAnimation":
 			$("#codeAnimation").removeClass("opacity00");
 			if(count == 1) {
-				$(".console-print").empty();
 				$("#codeAnimation").removeClass("display");
 				var text = "Now we will try the same program by using a <span class='ct-code-b-yellow'>static variable</span> " 
 							+ " in function <span class='ct-code-b-yellow'>display()</span>.";
+				typing(".introjs-tooltiptext", text, function() {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				});
 			} else {
 				$("#codeAnimation").addClass("display");
 				var text = "This is the program to understand the behavior of <span class='ct-code-b-yellow'>static variables</span>.";
+				typing(".introjs-tooltiptext", text, function() {
+					$('.introjs-nextbutton').show();
+				});
 			}
 			
-			typing(".introjs-tooltiptext", text, function() {
-				$(".introjs-nextbutton").show();
-			});
 			break;
 			
 		case "functionDec":
@@ -76,7 +177,7 @@ function introGuide() {
 				var text = "Let us declare a function <span class='ct-code-b-yellow'>display()</span> " 
 							+ " with return type <span class='ct-code-b-yellow'>void</span> (does <y>not</y> return any value).";
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 			break;
@@ -103,11 +204,16 @@ function introGuide() {
 			
 		case "startMain":
 			$(".introjs-helperLayer").one("transitionend", function() {
-				if(count == 0) {
+				if(count == 0 && introjs._introItems[introjs._currentStep].stepFlag == "false") {
+					introjs._introItems[introjs._currentStep].stepFlag = "true";
 					dynamicSteps();
 				}
 				setTimeout(function() {
-					introjs.nextStep();
+					if (introjs._direction == 'forward') {
+						introjs.nextStep();
+					} else {
+						introjs.previousStep();
+					}
 				}, 500);
 			});
 			break;
@@ -116,7 +222,7 @@ function introGuide() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "A call to the <span class='ct-code-b-yellow'>display()</span> function is made.";
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 			break;
@@ -127,7 +233,7 @@ function introGuide() {
 					var text = "A local variable <span class='ct-code-b-yellow'>i</span> of type <b class='ct-code-b-yellow'>int</b> is declared inside the "
 								+ "<span class='ct-code-b-yellow'>display()</span> function."; 
 					typing(".introjs-tooltiptext", text, function() {
-						$(".introjs-nextbutton").show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				} else {
 					flipEffect("#varDec", "static int i = 1;", function() {
@@ -138,7 +244,7 @@ function introGuide() {
 							+"class='ct-code-b-yellow'>int</span> with the" 
 									+ " <span class='ct-code-b-yellow'>static</span> keyword.";
 						typing(".introjs-tooltiptext", text, function() {
-							$(".introjs-nextbutton").show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					});
 				}
@@ -165,7 +271,7 @@ function introGuide() {
 						}});
 						tl.to("#lVal", 0.5, {opacity: 1, onComplete: function() {
 							$("#lVal").removeClass("opacity00");
-							$(".introjs-nextbutton").show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						}});
 					});
 				} else {
@@ -193,10 +299,11 @@ function introGuide() {
 												+ " <span class='ct-code-b-yellow'>i</span>.</li></ul>";
 								}
 								typing(".introjs-tooltiptext", text, function() {
-									if(i < 4) {
+									if(i < 4 && introjs._introItems[introjs._currentStep].stepFlag == "false") {
+										introjs._introItems[introjs._currentStep].stepFlag = "true";
 										dynamicSteps();
 									}
-									$(".introjs-nextbutton").show();
+									$('.introjs-nextbutton, .introjs-prevbutton').show();
 								});
 							}});
 						});
@@ -207,13 +314,17 @@ function introGuide() {
 			
 		case "localVal":
 			$(".introjs-helperLayer").one("transitionend", function() {
+				$('.introjs-tooltip').removeClass('hide');
+				if (introjs._direction == 'backward' && count == 0) {
+					--i;
+				}
 				if (i < 4) {
 					var text = "The value <span class='ct-code-b-yellow'>i</span> gets <span class='ct-code-b-yellow'>incremented</span> after"
 								+ " it gets displayed on the console.";
 					typing(".introjs-tooltiptext", text, function() {
 						$("#lVal").effect("highlight", {color: 'blue'}, 500, function() {
 							$("#lVal").text(2);
-							$(".introjs-nextbutton").show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					});
 				} else {
@@ -223,7 +334,7 @@ function introGuide() {
 						tl.to("#localVal", 0.5, {opacity: 0, onComplete: function() {
 							$("#localVal, #lVal").addClass("opacity00");
 							$("#localVal").removeClass("blinking-white");
-							$('.introjs-nextbutton').show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						}});
 					})
 				}
@@ -234,6 +345,12 @@ function introGuide() {
 			$("#varDec").removeClass("blinking-white");
 			$(".introjs-helperLayer").one("transitionend", function() {
 				if(count == 1) {
+					
+					/*if (introjs._direction == "backward" && i > 1) {
+						i = i - 1;
+					}*/
+					
+					$("#lVal").text(i);
 					$('.introjs-tooltip').removeClass("hide");
 					var text1 = "The value of the <span class='ct-code-b-yellow'>static</span> variable <span class='ct-code-b-yellow'>i</span> is "
 									+ "<span class='ct-code-b-yellow'>"+ i + "</span>, which is the value ";
@@ -246,11 +363,15 @@ function introGuide() {
 								+ "<span class='ct-code-b-yellow'>i</span>(i.e., <span class='ct-code-b-yellow'>" + i
 								+ "</span>) on the standard output device(console).";
 					typing(".introjs-tooltiptext", text, function() {
-						$(".introjs-nextbutton").show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				} else {
 					setTimeout(function() {
-						introjs.nextStep();
+						if (introjs._direction == 'forward') {
+							introjs.nextStep();
+						} else {
+							introjs.previousStep();
+						}
 					}, 500);
 				}
 			});
@@ -260,7 +381,7 @@ function introGuide() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "Here, the value of <span class='ct-code-b-yellow'>i</span> is printed in the console before it gets <y>incremented</y>.";  
 				typing(".introjs-tooltiptext", text, function() {
-					$(".introjs-nextbutton").show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 			break;
@@ -268,23 +389,38 @@ function introGuide() {
 		case "consoleId":
 			$("#consoleId").removeClass("opacity00");
 			$(".introjs-helperLayer").one("transitionend", function() {
-				$(".output-console-body").append('<div id="runEditor' + i + '" class="console-print"></div>')
-				if(count == 1) {
-					var text = "i = " + i;
-				} else {
-					var text = "i = 1";
+				if ((count == 1 && introjs._direction == "backward") && i > 1) {
+					i = i - 1;
 				}
-				typing("#runEditor" + i, text, function() {
+				if (introjs._direction == 'forward') {
+					$(".output-console-body").append('<div id="runEditor' + i + '" class="console-print"></div>')
+					if(count == 1) {
+						var text = "i = " + i;
+					} else {
+						var text = "i = 1";
+					}
+					typing("#runEditor" + i, text, function() {
+						setTimeout(function() {
+							introjs.nextStep();
+						}, 1000);
+					});
+				} else {
+					if (count != 1) {
+						$('#lVal').text('1');
+					}
 					setTimeout(function() {
-						introjs.nextStep();
-					}, 1000);
-				});
+						$(".output-console-body div:last").remove();
+						introjs.previousStep();
+					}, 500);
+				}
 			});
 			break;
 			
 		case "endFunc":
 			$(".introjs-helperLayer").one("transitionend", function() {
+				$('.introjs-tooltip').removeClass('hide');
 				if(i < 4 && count == 0) {
+					$("#lVal").text('2');
 					$("#localVal").addClass("blinking-white");
 					var text = "When the <span class='ct-code-b-yellow'>display()</span> function ends, all the <span class='ct-code-b-yellow'>"
 								+ "local</span> variables will be <span class='ct-code-b-yellow'>destroyed</span>.";
@@ -294,19 +430,29 @@ function introGuide() {
 							$("#lVal").addClass("opacity00");
 							$("#lVal").css("opacity", 0);
 							$("#localVal").removeClass("blinking-white");
-							++i;
-							if(i < 4) {
+							if (introjs._direction == "forward") {
+								console.log('425 inc');
+								++i;
+							} 
+							if(i < 4 && introjs._introItems[introjs._currentStep].stepFlag == "false") {
+								introjs._introItems[introjs._currentStep].stepFlag = "true";
 								dynamicSteps();
 							}
-							$(".introjs-nextbutton").show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						}});
 					});
 				} else {
-					++i;
+					if (introjs._direction == "forward") {
+						console.log('437 inc');
+						++i;
+					} else {
+						console.log('440 dec');
+						$('#lVal').text(i - 1);
+					}
 					var text = "<span class='ct-code-b-yellow'>display()</span> function ends here.<br><br> The static variable "
 						+ " <span class='ct-code-b-yellow'>i</span> will not be <y>destroyed</y> and will persist till the end of the program."; 
 					typing(".introjs-tooltiptext", text, function() {
-						$(".introjs-nextbutton").show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				}
 			});
@@ -314,14 +460,23 @@ function introGuide() {
 			
 		case "endMain":
 			$(".introjs-helperLayer").one("transitionend", function() {
-				++count;
-				if(count == 1) {
+				if (introjs._direction == 'forward') {
+					console.log('455 count inc');
+					++count;
+				}
+				if(count == 1 && introjs._introItems[introjs._currentStep].stepFlag == "false") {
+					introjs._introItems[introjs._currentStep].stepFlag = "true";
 					i = 1;
 					staticSteps();
 				}
 				setTimeout(function() {
-					introjs.nextStep();
-				}, 500);
+					if (introjs._direction == 'forward') {
+						i = 1;
+						introjs.nextStep();
+					} else {
+						introjs.previousStep();
+					}
+				}, 800);
 			});
 			break;
 			
@@ -363,7 +518,7 @@ function flipEffect(element, value, callBackFunction) {
 	}});
 }
 
-function getStep(element, intro, tooltipClass, position) {
+function getStep(element, intro, tooltipClass, position, stepFlag) {
 	var step = {}
 	if (typeof element != 'undefined') {
 		step['element'] = element;
@@ -377,11 +532,13 @@ function getStep(element, intro, tooltipClass, position) {
 	if (typeof position != 'undefined') {
 		step['position'] = position;
 	}
+	if (typeof stepFlag != 'undefined') {
+		step['stepFlag'] = stepFlag;
+	}
 	return step;
 }
 
 function dynamicSteps() {
-	
 	if (introjs._introItems[introjs._currentStep]["visited_flag"] == undefined) {
 		introjs._introItems[introjs._currentStep]["visited_flag"] = true;
 		console.log(introjs._introItems[introjs._currentStep]["element"]["id"] + ' This is visiting flag  ' + introjs._currentStep );
@@ -394,7 +551,7 @@ function dynamicSteps() {
 			var dynamicStep = getStep("#varDec", "", "", "right");
 			introjs.insertOption(introjs._currentStep + ++n, dynamicStep);
 		
-			var dynamicStep = getStep("#animationBox", "", "hide", "left");
+			var dynamicStep = getStep("#animationBox", "", "hide", "left", "false");
 			introjs.insertOption(introjs._currentStep + ++n, dynamicStep);
 		}
 		
@@ -407,20 +564,20 @@ function dynamicSteps() {
 		var dynamicStep = getStep("#consoleId", "", "hide", "");
 		introjs.insertOption(introjs._currentStep + ++n, dynamicStep);
 		if ($("#codeAnimation").hasClass("display")) {
-			var dynamicStep = getStep("#localVal", "", "", "left");
+			var dynamicStep = getStep("#localVal", "", "hide", "left");
 			introjs.insertOption(introjs._currentStep + ++n, dynamicStep);
 		}
 		
-		var dynamicStep = getStep("#endFunc", "", "", "right");
+		var dynamicStep = getStep("#endFunc", "", "hide", "right", "false");
 		introjs.insertOption(introjs._currentStep + ++n, dynamicStep);
 		
 		if(count == 1) {
-			var dynamicStep = getStep("#animationBox", "", "hide", "left");
+			var dynamicStep = getStep("#animationBox", "", "hide", "left", "false");
 			introjs.insertOption(introjs._currentStep + ++n, dynamicStep);
 		}
 		
 		if(i == 3 && count == 0) {
-			var dynamicStep = getStep("#endMain", "", "hide", "right");
+			var dynamicStep = getStep("#endMain", "", "hide", "right", "false");
 			introjs.insertOption(introjs._currentStep + ++n, dynamicStep);
 		}
 	}
@@ -443,6 +600,6 @@ function staticSteps() {
 	var dynamicStep = getStep("#varDec", "", "hide", "top","false");
 	introjs.insertOption(introjs._currentStep + ++step, dynamicStep);
 	
-	var dynamicStep = getStep("#animationBox", "", "hide", "left","false");
+	var dynamicStep = getStep("#animationBox", "", "hide", "left", "false");
 	introjs.insertOption(introjs._currentStep + ++step, dynamicStep);
 }

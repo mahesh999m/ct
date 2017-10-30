@@ -161,6 +161,10 @@ function introGuide() {
 				$("#sumAddress").addClass("check");
 			}
 			
+			if (introjs._currentStep == 8) {
+				$("#aAddress").addClass("check");
+			}
+			
 			if($("#sumAddress").hasClass("check")) {
 				if (introjs._currentStep == 4) {
 					$("#sumAddress").removeAttr("style");
@@ -315,6 +319,7 @@ function introGuide() {
 						
 						var l1 = $("#addr1").offset();
 						var l2 = $("#addr2").offset();
+						
 						$("#aVal").offset({"top": l1.top, "left": l1.left});
 						$("#bVal").offset({"top": l2.top, "left": l2.left});
 						
@@ -341,6 +346,7 @@ function introGuide() {
 						}});
 					}
 				} else if($("#xAddress").hasClass("check")) {
+					
 					$("#xVal").text($("#num1").text().substring(0, $("#num1").text().indexOf(" ")));
 					$("#yVal").text($("#num1").text().substring($("#num1").text().indexOf(" ") + 1));
 					$("#xAddress").removeClass("check");
@@ -517,7 +523,7 @@ function introGuide() {
 									if (val.length > 2) {
 										$('.introjs-tooltiptext').append("<span class='ct-code-b-red length-error-text'><br/>"
 																		+ "Please limit the number length to 2.</span>");
-										$(".introjs-nextbutton").hide();
+										$(".introjs-nextbutton, .introjs-prevbutton").hide();
 									}
 								});
 							});
