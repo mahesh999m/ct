@@ -299,12 +299,13 @@ var processingOfStructureWithDotReady = function() {
 			case "animationDiv3":
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					$("#" + elementId).removeClass("opacity00");
+					var t;
 					if (elementId == "animationDiv1") {
-						var t = 1;
+						t = 1;
 					} else if (elementId == "animationDiv2") {
-						var t = 2;
+						t = 2;
 					} else {
-						var t = 3;
+						t = 3;
 						$("#output").append('<span id="stmt1"></span><br>');
 					}
 					$('.introjs-tooltip').removeClass("hide");

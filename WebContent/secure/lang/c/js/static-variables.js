@@ -55,10 +55,6 @@ function introGuide() {
 			case "codeAnimation":
 				$(".output-console-body").empty();
 			break;
-			case "functionDec":
-			break;
-			case "mainFunction":
-			break;
 			case "functionDef":
 				$('#varDec').text('int i = 1;');
 			break;
@@ -75,6 +71,8 @@ function introGuide() {
 				}
 				if(count != 0) {
 					$("#varDec").text("int i = 1;");
+					console.log('RDM RDM');
+					$("#localVal").addClass("opacity00");
 				}
 			break;
 			case "animationBox":
@@ -91,7 +89,7 @@ function introGuide() {
 				} else {
 					if(i == 1) {
 						$("#lVal").text(1);
-						$("#localVal").css({opacity: '0'})
+						$("#localVal").css({opacity: '0'});
 					}
 					$("#lVal").css({opacity: '0'});
 					$("#lVal").addClass("opacity00");
@@ -103,10 +101,6 @@ function introGuide() {
 				$("#localVal, #lVal").css({opacity: '1'});
 				$("#localVal, #lVal").removeClass("opacity00");
 				break;
-			case "printf":
-			break;
-			case "iInc":
-			break;
 			case "consoleId":
 				if (count == 0) {
 					$("#lVal").text(1);
