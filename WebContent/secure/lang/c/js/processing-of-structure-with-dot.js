@@ -32,7 +32,7 @@ var processingOfStructureWithDotReady = function() {
 				intro : "",
 				position:"right"
 			},{
-				element : "#variableDefinition",
+				element : "#variableDefinition", 
 				intro : "",
 				position:"right"
 			},{
@@ -231,8 +231,65 @@ var processingOfStructureWithDotReady = function() {
 			
 			]});
 		
+		intro.onbeforechange(function(targetElement) {
+			var elementId = targetElement.id;
+			switch (elementId) {
+				
+				case "emp3":
+				case "emp2":
+				case "emp1":
+					if (elementId == "emp1") {
+						$("#animationDiv1").addClass("opacity00");
+					} else if (elementId == "emp2") {
+						$("#animationDiv2").addClass("opacity00");
+					} else if (elementId == "emp3") {
+						$("#animationDiv3").addClass("opacity00");
+						$("#output").empty();
+					}
+				break;
+				
+				case "animationDiv1":
+				case "animationDiv2":
+				case "animationDiv3":
+						if (elementId == "animationDiv1") {
+							$("#" + elementId).addClass("opacity00");
+						} else if (elementId == "animationDiv2") {
+							$("#" + elementId).addClass("opacity00");
+						} else if (elementId == "animationDiv3") {
+							$("#" + elementId).addClass("opacity00");
+							$("#output").empty();
+						}
+				break;
+			}
+			
+		});
+		
+		
 		intro.onafterchange(function(targetElement) {
+			
 			$('.introjs-nextbutton, .introjs-skipbutton, .introjs-prevbutton').hide();
+			
+			
+			// ********************** start ************back button logic
+			
+			if (intro._introItems[intro._currentStep]["tooltipClass"] == "hide") {
+				intro._introItems[intro._currentStep]["animation"] = "repeat";
+			}
+			
+			if (intro._introItems[intro._currentStep]["isCompleted"]) {
+				if (intro._currentStep != 1) {
+					$('.introjs-prevbutton').show();
+				}
+				$('.introjs-nextbutton').show();
+				return;
+			}
+			
+			if (intro._introItems[intro._currentStep]["animation"] != "repeat") {
+				intro._introItems[intro._currentStep]["isCompleted"] = true;
+			}
+			
+			// ********************** end ************back button logic
+			
 			var elementId = targetElement.id;
 			switch (elementId) {
 			case "informationDiv":
@@ -277,8 +334,7 @@ var processingOfStructureWithDotReady = function() {
 								+ " <span class='ct-code-b-yellow'>emp2</span>, <span class='ct-code-b-yellow'>emp3</span> of type"
 								+ " <span class='ct-code-b-yellow'>employee_record</span>.";
 					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton').show();
-						$('.introjs-prevbutton').show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 				
@@ -415,8 +471,7 @@ var processingOfStructureWithDotReady = function() {
 				$(".introjs-helperLayer ").one('transitionend', function() {
 					var text = "This statement prints the string in the console.";
 					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton').show();
-						$('.introjs-prevbutton').show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 			break;
@@ -571,6 +626,7 @@ function typing(typingId, typingContent,callBackFunction) {
 		$(typingId).removeClass('typingCursor');
 		if (typeof callBackFunction === "function") {
 			callBackFunction();
+			intro._introItems[intro._currentStep].intro = $(".introjs-tooltiptext").html();
 		}
 	});
 }
@@ -627,10 +683,10 @@ function characters() {
 			}
 		}
 		if ($("[contenteditable=true]").text().length == 0) {
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-tooltiptext").append("<div class='ct-code-b-red'></br>Please enter string.</div>");
 		} else {
-			$('.introjs-nextbutton').show();
+			$('.introjs-nextbutton, .introjs-prevbutton').show();
 		} 
 		
 		if (((e.which >= 60 && e.which <= 90))) {
@@ -675,12 +731,12 @@ function numbers(val) {
 			$('.ct-code-b-red').remove();
 		}
 		if ($(this).text().length != 0) {
-			$('.introjs-nextbutton').show();
+			$('.introjs-nextbutton, .introjs-prevbutton').show();
 		} else {
 			if ($('ct-code-b-red').length == 0) {
 				$('.introjs-tooltiptext').append('<div class="ct-code-b-red">Please enter any integer.</div>');
 			}
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 		}
 	});
 }
