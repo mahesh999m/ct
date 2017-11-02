@@ -73,9 +73,11 @@ var processingOfStructureWithDotReady = function() {
 			},{
 				element : "#outputDiv",
 				intro : "",
+				tooltipClass:"hide"
 			},{
 				element : "#readName1",
 				intro : "",
+				tooltipClass:"hide"
 			},{
 				element : "#s1name",
 				intro : "",
@@ -87,9 +89,11 @@ var processingOfStructureWithDotReady = function() {
 			},{
 				element : "#outputDiv",
 				intro : "",
+				tooltipClass:"hide"
 			},{
 				element : "#readAge1",
 				intro : "",
+				tooltipClass:"hide"
 			},{
 				element : "#s1age",
 				intro : "",
@@ -101,9 +105,11 @@ var processingOfStructureWithDotReady = function() {
 			},{
 				element : "#outputDiv",
 				intro : "",
+				tooltipClass:"hide"
 			},{
 				element : "#readSalary1",
 				intro : "",
+				tooltipClass:"hide"
 			},{
 				element : "#s1sal",
 				intro : "",
@@ -122,6 +128,7 @@ var processingOfStructureWithDotReady = function() {
 			},{
 				element : "#outputDiv",
 				intro : "",
+				tooltipClass:"hide"
 			},{
 				element : "#readName2",
 				tooltipClass:"hide"
@@ -134,6 +141,7 @@ var processingOfStructureWithDotReady = function() {
 			},{
 				element : "#outputDiv",
 				intro : "",
+				tooltipClass:"hide"
 			},{
 				element : "#readAge2",
 				tooltipClass:"hide"
@@ -146,6 +154,7 @@ var processingOfStructureWithDotReady = function() {
 			},{
 				element : "#outputDiv",
 				intro : "",
+				tooltipClass:"hide"
 			},{
 				element : "#readSalary2",
 				tooltipClass:"hide"
@@ -165,6 +174,7 @@ var processingOfStructureWithDotReady = function() {
 			},{
 				element : "#outputDiv",
 				intro : "",
+				tooltipClass:"hide"
 			},{
 				element : "#readName3",
 				tooltipClass:"hide"
@@ -177,6 +187,7 @@ var processingOfStructureWithDotReady = function() {
 			},{
 				element : "#outputDiv",
 				intro : "",
+				tooltipClass:"hide"
 			},{
 				element : "#readAge3",
 				tooltipClass:"hide"
@@ -189,6 +200,7 @@ var processingOfStructureWithDotReady = function() {
 			},{
 				element : "#outputDiv",
 				intro : "",
+				tooltipClass:"hide"
 			},{
 				element : "#readSalary3",
 				tooltipClass:"hide"
@@ -259,6 +271,12 @@ var processingOfStructureWithDotReady = function() {
 							$("#" + elementId).addClass("opacity00");
 							$("#output").empty();
 						}
+				break;
+				case "outputDiv":
+					if (intro._currentStep == 13) {
+						$("#enterName1, #editname1").empty();
+						$("#editname1").attr("contenteditable", true);
+					}
 				break;
 			}
 			
@@ -379,63 +397,90 @@ var processingOfStructureWithDotReady = function() {
 					scrollAtOutput();
 					$('.introjs-nextbutton').hide();
 					 if (intro._currentStep == 11) {
-						$("#stmt1").append("Enter details of first record name, age and salary ");
-						var text = "Enter first record values.";
-						typing(".introjs-tooltiptext", text, function() {
-							setTimeToIntroNextStep();
-						});
+						 if (intro._direction == "forward") {
+							$("#stmt1").append("Enter details of first record name, age and salary ");
+							var text = "Enter first record values.";
+							typing(".introjs-tooltiptext", text, function() {
+								setTimeToIntroNextStep();
+							});
+						 } else {
+							 $("#stmt1").empty();
+							 setTimeToIntroPreviousStep();
+						 }
+						
 					} else if (intro._currentStep == 13) {
+						 console.log('This is after 13 step');
+						$('.introjs-tooltip').removeClass("hide");
 						$("#enterName1").append("Enter name:");
 						$("#editname1").effect( "highlight",{color: 'yellow'}, 500).focus();
 						var text="Enter the <b class='ct-code-b-yellow'>name</b> for the first record."
 						typing(".introjs-tooltiptext", text);
 					} else if (intro._currentStep == 17) {
+						$('.introjs-tooltip').removeClass("hide");
 						$("#enterAge1").append("Enter age:");
 						$("#editage1").effect( "highlight",{color: 'yellow'}, 500).focus();
 						var text="Enter the <b class='ct-code-b-yellow'>age</b> for the first record."
 						typing(".introjs-tooltiptext", text);
 					} else if (intro._currentStep == 21) {
+						$('.introjs-tooltip').removeClass("hide");
 						$("#enterSal1").append("Enter salary:");
 						$("#editsal1").effect("highlight",{color: 'yellow'}, 500).focus();
 						var text="Enter <b class='ct-code-b-yellow'>salary</b> for the first record."
 						typing(".introjs-tooltiptext", text);
 					} else if (intro._currentStep == 25) {
-						$("#stmt2").append("Enter details of second record name, age and salary ");
-						setTimeToIntroNextStep();
+						 if (intro._direction == "forward") {
+							 $("#stmt2").append("Enter details of second record name, age and salary ");
+								setTimeToIntroNextStep();
+						 } else {
+							 $("#stmt2").empty();
+							 setTimeToIntroPreviousStep();
+						 }
 					}	
 					 
 					 //second Record
 					 else if (intro._currentStep == 27) {
+						 $('.introjs-tooltip').removeClass("hide");
 						$("#enterName2").append("Enter name:");
 						$("#editname2").effect( "highlight",{color: 'yellow'}, 500).focus();
 						var text="Enter the <b class='ct-code-b-yellow'>name</b> for the second record."
 						typing(".introjs-tooltiptext", text);
 					} else if (intro._currentStep == 31) {
+						$('.introjs-tooltip').removeClass("hide");
 						$("#enterAge2").append("Enter age:");
 						$("#editage2").effect( "highlight",{color: 'yellow'}, 500).focus();
 						var text="Enter the <b class='ct-code-b-yellow'>age</b> for the second record."
 						typing(".introjs-tooltiptext", text);
 					} else if (intro._currentStep == 35) {
-						$("#enterSal2").append("Enter salary:")
+						$('.introjs-tooltip').removeClass("hide");
+						$("#enterSal2").append("Enter salary:");
 						$("#editsal2").effect( "highlight",{color: 'yellow'}, 500).focus();
 						var text="Enter <b class='ct-code-b-yellow'>salary</b> for the second record."
 						typing(".introjs-tooltiptext", text);
 					}
 				 //third Record
 					else if (intro._currentStep == 39) {
-						$("#stmt3").append("Enter details of third record name, age and salary ");
-						setTimeToIntroNextStep();
+						 if (intro._direction == "forward") {
+							$("#stmt3").append("Enter details of third record name, age and salary ");
+							setTimeToIntroNextStep();
+						 } else {
+							 $("#stmt3").empty();
+							 setTimeToIntroPreviousStep();
+						 }
+					
 					} else if (intro._currentStep == 41) {
+						$('.introjs-tooltip').removeClass("hide");
 						$("#enterName3").append("Enter name:");
 						$("#editname3").effect( "highlight",{color: 'yellow'}, 500).focus();
 						var text="Enter the <b class='ct-code-b-yellow'>name</b> for the third record."
 						typing(".introjs-tooltiptext", text);
 					} else if (intro._currentStep == 45) {
+						$('.introjs-tooltip').removeClass("hide");
 						$("#enterAge3").append("Enter age:");
 						$("#editage3").effect( "highlight",{color: 'yellow'}, 500).focus();
 						var text="Enter the <b class='ct-code-b-yellow'>age</b> for the third record."
 						typing(".introjs-tooltiptext", text);
 					} else if (intro._currentStep == 49) {
+						$('.introjs-tooltip').removeClass("hide");
 						$("#enterSal3").append("Enter salary:");
 						$("#editsal3").effect( "highlight",{color: 'yellow'}, 500).focus();
 						var text="Enter <b class='ct-code-b-yellow'>salary</b> for the third record."
@@ -450,8 +495,7 @@ var processingOfStructureWithDotReady = function() {
 					} else if (intro._currentStep == 55) {
 						$("#printingStmt1").append($("#s1age").text());
 						$("#printingStmt2").append($("#s1name").text());
-											$("#printingStmt3").append(
-													$("#s1sal").text());
+						$("#printingStmt3").append($("#s1sal").text());
 						setTimeToIntroNextStep();
 					} else if (intro._currentStep == 57) {
 						$("#printingStmt4").append($("#s2age").text());
@@ -479,23 +523,34 @@ var processingOfStructureWithDotReady = function() {
 			case "age" + iVal:
 			case "name" + iVal:
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					if (elementId == "name" + iVal) {
-						editableContentAppend("enterName" + iVal, "editname" + iVal, "20", function() {
-							characters();
-						});
-					} else {
-						if (elementId == "age" + iVal) {
-							editableContentAppend("enterAge" + iVal, "editage" + iVal, 2, function() {
-								numbers("2");
+					
+					if (intro._direction  == "forward") {
+						if (elementId == "name" + iVal) {
+							editableContentAppend("enterName" + iVal, "editname" + iVal, "20", function() {
+								characters();
 							});
 						} else {
-							editableContentAppend("enterSal" + iVal, "editsal" + iVal, "5", function() {
-								numbers("5");
-								iVal++;
-							});
+							if (elementId == "age" + iVal) {
+								editableContentAppend("enterAge" + iVal, "editage" + iVal, 2, function() {
+									numbers("2");
+								});
+							} else {
+								editableContentAppend("enterSal" + iVal, "editsal" + iVal, "5", function() {
+									numbers("5");
+									iVal++;
+								});
+							}
 						}
+						setTimeToIntroNextStep();
+					} else {
+						console.log(elementId + '  ok');
+						var count = $("[contenteditable]").length;
+						if (count % 3 == 0) {
+							iVal--;
+						}
+						$("[contenteditable]:last").parent().remove();
+						setTimeToIntroPreviousStep();
 					}
-					setTimeToIntroNextStep();
 				});
 			break;
 
@@ -512,8 +567,13 @@ var processingOfStructureWithDotReady = function() {
 			case "s2name":
 			case "s1name":
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					$("#" + elementId).removeClass("opacity00");
-					setTimeToIntroNextStep();
+					if (intro._direction == "forward") {
+						$("#" + elementId).removeClass("opacity00");
+						setTimeToIntroNextStep();
+					} else {
+						$("#" + elementId).empty();
+						setTimeToIntroPreviousStep();
+					}
 				});
 			break;
 			case "readAge1":
@@ -529,11 +589,17 @@ var processingOfStructureWithDotReady = function() {
 			case "s2age":
 			case "s1age":
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					$("#" + elementId).removeClass("opacity00");
-					setTimeToIntroNextStep();
+					if (intro._direction == "forward") {
+						$("#" + elementId).removeClass("opacity00");
+						setTimeToIntroNextStep();
+					} else {
+						$("#" + elementId).empty();
+						setTimeToIntroPreviousStep();
+					}
 				});
 			break;
 			case "readSalary1":
+				$('.introjs-tooltop').removeClass("hide");
 				getAnimation("#editsal1", "#s1sal", "true", "salary", "emp1");
 			break;
 			case "readSalary2":
@@ -546,8 +612,14 @@ var processingOfStructureWithDotReady = function() {
 			case "s2sal":
 			case "s1sal":
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					$("#" + elementId).removeClass("opacity00")
-					setTimeToIntroNextStep();
+					if (intro._direction == "forward") {
+						$("#" + elementId).removeClass("opacity00");
+						setTimeToIntroNextStep();
+					} else {
+						$("#" + elementId).empty();
+						setTimeToIntroPreviousStep();
+					}
+					
 				});
 			break;
 			case "secondRecord":
@@ -644,18 +716,23 @@ function setTimeToIntroNextStep() {
 		intro.nextStep();
 	}, 800);
 }
+function setTimeToIntroPreviousStep() {
+	setTimeout(function() {
+		intro.previousStep();
+	}, 800);
+}
 
 function getAnimation(id1, id2, flag, val, sType) {
 	$(".introjs-helperLayer ").one('transitionend', function() {
 		$(id1).attr("contenteditable", false);
-		$(id2).addClass("opacity00");
+		$(id2).addClass("opacity00 td-value");
 		$(id2).text($(id1).text());
 		if (flag == 'true') {
-			$('.introjs-tooltop').removeClass("hide");
+			$('.introjs-tooltip').removeClass("hide");
 			var text = "This statement gets the <span class='ct-code-b-yellow'>" + val + "</span> of <span class='ct-code-b-yellow'>" 
 						+ sType + "</span> from the standard input device (keyboard).";
 			typing(".introjs-tooltiptext", text, function() {
-				$('.introjs-nextbutton').show();
+				$('.introjs-nextbutton, .introjs-prevbutton').show();
 			});
 		} else {
 			setTimeToIntroNextStep();
@@ -663,8 +740,8 @@ function getAnimation(id1, id2, flag, val, sType) {
 	});
 }
 function editableContentAppend(id1, id2, val, callBackFunction) {
-	$("#output").append('<span id='+ id1 + '></span><span class="padding3" contenteditable="true" id=' + id2
-			+ ' maxlength=' + val + ' spellcheck="false"></span><br>');
+	$("#output").append('<span><span id='+ id1 + '></span><span class="padding3" contenteditable="true" id=' + id2
+			+ ' maxlength=' + val + ' spellcheck="false"></span><br></span>');
 	if (typeof callBackFunction === "function") {
 		callBackFunction();
 	}
