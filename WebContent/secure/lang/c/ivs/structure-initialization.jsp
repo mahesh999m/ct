@@ -17,7 +17,7 @@
 <script src="/js/gs/TweenMax.min.js"></script>
 <script src="/js/gs/TimelineLite.min.js"></script>
 <script src="/secure/lang/c/js/structure-initialization.js"></script>
-
+<!-- <script src="/secure/lang/c/js/structure-initialization123.js"></script> -->
 <title>Structure Initialization</title>
 <style type="text/css">
 .padding0 {

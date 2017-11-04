@@ -277,6 +277,46 @@ var processingOfStructureWithDotReady = function() {
 						$("#enterName1, #editname1").empty();
 						$("#editname1").attr("contenteditable", true);
 					}
+					if (intro._currentStep == 17) {
+						$("#enterAge1, #editage1").empty();
+						$("#editage1").attr("contenteditable", true);
+					}
+					
+					if (intro._currentStep == 21) {
+						$("#enterSal1, #editsal1").empty();
+						$("#editsal1").attr("contenteditable", true);
+					}
+					
+					if (intro._currentStep == 27) {
+						$("#enterName2, #editname2").empty();
+						$("#editname2").attr("contenteditable", true);
+					}
+					if (intro._currentStep == 31) {
+						$("#enterAge2, #editage2").empty();
+						$("#editage2").attr("contenteditable", true);
+					}
+					
+					if (intro._currentStep == 35) {
+						$("#enterSal2, #editsal2").empty();
+						$("#editsal2").attr("contenteditable", true);
+					}
+					
+					if (intro._currentStep == 41) {
+						$("#enterName3, #editname3").empty();
+						$("#editname3").attr("contenteditable", true);
+					}
+					if (intro._currentStep == 45) {
+						$("#enterAge3, #editage3").empty();
+						$("#editage3").attr("contenteditable", true);
+					}
+					
+					if (intro._currentStep == 49) {
+						$("#enterSal3, #editsal3").empty();
+						$("#editsal3").attr("contenteditable", true);
+					}
+					
+					
+					
 				break;
 			}
 			
@@ -409,7 +449,6 @@ var processingOfStructureWithDotReady = function() {
 						 }
 						
 					} else if (intro._currentStep == 13) {
-						 console.log('This is after 13 step');
 						$('.introjs-tooltip').removeClass("hide");
 						$("#enterName1").append("Enter name:");
 						$("#editname1").effect( "highlight",{color: 'yellow'}, 500).focus();
@@ -429,9 +468,11 @@ var processingOfStructureWithDotReady = function() {
 						typing(".introjs-tooltiptext", text);
 					} else if (intro._currentStep == 25) {
 						 if (intro._direction == "forward") {
+							iVal++;
 							 $("#stmt2").append("Enter details of second record name, age and salary ");
 								setTimeToIntroNextStep();
 						 } else {
+							 iVal--;
 							 $("#stmt2").empty();
 							 setTimeToIntroPreviousStep();
 						 }
@@ -460,9 +501,11 @@ var processingOfStructureWithDotReady = function() {
 				 //third Record
 					else if (intro._currentStep == 39) {
 						 if (intro._direction == "forward") {
+							iVal++;
 							$("#stmt3").append("Enter details of third record name, age and salary ");
 							setTimeToIntroNextStep();
 						 } else {
+							 iVal--;
 							 $("#stmt3").empty();
 							 setTimeToIntroPreviousStep();
 						 }
@@ -488,25 +531,47 @@ var processingOfStructureWithDotReady = function() {
 					}
 				 //printing
 				 else if (intro._currentStep == 53) {
-					$("#printtitlesAge").append("AGE");	
-					$("#printtitlesName").append("NAME");
-					$("#printtitlesSalary").append("SALARY");			
-						setTimeToIntroNextStep();
+					 if (intro._direction == "forward") {
+						 $("#printtitlesAge").append("AGE");	
+							$("#printtitlesName").append("NAME");
+							$("#printtitlesSalary").append("SALARY");			
+								setTimeToIntroNextStep();
+					 } else {
+						 $('#printtitlesAge, #printtitlesName, #printtitlesSalary').empty();
+						 setTimeToIntroPreviousStep();
+					 }
+					
 					} else if (intro._currentStep == 55) {
-						$("#printingStmt1").append($("#s1age").text());
-						$("#printingStmt2").append($("#s1name").text());
-						$("#printingStmt3").append($("#s1sal").text());
-						setTimeToIntroNextStep();
+						 if (intro._direction == "forward") {
+							 $("#printingStmt1").append($("#s1age").text());
+								$("#printingStmt2").append($("#s1name").text());
+								$("#printingStmt3").append($("#s1sal").text());
+								setTimeToIntroNextStep();
+						 } else {
+							 $('#printingStmt1, #printingStmt2, #printingStmt3').empty();
+							 setTimeToIntroPreviousStep();
+						 }
 					} else if (intro._currentStep == 57) {
-						$("#printingStmt4").append($("#s2age").text());
-						$("#printingStmt5").append($("#s2name").text());
-						$("#printingStmt6").append($("#s2sal").text());
-						setTimeToIntroNextStep();
+						 if (intro._direction == "forward") {
+							 $("#printingStmt4").append($("#s2age").text());
+								$("#printingStmt5").append($("#s2name").text());
+								$("#printingStmt6").append($("#s2sal").text());
+								setTimeToIntroNextStep();
+						 } else {
+							 $('#printingStmt4, #printingStmt5, #printingStmt6').empty();
+							 setTimeToIntroPreviousStep();
+						 }
+						
 					} else if (intro._currentStep == 59) {
-						$("#printingStmt7").append($("#s3age").text());
-						$("#printingStmt8").append($("#s3name").text());
-						$("#printingStmt9").append($("#s3sal").text());
-						setTimeToIntroNextStep();
+						 if (intro._direction == "forward") {
+							 $("#printingStmt7").append($("#s3age").text());
+								$("#printingStmt8").append($("#s3name").text());
+								$("#printingStmt9").append($("#s3sal").text());
+								setTimeToIntroNextStep();
+						 } else {
+							 $('#printingStm7, #printingStmt8, #printingStmt9').empty();
+							 setTimeToIntroPreviousStep();
+						 }
 					}
 				}); 
 					 
@@ -523,7 +588,6 @@ var processingOfStructureWithDotReady = function() {
 			case "age" + iVal:
 			case "name" + iVal:
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					
 					if (intro._direction  == "forward") {
 						if (elementId == "name" + iVal) {
 							editableContentAppend("enterName" + iVal, "editname" + iVal, "20", function() {
@@ -537,17 +601,11 @@ var processingOfStructureWithDotReady = function() {
 							} else {
 								editableContentAppend("enterSal" + iVal, "editsal" + iVal, "5", function() {
 									numbers("5");
-									iVal++;
 								});
 							}
 						}
 						setTimeToIntroNextStep();
 					} else {
-						console.log(elementId + '  ok');
-						var count = $("[contenteditable]").length;
-						if (count % 3 == 0) {
-							iVal--;
-						}
 						$("[contenteditable]:last").parent().remove();
 						setTimeToIntroPreviousStep();
 					}
@@ -616,6 +674,10 @@ var processingOfStructureWithDotReady = function() {
 						$("#" + elementId).removeClass("opacity00");
 						setTimeToIntroNextStep();
 					} else {
+						if (elementId == "s3sal") {
+							iVal = 3;
+							$('#finalResult').remove();
+						}
 						$("#" + elementId).empty();
 						setTimeToIntroPreviousStep();
 					}
@@ -624,45 +686,55 @@ var processingOfStructureWithDotReady = function() {
 			break;
 			case "secondRecord":
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					$("#output").append('<span id="stmt2"></span><br>');
-					setTimeToIntroNextStep();
+					if (intro._direction == "forward") {
+						$("#output").append('<span><span id="stmt2"></span><br></span>');
+						setTimeToIntroNextStep();
+					} else {
+						$("#stmt2").parent().remove();
+						setTimeToIntroPreviousStep();
+					}
 				});
 			break;
 			case "thirdRecord":
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					var text = "This statement is used to print the string in the console.";
-					typing(".introjs-tooltiptext", text, function() {
-						$("#output").append('<span id = "stmt3"></span><br>');
-						setTimeout(function(){
-							intro.nextStep();
-						}, 1000);
-					});
+					if (intro._direction == "forward") {
+						$("#output").append('<span><span id="stmt3"></span><br></span>');
+						setTimeToIntroNextStep();
+					} else {
+						$("#stmt3").parent().remove();
+						setTimeToIntroPreviousStep();
+					}
 				});
 			break;
 			case "titles":
 				$(".introjs-helperLayer ").one('transitionend', function() {
-					iVal = 1;
-					$("#output").append('<table><tr><th class="output-table-border" id="printtitlesAge"></th>' 
-							+ '<th class="output-table-border" id="printtitlesName"></th>' 
-							+ '<th class="output-table-border" id="printtitlesSalary"></th>' 
-							+ '</tr><tr>' 
-							+ '<td class="output-table-border" id="printingStmt1"></td>'
-							+ '<td class="output-table-border" id="printingStmt2"></td>'
-							+ '<td class="output-table-border" id="printingStmt3"></td>'
-						+ '</tr>'
-						+ '<tr>'
-							+ '<td class="output-table-border" id="printingStmt4"></td>'
-							+ '<td class="output-table-border" id="printingStmt5"></td>'
-							+ '<td class="output-table-border" id="printingStmt6"></td>'
-						+ '</tr>'
+					if (intro._direction == "forward") {
+						iVal = 1;
+						$("#output").append('<table id="finalResult"><tr><th class="output-table-border" id="printtitlesAge"></th>' 
+								+ '<th class="output-table-border" id="printtitlesName"></th>' 
+								+ '<th class="output-table-border" id="printtitlesSalary"></th>' 
+								+ '</tr><tr>' 
+								+ '<td class="output-table-border" id="printingStmt1"></td>'
+								+ '<td class="output-table-border" id="printingStmt2"></td>'
+								+ '<td class="output-table-border" id="printingStmt3"></td>'
+							+ '</tr>'
+							+ '<tr>'
+								+ '<td class="output-table-border" id="printingStmt4"></td>'
+								+ '<td class="output-table-border" id="printingStmt5"></td>'
+								+ '<td class="output-table-border" id="printingStmt6"></td>'
+							+ '</tr>'
 
-						+ '<tr>'
-							+ '<td class="output-table-border" id="printingStmt7"></td>'
-							+ '<td class="output-table-border" id="printingStmt8"></td>'
-							+ '<td class="output-table-border" id="printingStmt9"></td>'
-						+ '</tr>'
-						+ '</table>');
-					setTimeToIntroNextStep();
+							+ '<tr>'
+								+ '<td class="output-table-border" id="printingStmt7"></td>'
+								+ '<td class="output-table-border" id="printingStmt8"></td>'
+								+ '<td class="output-table-border" id="printingStmt9"></td>'
+							+ '</tr>'
+							+ '</table>');
+						setTimeToIntroNextStep();
+					} else {
+						setTimeToIntroPreviousStep();
+					}
+					
 				});
 			break;
 			case "printRecord3":
@@ -673,7 +745,7 @@ var processingOfStructureWithDotReady = function() {
 								+ " to the console.";
 					typing('.introjs-tooltiptext', text, function() {
 						iVal++;
-						$('.introjs-nextbutton').show();
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 			break;
@@ -725,7 +797,7 @@ function setTimeToIntroPreviousStep() {
 function getAnimation(id1, id2, flag, val, sType) {
 	$(".introjs-helperLayer ").one('transitionend', function() {
 		$(id1).attr("contenteditable", false);
-		$(id2).addClass("opacity00 td-value");
+		$(id2).addClass("opacity00");
 		$(id2).text($(id1).text());
 		if (flag == 'true') {
 			$('.introjs-tooltip').removeClass("hide");
@@ -735,7 +807,11 @@ function getAnimation(id1, id2, flag, val, sType) {
 				$('.introjs-nextbutton, .introjs-prevbutton').show();
 			});
 		} else {
-			setTimeToIntroNextStep();
+			if (intro._direction == "forward") {
+				setTimeToIntroNextStep();
+			} else {
+				setTimeToIntroPreviousStep();
+			}
 		}
 	});
 }
@@ -794,7 +870,7 @@ function numbers(val) {
 				e.preventDefault();
 			}
 		}
-		if (((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) || (e.keyCode == 13 || e.keyCode ==9)){
+		if (((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) || (e.keyCode == 13 || e.keyCode == 9)){
 			e.preventDefault();
 		}
 		if ($(this).text().length > max - 1) {
