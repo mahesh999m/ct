@@ -311,7 +311,7 @@ function introJsFunction() {
 					svgAppend(parentSelector, 'svg1');
 					var svgId = $('#svg1');
 					var svgMarkerId = 'markerEnd1';
-					svgMarkerAppend(svgId, svgMarkerId)
+					svgMarkerAppend(svgId, svgMarkerId);
 					animatingTable2Boxes(1, parentSelector, svgId, 'svgLine11', svgMarkerId);
 					animatingTable2Boxes(2, parentSelector, svgId, 'svgLine12', svgMarkerId);
 					animatingTable2Boxes(3, parentSelector, svgId, 'svgLine13', svgMarkerId, function() {

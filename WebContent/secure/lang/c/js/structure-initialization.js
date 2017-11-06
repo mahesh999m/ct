@@ -1,5 +1,4 @@
 var count = 1;
-
 var structureIntializationReady = function() {
 	intro =  introJs();
 	intro.setOptions({
@@ -219,6 +218,7 @@ var structureIntializationReady = function() {
 			$(".introjs-nextbutton, .introjs-prevbutton").hide();//memoryArea
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#memoryArea").removeClass("opacity00");
+				$('.table-border > span').addClass('display-none').removeAttr('style');
 				if (action == "firstSyntax") {
 					var text = "The members of the <span class='ct-code-b-yellow'>Book</span> <span class='ct-code-b-yellow'>b</span>"
 								+ " can be accessed by using the dot(.)"
@@ -229,6 +229,7 @@ var structureIntializationReady = function() {
 					}
 					memoryArea(text);
 				} else if (action == "secondSyntax") {
+					$('.introjs-tooltip').removeClass('hide');
 					var text = "<ul><li> <span class='ct-code-b-yellow'>115</span> is an <span class='ct-code-b-yellow'>integer</span>,"
 								+" but is stored in a <span class='ct-code-b-yellow'>char</span>"
 								+" variable <span class='ct-code-b-yellow'>letter</span>.<br> Here <span class='ct-code-b-yellow'>115</span> is"
@@ -253,7 +254,6 @@ var structureIntializationReady = function() {
 											+" is truncated and only <span class='ct-code-b-yellow'>1</span> is stored."
 											+"</li><span id='second'></span>";
 								typing("#first", text, function() {
-									$(".introjs-nextbutton, .introjs-prevbutton").hide();
 									$("#span2, #intVal").addClass("flash");
 									$("#bPages").addClass("flash");
 									setTimeout(function() {
@@ -266,7 +266,6 @@ var structureIntializationReady = function() {
 														+ " <span class='ct-code-b-yellow'>'a'</span> is <span class='ct-code-b-yellow'>97</span>"
 														+ " and is stored as <span class='ct-code-b-yellow'>97.00</span>.</li>";
 											typing("#second", text, function() {
-												$(".introjs-nextbutton, .introjs-prevbutton").hide();
 												$("#span3, #floatVal").addClass("flash");
 												$("#bPrice").addClass("flash");
 												setTimeout(function() {
@@ -282,6 +281,7 @@ var structureIntializationReady = function() {
 						}, 600);
 					});
 				} else if (action == "thirdSyntax") {
+					$('.introjs-tooltip').removeClass('hide');
 					var text = "When we try to access the float value <span class='ct-code-b-yellow'>b.price</span>,"
 								+ " we get some <span class='ct-code-b-yellow'>garbage</span> value.";
 					typing(".introjs-tooltiptext",text,function() {
@@ -306,6 +306,7 @@ var structureIntializationReady = function() {
 		
 		case "printMethod":
 			$(".introjs-helperLayer").one("transitionend", function() {
+				$('.flash').removeClass('flash');
 				if (intro._direction == "forward") {
 					setTimeout(function() {
 						console.log('printMethod');
@@ -313,6 +314,7 @@ var structureIntializationReady = function() {
 					}, 400);
 				} else {
 					setTimeout(function() {
+						$('#output').empty();
 						intro.previousStep();
 					}, 400);
 				}
@@ -321,11 +323,22 @@ var structureIntializationReady = function() {
 		break;
 			
 		case "outputDiv":
+			var arr1 = [];
 			$(".introjs-nextbutton, .introjs-prevbutton").hide();
 			$("#printMethod").addClass("zIndex");
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#outputDiv").removeClass("opacity00");				
 				if (action === "firstSyntax") {
+					if (intro._direction == "backward") {
+						arr1 = ['M',999,11.007];
+						$('#charVal').text(arr1[0]);
+						$('#intVal').text(arr1[1]);
+						$('#floatVal').text(arr1[2]);
+						$("#bLetter").text($("#charVal").text());
+						$("#bPages").text($("#intVal").text());
+						$("#bPrice").text($("#floatVal").text());
+						$('.table-border > span').removeClass('display-none');
+					}
 					$('#output').empty();
 							commonCode();
 					outPutDiv(function() {
@@ -336,9 +349,17 @@ var structureIntializationReady = function() {
 						})
 					});
 				} else if (action == "secondSyntax") {
+					if (intro._direction == "backward") {
+						$("#arrVal").empty().append("<span id='charVal'>115</span>, <span id='intVal'>1.25</span>"
+								+ ", '<span id='floatVal'>a</span>'");
+					}
 					var charVal = String.fromCharCode($("#charVal").text());
 					var intVal = Math.floor($("#intVal").text());
 					var floatVal = ($("#floatVal").text().charCodeAt(0)).toFixed(2);
+					$("#bLetter").text(charVal);
+					$("#bPages").text(intVal);
+					$("#bPrice").text(floatVal);
+					$('.table-border > span').removeClass('display-none');
 					$("#output").append("<span class='display-none'>" + charVal +"</span>"
 							+"  <span class='display-none'>"+ intVal +"</span> "
 							+" <span class='display-none'>"+ floatVal +"</span>");
@@ -346,12 +367,18 @@ var structureIntializationReady = function() {
 						$('.introjs-tooltip').removeClass("hide");
 						var text = "Let us consider another example.";
 						typing(".introjs-tooltiptext", text,function() {
-							$('.introjs-prevbutton').hide();
 							dynamicSteps("thirdSyntax", false, true);
 						})
 					});
 				} else if (action == "thirdSyntax") {
-					console.log(" in the third..")
+					if (intro._direction == "backward") {
+						$("#arrVal").empty().append("'<span id='charVal'>s</span>', <span id='intVal'>25</span>");
+						$("#bLetter").text('s');
+						$("#bPages").text("25");
+						$("#bPrice").text("0.00");
+						$('.table-border > span').removeClass('display-none');
+						
+					}
 					$("#output").append("<span class='display-none'>" + $("#charVal").text() +"</span>"
 							+"  <span class='display-none'>"+ parseInt($("#intVal").text()) +"</span> "
 							+" <span class='display-none'>"+ $("#bPrice").text() +"</span>");
@@ -359,7 +386,6 @@ var structureIntializationReady = function() {
 						$('.introjs-tooltip').removeClass("hide");
 						var text = "Let us consider another example.";
 						typing(".introjs-tooltiptext", text, function() {
-							$('.introjs-prevbutton').hide();
 							dynamicSteps("fourthSyntax", false, true);
 						});
 					})
@@ -499,6 +525,7 @@ function dynamicSteps(action, isRequired, isMemory) {
 				element : "#memoryArea",
 				intro : "",
 				position : "bottom",
+				tooltipClass: "hide",
 				action : action,
 			}
 			intro.insertOption(intro._currentStep + ++step, nextStep);
