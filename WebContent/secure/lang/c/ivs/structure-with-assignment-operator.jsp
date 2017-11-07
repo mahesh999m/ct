@@ -130,7 +130,7 @@ pre {
 		<div class='col-xs-1'>
 			<div id='aValue' style='margin-top: 36px;' class='opacity00'><span class='color-green'><b>a</b></span>
 				&emsp;<span class='color-red'>&rarr;</span></div>
-			<div id='bValue' style='margin-top: 68px;' class='opacity00'><span class='color-green'><b>b</b></span>
+			<div id='bValue' style='margin-top: 50px;' class='opacity00'><span class='color-green'><b>b</b></span>
 				&emsp;<span class='color-red'>&rarr;</span></div>
 		</div>
 	<div class='col-xs-4'>
@@ -148,7 +148,7 @@ pre {
 				<tbody>
 					<tr>
 			  			<%for (int i = 1; i <= 5; i++)  {%>
-			  				<td  class="memory"><span id='memory<%=(i - 1)%>' class='opacity00'><%=(i * 10)%></span></td>
+			  				<td  class="memory"><span id='memory<%=(i - 1)%>' class='memory-class opacity00'><%=(i * 10)%></span></td>
 			  			<%}%>
   					</tr>
         		</tbody>

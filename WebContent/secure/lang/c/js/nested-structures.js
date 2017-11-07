@@ -46,6 +46,7 @@ var nestedStructuresReady = function() {
 			  $('.introjs-nextbutton').hide();
 		}
 	});
+	
 	$('#pinNumberInput').keyup(function() {
 		var max = $(this).attr("maxlength");
 		if ($(this).val().length != max) {
