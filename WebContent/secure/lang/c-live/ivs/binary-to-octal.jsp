@@ -14,8 +14,9 @@
 <script src="/js/jquery-ui-all.js"></script>
 <script src="/js/typewriting.min.js"></script>
 <script src='/js/intro.js'></script>
-<script src="/secure/lang/c/js-min/bto.min.js"></script>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
+<!-- <script src="/secure/lang/c/js-min/bto.min.js"></script> -->
+<script src="/secure/lang/c-live/js/binary-to-octal.js"></script>
 <title>Binary to Octal</title>
 </head>
 
