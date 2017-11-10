@@ -206,7 +206,7 @@ var nestedStructuresReady = function() {
 		},{
 			element :'#pinNoBox',
 			intro :'',
-			tooltipClass:'hidden',
+			tooltipClass:'hide',
 			position:"bottom"
 		},{
 			element :'#printf5',
@@ -233,31 +233,14 @@ var nestedStructuresReady = function() {
 		case "informationdiv" :
 			intro.refresh();
 		break;
-		case "tableDiv" :
-		break;
-		case "structDate" :
-		break;
-		case "structAccount" :
-		break;
-		case "accountVar" :
-		break; 
 		case "accountVariableTable" :
 			$('#ob1').addClass('opacity00');
 			$('#accountVariableTable').addClass('visibility-hidden');
 		break;
-		case "accountNumber0" :
-		break; 
-		case "accountNumber1" :
-		break;
-		case "accountNumber2" :
-		break;
-		case "structEmployee" :
-		break; 
 		case "structEmployeeE" :
 			if(intro._currentStep == 10) {
 			} else if(intro._currentStep == 12) {
 				$('#TableBox').removeClass('visibility-hidden');
-				//intro.refresh();
 			}
 			
 		break; 
@@ -267,34 +250,6 @@ var nestedStructuresReady = function() {
 				intro.refresh();
 			});
 			
-		break; 
-		case "printf1" :
-		case "printf2" :
-		case "printf5" :
-		case "printf4" :
-		case "printf3" :
-		break; 
-		case "consoleId" :
-			if(intro._currentStep == 14) {
-			} else if (intro._currentStep == 18) {
-					} else if (intro._currentStep == 22) {
-					} else if (intro._currentStep == 26) {
-					} else if (intro._currentStep == 30) {
-					}
-		break; 
-		case "scanf1" :
-		break; 
-		case "scanf2" :
-		break; 
-		case "scanf3" :
-		break; 
-		case "scanf4" :
-		break; 
-		case "nameBox" :
-		break; 
-		case "cityBox" :
-		break;
- 		case "phoneNoBox" :
 		break; 
 		case "pinNoBox" :
 			$('#embeddedFormat').addClass('opacity00');
@@ -507,8 +462,8 @@ var nestedStructuresReady = function() {
 							$('#consoleId').addClass('opacity00');
 						}
 						$('.inputDiv').not('.opacity00').last().addClass('opacity00');
-						$('.inputDiv:not(.opacity00) input').last().val('');
-						intro.previousStep();
+						//$('.inputDiv:not(.opacity00) input').last().val('');
+							intro.previousStep();
 					}
 				}, 300); 
 			});
@@ -564,68 +519,74 @@ var nestedStructuresReady = function() {
 					}
 		break; 
 		case "scanf1" :
-			if (intro._direction == "forward" ) {
-				$("#nameInput").attr("disabled", false);
-				$('#divE').removeClass('opacity00');
-				$("#percentiles1").effect("highlight", {color: '#FFDC00'}, 1000, function() {
-					$("#name1").effect("highlight", {color: '#FFDC00'}, 1000, function() {
-						$("#divE").effect("highlight", {color: '#FFDC00'}, 1000, function() {	
-							$("#divName").effect("highlight", {color: '#FFDC00'}, 1000, function() {
-								intro.nextStep();
-							});
-						});
-					});
-				});
-			} else {
-				setTimeout(function(){
-					intro.previousStep();
-				}, 300);
-			}
-			
-		break; 
-		case "scanf2" :
-			if (intro._direction == "forward" ) {
-				$("#cityInput").attr("disabled", false);
-				scanfAnimation("2", "city1", 'subcity');
-			} else {
-				setTimeout(function() {
-					intro.previousStep();
-				}, 300);
-			}
-			
-		break; 
-		case "scanf3" :
-			if (intro._direction == "forward" ) {
-				$("#phoneNumberInput").attr("disabled", false);
-				scanfAnimation("3", "phone1", 'subphone');
-			} else {
-				setTimeout(function() {
-					intro.previousStep();
-				}, 300);
-			}
-		break; 
-		case "scanf4" :
-			if (intro._direction == "forward" ) {
-				$("#pinNumberInput").attr("disabled", false);
-				$(".introjs-helperLayer").one("transitionend", function() {
-					$("#percentiled").effect("highlight", {color: '#FFDC00'}, 1000, function() {
-						$("#pin").effect("highlight", {color: '#FFDC00'}, 500, function() {
-							$("#divE").effect("highlight", {color: '#FFDC00'}, 500, function() {	
-								$("#divA").effect("highlight", {color: '#FFDC00'}, 500, function() {	
-									$("#subpin").effect("highlight", {color: '#FFDC00'}, 1000, function() {
-										intro.nextStep();
-									});
+			$(".introjs-helperLayer").one("transitionend", function() {
+				if (intro._direction == "forward" ) {
+					$("#nameInput").attr("disabled", false);
+					$('#divE').removeClass('opacity00');
+					$("#percentiles1").effect("highlight", {color: '#FFDC00'}, 1000, function() {
+						$("#name1").effect("highlight", {color: '#FFDC00'}, 1000, function() {
+							$("#divE").effect("highlight", {color: '#FFDC00'}, 1000, function() {	
+								$("#divName").effect("highlight", {color: '#FFDC00'}, 1000, function() {
+									intro.nextStep();
 								});
 							});
 						});
 					});
-				 });
-			} else {
-				setTimeout(function() {
-					intro.previousStep();
-				}, 300);
-			}
+				} else {
+					setTimeout(function(){
+						intro.previousStep();
+					}, 300);
+				}
+			});
+		break; 
+		case "scanf2" :
+			$(".introjs-helperLayer").one("transitionend", function() {
+				if (intro._direction == "forward" ) {
+					$("#cityInput").attr("disabled", false);
+					scanfAnimation("2", "city1", 'subcity');
+				} else {
+					setTimeout(function() {
+						intro.previousStep();
+					}, 300);
+				}
+			});
 			
+		break; 
+		case "scanf3" :
+			$(".introjs-helperLayer").one("transitionend", function() {
+				if (intro._direction == "forward" ) {
+					$("#phoneNumberInput").attr("disabled", false);
+					scanfAnimation("3", "phone1", 'subphone');
+				} else {
+					setTimeout(function() {
+						intro.previousStep();
+					}, 300);
+				}
+			});
+		break; 
+		case "scanf4" :
+			$(".introjs-helperLayer").one("transitionend", function() {
+				if (intro._direction == "forward" ) {
+					$("#pinNumberInput").attr("disabled", false);
+					$(".introjs-helperLayer").one("transitionend", function() {
+						$("#percentiled").effect("highlight", {color: '#FFDC00'}, 1000, function() {
+							$("#pin").effect("highlight", {color: '#FFDC00'}, 500, function() {
+								$("#divE").effect("highlight", {color: '#FFDC00'}, 500, function() {	
+									$("#divA").effect("highlight", {color: '#FFDC00'}, 500, function() {	
+										$("#subpin").effect("highlight", {color: '#FFDC00'}, 1000, function() {
+											intro.nextStep();
+										});
+									});
+								});
+							});
+						});
+					 });
+				} else {
+					setTimeout(function() {
+						intro.previousStep();
+					}, 300);
+				}
+			});
 		break; 
 		case "nameBox" :
 			readingValues('#nameInput',"#nameBox");
@@ -700,10 +661,11 @@ function readingValues(selector1,selector2) {
 			$(selector2).offset({"top": l.top,"left": l.left});
 	        TweenMax.to(selector2, 0.5, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
 				$(selector2).removeClass('opacity00');
+				setTimeout(function() {
+					intro.nextStep();
+				}, 500);
 	        }});
-	        setTimeout(function() {
-			intro.nextStep();
-	        }, 500);
+	       
 		} else {
 			$(selector2).addClass('opacity00').removeAttr('style');
 			setTimeout(function() {

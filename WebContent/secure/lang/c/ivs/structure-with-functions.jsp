@@ -131,7 +131,7 @@ td {
     color: #f0f0f0;
     font-family: monospace;
     font-size: 14px;
-    height: 90px;
+    height: 60px;
     padding: 17px;
     white-space: pre-line;
 }
@@ -224,13 +224,13 @@ pre {
 </div>
 </div>
 <div class='col-xs-12' style='margin-top: 15px;'>
-	<div id="consoleId" class="opacity00 col-xs-offset-4 col-xs-4" style='padding: 0'>
+	<div id="consoleId" class="opacity00 col-xs-offset-3 col-xs-6" style='padding: 0'>
 		<div class="output-console-title-bar"><span class="title"><b>Console</b></span></div>
 		<div class="output-console-body" id="consoleBodyDiv"><span id='outPut'></span> </div>
 	</div>
 </div>
 		
-<div class="button col-xs-12 text-center " id="button">
+<div class="button col-xs-12 text-center " id="button" style='margin-top: 10px;'>
 	<button class="btn btn-warning opacity00" type="button" id='restartBtn' style='margin-top:4px'><i class="fa fa-refresh"></i> Restart</button>
 </div>
 

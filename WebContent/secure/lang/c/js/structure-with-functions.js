@@ -25,12 +25,7 @@ var structureWithFunctionsReady = function() {
 			element :'#preId',
 			intro :'',
 			position:"bottom"  
-	 	}/*, {
-			element :'#tableDiv',
-			intro :'',
-			tooltipClass:'hidden',
-			position:"bottom"  
-		}*/,{
+	 	},{
 			element :'#errorVoidDisplay',
 			intro :'',
 			position:"bottom"  
@@ -49,7 +44,7 @@ var structureWithFunctionsReady = function() {
 		},{
 			element :'#memoryStoreB',
 			intro :'',
-			tooltipClass:'hidden',
+			tooltipClass:'hide',
 			position:"bottom"
 		},{
 			element :'#displayOfB',
@@ -62,22 +57,22 @@ var structureWithFunctionsReady = function() {
 		},{
 			element :'#voidDispalyX',
 			intro :'',
-			tooltipClass:'hidden',
+			tooltipClass:'hide',
 			position:"bottom"
 		},{
 			element :'#memoryStoreX',
 			intro :'',
-			tooltipClass:'hidden',
+			tooltipClass:'hide',
 			position:"bottom" 
 		},{
 			element :'#printF',
 			intro :'',
-			tooltipClass:'hidden',
+			tooltipClass:'hide',
 			position:"bottom"  
 		},{
 			element :'#consoleId',
 			intro :'',
-			tooltipClass:'hidden',
+			tooltipClass:'hide',
 			position:"bottom"
 		},{
 			element :'#restartBtn',
@@ -85,49 +80,53 @@ var structureWithFunctionsReady = function() {
 			position:"right"
 		}]
 	});
-	intro.onafterchange(function(targetElement) { 
+	
+	
+	intro.onafterchange(function(targetElement) {
+		$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
+		
+		// ********************** start ************back button logic
+		
+		if (intro._introItems[intro._currentStep]["tooltipClass"] == "hide") {
+			intro._introItems[intro._currentStep]["animation"] = "repeat";
+		}
+		
+		if (intro._introItems[intro._currentStep]["isCompleted"]) {
+			if (intro._currentStep != 1) {
+				$('.introjs-prevbutton').show();
+			}
+			$('.introjs-nextbutton').show();
+			return;
+		}
+		
+		if (intro._introItems[intro._currentStep]["animation"] != "repeat") {
+			intro._introItems[intro._currentStep]["isCompleted"] = true;
+		}
+		
+		// ********************** end ************back button logic
+		
 		var elementId = targetElement.id;
 		switch (elementId) {
 		case "informationdiv" :
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$("#informationdiv").removeClass("visibility-hidden");
 	  		TweenMax.to($("#li1"), 0.5, {opacity: 1, onComplete: function() {
 	  			$('#li1').append(' <a class="introjs-button user-btn" onclick="intro.nextStep()">Next &#8594;</a>');
 	  			intro.refresh();
-	  			/*$(".user-btn").click(function() {
-	  				$(this).remove();
-		  			$('.introjs-tooltip').removeClass('hide');
-		  			typing('.introjs-tooltiptext',"Let us consider an example.", function() {
-		  				$('.introjs-nextbutton, .introjs-prevbutton').show(); 
-		  			});
-	  			});*/
 	  		}});
 		break;
-		/*case "tableDiv" :
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
-			$("#informationdiv").addClass("zindex");
-			$(".introjs-helperLayer").one("transitionend", function() {
-				$('#tableDiv').removeClass('visibility-hidden');
-	  			 setTimeout(function(){
-					intro.nextStep();
-					}, 700); 
-				});
-		break; */
 		
 		case "preId" :
 			$('.user-btn').remove();
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$('.visibility-hidden').removeClass('visibility-hidden');
 			$(".introjs-helperLayer").one("transitionend", function() {
 				intro.refresh();
 				typing('.introjs-tooltiptext',"Let us consider an example.", function() {
-	  				$('.introjs-nextbutton, .introjs-prevbutton').show(); 
+	  				$('.introjs-nextbutton').show(); 
 	  			});
 			});
 		break;
 		
 		case "errorVoidDisplay" :
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 			  	typing('.introjs-tooltiptext', "<ul><li>This is the declaration of function <span class='ct-code-b-yellow'>display()</span>.</li>"
 			  			+ " <li>This takes an argument of type struct <span class='ct-code-b-yellow'>book</span>.</li>"
@@ -140,7 +139,6 @@ var structureWithFunctionsReady = function() {
 		break;
 		case "structBook" :
 			$('#errorVoidDisplay').addClass('opacity00');
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#structBook").removeClass("opacity00");
 			  	typing('.introjs-tooltiptext', "This is a structure <span class='ct-code-b-yellow'>book</span> with three members"
@@ -151,16 +149,14 @@ var structureWithFunctionsReady = function() {
 				});
 		break;
 		case "voidMain" :
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {  
 				$("#voidDisplay").removeClass("opacity00");
 			  	typing('.introjs-tooltiptext', "This line does not throw an error as <b class='ct-code-b-yellow'>book</b> is already declared.", function() {  
-					$('.introjs-nextbutton, .introjs-prevbutton').show();
+			  			$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 		break; 
 		case "memoryBookB" :
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			intro.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
 			  	typing('.introjs-tooltiptext', "Here we define a structure variable <span class='ct-code-b-yellow'>b</span> of type"
@@ -170,41 +166,45 @@ var structureWithFunctionsReady = function() {
 				});
 		break; 
 		case "memoryStoreB" :
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				$("#bArrow").removeClass("opacity00");
-				$("#memoryStoreB").removeClass("opacity00");
-				intro.refresh();
-				$('#name').addClass('circle-css');
-				var l = $("#name").offset();
-				$("#memory0").offset({"top": l.top,"left": l.left});
-		        TweenMax.to("#memory0", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
-		        	$('#name').removeClass('circle-css');
-		        	$('#price').addClass('circle-css');
-		        	var l = $("#price").offset();
-					$("#memory1").offset({"top": l.top,"left": l.left});
-			        TweenMax.to("#memory1", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
-			        	if (zeroAddingFlag) {
-			        		$('#memory1').append('00000');
-			        		zeroAddingFlag = !zeroAddingFlag;
-			        	}
-			        	//$('#memory1').append('00000');
-			        	$('#price').removeClass('circle-css');
-			        	$('#pages').addClass('circle-css');
-			        	var l = $("#pages").offset();
-						$("#memory2").offset({"top": l.top,"left": l.left});
-				        TweenMax.to("#memory2", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
-							$('#pages').removeClass('circle-css');
-			  				typing('.introjs-tooltiptext', "", function() {  
-			  					intro.nextStep();
-								});
-		       				 }});
-		       		 	}});
-		        	}});
-				});
+				if (intro._direction == "forward") {
+					$("#bArrow, #memoryStoreB").removeClass("opacity00");
+					intro.refresh();
+					$('#name').addClass('circle-css');
+					var l = $("#name").offset();
+					$("#memory0").offset({"top": l.top,"left": l.left});
+			        TweenMax.to("#memory0", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
+			        	$('#name').removeClass('circle-css');
+			        	$('#price').addClass('circle-css');
+			        	var l = $("#price").offset();
+						$("#memory1").offset({"top": l.top,"left": l.left});
+				        TweenMax.to("#memory1", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
+				        	if (zeroAddingFlag) {
+				        		$('#memory1').append('00000');
+				        		zeroAddingFlag = !zeroAddingFlag;
+				        	}
+				        	$('#price').removeClass('circle-css');
+				        	$('#pages').addClass('circle-css');
+				        	var l = $("#pages").offset();
+							$("#memory2").offset({"top": l.top,"left": l.left});
+					        TweenMax.to("#memory2", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
+								$('#pages').removeClass('circle-css');
+				  					setTimeout(function() {
+										intro.nextStep();
+									}, 300);
+			       				 }});
+			       		 	}});
+			        	}});
+				} else {
+					$("#bArrow, #memoryStoreB").addClass("opacity00");
+					$('#trValue2 > .memory').removeAttr('style').addClass('opacity00');
+					setTimeout(function() {
+						intro.previousStep();
+					}, 500); 
+				}
+			});
 		break;
 		case "displayOfB" : 
-		$('.introjs-nextbutton, .introjs-prevbutton').hide();
 		$(".introjs-helperLayer").one("transitionend", function() {
 			$("#voidDispalyX").removeClass("opacity00");
 		  	typing('.introjs-tooltiptext', "This is a <b class='ct-code-b-yellow'>function call</b> that sends the entire structure as a function argument.", function() {  
@@ -213,7 +213,6 @@ var structureWithFunctionsReady = function() {
 			});
 		break;
 		case "voidPrintFunction" : 
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#voidDispalyX").removeClass("opacity00");
 			  	typing('.introjs-tooltiptext', "This function <b class='ct-code-b-yellow'>display</b>, uses the structure <span class='ct-code-b-yellow'>book</span>"
@@ -224,46 +223,54 @@ var structureWithFunctionsReady = function() {
 				});
 		break;
 		case "voidDispalyX" :
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				setTimeout(function() {
-					intro.nextStep();
-					}, 500); 	
+					if (intro._direction == "forward") {
+						intro.nextStep();
+					} else {
+						intro.previousStep();
+					}
+				}, 500); 	
 			});
 		break;
 		case "memoryStoreX" :
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				$("#xArrow").removeClass("opacity00");
-				$("#memoryStoreX").removeClass("opacity00");
-				$("#trValue2").addClass("zindex");
-				var l = $("#memory0").offset();  
-				$("#memory01").offset({"top": l.top,"left": l.left});
-				$('trValue2').addClass('zindex');
-				$("#memory0").effect("highlight", {color: 'yellow'}, 500, function() {
-					TweenMax.to("#memory01", 1.3, {Color:"yellow", opacity:1, top: 0, left:0 , onComplete:function() {
-						var l = $("#memory1").offset();
-						$("#memory11").offset({"top": l.top,"left": l.left});
-						$("#memory1").effect("highlight", {color: 'yellow'}, 500, function() {
-							TweenMax.to("#memory11", 1.3, {Color:"yellow", opacity:1, top: 0, left:0 , onComplete:function() {
-								var l = $("#memory2").offset();
-								$("#memory21").offset({"top": l.top,"left": l.left});
-								$("#memory2").effect("highlight", {color: 'yellow'}, 500, function() {
-									TweenMax.to("#memory21", 1.3, {Color:"yellow", opacity:1, top: 0, left:0 , onComplete:function() {
-										$("#trValue2").removeClass("zindex");
-										setTimeout(function() {
-											intro.nextStep();
-										}, 300);
-									}});
-								});
-							}});
-		       		 	});
-					}});
-				});
+				if (intro._direction == "forward") {
+					$("#xArrow, #memoryStoreX").removeClass("opacity00");
+					$("#trValue2").addClass("zindex");
+					var l = $("#memory0").offset();  
+					$("#memory01").offset({"top": l.top,"left": l.left});
+					$("#memory0").effect("highlight", {color: 'yellow'}, 500, function() {
+						TweenMax.to("#memory01", 1.3, {Color:"yellow", opacity:1, top: 0, left:0 , onComplete:function() {
+							var l = $("#memory1").offset();
+							$("#memory11").offset({"top": l.top,"left": l.left});
+							$("#memory1").effect("highlight", {color: 'yellow'}, 500, function() {
+								TweenMax.to("#memory11", 1.3, {Color:"yellow", opacity:1, top: 0, left:0 , onComplete:function() {
+									var l = $("#memory2").offset();
+									$("#memory21").offset({"top": l.top,"left": l.left});
+									$("#memory2").effect("highlight", {color: 'yellow'}, 500, function() {
+										TweenMax.to("#memory21", 1.3, {Color:"yellow", opacity:1, top: 0, left:0 , onComplete:function() {
+											$("#trValue2").removeClass("zindex");
+											setTimeout(function() {
+												intro.nextStep();
+											}, 300);
+										}});
+									});
+								}});
+			       		 	});
+						}});
+					});
+				} else {
+					$("#xArrow, #memoryStoreX").addClass("opacity00");
+					$('#memoryStoreX tr:eq(1) > td').removeAttr('style');
+					setTimeout(function() {
+						intro.nextStep();
+					}, 300);
+				}
+				
 			});
 		break; 
 		case "printF" :
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			intro.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#printF").removeClass("opacity00");
@@ -286,7 +293,6 @@ var structureWithFunctionsReady = function() {
 				});
 		break;
 		case "restartBtn":
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$('.introjs-tooltip').css({'min-width' : '110px'});
 			$(".introjs-helperLayer").one("transitionend", function() {
 				typing('.introjs-tooltiptext', "Click to restart.", function() {
@@ -298,9 +304,7 @@ var structureWithFunctionsReady = function() {
 	});
 
 	intro.start();
-	$('.introjs-skipbutton').hide();
-	$('.introjs-prevbutton').hide();
-	$('.introjs-nextbutton, .introjs-prevbutton').hide();
+	$('.introjs-nextbutton, .introjs-prevbutton, .introjs-skipbutton').hide();
 }
 
 function typing(selector, text, callBackFunction) {
@@ -313,6 +317,7 @@ function typing(selector, text, callBackFunction) {
 		$(".introjs-nextbutton").removeClass("opacity00");
 		if (typeof callBackFunction === "function") {  
 			callBackFunction();
+			intro._introItems[intro._currentStep].intro = $(".introjs-tooltiptext").html();
 			}
 		})
 	}

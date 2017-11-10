@@ -20,129 +20,101 @@ function selfReferentialStructure() {
 		steps : [ {
 			element : "#codeDiv1",
 			intro : "",
-			isCompleted : "false"
 		},{
 			element : "#intType",
 			intro : "",
-			isCompleted : "false"
 		},{
 			element : "#floatType",
 			intro : "",
-			isCompleted : "false"
 		},{
 			element : "#innerStruct",
 			intro : "",
-			isCompleted : "false"
 		},{
 			element : "#informationDiv",
 			tooltipClass:"hide",
-			isCompleted : "false"
 		},{
 			element : "#codeDiv",
 			intro : "",
-			isCompleted : "false"
 		},{
 			element : "#structDeceleration",
 			intro : "",
-			isCompleted : "false"
 		},{
 			element : "#variables",
 			intro : "",
-			isCompleted : "false"
 		},{
 			element : "#s1variable",
 			intro : "",
-			isCompleted : "false"
 		},{
 			element : "#animationDiv",
 			intro : "",
 			animateStep: "s1VariableAnimation",
-			isCompleted : "false"
 		},{
 			element : "#s2variable",
 			intro : "",
-			isCompleted : "false"
 		},{
 			element : "#animationDiv",
 			intro : "",
 			position:"bottom",
 			animateStep : "s2VariableAnimation",
-			isCompleted : "false"
 				
 		},{
 			element : "#s1Printf",
 			intro : "",
-			isCompleted : "false"
 		},{
 			element : "#outputDiv",
 			animateStep: "s1EnterStmt",
 			tooltipClass: "hide",
-			isCompleted : "false"
 		},{
 			element : "#s1Scanf",
 			intro : "",
-			isCompleted : "false"
 		},{
 			element : "#outputDiv",
 			intro : "",
 			animateStep: "s1ScanStmt",
-			isCompleted : "false"
 		},{
 			element : "#data1",
 			tooltipClass:"hide"
 		},{
 			element : "#s2Printf",
 			intro : "",
-			isCompleted : "false"
 		},{
 			element : "#outputDiv",
 			animateStep: "s2EnterStmt",
 			tooltipClass: "hide",
-			isCompleted : "false"
 		},{
 			element : "#s2Scanf",
 			intro : "",
-			isCompleted : "false"
 		},{
 			element : "#outputDiv",
 			intro : "",
 			animateStep: "s2ScanStmt",
-			isCompleted : "false"
 		},{
 			element : "#data2",
 			tooltipClass:"hide",
-			isCompleted : "false"
 		},{
 			element : "#stmt1",
 			intro : "",
-			isCompleted : "false"
 		},{
 			element : "#animationDiv",
 			animateStep: "stmt1VariableAnimation",
-			isCompleted : "false"
 		},{
 			element : "#stmt2",
 			intro : "",
 			position:"bottom",
-			isCompleted : "false"
 		},{
 			element : "#animationDiv",
 			animateStep: "stmt2VariableAnimation",
-			isCompleted : "false"
 		},{
 			element : "#printf",
 			intro : "",
 			position:"bottom",
-			isCompleted : "false"
 		},{
 			element : "#outputDiv",
 			animateStep: "printStmt",
 			tooltipClass:"hide",
-			isCompleted : "false"
 		},{
 			element : "#informationDiv",
 			tooltipClass:"hide",
-			isCompleted : "false"
 		},{
 			element : "#restart",
 			intro : "",
@@ -156,44 +128,30 @@ function selfReferentialStructure() {
 		switch (elementId) {
 		case "codeDiv1":
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
-			if (intro._introItems[intro._currentStep].isCompleted == "false") {
-				var text = "This is the declaration of a user defined datatype" 
-					+ " <span class='ct-code-b-yellow'>student</span>.";
-				typing(".introjs-tooltiptext", text, function() {
-					$('.introjs-nextbutton').show();
-				});
-			} else {
+			var text = "This is the declaration of a user defined datatype" 
+				+ " <span class='ct-code-b-yellow'>student</span>.";
+			typing(".introjs-tooltiptext", text, function() {
 				$('.introjs-nextbutton').show();
-			}
-			
+			});
 		break;	
 		case "intType":
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer ").one('transitionend', function() {
-				if (intro._introItems[intro._currentStep].isCompleted == "false") {
-					var text = "Variable <b class='ct-code-b-yellow'>number</b> of type <b class='ct-code-b-yellow'>int</b> is a member of struct <b class='ct-code-b-yellow'>student</b> ";
-					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-						console.log('typing');
-					});
-				} else {
-					console.log('no');
+				var text = "Variable <b class='ct-code-b-yellow'>number</b> of type <b class='ct-code-b-yellow'>int</b> is a member of struct <b class='ct-code-b-yellow'>student</b> ";
+				typing(".introjs-tooltiptext", text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+					console.log('typing');
+				});
 			});
 		break;
 		case "floatType":
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer ").one('transitionend', function() {
-				if (intro._introItems[intro._currentStep].isCompleted == "false") {
-					var text = "<span class='ct-code-b-yellow'>marks</span> is the member of struct <span class='ct-code-b-yellow'>student</span> "
-						+ "of type <span class='ct-code-b-yellow'>float</span>.";
-					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				var text = "<span class='ct-code-b-yellow'>marks</span> is the member of struct <span class='ct-code-b-yellow'>student</span> "
+					+ "of type <span class='ct-code-b-yellow'>float</span>.";
+				typing(".introjs-tooltiptext", text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 				
 			});
 		break;
@@ -237,80 +195,59 @@ function selfReferentialStructure() {
 		case "codeDiv" :
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer ").one('transitionend', function() {
-				if (intro._introItems[intro._currentStep].isCompleted == "false") {
-					$("#codeDiv").removeClass("opacity00").hide().fadeIn(1500,function() {
-						var text = "Let us consider an example.";
-						typing(".introjs-tooltiptext", text, function() {
-							$('.introjs-nextbutton, .introjs-prevbutton').show();
-						});
+				$("#codeDiv").removeClass("opacity00").hide().fadeIn(1500,function() {
+					var text = "Let us consider an example.";
+					typing(".introjs-tooltiptext", text, function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
-				} else {
-					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
-				
+				});
 			});
 		break;
 		case "structDeceleration":
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer ").one('transitionend', function() {
-				if (intro._introItems[intro._currentStep].isCompleted == "false") {
-					var text = "This is the declaration of a user defined datatype <span class='ct-code-b-yellow'>example</span>.</br></br> "
-						+ " This struct example contains one <span class='ct-code-b-yellow'>int</span>"
-						+" datatype and one <span class='ct-code-b-yellow'>pointer</span> datatype.";
-					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				var text = "This is the declaration of a user defined datatype <span class='ct-code-b-yellow'>example</span>.</br></br> "
+					+ " This struct example contains one <span class='ct-code-b-yellow'>int</span>"
+					+" datatype and one <span class='ct-code-b-yellow'>pointer</span> datatype.";
+				typing(".introjs-tooltiptext", text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 		break;
 		case "variables":
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer ").one('transitionend', function() {
-				if (intro._introItems[intro._currentStep].isCompleted == "false") {
-					var text = "We have defined two struct variables "
-						+"<span class='ct-code-b-yellow'>s1</span> and "
-						+"<span class='ct-code-b-yellow'>s2</span> of type <span class='ct-code-b-yellow'>example</span>.";
-					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				var text = "We have defined two struct variables "
+					+"<span class='ct-code-b-yellow'>s1</span> and "
+					+"<span class='ct-code-b-yellow'>s2</span> of type <span class='ct-code-b-yellow'>example</span>.";
+				typing(".introjs-tooltiptext", text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 		break;
 		case "s1variable":
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer ").one('transitionend', function() {
-				if (intro._introItems[intro._currentStep].isCompleted == "false") {
-					var text = "All the member variables of the <span class='ct-code-b-yellow'>struct example</span> will"
-						+" be allocated memory as per their datatype."
-						+"<br/><br/>Two bytes of memory will be allocated to <span class='ct-code-b-yellow'>s1</span> i.e. the "
-						+" <span class='ct-code-b-yellow'>self referential structure</span>.";
-					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				var text = "All the member variables of the <span class='ct-code-b-yellow'>struct example</span> will"
+					+" be allocated memory as per their datatype."
+					+"<br/><br/>Two bytes of memory will be allocated to <span class='ct-code-b-yellow'>s1</span> i.e. the "
+					+" <span class='ct-code-b-yellow'>self referential structure</span>.";
+				typing(".introjs-tooltiptext", text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 				
 			});
 		break;
 		case "s2variable":
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer ").one('transitionend', function() {
-				if (intro._introItems[intro._currentStep].isCompleted == "false") {
-					var text = "All the member variables of the <span class='ct-code-b-yellow'>struct example</span> will"
-						+" be allocated memory as per their datatype."
-						+"<br/><br/>Two bytes of memory will be allocated to <span class='ct-code-b-yellow'>s2</span>  i.e. the "
-						+"<span class='ct-code-b-yellow'>self referential structure</span>.";
-					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				var text = "All the member variables of the <span class='ct-code-b-yellow'>struct example</span> will"
+					+" be allocated memory as per their datatype."
+					+"<br/><br/>Two bytes of memory will be allocated to <span class='ct-code-b-yellow'>s2</span>  i.e. the "
+					+"<span class='ct-code-b-yellow'>self referential structure</span>.";
+				typing(".introjs-tooltiptext", text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 				
 			});
 		break;
@@ -322,31 +259,23 @@ function selfReferentialStructure() {
 					case "s1VariableAnimation" :
 						$("#s1memory, #s1").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 							$("#s1memory, #s1").removeClass("animated zoomIn");
-							if (intro._introItems[intro._currentStep].isCompleted == "false") {
-								var text = "Memory allocated for struct <span class='ct-code-b-yellow'>s1</span>: <br/><br/>"
-									+" Two bytes for int <span class='ct-code-b-yellow'>data</span>. <br/>"
-									+" Two bytes for pointer <span class='ct-code-b-yellow'>p</span>.";
-								typing(".introjs-tooltiptext", text, function() {
-									$('.introjs-nextbutton, .introjs-prevbutton').show();
-								});
-							} else {
+							var text = "Memory allocated for struct <span class='ct-code-b-yellow'>s1</span>: <br/><br/>"
+								+" Two bytes for int <span class='ct-code-b-yellow'>data</span>. <br/>"
+								+" Two bytes for pointer <span class='ct-code-b-yellow'>p</span>.";
+							typing(".introjs-tooltiptext", text, function() {
 								$('.introjs-nextbutton, .introjs-prevbutton').show();
-							}
+							});
 						});
 					break;
 					case "s2VariableAnimation" :
 						$("#s2memory, #s2").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 							$("#s2memory, #s2").removeClass("animated zoomIn");
-							if (intro._introItems[intro._currentStep].isCompleted == "false") {
-								var text = "Memory allocated for <span class='ct-code-b-yellow'>s2</span>: <br/><br/>"
-									+" Two bytes for int <span class='ct-code-b-yellow'>data</span>. <br/>"
-									+" Two bytes for pointer <span class='ct-code-b-yellow'>p</span>.";
-								typing(".introjs-tooltiptext", text, function() {
-									$('.introjs-nextbutton, .introjs-prevbutton').show();
-								});
-							} else {
+							var text = "Memory allocated for <span class='ct-code-b-yellow'>s2</span>: <br/><br/>"
+								+" Two bytes for int <span class='ct-code-b-yellow'>data</span>. <br/>"
+								+" Two bytes for pointer <span class='ct-code-b-yellow'>p</span>.";
+							typing(".introjs-tooltiptext", text, function() {
 								$('.introjs-nextbutton, .introjs-prevbutton').show();
-							}
+							});
 							
 						});
 					break;
@@ -392,20 +321,16 @@ function selfReferentialStructure() {
 		case "s1Printf":
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer ").one('transitionend', function() {
-				if (intro._introItems[intro._currentStep].isCompleted == "false") {
-					var text = "This statement is used to print the given string to console.";
-					$("#output").append('<span id="enterData1"></span>'
-							+ '<span class="padding3 containnumbers" contenteditable="true"'
-							+ ' id="s1value" maxlength="3" spellcheck="false"></span><br>');
-					numbers();
-					typing(".introjs-tooltiptext", text, function() {stmt3
-						$("#outputDiv").removeClass("opacity00").hide().fadeIn(1000,function() {
-							$('.introjs-nextbutton, .introjs-prevbutton').show();
-						});
+				var text = "This statement is used to print the given string to console.";
+				$("#output").append('<span id="enterData1"></span>'
+						+ '<span class="padding3 containnumbers" contenteditable="true"'
+						+ ' id="s1value" maxlength="3" spellcheck="false"></span><br>');
+				numbers();
+				typing(".introjs-tooltiptext", text, function() {stmt3
+					$("#outputDiv").removeClass("opacity00").hide().fadeIn(1000,function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
-				} else {
-					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 				
 			});
 			break;
@@ -523,30 +448,22 @@ function selfReferentialStructure() {
 		case "stmt2":
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer ").one('transitionend', function() {
-				if (intro._introItems[intro._currentStep].isCompleted == "false") {
-					var text = "This statement will store <span class='ct-code-b-yellow'>NUll</span>"
-						+" in pointer variable <span class='ct-code-b-yellow'>p</span>" 
-						+ " of <span class='ct-code-b-yellow'>s2</span> i.e, it does not link to the next structure variable.";
-					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				var text = "This statement will store <span class='ct-code-b-yellow'>NUll</span>"
+					+" in pointer variable <span class='ct-code-b-yellow'>p</span>" 
+					+ " of <span class='ct-code-b-yellow'>s2</span> i.e, it does not link to the next structure variable.";
+				typing(".introjs-tooltiptext", text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 		break;
 		case "printf":
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer ").one('transitionend', function() {
-				if (intro._introItems[intro._currentStep].isCompleted == "false") {
-					$("#output").append('<span id="details"></span>');
-					var text = "This statement will prints <span class='ct-code-b-yellow'>s1.data, s1.p->data</span> to the console.";
-					typing(".introjs-tooltiptext", text, function() {
-						$('.introjs-nextbutton, .introjs-prevbutton').show();
-					});
-				} else {
+				$("#output").append('<span id="details"></span>');
+				var text = "This statement will prints <span class='ct-code-b-yellow'>s1.data, s1.p->data</span> to the console.";
+				typing(".introjs-tooltiptext", text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
-				}
+				});
 			});
 		break;
 		case "restart":
@@ -575,8 +492,6 @@ function typing(typingId, typingContent,callBackFunction) {
 		if (typeof callBackFunction === "function") {
 			callBackFunction();
 			intro._introItems[intro._currentStep].intro = $(".introjs-tooltiptext").html();
-			//intro._introItems[intro._currentStep].tooltipClass = "";
-			intro._introItems[intro._currentStep].isCompleted = "true";
 		}
 	});
 }

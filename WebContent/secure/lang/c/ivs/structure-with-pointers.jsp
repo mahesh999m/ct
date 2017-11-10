@@ -108,11 +108,11 @@
     color: #f0f0f0;
     font-family: monospace;
     font-size: 14px;
-    height: 90px;
+    height: 60px;
     margin-bottom: 14px;
     overflow: auto;
     padding: 17px;
-    white-space: pre-line;
+    white-space: nowrap;
 }
 
 .color-palegreen {
@@ -209,7 +209,7 @@ pre {
       	</div>
 		</div>
 	</div>
-	<div class='col-xs-12 col-xs-offset-4 col-xs-4' style='margin-top: 15px;'>
+	<div class='col-xs-offset-3 col-xs-6' style='margin-top: 15px;'>
 			<div id="consoleId" class="center opacity00">
 				<div class="output-console-title-bar">
 					<span class="title"><b>Console</b></span>

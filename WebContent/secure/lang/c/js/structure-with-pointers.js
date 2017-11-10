@@ -23,7 +23,7 @@
 		},{
 			element :'#tableDiv',
 			intro :'',
-			tooltipClass:'hidden',
+			tooltipClass:'hide',
 			position:"bottom" 
 		},{
 			element :'#membersOfStructBook',
@@ -36,7 +36,7 @@
 		},{
 			element :'#memoryStoreB',
 			intro :'',
-			tooltipClass:'hidden',
+			tooltipClass:'hide',
 			position:"bottom"
 		},{
 			element :'#bookPointer',
@@ -45,7 +45,7 @@
 		},{ 
 			element :'#boxOfP',
 			intro :'',
-			tooltipClass:'hidden',
+			tooltipClass:'hide',
 			position:"bottom"
 		},{ 
 			element :'#pEquals',
@@ -53,27 +53,30 @@
 			position:"bottom"
 		},{ 
 			element :'#printF',
-			intro :''
+			intro :'',
+			tooltipClass:'hide',
 		},{
 			element :'#consoleId',
 			intro :'',
-			tooltipClass:'hidden',
+			tooltipClass:'hide',
 			position:"bottom" 
 		},{ 
 			element :'#printF',
-			intro :''
+			intro :'',
+			tooltipClass:'hide',
 		},{
 			element :'#consoleId',
 			intro :'',
-			tooltipClass:'hidden',
+			tooltipClass:'hide',
 			position:"bottom" 
 		},{ 
 			element :'#printF',
-			intro :''
+			intro :'',
+			tooltipClass:'hide',
 		},{
 			element :'#consoleId',
 			intro :'',
-			tooltipClass:'hidden',
+			tooltipClass:'hide',
 			position:"bottom"  
 		},{
 			element :'#restartBtn',
@@ -81,8 +84,40 @@
 			position:"right"
 		}]
 	});
+	
+	intro.onbeforechange(function(targetElement) {
+	var elementId = targetElement.id;
+		switch (elementId) {
+			case "informationdiv" :
+				$('ul:first > li').removeAttr('style');
+			break;
+		}
+	});
+	
 	intro.onafterchange(function(targetElement) { 
-		$('.introjs-nextbutton, .introjs-skipbutton, .introjs-prevbutton').hide()
+		$('.introjs-nextbutton, .introjs-skipbutton, .introjs-prevbutton').hide();
+		
+		// ********************** start ************back button logic
+		
+		if (intro._introItems[intro._currentStep]["tooltipClass"] == "hide") {
+			intro._introItems[intro._currentStep]["animation"] = "repeat";
+		}
+		
+		if (intro._introItems[intro._currentStep]["isCompleted"]) {
+			if (intro._currentStep != 0) {
+				$('.introjs-prevbutton').show();
+			}
+			$('.introjs-nextbutton').show();
+			return;
+		}
+		
+		if (intro._introItems[intro._currentStep]["animation"] != "repeat") {
+			intro._introItems[intro._currentStep]["isCompleted"] = true;
+		}
+		
+		// ********************** end ************back button logic
+		
+		
 		var elementId = targetElement.id;
 		switch (elementId) {
 		
@@ -100,11 +135,16 @@
 		break;
 		case "tableDiv" :
 			$(".introjs-helperLayer").one("transitionend", function() {
-				$('#tableDiv').removeClass('visibility-hidden');
-	  			setTimeout(function(){
-					intro.nextStep();
-					}, 700); 	
-				});
+	  			setTimeout(function() {
+	  				$('#tableDiv').removeClass('visibility-hidden');
+	  				if (intro._direction == "forward") {
+	  					intro.nextStep();
+	  				} else {
+	  					$('#tableDiv').addClass('visibility-hidden');
+	  					intro.previousStep();
+	  				}
+				}, 300); 	
+			});
 		break;
 		case "membersOfStructBook" :
 			$("#voidDisplay").removeClass("opacity00");
@@ -112,7 +152,7 @@
 				$("#membersOfStructBook").removeClass("opacity00");
 				typing('.introjs-tooltiptext', "This is a structure declaration of user defined datatype "+
 						"<span class='ct-code-b-yellow'>book</span>.", function() {
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
 		break;
@@ -127,34 +167,39 @@
 		break; 
 		case "memoryStoreB" :
 			$(".introjs-helperLayer").one("transitionend", function() {
-				$('#bArrow').removeClass("opacity00");
-				$("#memoryStoreB").removeClass("opacity00");
-				$("#bArrow").removeClass("opacity00");
-				intro.refresh();
-				$('#name').addClass('circle-css');
-				var l = $("#name").offset();
-				$("#memory0").offset({"top": l.top,"left": l.left});
-	       		TweenMax.to("#memory0", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
-		        	$('#name').removeClass('circle-css');
-		        	$('#price').addClass('circle-css');
-		        	var l = $("#price").offset();
-					$("#memory1").offset({"top": l.top,"left": l.left});
-			        TweenMax.to("#memory1", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
-			        	$('#zeros').removeClass('opacity00');
-			        	$('#price').removeClass('circle-css');
-			        	$('#pages').addClass('circle-css');
-			        	var l = $("#pages").offset();
-						$("#memory2").offset({"top": l.top,"left": l.left});
-				        TweenMax.to("#memory2", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
-							$('#pages').removeClass('circle-css');
-			  				typing('.introjs-tooltiptext', "", function() {  
-			  					setTimeout(function(){
-			  						intro.nextStep();
-			  						}, 800); 
-								});
-	       				 	}});
-	       		 		}});
-	        		}});
+				if (intro._direction == "forward") {
+					$('#bArrow, #memoryStoreB').removeClass("opacity00");
+					intro.refresh();
+					$('#name').addClass('circle-css');
+					var l = $("#name").offset();
+					$("#memory0").offset({"top": l.top,"left": l.left});
+		       		TweenMax.to("#memory0", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
+			        	$('#name').removeClass('circle-css');
+			        	$('#price').addClass('circle-css');
+			        	var l = $("#price").offset();
+						$("#memory1").offset({"top": l.top,"left": l.left});
+				        TweenMax.to("#memory1", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
+				        	$('#zeros').removeClass('opacity00');
+				        	$('#price').removeClass('circle-css');
+				        	$('#pages').addClass('circle-css');
+				        	var l = $("#pages").offset();
+							$("#memory2").offset({"top": l.top,"left": l.left});
+					        TweenMax.to("#memory2", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
+								$('#pages').removeClass('circle-css');
+				  					setTimeout(function() {
+				  						intro.nextStep();
+				  					}, 400); 
+		       				 	}});
+		       		 		}});
+		        		}});
+				} else {
+					setTimeout(function() {
+						$('#table tr:eq(1) > td').css('opacity','0');
+						$('#bArrow, #memoryStoreB').addClass("opacity00");
+  						intro.previousStep();
+  					}, 300); 
+				}
+				
 				});
 		break;
 		case "bookPointer" :
@@ -168,18 +213,27 @@
 				});
 		break; 
 		case "boxOfP" :
-			$('#boxOfP').removeClass('opacity00');
-			$('#arrow').removeClass('opacity00');
-			$(".introjs-helperLayer").one("transitionend", function() {
+			if (intro._direction == "forward") {
+				$('#boxOfP, #arrow').removeClass('opacity00');
+				$(".introjs-helperLayer").one("transitionend", function() {
 				$("#address1").removeClass("opacity00");
 				var l = $("#address").offset();
-				$("#address1").offset({"top": l.top,"left": l.left});
-	       		TweenMax.to("#address1", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
-			  		setTimeout(function(){
-						intro.nextStep();
-						}, 900); 
-	       			}});
+					$("#address1").offset({"top": l.top,"left": l.left});
+		       		TweenMax.to("#address1", 1.3, {Color:"blue", opacity:1, top: 0, left:0 , onComplete:function() {
+		       			$("#address1").removeClass('memory');
+				  		setTimeout(function() {
+							intro.nextStep();
+							}, 500); 
+		       			}});
 				});
+			} else {
+				$(".introjs-helperLayer").one("transitionend", function() {
+					$('#boxOfP, #arrow, #address1').addClass('opacity00');
+					$("#address1").addClass("opacity00").css('opacity','0');
+						intro.previousStep();
+				});
+			}
+			
 		break;
 		case "pEquals" :
 			$(".introjs-helperLayer").one("transitionend", function() {
@@ -193,6 +247,7 @@
 		case "printF" :
 			if(intro._currentStep == 8) {
 				$(".introjs-helperLayer").one("transitionend", function() {
+					$('.introjs-tooltip').removeClass("hide");
 					typing('.introjs-tooltiptext', "<b class='ct-code-b-yellow'>p &rarr; name</b> </br> Picks the address stored in "
 							+"<b class='ct-code-b-yellow'>p</b>, and goes to that specific address and reads the value of"
 							+ " <b class='ct-code-b-yellow'>name</b> to display it to the console.", function() {  
@@ -211,6 +266,7 @@
 				});
 			} else if(intro._currentStep == 10) {
 				$(".introjs-helperLayer").one("transitionend", function() {
+					$('.introjs-tooltip').removeClass("hide");
 					typing('.introjs-tooltiptext', "<b class='ct-code-b-yellow'>p &rarr; price</b></br> Picks the address stored in "
 							+"<b class='ct-code-b-yellow'>p</b>, and goes to that specific address and reads the value of"
 							+ " <b class='ct-code-b-yellow'>price</b> to display it to the console.", function() {  
@@ -229,6 +285,7 @@
 				});
 			} else if(intro._currentStep == 12) {
 				$(".introjs-helperLayer").one("transitionend", function() {
+					$('.introjs-tooltip').removeClass("hide");
 					typing('.introjs-tooltiptext', "<b class='ct-code-b-yellow'>p &rarr; pages</b></br> Picks the address stored in "
 							+"<b class='ct-code-b-yellow'>p</b>, and goes to that specific address and reads the value of"
 							+" <b class='ct-code-b-yellow'>pages</b> to display it to the console.", function() {  
@@ -248,32 +305,46 @@
 			}
 		break;
 		case "consoleId" :
-			if(intro._currentStep == 9) {
-				$(".introjs-helperLayer").one("transitionend", function() {
-					$("#consoleId").removeClass("opacity00");
-				  	typing('#nameOutPut', "NAME: " + "<span class='color-palegreen'>C LANGUAGE</span>",  function() { 
-				  		setTimeout(function(){
-							intro.nextStep();
+			if (intro._direction == "forward") {
+				if(intro._currentStep == 9) {
+					$(".introjs-helperLayer").one("transitionend", function() {
+						$("#consoleId").removeClass("opacity00");
+					  	typing('#nameOutPut', "NAME: " + "<span class='color-palegreen'>C LANGUAGE</span>",  function() { 
+					  		setTimeout(function() {
+								intro.nextStep();
+							}, 800); 
+							});
+						});
+				} else if(intro._currentStep == 11) {
+					$(".introjs-helperLayer").one("transitionend", function() {
+						typing('#priceOutPut', "price: " + "<span class='color-palegreen'>125.500000</span>",  function() { 
+					  		setTimeout(function() {
+								intro.nextStep();
 							}, 800); 
 						});
 					});
-			} else if(intro._currentStep == 11) {
-				$(".introjs-helperLayer").one("transitionend", function() {
-					typing('#priceOutPut', "price: " + "<span class='color-palegreen'>125.500000</span>",  function() { 
-				  		setTimeout(function(){
-							intro.nextStep();
+				} else if(intro._currentStep == 13) {
+					$(".introjs-helperLayer").one("transitionend", function() {
+						typing('#pageOutPut',  "page: " + "<span class='color-palegreen'>315</span></span>",  function() { 
+					  		setTimeout(function() {
+								intro.nextStep();
 							}, 800); 
+						});
 					});
-				});
-			} else if(intro._currentStep == 13) {
+				}
+			} else {
 				$(".introjs-helperLayer").one("transitionend", function() {
-					typing('#pageOutPut',  "page: " + "<span class='color-palegreen'>315</span></span>",  function() { 
-				  		setTimeout(function(){
-							intro.nextStep();
-							}, 800); 
-					});
+					if (intro._currentStep == 9) {
+						$("#consoleId").addClass("opacity00");
+					}
+					setTimeout(function() {
+					$('.color-palegreen:last').parent().empty();
+					intro.previousStep();
+					}, 500); 
 				});
 			}
+			
+			
 		break;
 		case "restartBtn":
 			$('.introjs-tooltip').css({'min-width': '110px'});
@@ -299,6 +370,7 @@ function typing(selector, text, callBackFunction) {
 		$(".introjs-nextbutton").removeClass("opacity00");
 		if (typeof callBackFunction === "function") {
 			callBackFunction();
-			}
-		})
-	}
+			intro._introItems[intro._currentStep].intro = $(".introjs-tooltiptext").html();
+		}
+	})
+}
