@@ -167,8 +167,7 @@ $(document).ready(function() {
 			</div>
 			<div class="col-xs-12 margin-top20 margin-bottom20 opacity00"
 				id="memoryOfArray">
-				<div class="col-xs-offset-2 col-xs-10 animated zoomIn"
-					id="memoerypoint">
+				<div class="col-xs-offset-2 col-xs-10" id="memoerypoint">
 					<span>4. </span> <span>int a[5];</span> <span class="margin-left20">
 						<i class="fa fa-arrow-right red-color"></i>
 					</span> <span class="green-color margin-left20">memory is allocated
@@ -179,32 +178,21 @@ $(document).ready(function() {
 						<tbody>
 							<tr>
 								<th></th>
-								<td style="text-align: center;"><span id="a0ofTable">a[0]</span></td>
-								<td style="text-align: center;"><span id="a1ofTable">a[1]</span></td>
-								<td style="text-align: center;"><span id="a2ofTable">a[2]</span></td>
-								<td style="text-align: center;"><span id="a3ofTable">a[3]</span></td>
-								<td style="text-align: center;"><span id="a4ofTable">a[4]</span></td>
+								<% for(int i = 0; i < 5; i++) {%>
+									<td style="text-align: center;"><span id="a<%=i%>ofTable">a[<%=i%>]</span></td>
+								<% } %>
 							</tr>
 							<tr>
 								<th style="text-align: center;">a[5] =&emsp;</th>
-								<td class="table-border"><span id="a0value"></span></td>
-								<td class="table-border"><span id="a1value"></span></td>
-								<td class="table-border"><span id="a2value"></span></td>
-								<td class="table-border"><span id="a3value"></span></td>
-								<td class="table-border"><span id="a4value"></span></td>
+								<% for(int i = 0; i < 5; i++) {%>
+									<td class="table-border"><span id="a<%=i%>value"></span></td>
+								<% } %>
 							</tr>
 							<tr>
 								<th></th>
-								<td style="text-align: center; color: green;"><span
-									id="arrayAddress1">2024</span></td>
-								<td style="text-align: center; color: green;"><span
-									id="arrayAddress2">2026</span></td>
-								<td style="text-align: center; color: green;"><span
-									id="arrayAddress3">2028</span></td>
-								<td style="text-align: center; color: green;"><span
-									id="arrayAddress4">2030</span></td>
-								<td style="text-align: center; color: green;"><span
-									id="arrayAddress5">2032</span></td>
+									<% for(int i = 1; i < 6; i++) {%>
+									<td style="text-align: center; color: green;"><span id="arrayAddress<%=i%>"><%=2022+(i*2)%></span></td>
+								<% } %>
 							</tr>
 						</tbody>
 					</table>
